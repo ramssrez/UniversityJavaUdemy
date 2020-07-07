@@ -15,7 +15,7 @@ public class HolaMundo {
         //Comilla Simple        \'
         System.out.println("Comilla Simple \'" + nombre + "\'");
         
-        //Comilla doble
+        //Comilla doble         \"      
         System.out.println("Comilla Doble: \"" + nombre + "\"" );
 
     }
