@@ -1,9 +1,13 @@
 //Mi clase en Java
 public class HolaMundo {
-    //Definiendo la función main para que se puda ejecutar
-    //los diferentes argumentos
     public static void main(String args[]){
-        //Con esta sentenia mandamos texto a java
-        System.out.println("Hola mundo desde Java");
+        //Definición de varables tipo entero
+        int variableEntera = 10;
+        System.out.println(variableEntera);        
     }
+    /*
+                  Tipos de datos en Java
+       Tipos primitivos        Tipos Referenciados(Object)
+    enteros     flotantes    clases  interfaces arrays
+    */
 }
