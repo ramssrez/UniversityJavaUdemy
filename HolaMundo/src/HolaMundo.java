@@ -23,6 +23,20 @@ public class HolaMundo {
         //Ejercicio con tipo de dato String
         var variableCadenaDos ="Nueva Cadena";
         System.out.println("variableCadenaDos = " + variableCadenaDos);
-                
+        
+        //Reglas para declar variables.
+        /*
+        No se puede iniciar con numeros
+        No se puede empezar con mayuscula, por convencion se uso minuscula
+        Es posible usar variables con acento, pero no es recomendaod
+        No se puede utilizar caracteres especiales
+        El guion bajo es posible
+        Usar el simbolo de dolar tambien es posible
+        */
+        
+        //Las siguientes variables son permitidos
+        var miVariable = 1;
+        var _miVariable = 2;
+        var $miVariable = 3;
     }
 }
