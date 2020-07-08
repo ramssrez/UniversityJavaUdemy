@@ -32,9 +32,30 @@ public class HolaMundo {
         //Valors minimos y maximos del short
         short numeroShort = 10;
         System.out.println("numeroShort = " + numeroShort);
-        System.out.println("Valor minimo short" + Short.MIN_VALUE);
-        System.out.println("Valor minimo short" + Short.MAX_VALUE);
-
+        numeroShort = (short)32768;
+        System.out.println("numeroShort = " + numeroShort);
+        System.out.println("Valor minimo short: " + Short.MIN_VALUE);
+        System.out.println("Valor minimo short: " + Short.MAX_VALUE);
+        
+        //Valores minimos y maximos de los enteros
+        int numeroInt = 10;
+        System.out.println("numeroInt = " + numeroInt);
+        numeroInt = (int)2147483648L;
+        System.out.println("numeroInt = " + numeroInt);
+        System.out.println("Valor minimo enteros: " + Integer.MIN_VALUE);
+        System.out.println("Valor minimo entero: " + Integer.MAX_VALUE);
+        
+        //Valores minimos y maximos de los long
+        long numeroLong = 10;
+        System.out.println("numeroLong = " + numeroLong);
+        numeroLong =(long)9223372036854775808F;
+        System.out.println("numeroLong = " + numeroLong);
+        System.out.println("Valor minimo long: " + Long.MIN_VALUE);
+        System.out.println("Valor minimo long: " + Long.MAX_VALUE);
+        
+        //Valores minimos y maximos de los enteros
+        System.out.println("Valor minimo character: " + Character.MIN_VALUE);
+        System.out.println("Valor minimo character: " + Character.MAX_VALUE);
         
     }
 }
