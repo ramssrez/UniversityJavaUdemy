@@ -53,9 +53,26 @@ public class HolaMundo {
         System.out.println("Valor minimo long: " + Long.MIN_VALUE);
         System.out.println("Valor minimo long: " + Long.MAX_VALUE);
         
-        //Valores minimos y maximos de los enteros
-        System.out.println("Valor minimo character: " + Character.MIN_VALUE);
-        System.out.println("Valor minimo character: " + Character.MAX_VALUE);
+        //Tipos primitivos de tipo flotante
+        //Valores minimos y maximos de los float
+//     float numeroFloat = 10;//Si lo dejamos de esta manera, lo toma como double
+        float numeroFloat = 10.0F; //De esta manera es de tipo float
+        System.out.println("numeroFloat = " + numeroFloat);
+        //El numero que sale es infinity, ya que se perdio la presicion
+        numeroFloat = (float)3.4028235E38D;
+        System.out.println("numeroFloat = " + numeroFloat);
+        System.out.println("Valor minimo flotante: " + Float.MIN_VALUE);
+        System.out.println("Valor minimo flotante: " + Float.MAX_VALUE);
+        
+        
+        //Valores minimos y maximos de los double
+        double numeroDouble = 10.0; //De esta manera es de tipo float
+        System.out.println("numeroDouble = " + numeroDouble);
+        //El numero que sale es infinity, ya que se perdio la presicion
+        numeroDouble= 1.7976931348623158E308;
+        System.out.println("numeroDouble = " + numeroDouble);
+        System.out.println("Valor minimo double: " + Double.MIN_VALUE);
+        System.out.println("Valor minimo double: " + Double.MAX_VALUE);
         
     }
 }
