@@ -3,45 +3,26 @@
 public class HolaMundo {
 
     public static void main(String args[]) {
-        //Tipos de primitivos tipo char
-        char caracter = 'a';
-        System.out.println("caracter = " + caracter);
-        //Checar lista de carcteres de tipo unicode
+        //Tipos de primitivos booleanos tambien de tipo bandera
+        boolean varBoolean = true;
+        System.out.println("varBoolean = " + varBoolean);
         
-        //Usando el sisteme unicode de latinoamerica
-        char varChar = '\u0021';
-        System.out.println("varChar = " + varChar);
+        if (varBoolean == true){
+            //Otra manera puede ser
+            //if(varBoolean)
+            System.out.println("Bandera Verdadera");
+        }else{
+            System.out.println("Bandera es Falsa");
+        }
         
-        //De esta marera usando los decimales a los que estan asociados
-        char varCharDecinal = 33;
-        System.out.println("varChardecinal = " + varCharDecinal);
+        var edad = 10;
+        var esAdulto = edad>=18;
+        System.out.println("esAdulto = " + esAdulto);
+        if (esAdulto){
+            System.out.println("Eres mayor de edad");
+        }else{
+            System.out.println("Eres menor de edad");
+        }
         
-        //Usando el simbolo pero con comillas simples
-        char varCharSimbolo = '!';
-        System.out.println("varCharSimbolo = " + varCharSimbolo);
-        
-        /*
-        Se observo la forma en como se puede poner un simbolo
-        con la estructura unicode, decimal y con el mismo simbolo
-        al que estamos buscando   
-        */
-        
-        System.out.println("Usando var");
-        
-        var varChar1 ='\u0021';
-        System.out.println("varChar = " + varChar1);
-        
-        //En esta parte va a imprimir un entero, por lo que no reconoce un char
-        var varCharDecinal1 = 33;
-        System.out.println("varChardecinal = " + varCharDecinal1);
-        
-        var varCharSimbolo1 = '!';
-        System.out.println("varCharSimbolo = " + varCharSimbolo1);
-        
-        int varEnteraSimbolo = '!';
-        System.out.println("varEnteraSimbolo = " + varEnteraSimbolo);
-        
-        int letra = 'a';
-        System.out.println("letra = " + letra);
     }
 }
