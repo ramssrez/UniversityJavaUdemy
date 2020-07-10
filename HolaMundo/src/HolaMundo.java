@@ -4,45 +4,28 @@ import java.util.Scanner;
 public class HolaMundo {
 
     public static void main(String args[]) {
-        
-        //Operadores Unarios
-        int a = 3;
-        var b = -a;
-        System.out.println("a = " + a);
-        System.out.println("b = " + b);
-        
-        //operador de negación, tipo oolean
-        var c= true;
-        var d = !c; //Operador de negación !, solo para boleanos
+        //Operaciones de asignacion y relacionales
+        var a = 3;
+        var b=2;
+        //Operador de igualdad ==
+        var c =(a ==b); //Es igual igula
         System.out.println("c = " + c);
+       
+        //Operador de desigualdad o diferente de != 
+        var d = a!=b;
         System.out.println("d = " + d);
         
-        //Operador de incrementos
-          //Preincremento (simbolo antes de la variable)
-          var e =3;
-          var f =++e; //Primero se incrementa la variable y despues se usa 
-          System.out.println("e = " + e);
-          System.out.println("f = " + f);
-          
-          //Posincremento ( despues de la variable)
-          var g=5;
-          var h=g++; //Primero se utiliza el valor de la varible y despues se incrementa
-          System.out.println("g = " + g);         
-          //Operador de decremento
-          
-          //Operador de predecremento
-          var i = 2;
-          var j = --i;
-          System.out.println("i = " + i);
-          System.out.println("j = " + j);
-          
-          //Operador de posdecremento
-          var k=4;
-          var l=k--;
-          System.out.println("k = " + k);
-          System.out.println("l = " + l);
-         
-         
+        //La igualdad no funcina con objetos
+        var cadena1 = "Hola";
+        var cadena2="Adios";
+        var e = cadena1==cadena2; //Compara la referencia de onbetos
+        
+        //No se esta comparando las variables, ya que son de tipo string
+        System.out.println("e = " + e);
+        var f = cadena1.equals(cadena2); //Comparamos contenidos de cadenas
+        //Es la manera correcta de igualar unos objetos
+        System.out.println("f = " + f);
+        
     }
     
 }
