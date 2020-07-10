@@ -4,29 +4,30 @@ import java.util.Scanner;
 public class HolaMundo {
 
     public static void main(String args[]) {
-       int a=3,b=2;
-       var resultado = a + b;  //Operador suma
-       System.out.println("resultado = " + resultado);
+       //Operadores de asignación
+       int a = 3, b=2;
+       int c = a +5 -b;
+       //La asignación va de izquierda a derecha, se le agnación de c
+        System.out.println("c = " + c);
        
-       resultado = a - b;     //Operador resta
-       System.out.println("resultado de la resta = " + resultado);
+       a+=1;//a = a+1 operadorde composición de suma
+        System.out.println("composición suma a = " + a);
+        a +=3; //a=a+3
+        System.out.println("a = " + a);
         
-       resultado = a * b;    //Operador multiplicación
-       System.out.println("resultado de la multiplicación= " +resultado );
+        a-=2; //Operador composicion de resta
+        //a=a-2
+        System.out.println("composición resta a = " + a);
+        a/=2; //Operador de composición de división
+        System.out.println("composición división a = " + a);
         
-       resultado = a/b;//Resultado en enteros
-       System.out.println("resultado de la división= " + resultado);
+        a*=3; //Operador de composición de multiplicación
+        System.out.println("composición multiplicación a = " + a);
         
-       var resultadoDos =3.0 / b;    //operador división
-       System.out.println("resultado de la división = " + resultadoDos);
+        a%=2; //Operador de composición de modulo
+        System.out.println("composición modulo a = " + a);
+     
+ 
         
-       resultado = a%b; //Operador modulo
-       System.out.println("resultado del modulo= " + resultado);
-       
-       if (a%2==0){
-           System.out.println("Es número par");
-       }else{
-           System.out.println("Es número impar");
-       }
     }
 }
