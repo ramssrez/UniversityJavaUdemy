@@ -17,7 +17,7 @@ public class HolaMundo {
         System.out.println("c = " + c);
         System.out.println("d = " + d);
         
-        //Operdor de incrementos
+        //Operador de incrementos
           //Preincremento (simbolo antes de la variable)
           var e =3;
           var f =++e; //Primero se incrementa la variable y despues se usa 
@@ -27,13 +27,22 @@ public class HolaMundo {
           //Posincremento ( despues de la variable)
           var g=5;
           var h=g++; //Primero se utiliza el valor de la varible y despues se incrementa
-          System.out.println("g = " + g);
-          System.out.println("h = " + h);
+          System.out.println("g = " + g);         
+          //Operador de decremento
           
+          //Operador de predecremento
+          var i = 2;
+          var j = --i;
+          System.out.println("i = " + i);
+          System.out.println("j = " + j);
           
-          
-          
-        
+          //Operador de posdecremento
+          var k=4;
+          var l=k--;
+          System.out.println("k = " + k);
+          System.out.println("l = " + l);
+         
+         
     }
     
 }
