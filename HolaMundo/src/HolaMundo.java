@@ -5,28 +5,19 @@ import java.util.Scanner;
 public class HolaMundo {
 
     public static void main(String args[]) {
-        //Sentencias de control if else
-        var condicion = true;
-        if (condicion){
-            System.out.println("Esta condicion es verdadera");
-            System.out.println("Nueva línea");
-        }else{
-            System.out.println("Esta condicion es falsa");
-        }
-        
-        
-        var numero =2;
-        var numeroTexto ="Numero desconocido";
-        if (numero == 1){
-            numeroTexto = "Numero Uno";
-        }else if(numero == 2){
-            numeroTexto ="Numero Dos";
-        }else if (numero == 3){
-            numeroTexto="Numero Tres";
+        var mes = 11;
+        if (mes == 1 || mes == 2 || mes == 12){
+            System.out.println("Estas en Invierno");
+            
+        }else if(mes == 3|| mes == 4|| mes == 5 ){
+            System.out.println("Estas en Primavera");
+        }else if (mes == 6|| mes == 7 || mes ==8){
+            System.out.println("Estas en Verano");
+        }else if (mes == 9|| mes == 10|| mes == 11){
+            System.out.println("Estas en Otoño");
         }else {
-            System.out.println("Numero no encontrado");
+            System.out.println("Este es no es un mes del año");
         }
         
-        System.out.println("numeroTexto = " + numeroTexto);
     }
 }
