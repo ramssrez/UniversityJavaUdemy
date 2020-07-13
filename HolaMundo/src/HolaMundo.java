@@ -5,23 +5,14 @@ import java.util.Scanner;
 public class HolaMundo {
 
     public static void main(String args[]) {
-        //Prioridad de operadores
-        var x=5;
-        var y=10;
-        var z = ++x +y--;
-        System.out.println("x = " + x);
-        System.out.println("y = " + y);
-        System.out.println("z = " + z);
-        
-        var resultado = 4+5*6/3;
-        System.out.println("resultado = " + resultado);
-        
-        resultado = (4+5)*6/3;
-        System.out.println("resultado = " + resultado);
-        
-        
-        
-        
+        //Sentencias de control if else
+        var condicion = true;
+        if (condicion){
+            System.out.println("Esta condicion es verdadera");
+            System.out.println("Nueva línea");
+        }else{
+            System.out.println("Esta condicion es falsa");
+        }
         
     }
 }
