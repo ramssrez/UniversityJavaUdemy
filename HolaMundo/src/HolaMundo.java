@@ -14,5 +14,19 @@ public class HolaMundo {
             System.out.println("Esta condicion es falsa");
         }
         
+        
+        var numero =2;
+        var numeroTexto ="Numero desconocido";
+        if (numero == 1){
+            numeroTexto = "Numero Uno";
+        }else if(numero == 2){
+            numeroTexto ="Numero Dos";
+        }else if (numero == 3){
+            numeroTexto="Numero Tres";
+        }else {
+            System.out.println("Numero no encontrado");
+        }
+        
+        System.out.println("numeroTexto = " + numeroTexto);
     }
 }
