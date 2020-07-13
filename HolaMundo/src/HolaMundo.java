@@ -5,13 +5,23 @@ import java.util.Scanner;
 public class HolaMundo {
 
     public static void main(String args[]) {
-        //Operadores Ternarios
-        //Simplificacion del if else
-        var resultado = (1 > 2) ?"Verdadero":"falso" ;
+        //Prioridad de operadores
+        var x=5;
+        var y=10;
+        var z = ++x +y--;
+        System.out.println("x = " + x);
+        System.out.println("y = " + y);
+        System.out.println("z = " + z);
+        
+        var resultado = 4+5*6/3;
         System.out.println("resultado = " + resultado);
         
-        var numero = 9;
-        resultado = (numero%2==0) ?"Numero Par":"Numero Impar";
+        resultado = (4+5)*6/3;
         System.out.println("resultado = " + resultado);
+        
+        
+        
+        
+        
     }
 }
