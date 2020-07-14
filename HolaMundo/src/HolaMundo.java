@@ -19,5 +19,10 @@ public class HolaMundo {
             System.out.println("conta = " + conta);
             conta++;
         }while(conta<3);
+        
+        //Uso del ciclo for
+        for(var contadorDos = 0;contadorDos<3;contadorDos++){
+            System.out.println("contadorDos = " + contadorDos);
+        }
     }
 }
