@@ -36,5 +36,17 @@ public class HolaMundo {
             }
             System.out.println("contadorTres = " + contadorTres);    
         }
+        
+        //Programación de tipo go to, en donde se realiza
+        //un punto en donde debe de continuar las lineas de codigo
+        inicio://Etiquetas para que continue el uso de etiquetas
+        for (var contadorCuatro=0;contadorCuatro<=3;contadorCuatro++){
+            if(contadorCuatro %2 != 0){
+               continue inicio;  //Fin de etiquetas
+            }
+            System.out.println("contadorCuatro = " + contadorCuatro);
+            
+        }
+        
     }
 }
