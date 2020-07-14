@@ -20,9 +20,21 @@ public class HolaMundo {
             conta++;
         }while(conta<3);
         
-        //Uso del ciclo for
+        //Uso del ciclo for con break
         for(var contadorDos = 0;contadorDos<3;contadorDos++){
-            System.out.println("contadorDos = " + contadorDos);
+            if(contadorDos%2 == 0){
+                System.out.println("contadorDos = " + contadorDos);
+                break;//Hace que el ciclo se termine
+            }
+            
+        }
+
+        //Cambiando la logica de programacion usando continue
+        for (var contadorTres =0;contadorTres<3;contadorTres++){
+            if(contadorTres%2 != 0){
+                continue;
+            }
+            System.out.println("contadorTres = " + contadorTres);    
         }
     }
 }
