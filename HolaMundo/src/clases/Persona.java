@@ -19,4 +19,8 @@ public class Persona {
        System.out.println("El nombre: " + nombre);
        System.out.println("El apellido: " + apellido );
    }
+   /*
+   La clase es la plantilla en donde se declaran las caracteristicas
+   los atributos y metodos de los mismos
+   */
 }
