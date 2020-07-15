@@ -10,6 +10,10 @@ public class Aritmetica {
         int suma = a+b;
         System.out.println("suma:  " + suma );
     }
+    public int sumarRetorno(){
+        int sumaRetun = a + b;
+        return sumaRetun;
+    }
     
     public void restar(){
         int resta = a-b;
