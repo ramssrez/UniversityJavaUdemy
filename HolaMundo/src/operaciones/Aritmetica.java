@@ -15,8 +15,11 @@ public class Aritmetica {
         return sumaRetun;
     }
     
-    public void restar(){
-        int resta = a-b;
-        System.out.println("resta = " + resta);
+    //Argumentos cuando llega la información
+    public int sumarArgumentos(int arg1, int arg2){
+        a=arg1;
+        b=arg2;
+        //Uso de un metodo en donde se reutiliz codigo
+        return sumarRetorno();
     }
 }

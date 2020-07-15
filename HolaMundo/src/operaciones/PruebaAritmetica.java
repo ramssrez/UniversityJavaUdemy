@@ -12,5 +12,8 @@ public class PruebaAritmetica {
         //De esta manera le asignamos el valor de retorno del metodo
         
         System.out.println("resultado desde prueba = " + resultado);
+         //Paso de parametros cuando se envia informacion al metodo
+        resultado = aritmetica.sumarArgumentos(5,8); 
+        System.out.println("resultado con argumentos:" + resultado);
     }   
 }
