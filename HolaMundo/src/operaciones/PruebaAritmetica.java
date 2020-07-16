@@ -1,6 +1,7 @@
 package operaciones;
 public class PruebaAritmetica {
     public static void main(String [] args){
+        System.out.println("Antes del constructor");
         Aritmetica aritmetica = new Aritmetica();
         //Se declara espacio de memoria
         

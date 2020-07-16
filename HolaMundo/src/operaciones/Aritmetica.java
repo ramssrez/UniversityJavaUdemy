@@ -1,6 +1,14 @@
 package operaciones;
 
 public class Aritmetica {
+
+    //Constructor vacio
+    public Aritmetica() {
+        System.out.println("Ejecutando Constructor");
+        /*
+        Los valores por default son cero para los enteros
+        */
+    }
     int a;
     int b;
     
