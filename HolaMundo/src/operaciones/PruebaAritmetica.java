@@ -3,18 +3,15 @@ public class PruebaAritmetica {
     public static void main(String [] args){
         System.out.println("Antes del constructor");
         Aritmetica aritmetica = new Aritmetica();
-        //Se declara espacio de memoria
         
-        aritmetica.a = 3;
-        aritmetica.b = 2;
-        aritmetica.sumar();
+        //Llamado de constructor vacio
+        System.out.println("Aritmetica a: " + aritmetica.a);
+        System.out.println("Aritmetica b: " + aritmetica.b);
         
-        int resultado = aritmetica.sumarRetorno();
-        //De esta manera le asignamos el valor de retorno del metodo
-        
-        System.out.println("resultado desde prueba = " + resultado);
-         //Paso de parametros cuando se envia informacion al metodo
-        resultado = aritmetica.sumarArgumentos(5,8); 
-        System.out.println("resultado con argumentos:" + resultado);
+        //Llamado de constructor con argumetos
+        Aritmetica aritmeticaDos = new Aritmetica(10, 15);
+        System.out.println("aritmeticaDos a = " + aritmeticaDos.a);
+        System.out.println("aritmeticaDos b = " + aritmeticaDos.b);
+
     }   
 }

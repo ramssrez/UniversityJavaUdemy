@@ -1,17 +1,25 @@
 package operaciones;
 
 public class Aritmetica {
-
-    //Constructor vacio
-    public Aritmetica() {
-        System.out.println("Ejecutando Constructor");
-        /*
-        Los valores por default son cero para los enteros
-        */
-    }
+    //Atributos de la clase
     int a;
     int b;
+    //Constructor vacio
+    public Aritmetica() {
+        System.out.println("Ejecutando Constructor vacio");
+        /*
+        Los valores por default son cero para los enteros
+        por lo que no es necesario declararlos
+        */
+    }
     
+    //Sobrecarga de constructores, agregar dos o mas constructores
+    public Aritmetica(int a, int b/* argumetos de la clase*/){
+        //Var no es permitido en los atributos de los metodos
+        System.out.println("Ejecutando contructor con argumentos");
+        this.a=a;
+        this.b=b;
+    }
     
     //Declaracion del metodo
     public void sumar (){
