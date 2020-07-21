@@ -7,12 +7,14 @@ public class PasoPorValor {
         System.out.println("x = " + x);
         
         //Solo pasamos una compia del valor
-        cambioValor(x);
+        x=cambioValor(x);
         System.out.println("x = " + x);
     }
     
-    public static void cambioValor(int arg1){
+    public static int cambioValor(int arg1){
         System.out.println("arg1 = " + arg1);
-        arg1=15;
+        return arg1=15;
+        //Se puede regresar el valor con un return
+        
     }
 }
