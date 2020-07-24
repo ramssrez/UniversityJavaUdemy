@@ -22,9 +22,9 @@ public class PersonaPrueba {
         System.out.println("personaDos sueldo= " + personaDos.getSueldo());
         System.out.println("personaDos eliminado = " + personaDos.isEliminado());
         
-        
-        
-        
+        System.out.println("Persona Uno: " + personaUno.toString());
+        System.out.println("Pesona Dos: " + personaDos.toString());
+         
     }
 }
  

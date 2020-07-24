@@ -35,4 +35,20 @@ public class Persona {
    }
    
    
+   //Uso de toString hecho por si solo
+   
+   //public String toString(){
+   //    return "Persona  [ nombre: " + this.nombre + 
+   //            ", sueldo : " + this.sueldo + 
+   //            ", eliminado: " + this.eliminado + "]";
+   //}
+
+   
+   //Uso de toString hecho por netbeans
+    @Override
+    public String toString() {
+        return "Persona{" + "nombre=" + nombre + ", sueldo=" + sueldo + ", eliminado=" + eliminado + '}';
+    }
+   
+   
 }
