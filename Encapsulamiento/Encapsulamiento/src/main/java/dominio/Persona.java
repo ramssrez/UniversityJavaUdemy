@@ -2,52 +2,41 @@
 package dominio;
 public class Persona {
    private String nombre;
-   private double sueldo;
-   private boolean eliminado;
-   public Persona(String nombre, double sueldo, boolean eliminado){
-       this.nombre = nombre;
-       this.sueldo = sueldo;
-       this.eliminado = eliminado;
-   }
+   private char genero;
+   private int edad;
+   private String direccion;
    
-   public String getNombre (){
+   public Persona(){
+       
+   }
+   public String  getNombre(){
        return this.nombre;
    }
-   
-   public void setNombre (String nombre){
-       this.nombre = nombre;
+   public void setNombre(String nombre){
+       this.nombre=nombre;
    }
-   
-   public double getSueldo (){
-       return this.sueldo;
+   public char getGenero(){
+       return this.genero;
    }
-   
-   public void  setSueldo (double sueldo){
-       this.sueldo = sueldo;
+   public void setGenero(char genero){
+       this.genero = genero;
    }
-   
-   public boolean isEliminado(){
-       return this.eliminado;
+   public int getEdad (){
+       return this.edad;
    }
-   
-   public void setEliminado (boolean eliminado){
-       this.eliminado= eliminado;
+   public void setEdad(int edad){
+       this.edad = edad;
    }
-   
-   
-   //Uso de toString hecho por si solo
-   
-   //public String toString(){
-   //    return "Persona  [ nombre: " + this.nombre + 
-   //            ", sueldo : " + this.sueldo + 
-   //            ", eliminado: " + this.eliminado + "]";
-   //}
+   public String getDireccion(){
+       return this.direccion;
+   }
+   public void setDireccion(String direccion){
+       this.direccion=direccion;
+   }
 
-   
-   //Uso de toString hecho por netbeans
     @Override
     public String toString() {
-        return "Persona{" + "nombre=" + nombre + ", sueldo=" + sueldo + ", eliminado=" + eliminado + '}';
+        return "Persona{" + "nombre=" + nombre + ", genero=" + genero + ", edad=" + edad + ", direccion=" + direccion + '}';
     }
    
    
