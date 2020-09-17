@@ -1,19 +1,23 @@
-
 package dominio;
 
 import java.util.Date;
 
 public class Cliente extends Persona {
-    private int idCleinte;
+    private int idCliente;
     private Date fechaRegistro;
     private boolean vip;
-    
-    public Cliente(){
-        
-    }
+    private static int contadorCliente;
 
+    public Cliente(Date fechaRegistro, boolean vip, 
+            String nombre, char genero, int edad, String direccion) {
+        super(nombre, genero, edad, direccion);
+        this.idCliente = ++Cliente.contadorCliente;
+        this.fechaRegistro = fechaRegistro;
+        this.vip = vip;
+    }
+    
     public int getIdCleinte() {
-        return idCleinte;
+        return idCliente;
     }
 
     public Date getFechaRegistro() {
@@ -31,7 +35,16 @@ public class Cliente extends Persona {
     public void setVip(boolean vip) {
         this.vip = vip;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Cliente{idCliente=").append(idCliente);
+        sb.append(", fechaRegistro=").append(fechaRegistro);
+        sb.append(", vip=").append(vip);
+        sb.append(" ").append(super.toString());
+        sb.append('}');
+        return sb.toString();
+    }
     
 }
