@@ -1,14 +1,26 @@
 
 package dominio;
 public class Persona {
-   private String nombre;
-   private char genero;
-   private int edad;
-   private String direccion;
+   protected String nombre; //protected es para hacer herencia para los metodos
+   protected char genero;
+   protected int edad;
+   protected String direccion;
    
    public Persona(){
        
    }
+
+    public Persona(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public Persona(String nombre, char genero, int edad, String direccion) {
+        this.nombre = nombre;
+        this.genero = genero;
+        this.edad = edad;
+        this.direccion = direccion;
+    }
+   
    public String  getNombre(){
        return this.nombre;
    }
