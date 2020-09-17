@@ -20,7 +20,6 @@ public class Empleado extends Persona{ //Extends es para heredar de la clase pad
     public void setSueldo(double sueldo) {
         this.sueldo = sueldo;
     }
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -30,5 +29,4 @@ public class Empleado extends Persona{ //Extends es para heredar de la clase pad
         sb.append('}');
         return sb.toString();
     }
-    
 }

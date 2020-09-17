@@ -21,7 +21,7 @@ public class Persona {
         this.edad = edad;
         this.direccion = direccion;
     }
-   
+
    public String  getNombre(){
        return this.nombre;
    }
