@@ -4,11 +4,17 @@ public class Empleado extends Persona{ //Extends es para heredar de la clase pad
     private int idEmpleado;
     private double sueldo;
     private static int contadorEmpleado;
+    
+    //Sobrecarga de constructores
+    public Empleado(){
+        //super();
+        this.idEmpleado=++Empleado.contadorEmpleado; 
+    }
 
     public Empleado(String nombre, double sueldo) {
-        super(nombre);
+        this();
+        this.nombre = nombre;
         this.sueldo = sueldo;
-        this.idEmpleado=++Empleado.contadorEmpleado;
     }
 
     public int getIdEmpleaod() {
