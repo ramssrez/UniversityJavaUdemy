@@ -1,12 +1,15 @@
 package Clases;
 
 import java.text.DateFormat;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class Estudiante {
     private String nombre;
     private String apellido;
-    private Date fechaNacimiento;
+    private String fechaNacimiento;
     private int matricula;
     private float promedio;
     private long telefono;
@@ -25,7 +28,15 @@ public class Estudiante {
     
     public int calcularEdad(Date fecha){
         System.out.println("Esto es la fecha actual desde la clase estudiante: " + fecha);
-        edad = 25;
+        DateTimeFormatter fmt =DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate fechaNaci = LocalDate.parse(this.fechaNacimiento,fmt);
+        LocalDate ahora = LocalDate.now();
+        Period periodo = Period.between(fechaNaci, ahora);
+        System.out.println("Tu edad es: " + periodo.getYears() + "años");
+        System.out.println(periodo.getMonths() + " meses");
+        System.out.println(periodo.getDays() + " dias");
+        
+        edad = periodo.getYears();
         return edad;
     }
 
@@ -45,11 +56,11 @@ public class Estudiante {
         this.apellido = apellido;
     }
 
-    public Date getFechaNacimiento() {
+    public String getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(Date fechaNacimiento) {
+    public void setFechaNacimiento(String fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
