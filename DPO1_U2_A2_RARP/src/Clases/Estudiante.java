@@ -1,26 +1,40 @@
 package Clases;
 
+import java.text.DateFormat;
 import java.util.Date;
 
 public class Estudiante {
-    private String name;
+    private String nombre;
     private String apellido;
     private Date fechaNacimiento;
     private int matricula;
     private float promedio;
     private long telefono;
     private String direccion;
+    private int edad;
+    private Date fechaActual;
+    private DateFormat fechaNacimientoDos;
 
     public Estudiante (){
         System.out.println("Esto es el constructor de la clase");
     }
-
-    public String getName() {
-        return name;
+    
+    public int getEdad(){
+        return edad;
+    }
+    
+    public int calcularEdad(Date fecha){
+        System.out.println("Esto es la fecha actual desde la clase estudiante: " + fecha);
+        edad = 25;
+        return edad;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getName() {
+        return nombre;
+    }
+
+    public void setName(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getApellido() {
@@ -71,13 +85,19 @@ public class Estudiante {
         this.telefono = telefono;
     }
     
-    
-    
-    
+    public void setFechaActual (Date fechaActual){
+        this.fechaActual = fechaActual;
+    }
 
     @Override
     public String toString() {
-        return "Estudiante{" + "name=" + name + ", apellido=" + apellido + ", fechaNacimiento=" + fechaNacimiento + ", matricula=" + matricula + ", promedio=" + promedio + ", telefono=" + telefono + ", direccion=" + direccion + '}';
+        return "Estudiante{" + "name=" + nombre + ", apellido=" + apellido + ", fechaNacimiento=" + fechaNacimiento + ", matricula=" + matricula + ", promedio=" + promedio + ", telefono=" + telefono + ", direccion=" + direccion + ", edad=" + edad + '}';
+    }
+
+    public void setFechaNacimiento(DateFormat date) {
+        
+        this.fechaNacimientoDos = date;
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
