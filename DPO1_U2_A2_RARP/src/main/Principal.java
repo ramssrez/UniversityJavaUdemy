@@ -3,10 +3,6 @@ package main;
 import Clases.Estudiante;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.Period;
-import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
 import java.util.Date;
 
 public class Principal {
@@ -16,7 +12,7 @@ public class Principal {
         //Instancia del objeto estudiante
         Estudiante estudiante = new Estudiante();
         
-        //LLenado de atributos del objeto estudainte
+        //LLenado de atributos del objeto estudiante
         estudiante.setName("Raúl");
         estudiante.setApellido("Ramírez");
         estudiante.setMatricula(308122598);
@@ -25,6 +21,7 @@ public class Principal {
         estudiante.setTelefono(5555555555L);
         estudiante.setFechaNacimiento("27/06/1992");
         estudiante.calcularEdad(fecha);
+        estudiante.calcularEdadDos(fecha);
         
         System.out.println("Estudiante: " +estudiante.toString());
     }

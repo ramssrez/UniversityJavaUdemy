@@ -1,8 +1,10 @@
 package Clases;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Period;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
@@ -15,9 +17,6 @@ public class Estudiante {
     private long telefono;
     private String direccion;
     private int edad;
-    private Date fechaActual;
-    private DateFormat fechaNacimientoDos;
-
     public Estudiante (){
         System.out.println("Esto es el constructor de la clase");
     }
@@ -25,17 +24,30 @@ public class Estudiante {
     public int getEdad(){
         return edad;
     }
+    public int calcularEdadDos(Date fecha){
+        System.out.println("fechaActual = " + fecha);
+        DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        
+        Date nacimiento = null;
+        try{
+            nacimiento = format.parse(this.fechaNacimiento);
+        }catch(Exception ex){
+            System.out.println("Error "+ ex);
+        }
+        System.out.println("nacimiento: " + nacimiento);
+        edad = 25;
+        return edad;
+    }
     
     public int calcularEdad(Date fecha){
         System.out.println("Esto es la fecha actual desde la clase estudiante: " + fecha);
         DateTimeFormatter fmt =DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate fechaNaci = LocalDate.parse(this.fechaNacimiento,fmt);
-        LocalDate ahora = LocalDate.now();
+        LocalDate ahora = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         Period periodo = Period.between(fechaNaci, ahora);
         System.out.println("Tu edad es: " + periodo.getYears() + "años");
         System.out.println(periodo.getMonths() + " meses");
         System.out.println(periodo.getDays() + " dias");
-        
         edad = periodo.getYears();
         return edad;
     }
@@ -96,19 +108,10 @@ public class Estudiante {
         this.telefono = telefono;
     }
     
-    public void setFechaActual (Date fechaActual){
-        this.fechaActual = fechaActual;
-    }
 
     @Override
     public String toString() {
         return "Estudiante{" + "name=" + nombre + ", apellido=" + apellido + ", fechaNacimiento=" + fechaNacimiento + ", matricula=" + matricula + ", promedio=" + promedio + ", telefono=" + telefono + ", direccion=" + direccion + ", edad=" + edad + '}';
-    }
-
-    public void setFechaNacimiento(DateFormat date) {
-        
-        this.fechaNacimientoDos = date;
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
