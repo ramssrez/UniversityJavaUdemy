@@ -1,5 +1,5 @@
 package Clases;
-
+//Clases externas que se necesitan para el optimo trabajo de la clase
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -11,6 +11,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class Estudiante {
+    //Atirbutos de la clase estudiante
     private String nombre;
     private String apellido;
     private String fechaNacimiento;
@@ -19,6 +20,8 @@ public class Estudiante {
     private long telefono;
     private String direccion;
     private int edad;
+    
+    //Constructor vacío de la clase Estudiante
     public Estudiante (){
         System.out.println("Esto es el constructor de la clase");
     }
@@ -27,7 +30,8 @@ public class Estudiante {
         return edad;
     }
     public int calcularEdadDos(Date fecha){
-        System.out.println("fechaActual = " + fecha);
+        //System.out.println("fechaActual = " + fecha);
+        //Asignación del formato a la fecha actual y de nacimiento
         DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
         
         Date nacimiento = null;
@@ -37,17 +41,17 @@ public class Estudiante {
             System.out.println("Error "+ ex);
         }
         
-        Calendar fechaNaci = Calendar.getInstance();
+        Calendar fechaN = Calendar.getInstance();
         Calendar fechaActual = Calendar.getInstance();
         
-        fechaNaci.setTime(nacimiento);
+        fechaN.setTime(nacimiento);
         fechaActual.setTime(fecha);
         
-        int año = fechaActual.get(Calendar.YEAR)-fechaNaci.get(Calendar.YEAR);
+        int año = fechaActual.get(Calendar.YEAR)-fechaN.get(Calendar.YEAR);
         System.out.println("año = " + año);
-        int mes = fechaActual.get(Calendar.MONTH)-fechaNaci.get(Calendar.MONTH);
+        int mes = fechaActual.get(Calendar.MONTH)-fechaN.get(Calendar.MONTH);
         System.out.println("mes = " + mes);
-        int dia = fechaActual.get(Calendar.DATE)-fechaNaci.get(Calendar.DATE);
+        int dia = fechaActual.get(Calendar.DATE)-fechaN.get(Calendar.DATE);
         System.out.println("dia = " + dia);
         if(mes<0 || (mes==0 && dia<0)){
             año--;
@@ -62,20 +66,21 @@ public class Estudiante {
         System.out.println("Esto es la fecha actual desde la clase estudiante: " + fecha);
         DateTimeFormatter fmt =DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate fechaNaci = LocalDate.parse(this.fechaNacimiento,fmt);
-        LocalDate ahora = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        Period periodo = Period.between(fechaNaci, ahora);
-        System.out.println("Tu edad es: " + periodo.getYears() + "años");
+        LocalDate fechaActual = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        Period periodo = Period.between(fechaNaci, fechaActual);
+        System.out.println("Tu edad es: " + periodo.getYears() + " años "
+        + periodo.getMonths() + " meses " + periodo.getDays() + " dias");
         System.out.println(periodo.getMonths() + " meses");
         System.out.println(periodo.getDays() + " dias");
         edad = periodo.getYears();
         return edad;
     }
 
-    public String getName() {
+    public String getNombre() {
         return nombre;
     }
 
-    public void setName(String nombre) {
+    public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
