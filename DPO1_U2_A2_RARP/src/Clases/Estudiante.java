@@ -1,11 +1,13 @@
 package Clases;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.Date;
 
 public class Estudiante {
@@ -31,11 +33,28 @@ public class Estudiante {
         Date nacimiento = null;
         try{
             nacimiento = format.parse(this.fechaNacimiento);
-        }catch(Exception ex){
+        }catch(ParseException ex){
             System.out.println("Error "+ ex);
         }
-        System.out.println("nacimiento: " + nacimiento);
-        edad = 25;
+        
+        Calendar fechaNaci = Calendar.getInstance();
+        Calendar fechaActual = Calendar.getInstance();
+        
+        fechaNaci.setTime(nacimiento);
+        fechaActual.setTime(fecha);
+        
+        int año = fechaActual.get(Calendar.YEAR)-fechaNaci.get(Calendar.YEAR);
+        System.out.println("año = " + año);
+        int mes = fechaActual.get(Calendar.MONTH)-fechaNaci.get(Calendar.MONTH);
+        System.out.println("mes = " + mes);
+        int dia = fechaActual.get(Calendar.DATE)-fechaNaci.get(Calendar.DATE);
+        System.out.println("dia = " + dia);
+        if(mes<0 || (mes==0 && dia<0)){
+            año--;
+            System.out.println("año = " + año);
+        }
+
+        edad = año;
         return edad;
     }
     
@@ -111,7 +130,10 @@ public class Estudiante {
 
     @Override
     public String toString() {
-        return "Estudiante{" + "name=" + nombre + ", apellido=" + apellido + ", fechaNacimiento=" + fechaNacimiento + ", matricula=" + matricula + ", promedio=" + promedio + ", telefono=" + telefono + ", direccion=" + direccion + ", edad=" + edad + '}';
+        return "Estudiante{" + "nombre=" + nombre + ", apellido=" + apellido + 
+                ", fechaNacimiento=" + fechaNacimiento + ", matricula=" + matricula + 
+                ", promedio=" + promedio + ", telefono=" + telefono + ", direccion=" + direccion + 
+                ", edad=" + edad + '}';
     }
     
 }
