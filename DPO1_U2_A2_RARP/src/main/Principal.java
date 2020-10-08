@@ -17,7 +17,7 @@ public class Principal {
         estudiante.setDireccion("Cerrada Baja California 1");
         estudiante.setPromedio(9.3f);
         estudiante.setTelefono(5555555555L);
-        estudiante.setFechaNacimiento("27/06/1992");
+        estudiante.setFechaNacimiento("15/10/2015");
         estudiante.calcularEdad(fecha);
         estudiante.calcularEdadDos(fecha);
         

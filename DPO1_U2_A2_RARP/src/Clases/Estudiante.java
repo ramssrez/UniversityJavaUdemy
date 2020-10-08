@@ -23,59 +23,63 @@ public class Estudiante {
     
     //Constructor vacío de la clase Estudiante
     public Estudiante (){
-        System.out.println("Esto es el constructor de la clase");
+        
     }
     
     public int getEdad(){
         return edad;
     }
+    //Método que calcula la edad del alumno en base de su fecha registrada y la fecha actual
     public int calcularEdadDos(Date fecha){
-        //System.out.println("fechaActual = " + fecha);
-        //Asignación del formato a la fecha actual y de nacimiento
+        //Asignación del formato a la fecha actual y de nacimiento en formato dd/MM/yyyy
         DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-        
+        //intancia de la fecha de nacimiento para que entre a la sentencia try catch
         Date nacimiento = null;
+        /*
+         Usamos la sentencia try/catch por el parseo que puede presentar el código al momento
+         de pasar un objeto String a un objeto DateFormat
+        */
         try{
             nacimiento = format.parse(this.fechaNacimiento);
         }catch(ParseException ex){
             System.out.println("Error "+ ex);
         }
         
+        //Intancia de la clase Calendar para utilizar el calendario actual
+        //para la fecha de nacimiento que parseamos anteriormente y la fecha
+        //actual que se envió por medio de la clase principal
         Calendar fechaN = Calendar.getInstance();
         Calendar fechaActual = Calendar.getInstance();
         
+        //Asignación de la fecha de nacimiento y la fecha actual con los objetos Calendar
         fechaN.setTime(nacimiento);
         fechaActual.setTime(fecha);
         
+        //Resta del año, mes y dias de la fecha actual con la fecha de nacimiento
         int año = fechaActual.get(Calendar.YEAR)-fechaN.get(Calendar.YEAR);
-        System.out.println("año = " + año);
         int mes = fechaActual.get(Calendar.MONTH)-fechaN.get(Calendar.MONTH);
-        System.out.println("mes = " + mes);
         int dia = fechaActual.get(Calendar.DATE)-fechaN.get(Calendar.DATE);
-        System.out.println("dia = " + dia);
+        //Sentencia para el caso que la fecha de compleños sea cerca a la fecha actual
         if(mes<0 || (mes==0 && dia<0)){
             año--;
-            System.out.println("año = " + año);
         }
-
+        System.out.println("Tu edad es: " + año + " años " + mes + " meses " + dia + " dias");
         edad = año;
         return edad;
     }
     
     public int calcularEdad(Date fecha){
-        System.out.println("Esto es la fecha actual desde la clase estudiante: " + fecha);
         DateTimeFormatter fmt =DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate fechaNaci = LocalDate.parse(this.fechaNacimiento,fmt);
         LocalDate fechaActual = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         Period periodo = Period.between(fechaNaci, fechaActual);
         System.out.println("Tu edad es: " + periodo.getYears() + " años "
         + periodo.getMonths() + " meses " + periodo.getDays() + " dias");
-        System.out.println(periodo.getMonths() + " meses");
-        System.out.println(periodo.getDays() + " dias");
         edad = periodo.getYears();
         return edad;
     }
-
+    
+    //Metodos getters y setters para el nombre
     public String getNombre() {
         return nombre;
     }
@@ -84,6 +88,7 @@ public class Estudiante {
         this.nombre = nombre;
     }
 
+    //Metodos getters y setters para el apellido
     public String getApellido() {
         return apellido;
     }
@@ -92,6 +97,7 @@ public class Estudiante {
         this.apellido = apellido;
     }
 
+    //Metodos getters y setters para la fecha de nacimiento
     public String getFechaNacimiento() {
         return fechaNacimiento;
     }
@@ -99,7 +105,8 @@ public class Estudiante {
     public void setFechaNacimiento(String fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
-
+    
+    //Metodos getters y setters para la matricula del estudiante
     public int getMatricula() {
         return matricula;
     }
@@ -108,6 +115,7 @@ public class Estudiante {
         this.matricula = matricula;
     }
 
+    //Metodos getters y setters para el promedio
     public float getPromedio() {
         return promedio;
     }
@@ -116,6 +124,7 @@ public class Estudiante {
         this.promedio = promedio;
     }
 
+    //Metodos getters y setters para la dirección
     public String getDireccion() {
         return direccion;
     }
@@ -124,6 +133,7 @@ public class Estudiante {
         this.direccion = direccion;
     }
 
+    //Metodos getters y setters para el telefono
     public long getTelefono() {
         return telefono;
     }
@@ -132,7 +142,7 @@ public class Estudiante {
         this.telefono = telefono;
     }
     
-
+    //Sobreescitura  del metodo toString par presentar los paramentros del objeto estudiante.
     @Override
     public String toString() {
         return "Estudiante{" + "nombre=" + nombre + ", apellido=" + apellido + 
