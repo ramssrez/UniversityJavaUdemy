@@ -29,7 +29,29 @@ public class Estudiante {
     public int getEdad(){
         return edad;
     }
-    //Método que calcula la edad del alumno en base de su fecha registrada y la fecha actual
+       
+    //Método que calcula la edad del alumno en base a la fecha actual y la fecha de nacimiento 
+    //Es otro método para su realización con otras clases que nos brinda Java, mucho mas precisa
+    public int calcularEdad(Date fecha){
+        //Asignamos el formato de la fecha que deseamos utilizar
+        DateTimeFormatter dateFormater =DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        //Pareseo del String de la fecha de nacimiento en el formato que hemos seleccionado en la sentencia anterior
+        LocalDate fechaNaci = LocalDate.parse(this.fechaNacimiento,dateFormater);
+        //Declaramos el objeto zonaActual, ya que lo necesitamos para ubicar el lugar en donde nos encontramos
+        ZoneId zonaActual = ZoneId.systemDefault();
+        //Parseo del objeto fecha de tipo Dare a objeto de tipo LocalDate 
+        LocalDate fechaActual = fecha.toInstant().atZone(zonaActual).toLocalDate();
+        //Declaración del objeto perido donde se compara las fecha de nacimiento con la actual
+        Period periodo = Period.between(fechaNaci, fechaActual);
+        //Impresión de la edad en años, meses y dias
+        System.out.println("Tu edad es: " + periodo.getYears() + " años "
+        + periodo.getMonths() + " meses " + periodo.getDays() + " dias");
+        //Asiganción de la edad que se obtuvo hace un momento
+        this.edad = periodo.getYears();
+        return edad;
+    }
+    
+     //Método que calcula la edad del alumno en base de su fecha registrada y la fecha actual
     public int calcularEdadDos(Date fecha){
         //Asignación del formato a la fecha actual y de nacimiento en formato dd/MM/yyyy
         DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
@@ -65,17 +87,6 @@ public class Estudiante {
         }
         System.out.println("Tu edad es: " + año + " años " + mes + " meses " + dia + " dias");
         edad = año;
-        return edad;
-    }
-    
-    public int calcularEdad(Date fecha){
-        DateTimeFormatter fmt =DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate fechaNaci = LocalDate.parse(this.fechaNacimiento,fmt);
-        LocalDate fechaActual = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        Period periodo = Period.between(fechaNaci, fechaActual);
-        System.out.println("Tu edad es: " + periodo.getYears() + " años "
-        + periodo.getMonths() + " meses " + periodo.getDays() + " dias");
-        edad = periodo.getYears();
         return edad;
     }
     
@@ -147,7 +158,7 @@ public class Estudiante {
     public String toString() {
         return "Estudiante{" + "nombre=" + nombre + ", apellido=" + apellido + 
                 ", fechaNacimiento=" + fechaNacimiento + ", matricula=" + matricula + 
-                ", promedio=" + promedio + ", telefono=" + telefono + ", direccion=" + direccion + 
+                ", \npromedio=" + promedio + ", telefono=" + telefono + ", direccion=" + direccion + 
                 ", edad=" + edad + '}';
     }
     
