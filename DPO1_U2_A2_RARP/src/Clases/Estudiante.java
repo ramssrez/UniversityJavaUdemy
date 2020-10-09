@@ -44,7 +44,7 @@ public class Estudiante {
         //Declaración del objeto perido donde se compara las fecha de nacimiento con la actual
         Period periodo = Period.between(fechaNaci, fechaActual);
         //Impresión de la edad en años, meses y dias
-        System.out.println("Tu edad es: " + periodo.getYears() + " años "
+        System.out.println("Edad del estudiante: " + periodo.getYears() + " años "
         + periodo.getMonths() + " meses " + periodo.getDays() + " dias");
         //Asiganción de la edad que se obtuvo hace un momento
         this.edad = periodo.getYears();

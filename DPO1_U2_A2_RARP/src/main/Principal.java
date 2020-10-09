@@ -21,7 +21,6 @@ public class Principal {
         estudiante.calcularEdad(fecha);
         //Método que calcula la edad con otra forma de obtenerlo, es opcional su uso
         //estudiante.calcularEdadDos(fecha);
-        
         //Impresión de todos los parametros del objeto Estudiante
         System.out.println("" +estudiante.toString());
     }
