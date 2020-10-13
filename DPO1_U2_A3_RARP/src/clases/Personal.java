@@ -3,12 +3,12 @@ package clases;
 public class Personal {
     private char sexo;
     private int edad;
-    private boolean isComorbilidad;
+    private boolean tieneComorbilidad;
     
-    public Personal(char sexo, int edad, boolean isComorbilidad){
+    public Personal(char sexo, int edad, boolean tieneComorbilidad){
         this.edad=edad;
         this.sexo = sexo;
-        this.isComorbilidad = isComorbilidad;
+        this.tieneComorbilidad = tieneComorbilidad;
     }
     public void setSexo(char sexo){
         this.sexo = sexo;
@@ -16,15 +16,25 @@ public class Personal {
     public char getSexo(){
         return this.sexo;
     }
+    public int getEdad() {
+        return this.edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+
+    public boolean isTieneComorbilidad() {
+        return this.tieneComorbilidad;
+    }
+
+    public void setTieneComorbilidad(boolean tieneComorbilidad) {
+        this.tieneComorbilidad = tieneComorbilidad;
+    }
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Personal{sexo=").append(sexo);
-        sb.append(", edad=").append(edad);
-        sb.append(", isComorbilidad=").append(isComorbilidad);
-        sb.append('}');
-        return sb.toString();
+        return "Personal{" + "sexo=" + sexo + ", edad=" + edad + ", tieneComorbilidad=" + tieneComorbilidad + '}';
     }
     
 }

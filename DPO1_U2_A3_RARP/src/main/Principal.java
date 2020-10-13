@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Principal {
     public static void main(String arg []){
-        System.out.println("Hola mundo desde el tercer ejercicio");
+        System.out.println("Bienvenidos al registro de personal");
         Scanner sn = new Scanner(System.in);
         boolean salir = false;
         int opcion; //Guardaremos la opcion del usuario
@@ -26,8 +26,20 @@ public class Principal {
  
                 switch (opcion) {
                     case 1:
+                        char sexo;
+                        int edad;
+                        boolean morvido;
+                        
                         System.out.println("Has seleccionado la opcion 1");
                         Personal personal1 = new Personal('M',50,true);
+                        System.out.println("Ingresa el sexo");
+                        sexo = sn.next().charAt(0);
+                        System.out.println("Ingresa la edad: ");
+                        edad = sn.nextInt();
+                        System.out.println("¿Tiene enfermedad?");
+                        morvido = sn.nextBoolean();
+                        Personal personal2 = new Personal('F',edad,morvido);
+                        System.out.println("personal2 = " + personal2);
                         System.out.println("personal1 = " + personal1.toString());
                         break;
                     case 2:
