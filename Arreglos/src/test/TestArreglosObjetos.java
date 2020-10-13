@@ -6,7 +6,13 @@ import java.util.Scanner;
 
 public class TestArreglosObjetos {
     public static void main(String[] args) {
-        Persona personas [] = new Persona[2];
+        Scanner sc = new Scanner(System.in);
+        int numeroPersonas;
+        String nombre;
+        int edad;
+        System.out.println("Ingresa el numero de personas: ");
+        numeroPersonas = sc.nextInt();
+        Persona personas [] = new Persona[numeroPersonas];
         personas[0]=new Persona("Jose",25);
         personas[1] = new Persona ("Karla",28);
         
@@ -14,13 +20,11 @@ public class TestArreglosObjetos {
         System.out.println("persona [1] = " + personas[1]);
         
         for (int i = 0; i<personas.length;i++){
-            Scanner sc = new Scanner(System.in);
-            String nombre;
-            int edad;
-            System.out.print("Ingresa el nombre de la persona " + i +":");
-            nombre = sc.nextLine();
-            System.out.print("Ingresa la edad de la persona " + i +":");
-            edad = sc.nextInt();
+            Scanner scFor = new Scanner(System.in);
+            System.out.println("Ingresa el nombre de la persona " + i +":");
+            nombre = scFor.nextLine();
+            System.out.println("Ingresa la edad de la persona " + i +":");
+            edad = scFor.nextInt();
             personas[i]=new Persona(nombre,edad);
             System.out.println("----------------------------------------------------");
         }
