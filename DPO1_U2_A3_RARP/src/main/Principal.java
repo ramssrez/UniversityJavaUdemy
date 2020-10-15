@@ -29,49 +29,39 @@ public class Principal {
 
                 switch (opcion) {
                     case 1:
-                       
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         System.out.println("Has seleccionado la opcion 1");
                         ingresoNumeroPersonal();
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         break;
                     case 2:
+                        System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         System.out.println("Has seleccionado la opcion 2");
-                        //System.out.println("Personas " + personas.length);
-                        if (personas == null) {
-                            System.out.println("No hay datos, ingresa datos del personal");
-                        } else {
-                            System.out.println("Este si tiene datos");
-                            int numeroMayor = conteoHombres(personas);
-                            System.out.println("Hombres mayores de 50 años: " + numeroMayor + " persona(s)");
-                        }
+                        opcionDos();
+                        System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         break;
                     case 3:
+                        System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         System.out.println("Has seleccionado la opcion 3");
-                        if (personas == null) {
-                            System.out.println("No hay datos, ingresa datos del personal");
-                        } else {
-                            System.out.println("Este si tiene datos");
-                            int numeroMayor = conteoMujeres(personas);
-                            System.out.println("Mujeres mayores de 50 años: " + numeroMayor + " persona(s)");
-                        }
+                        opcionTres();
+                        System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         break;
                     case 4:
-                        System.out.println("Haz seleccionado la opción 4");
-                        if (personas == null) {
-                            System.out.println("No hay datos, ingresa datos del personal");
-                        } else {
-                            System.out.println("Este si tiene datos");
-                            int numeroMayor = conteoHombresEnfermos(personas);
-                            System.out.println("Hombres con alguna enfermedad: " + numeroMayor + " persona(s)");
-                        }
+                        System.out.println("-----------------------------------------------------------------------------------------------------------------------");
+                        System.out.println("Has seleccionado la opcion 4");
+                        opcionCuatro();
+                        System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         break;
                     case 5:
+                        System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         salir = true;
                         System.out.println("Gracias por tu visita. Adiós!!!!!");
+                        System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         break;
                     default:
+                        System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         System.out.println("Solo números entre 1 y 4");
+                        System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                 }
 
             } catch (InputMismatchException e) {
@@ -90,7 +80,6 @@ public class Principal {
         if (numeroPersonas < 2) {
             System.out.println("El número de personas debe ser mayor, vuelve a intentar");
         } else {
-            System.out.println("Numero Correcto1");
             Personal personales[] = generacionArregloPersonal(numeroPersonas);
             for (int i = 0; i < personales.length; i++) {
                 System.out.println("Persona " + (i + 1) + ": " + personales[i]);
@@ -107,13 +96,23 @@ public class Principal {
             int edad = sn.nextInt();
             System.out.println("Ingresa el sexo, M para masculino, F para femenino");
             char sexo = sn.next().charAt(0);
-            System.out.println("¿Tiene alguna enfemedad? true para SI, false para NO");
-            boolean enfermedad = sn.nextBoolean();
+            System.out.println("¿Tiene alguna enfemedad? SI/NO");
+            String enfermedad;
+            enfermedad = sn.nextLine();
             personales[i] = new Personal(sexo, edad, enfermedad);
             System.out.println("**********************************************************************************************************************************************");
             personas = personales;
         }
         return personales;
+    }
+
+    public static void opcionDos() {
+        if (personas == null) {
+            System.out.println("No hay datos, ingresa datos del personal");
+        } else {
+            int numeroMayor = conteoHombres(personas);
+            System.out.println("Hombres mayores de 50 años: " + numeroMayor + " persona(s)");
+        }
     }
 
     public static int conteoHombres(Personal personas[]) {
@@ -127,6 +126,15 @@ public class Principal {
         return j;
     }
 
+    public static void opcionTres() {
+        if (personas == null) {
+            System.out.println("No hay datos, ingresa datos del personal");
+        } else {
+            int numeroMayor = conteoMujeres(personas);
+            System.out.println("Mujeres mayores de 50 años: " + numeroMayor + " persona(s)");
+        }
+    }
+
     public static int conteoMujeres(Personal personas[]) {
         int j = 0;
         for (int i = 0; i < personas.length; i++) {
@@ -136,6 +144,15 @@ public class Principal {
             }
         }
         return j;
+    }
+
+    public static void opcionCuatro() {
+        if (personas == null) {
+            System.out.println("No hay datos, ingresa datos del personal");
+        } else {
+            int numeroMayor = conteoHombresEnfermos(personas);
+            System.out.println("Hombres con alguna enfermedad: " + numeroMayor + " persona(s)");
+        }
     }
 
     public static int conteoHombresEnfermos(Personal personas[]) {
