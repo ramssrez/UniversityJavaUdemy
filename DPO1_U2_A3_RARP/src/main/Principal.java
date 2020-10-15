@@ -99,11 +99,33 @@ public class Principal {
     }
 
     public static int conteoHombres(Personal personas[]) {
-        int j=0;
+        int j = 0;
         for (int i = 0; i < personas.length; i++) {
             System.out.println("Persona " + (i + 1) + ": " + personas[i]);
-            if ((personas[i].getEdad() >= 50)&&(personas[i].getSexo() == 'M')) {
-                j=j+1;
+            if ((personas[i].getEdad() >= 50) && (personas[i].getSexo() == 'M')) {
+                j = j + 1;
+            }
+        }
+        return j;
+    }
+
+    public static int conteoMujeres(Personal personas[]) {
+        int j = 0;
+        for (int i = 0; i < personas.length; i++) {
+            System.out.println("Persona " + (i + 1) + ": " + personas[i]);
+            if ((personas[i].getEdad() >= 50) && (personas[i].getSexo() == 'F')) {
+                j = j + 1;
+            }
+        }
+        return j;
+    }
+
+    public static int conteoHombresEnfermos(Personal personas[]) {
+        int j = 0;
+        for (int i = 0; i < personas.length; i++) {
+            System.out.println("Persona " + (i + 1) + ": " + personas[i]);
+            if ((personas[i].isTieneComorbilidad())) {
+                j = j + 1;
             }
         }
         return j;
