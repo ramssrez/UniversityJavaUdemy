@@ -1,6 +1,7 @@
 package main;
 
 import clases.Personal;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -62,31 +63,46 @@ public class Principal {
 
         numeroPersonas = sn.nextInt();
         if (numeroPersonas < 15) {
-            System.out.println("El núemro de personas debe ser mayor");
+            System.out.println("El núemro de personas debe ser mayor, vuelve a intentar");
         } else {
             System.out.println("Numero Correcto1");
-            Personal personal [] = new Personal[numeroPersonas]; 
+            Personal personales[] = regresarArray(numeroPersonas);
             
-            for(int i = 0; i<personal.length; i++){
-                
-                System.out.println("Esto es una repetición en " + i);
-            }
-            char sexo;
-            int edad;
-            boolean morvido;
-        }
 
-//        System.out.println("Has seleccionado la opcion 1");
-//        Personal personal1 = new Personal('M', 50, true);
-//        System.out.println("Ingresa el sexo");
-//        sexo = sn.next().charAt(0);
-//        System.out.println("Ingresa la edad: ");
-//        edad = sn.nextInt();
-//        System.out.println("¿Tiene enfermedad?");
-//        morvido = sn.nextBoolean();
-//        Personal personal2 = new Personal('F', edad, morvido);
-//        System.out.println("personal2 = " + personal2);
-//        System.out.println("personal1 = " + personal1.toString());
+//            for (int i = 0; i < personales.length; i++) {
+//                System.out.println("Ingreso del personal numero " + (i + 1));
+//                System.out.println("Ingresa la edad: ");
+//                int edad = sn.nextInt();
+//                System.out.println("Ingresa el sexo, M para masculino, F para femenino");
+//                char sexo = sn.next().charAt(0);
+//                System.out.println("¿Tiene alguna enfemedad? true para SI, false para NO");
+//                boolean enfermedad = sn.nextBoolean();
+//                personales[i] = new Personal(sexo, edad, enfermedad);
+//                System.out.println("-----------------------------------------------------------------------------------------------------------------------");
+//            }
+            
+
+            for (int i = 0; i < personales.length; i++) {
+                System.out.println("Persona " + (i + 1) + ": " + personales[i]);
+            }
+        }
+    }
+
+    public static Personal[] regresarArray(int numeroPersonas) {
+        Scanner sn = new Scanner(System.in);
+        Personal personales[] = new Personal[numeroPersonas];
+        for (int i = 0; i < personales.length; i++) {
+            System.out.println("Ingreso del personal numero " + (i + 1));
+            System.out.println("Ingresa la edad: ");
+            int edad = sn.nextInt();
+            System.out.println("Ingresa el sexo, M para masculino, F para femenino");
+            char sexo = sn.next().charAt(0);
+            System.out.println("¿Tiene alguna enfemedad? true para SI, false para NO");
+            boolean enfermedad = sn.nextBoolean();
+            personales[i] = new Personal(sexo, edad, enfermedad);
+            System.out.println("-----------------------------------------------------------------------------------------------------------------------");
+        }
+        return personales;
     }
 
 }
