@@ -1,12 +1,11 @@
 package main;
 
 import clases.Personal;
-import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Principal {
-
+    private static Personal personas[];
     public static void main(String arg[]) {
         System.out.println("Bienvenidos al registro de personal");
         Scanner sn = new Scanner(System.in);
@@ -28,11 +27,16 @@ public class Principal {
 
                 switch (opcion) {
                     case 1:
-                        regresarParametro();
-
+                        ingresoNumeroPersonal();
                         break;
                     case 2:
                         System.out.println("Has seleccionado la opcion 2");
+                        //System.out.println("Personas " + personas.length);
+                        if(personas == null){
+                            System.out.println("No hay datos, ingresa datos del personal");
+                        }else{
+                            System.out.println("Este si tiene datos");
+                        }
                         break;
                     case 3:
                         System.out.println("Has seleccionado la opcion 3");
@@ -55,40 +59,25 @@ public class Principal {
         }
     }
 
-    public static void regresarParametro() {
+    public static void ingresoNumeroPersonal() {
         System.out.println("El núemro de personal a registrar debe ser mayor a 15");
         System.out.println("Ingresa el número de personal para dar de alta: ");
         Scanner sn = new Scanner(System.in);
         int numeroPersonas;
-
         numeroPersonas = sn.nextInt();
-        if (numeroPersonas < 15) {
-            System.out.println("El núemro de personas debe ser mayor, vuelve a intentar");
+        if (numeroPersonas < 2) {
+            System.out.println("El número de personas debe ser mayor, vuelve a intentar");
         } else {
             System.out.println("Numero Correcto1");
-            Personal personales[] = regresarArray(numeroPersonas);
-            
-
-//            for (int i = 0; i < personales.length; i++) {
-//                System.out.println("Ingreso del personal numero " + (i + 1));
-//                System.out.println("Ingresa la edad: ");
-//                int edad = sn.nextInt();
-//                System.out.println("Ingresa el sexo, M para masculino, F para femenino");
-//                char sexo = sn.next().charAt(0);
-//                System.out.println("¿Tiene alguna enfemedad? true para SI, false para NO");
-//                boolean enfermedad = sn.nextBoolean();
-//                personales[i] = new Personal(sexo, edad, enfermedad);
-//                System.out.println("-----------------------------------------------------------------------------------------------------------------------");
-//            }
-            
-
+            Personal personales[] =  generacionArregloPersonal(numeroPersonas);
+            //personas = generacionArregloPersonal(numeroPersonas);
             for (int i = 0; i < personales.length; i++) {
                 System.out.println("Persona " + (i + 1) + ": " + personales[i]);
             }
         }
     }
 
-    public static Personal[] regresarArray(int numeroPersonas) {
+    public static Personal[] generacionArregloPersonal(int numeroPersonas) {
         Scanner sn = new Scanner(System.in);
         Personal personales[] = new Personal[numeroPersonas];
         for (int i = 0; i < personales.length; i++) {
@@ -101,6 +90,7 @@ public class Principal {
             boolean enfermedad = sn.nextBoolean();
             personales[i] = new Personal(sexo, edad, enfermedad);
             System.out.println("-----------------------------------------------------------------------------------------------------------------------");
+        personas = personales;
         }
         return personales;
     }
