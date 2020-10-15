@@ -75,7 +75,7 @@ public class Principal {
         Scanner sn = new Scanner(System.in);
         int numeroPersonas;
         numeroPersonas = sn.nextInt();
-        if (numeroPersonas < 2) {
+        if (numeroPersonas < 15) {
             System.out.println("El número de personas debe ser mayor, vuelve a intentar");
         } else {
             Personal personales[] = generacionArregloPersonal(numeroPersonas);
