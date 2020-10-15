@@ -24,12 +24,16 @@ public class Principal {
 
             try {
 
-                System.out.println("Escribe una de las opciones");
+                System.out.print("Selecciona una de las opciones: ");
                 opcion = sn.nextInt();
 
                 switch (opcion) {
                     case 1:
+                       
+                        System.out.println("-----------------------------------------------------------------------------------------------------------------------");
+                        System.out.println("Has seleccionado la opcion 1");
                         ingresoNumeroPersonal();
+                        System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         break;
                     case 2:
                         System.out.println("Has seleccionado la opcion 2");
@@ -39,14 +43,28 @@ public class Principal {
                         } else {
                             System.out.println("Este si tiene datos");
                             int numeroMayor = conteoHombres(personas);
-                            System.out.println("numero mayores de 50 = " + numeroMayor);
+                            System.out.println("Hombres mayores de 50 años: " + numeroMayor + " persona(s)");
                         }
                         break;
                     case 3:
                         System.out.println("Has seleccionado la opcion 3");
+                        if (personas == null) {
+                            System.out.println("No hay datos, ingresa datos del personal");
+                        } else {
+                            System.out.println("Este si tiene datos");
+                            int numeroMayor = conteoMujeres(personas);
+                            System.out.println("Mujeres mayores de 50 años: " + numeroMayor + " persona(s)");
+                        }
                         break;
                     case 4:
                         System.out.println("Haz seleccionado la opción 4");
+                        if (personas == null) {
+                            System.out.println("No hay datos, ingresa datos del personal");
+                        } else {
+                            System.out.println("Este si tiene datos");
+                            int numeroMayor = conteoHombresEnfermos(personas);
+                            System.out.println("Hombres con alguna enfermedad: " + numeroMayor + " persona(s)");
+                        }
                         break;
                     case 5:
                         salir = true;
@@ -64,8 +82,8 @@ public class Principal {
     }
 
     public static void ingresoNumeroPersonal() {
-        System.out.println("El núemro de personal a registrar debe ser mayor a 15");
-        System.out.println("Ingresa el número de personal para dar de alta: ");
+        System.out.println("El número de personal a registrar debe ser mayor a 15");
+        System.out.print("Ingresa el número de personal para dar de alta: ");
         Scanner sn = new Scanner(System.in);
         int numeroPersonas;
         numeroPersonas = sn.nextInt();
@@ -92,7 +110,7 @@ public class Principal {
             System.out.println("¿Tiene alguna enfemedad? true para SI, false para NO");
             boolean enfermedad = sn.nextBoolean();
             personales[i] = new Personal(sexo, edad, enfermedad);
-            System.out.println("-----------------------------------------------------------------------------------------------------------------------");
+            System.out.println("**********************************************************************************************************************************************");
             personas = personales;
         }
         return personales;
@@ -124,7 +142,7 @@ public class Principal {
         int j = 0;
         for (int i = 0; i < personas.length; i++) {
             System.out.println("Persona " + (i + 1) + ": " + personas[i]);
-            if ((personas[i].isTieneComorbilidad())) {
+            if ((personas[i].isTieneComorbilidad()) && personas[i].getSexo() == 'M') {
                 j = j + 1;
             }
         }

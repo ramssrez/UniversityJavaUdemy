@@ -4,7 +4,7 @@ public class Personal {
     private char sexo;
     private int edad;
     private boolean tieneComorbilidad;
-    private String enfermedad;
+    private String tieneEnfermedad;
     public Personal(char sexo, int edad, boolean tieneComorbilidad){
         this.edad=edad;
         this.sexo = sexo;
@@ -32,14 +32,22 @@ public class Personal {
         this.tieneComorbilidad = tieneComorbilidad;
     }
 
+    public String getTieneEnfermedad() {
+        return tieneEnfermedad;
+    }
+
+    public void setTieneEnfermedad(String tieneEnfermedad) {
+        this.tieneEnfermedad = tieneEnfermedad;
+    }
+    
     @Override
     public String toString() {
         if(this.tieneComorbilidad){
-            enfermedad = "SI";
+            tieneEnfermedad = "SI";
         }else{
-            enfermedad = "NO";
+            tieneEnfermedad = "NO";
         }
-        return "Personal{" + "sexo=" + sexo + ", edad=" + edad + ", tieneEnfermedad=" + enfermedad + '}';
+        return "Personal{" + "sexo=" + sexo + ", edad=" + edad + ", tieneEnfermedad=" + tieneEnfermedad + '}';
     }
     
 }
