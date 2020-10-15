@@ -5,7 +5,9 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Principal {
+
     private static Personal personas[];
+
     public static void main(String arg[]) {
         System.out.println("Bienvenidos al registro de personal");
         Scanner sn = new Scanner(System.in);
@@ -32,10 +34,12 @@ public class Principal {
                     case 2:
                         System.out.println("Has seleccionado la opcion 2");
                         //System.out.println("Personas " + personas.length);
-                        if(personas == null){
+                        if (personas == null) {
                             System.out.println("No hay datos, ingresa datos del personal");
-                        }else{
+                        } else {
                             System.out.println("Este si tiene datos");
+                            int numeroMayor = conteoHombres(personas);
+                            System.out.println("numero mayores de 50 = " + numeroMayor);
                         }
                         break;
                     case 3:
@@ -46,7 +50,7 @@ public class Principal {
                         break;
                     case 5:
                         salir = true;
-                        System.out.println("Adiós");
+                        System.out.println("Gracias por tu visita. Adiós!!!!!");
                         break;
                     default:
                         System.out.println("Solo números entre 1 y 4");
@@ -69,8 +73,7 @@ public class Principal {
             System.out.println("El número de personas debe ser mayor, vuelve a intentar");
         } else {
             System.out.println("Numero Correcto1");
-            Personal personales[] =  generacionArregloPersonal(numeroPersonas);
-            //personas = generacionArregloPersonal(numeroPersonas);
+            Personal personales[] = generacionArregloPersonal(numeroPersonas);
             for (int i = 0; i < personales.length; i++) {
                 System.out.println("Persona " + (i + 1) + ": " + personales[i]);
             }
@@ -90,9 +93,20 @@ public class Principal {
             boolean enfermedad = sn.nextBoolean();
             personales[i] = new Personal(sexo, edad, enfermedad);
             System.out.println("-----------------------------------------------------------------------------------------------------------------------");
-        personas = personales;
+            personas = personales;
         }
         return personales;
+    }
+
+    public static int conteoHombres(Personal personas[]) {
+        int j=0;
+        for (int i = 0; i < personas.length; i++) {
+            System.out.println("Persona " + (i + 1) + ": " + personas[i]);
+            if ((personas[i].getEdad() >= 50)&&(personas[i].getSexo() == 'M')) {
+                j=j+1;
+            }
+        }
+        return j;
     }
 
 }
