@@ -1,21 +1,26 @@
 package clases;
 
 public class Personal {
+
     private char sexo;
     private int edad;
     private boolean tieneComorbilidad;
     private String tieneEnfermedad;
-    public Personal(char sexo, int edad, boolean tieneComorbilidad){
-        this.edad=edad;
+
+    public Personal(char sexo, int edad, String tieneEnfermedad) {
+        this.edad = edad;
         this.sexo = sexo;
-        this.tieneComorbilidad = tieneComorbilidad;
+        this.tieneEnfermedad = tieneEnfermedad;
     }
-    public void setSexo(char sexo){
+
+    public void setSexo(char sexo) {
         this.sexo = sexo;
     }
-    public char getSexo(){
+
+    public char getSexo() {
         return this.sexo;
     }
+
     public int getEdad() {
         return this.edad;
     }
@@ -25,11 +30,12 @@ public class Personal {
     }
 
     public boolean isTieneComorbilidad() {
+        if (this.tieneEnfermedad.equals("SI") || this.tieneEnfermedad.equals("Si") || this.tieneEnfermedad.equals("si")) {
+            this.tieneComorbilidad = true;
+        } else {
+            this.tieneComorbilidad = false;
+        }
         return this.tieneComorbilidad;
-    }
-
-    public void setTieneComorbilidad(boolean tieneComorbilidad) {
-        this.tieneComorbilidad = tieneComorbilidad;
     }
 
     public String getTieneEnfermedad() {
@@ -39,15 +45,9 @@ public class Personal {
     public void setTieneEnfermedad(String tieneEnfermedad) {
         this.tieneEnfermedad = tieneEnfermedad;
     }
-    
+
     @Override
     public String toString() {
-        if(this.tieneComorbilidad){
-            tieneEnfermedad = "SI";
-        }else{
-            tieneEnfermedad = "NO";
-        }
         return "Personal{" + "sexo=" + sexo + ", edad=" + edad + ", tieneEnfermedad=" + tieneEnfermedad + '}';
     }
-    
 }

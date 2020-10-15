@@ -30,30 +30,27 @@ public class Principal {
                 switch (opcion) {
                     case 1:
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
-                        System.out.println("Has seleccionado la opcion 1");
                         ingresoNumeroPersonal();
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         break;
                     case 2:
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
-                        System.out.println("Has seleccionado la opcion 2");
                         opcionDos();
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         break;
                     case 3:
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
-                        System.out.println("Has seleccionado la opcion 3");
                         opcionTres();
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         break;
                     case 4:
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
-                        System.out.println("Has seleccionado la opcion 4");
                         opcionCuatro();
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         break;
                     case 5:
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
+                        System.out.println("Has seleccionado la opcion 5");
                         salir = true;
                         System.out.println("Gracias por tu visita. Adiós!!!!!");
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
@@ -72,6 +69,7 @@ public class Principal {
     }
 
     public static void ingresoNumeroPersonal() {
+        System.out.println("Has seleccionado la opcion 1");
         System.out.println("El número de personal a registrar debe ser mayor a 15");
         System.out.print("Ingresa el número de personal para dar de alta: ");
         Scanner sn = new Scanner(System.in);
@@ -96,6 +94,8 @@ public class Principal {
             int edad = sn.nextInt();
             System.out.println("Ingresa el sexo, M para masculino, F para femenino");
             char sexo = sn.next().charAt(0);
+            //Error en la funcionalidad de la calse Scanner al no tomar el salto de línea para los enteros
+            sn.nextLine();
             System.out.println("¿Tiene alguna enfemedad? SI/NO");
             String enfermedad;
             enfermedad = sn.nextLine();
@@ -107,6 +107,7 @@ public class Principal {
     }
 
     public static void opcionDos() {
+        System.out.println("Has seleccionado la opcion 2");
         if (personas == null) {
             System.out.println("No hay datos, ingresa datos del personal");
         } else {
@@ -127,6 +128,7 @@ public class Principal {
     }
 
     public static void opcionTres() {
+        System.out.println("Has seleccionado la opcion 3");
         if (personas == null) {
             System.out.println("No hay datos, ingresa datos del personal");
         } else {
@@ -147,6 +149,7 @@ public class Principal {
     }
 
     public static void opcionCuatro() {
+        System.out.println("Has seleccionado la opcion 4");
         if (personas == null) {
             System.out.println("No hay datos, ingresa datos del personal");
         } else {
