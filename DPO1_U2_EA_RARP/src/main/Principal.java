@@ -5,6 +5,12 @@ import java.util.Scanner;
 
 public class Principal {
 
+    String cancun = "Cancún";
+    String cozumel = "Cozumel";
+    String islaMujeres = "Isla Mujeres";
+    String playaCarmen = "Playa del Carmen";
+    int total = 0;
+
     public static void main(String[] args) {
         System.out.println("Bienvenidos al registro de contagiados del estado de Quintana Roo");
         //Declaración de la clase Scanner para poder registrar los datos que ingrese el ususario
@@ -35,6 +41,7 @@ public class Principal {
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         //LLamado al método que contiene una varificación del número ingresado, este método no retorna valores.
                         System.out.println("Opción 1");
+                        registrarInfectados();
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         break;
                     //Caso 2 en donde se obtiene el número de hombres mayores a 50 años.
@@ -42,6 +49,7 @@ public class Principal {
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         //LLamado al método que contiene una varificación de la declaración global en caso de que no tenga valores asignados, dependiente del caso 1
                         System.out.println("Opción 2");
+                        semaforo();
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         break;
                     //Caso 3 en donde se obtiene el número de mujeres mayores a 50 años.
@@ -49,6 +57,7 @@ public class Principal {
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         //LLamado al método que contiene una varificación de la declaración global en caso de que no tenga valores asignados, dependiente del caso 1
                         System.out.println("Opción 3");
+                        mediaContagios();
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         break;
                     //Caso 4 en donde se obtiene el número de hombres que tienen alguna comorbilidad
@@ -56,6 +65,7 @@ public class Principal {
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         //LLamado al método que contiene una varificación de la declaración global en caso de que no tenga valores asignados, dependiente del caso 1
                         System.out.println("Opción 4");
+                        mayorContagio();
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         break;
                     //Caso 5 en donde se obtiene se sale del ciclo while
@@ -82,5 +92,21 @@ public class Principal {
                 sn.next();
             }
         }
+    }
+
+    public static void registrarInfectados() {
+        System.out.println("Método del registro");
+    }
+
+    public static void semaforo() {
+        System.out.println("Método del semaforo");
+    }
+
+    public static void mediaContagios() {
+        System.out.println("Método de los contagios");
+    }
+
+    public static void mayorContagio() {
+        System.out.println("Método de mayor contagio");
     }
 }
