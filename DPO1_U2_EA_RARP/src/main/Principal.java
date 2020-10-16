@@ -51,7 +51,7 @@ public class Principal {
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         //LLamado al método que contiene una varificación de la declaración global en caso de que no tenga valores asignados, dependiente del caso 1
                         System.out.println("Opción 2");
-                        semaforo(municipiosTotales);
+                        validacion(2);
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         break;
                     //Caso 3 en donde se obtiene el número de mujeres mayores a 50 años.
@@ -59,7 +59,7 @@ public class Principal {
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         //LLamado al método que contiene una varificación de la declaración global en caso de que no tenga valores asignados, dependiente del caso 1
                         System.out.println("Opción 3");
-                        mediaContagios();
+                        validacion(3);
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         break;
                     //Caso 4 en donde se obtiene el número de hombres que tienen alguna comorbilidad
@@ -67,7 +67,7 @@ public class Principal {
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         //LLamado al método que contiene una varificación de la declaración global en caso de que no tenga valores asignados, dependiente del caso 1
                         System.out.println("Opción 4");
-                        mayorContagio();
+                        validacion(4);
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         break;
                     //Caso 5 en donde se obtiene se sale del ciclo while
@@ -97,8 +97,6 @@ public class Principal {
     }
 
     public static void registrarInfectados() {
-        System.out.println("Método del registro");
-
         Scanner scanner = new Scanner(System.in);
         System.out.println("Registra los datos de los municipios");
         System.out.print("Ingresa en número de casos para " + CANCUN + ": ");
@@ -118,20 +116,43 @@ public class Principal {
         Municipio municipios[] = {municipioCancun, municipioCarmen, municipioCozumel, municipioIsla};
         municipiosTotales = municipios;
     }
+    public static void validacion(int casoMenu){
+        //int caso;
+        //caso = casoMenu;
+        if (municipiosTotales == null){
+            System.out.println("No ha registrado datos vuelve a la opción 1");
+        }else if(casoMenu == 2){
+            semaforo(municipiosTotales);
+        }else if(casoMenu == 3){
+            mediaContagios();
+        }else if(casoMenu == 4){
+            mayorContagio();
+        }
+    }
 
     public static void semaforo(Municipio municipios[]) {
-        System.out.println("Método del semaforo");
         int j = 0;
         for (int i = 0; i < municipios.length; i++) {
-            System.out.println("Municipios " + (i + 1) + ": " + municipios[i]);
             j = j + municipios[i].getNumeroInfectados();
+            if ((municipios[i].getNumeroInfectados() >= 0) && (municipios[i].getNumeroInfectados() <= 25)) {
+                municipios[i].setSemaforo("Verde");
+            }
+            if ((municipios[i].getNumeroInfectados() > 25) && (municipios[i].getNumeroInfectados() <= 50)) {
+                municipios[i].setSemaforo("Amarillo");
+            }
+            if ((municipios[i].getNumeroInfectados() > 50) && (municipios[i].getNumeroInfectados() <= 75)) {
+                municipios[i].setSemaforo("Naranja");
+            }
+            if ((municipios[i].getNumeroInfectados() > 75)) {
+                municipios[i].setSemaforo("Rojo");
+            }
         }
 
         System.out.println("El total de casos son  = " + j);
         if ((j >= 0) && (j <= 25)) {
             System.out.println("La entidad tiene semaforo verde");
         }
-        if ((j > 26) && (j <= 50)) {
+        if ((j > 25) && (j <= 50)) {
             System.out.println("La entidad tiene semaforo Amarillo");
         }
         if ((j > 50) && (j <= 75)) {
@@ -140,7 +161,7 @@ public class Principal {
         if ((j > 75)) {
             System.out.println("La entidad tiene semaforo Rojo");
         }
-
+        
     }
 
     public static void mediaContagios() {
