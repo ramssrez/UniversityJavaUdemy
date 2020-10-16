@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 public class Principal {
 
+    //Declaración de variables globales para la solución de este ejercicio
     private static final String CANCUN = "Cancún";
     private static final String COZUMEL = "Cozumel";
     private static final String ISLAMUJERES = "Isla Mujeres";
@@ -17,7 +18,7 @@ public class Principal {
         System.out.println("Bienvenidos al registro de contagiados del estado de Quintana Roo");
         //Declaración de la clase Scanner para poder registrar los datos que ingrese el ususario
         Scanner sn = new Scanner(System.in);
-        //Declaración de la variable salir para salir del ciclo while
+        //Declaración de la variable salir, para salir del ciclo while
         boolean salir = false;
         //Declaración de la variable opción donde se guarada la opción que eligío el usuario
         int opcion; //Guardaremos la opcion del usuario
@@ -38,35 +39,35 @@ public class Principal {
 
                 //Uso de la sentencia Switch para los diferentes casos en los que el usuario haya elegido
                 switch (opcion) {
-                    //Caso 1 en donde se ingresa el número de personal que vaya a ser ingresado
+                    //Caso 1 en donde se ingresallos datos del los municipios
                     case 1:
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
-                        //LLamado al método que contiene una varificación del número ingresado, este método no retorna valores.
-                        municipiosTotales = registrarInfectados();
+                        //LLamado al método que retorna un array de objeto de tipo municipio, donde se cargan los datos de los infectadis
+                        municipiosTotales = registrarInfectados(); //Asignación de la variable global a lo que regresa el método
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         break;
-                    //Caso 2 en donde se obtiene el número de hombres mayores a 50 años.
+                    //Caso 2. Donde se imprime el semaforo en donde se ubica la entidad en este momento.
                     case 2:
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
-                        //LLamado al método que contiene una varificación de la declaración global en caso de que no tenga valores asignados, dependiente del caso 1
+                        //LLamado al método  que contiene una verificación en caso de que no se haya registrado datos en la opción 1
                         validacion(opcion);
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         break;
-                    //Caso 3 en donde se obtiene el número de mujeres mayores a 50 años.
+                    //Caso 3 en donde se obtiene el promedio de infecciones en la entidad.
                     case 3:
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
-                        //LLamado al método que contiene una varificación de la declaración global en caso de que no tenga valores asignados, dependiente del caso 1
+                        //LLamado al método  que contiene una verificación en caso de que no se haya registrado datos en la opción 1
                         validacion(opcion);
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         break;
-                    //Caso 4 en donde se obtiene el número de hombres que tienen alguna comorbilidad
+                    //Caso 4 en donde se los municipios que tiene un mayor contagio y los que no
                     case 4:
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
-                        //LLamado al método que contiene una varificación de la declaración global en caso de que no tenga valores asignados, dependiente del caso 1
+                        //LLamado al método  que contiene una verificación en caso de que no se haya registrado datos en la opción 1
                         validacion(opcion);
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         break;
-                    //Caso 5 en donde se obtiene se sale del ciclo while
+                    //Caso 5 en donde se sale del ciclo while
                     case 5:
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         System.out.println("Has seleccionado la opcion 5");
@@ -92,7 +93,9 @@ public class Principal {
         }
     }
 
+    //Método que registra el número de infectados por municipio
     public static Municipio[] registrarInfectados() {
+        //Registro del número de infectados de los diferentes municipios
         System.out.println("Has seleccionado la opcion 1");
         Scanner scanner = new Scanner(System.in);
         System.out.println("Registra los datos de los municipios");
@@ -105,32 +108,45 @@ public class Principal {
         System.out.print("Ingresa el número de casos para " + ISLAMUJERES + ": ");
         int infectadosIsla = scanner.nextInt();
 
+        //Creación de los objetos de tipo Municipio haciendo uso de las variables globales que se declararon al principio y los que ingreso el usuario
         Municipio municipioCancun = new Municipio(CANCUN, infectadosCancun);
         Municipio municipioCarmen = new Municipio(PLAYACARMEN, infectadosCarmen);
         Municipio municipioCozumel = new Municipio(COZUMEL, infectadosCozumel);
         Municipio municipioIsla = new Municipio(ISLAMUJERES, infectadosIsla);
-
+        //Creación del array de tipo Municipio que contiene los objetos que se crearon previamente.
         Municipio municipios[] = {municipioCancun, municipioCarmen, municipioCozumel, municipioIsla};
+        //Retorno del array que contiene los objetos
         return municipios;
     }
 
+    //Método que realiza la validación en caso de que la variable global no contenga valores o sea nula
     public static void validacion(int casoMenu) {
+        //Uso de la sentencia if, donde se realiza la validación, en función de la opción que haya elegido el usuario
         if (municipiosTotales == null) {
+            //Sentencia en caso de que no haya datos en el array global
             System.out.println("No ha registrado datos, vuelve a la opción 1");
         } else if (casoMenu == 2) {
+            //Sentencia que manda a llamar un método que identifica que en que semáforo se encuentra la entidad
             semaforo(municipiosTotales);
         } else if (casoMenu == 3) {
+            //Sentencia que manda a llamar un método que calcula la media de infecciones en la entidad
             mediaContagios(total, municipiosTotales);
         } else if (casoMenu == 4) {
+            //Sentencia que determina el municipio que tiene mayor contagios y el que no
             mayorContagio(municipiosTotales);
         }
     }
 
+    //Método que identifica en que semaforo se encuentra la entidad, en base a los datos que ingresaron en la opción 1
     public static void semaforo(Municipio municipios[]) {
         System.out.println("Has seleccionado la opcion 2");
+        //Declaración de la variable que hace la suma de los infectados
         int j = 0;
+        //Sentencia for que realiza la suma de los infectados
         for (int i = 0; i < municipios.length; i++) {
+            //Uso de la variable j que realiza la suma de los infectados
             j = j + municipios[i].getNumeroInfectados();
+            //Sentencias if, que asignana el semaforo al que pertenence el munucupio en función de los infectados registrados
             if ((municipios[i].getNumeroInfectados() >= 0) && (municipios[i].getNumeroInfectados() <= 25)) {
                 municipios[i].setSemaforo("Verde");
             }
@@ -145,6 +161,7 @@ public class Principal {
             }
         }
 
+        //Sentencia similar a la que se encuentra dentro del ciclo for, pero tomando el total de infecciones en la entidad
         System.out.println("El total de infecciónes en Quinana Roo son: " + j);
         if ((j >= 0) && (j <= 25)) {
             System.out.println("La entidad tiene semaforo verde");
@@ -158,24 +175,35 @@ public class Principal {
         if ((j > 75)) {
             System.out.println("La entidad tiene semaforo Rojo");
         }
+        //Asignación del total en la variable global 
         total = j;
     }
 
+    //Método que calcula la media de los contagiados en función del total y array que estan declarados globalmente
     public static void mediaContagios(int totalInfecciones, Municipio municipios[]) {
         System.out.println("Has seleccionado la opcion 3");
+        //Declaración de las varaibles locales
         float media;
+        //Parseo de las varibales que ingresaros para que no se presente un error logico al momento de compular
         float totalFloat = (float) totalInfecciones;
         float sizeFloat = (float) municipios.length;
+        //Realización del calculo de la media
         media = totalFloat / sizeFloat;
+        //Impresión de la media para que el usuario pueda observar el promedio
         System.out.println("El promedio de infectados son: " + media + " infectados/municipio");
     }
 
+    //Método que determina el municipio con mayor y menor número de contagios
     public static void mayorContagio(Municipio municipios[]) {
         System.out.println("Has seleccionado la opcion 4");
+        //Declaración de las variables auxiliares
         int mayor = 0;
+        //Declaración de la variable menor, la cual se le tiene que asignar un valor que se encuentre en el array
         int menor = municipios[0].getNumeroInfectados();
         String mayorContagios = "";
+        //Al igual que la varaible menor, se le tiene que asignar el valor que se encuentre en el array
         String menorContagios = municipios[0].getNombreMunicipio();
+        //Ciclo for que recorre los objetos para poder determinar el municipio de mayor y menor contagios, haciendo uso de las variables auxiliares
         for (int i = 0; i < municipios.length; i++) {
             if (municipios[i].getNumeroInfectados() > mayor) {
                 mayor = municipios[i].getNumeroInfectados();
@@ -187,6 +215,7 @@ public class Principal {
             }
         }
 
+        //Impresión de los municipios que tiene un mayor y menor numero de contagios.
         System.out.println("El municipio con menor contagios es: " + menorContagios);
         System.out.println("El municipio con mayor contagios es: " + mayorContagios);
 

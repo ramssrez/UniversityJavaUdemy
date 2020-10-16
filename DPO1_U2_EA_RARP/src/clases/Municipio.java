@@ -2,15 +2,18 @@ package clases;
 
 public class Municipio {
 
+    //Declaración de los atributos del objetos Municipio
     private String nombreMunicipio;
     private int numeroInfectados;
     private String semaforo;
 
+    //Constructor del objeto municipio
     public Municipio(String nombreMunicipio, int numeroInfectados) {
         this.nombreMunicipio = nombreMunicipio;
         this.numeroInfectados = numeroInfectados;
     }
 
+    //Métodos getter y setter del atributo nombre de municipio
     public String getNombreMunicipio() {
         return nombreMunicipio;
     }
@@ -19,6 +22,7 @@ public class Municipio {
         this.nombreMunicipio = nombreMunicipio;
     }
 
+    //Métodos getter y setter del atibuto numero de infectados
     public int getNumeroInfectados() {
         return numeroInfectados;
     }
@@ -27,6 +31,7 @@ public class Municipio {
         this.numeroInfectados = numeroInfectados;
     }
 
+    //Métodos getter y setter del atributo del semáforo
     public String getSemaforo() {
         return semaforo;
     }
@@ -35,9 +40,10 @@ public class Municipio {
         this.semaforo = semaforo;
     }
 
+    //Método toString del objeto Municipio
     @Override
     public String toString() {
-        return "Municipio{" + "nombreMunicipio=" + nombreMunicipio + ", numeroInfectados=" + numeroInfectados + ", semaforo=" + semaforo + '}';
+        return "{" + "Nombre Municipio=" + nombreMunicipio + ", Número Infectados=" + numeroInfectados + ", Semaforo=" + semaforo + '}';
     }
 
 }
