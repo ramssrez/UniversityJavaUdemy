@@ -43,7 +43,7 @@ public class Principal {
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         //LLamado al método que contiene una varificación del número ingresado, este método no retorna valores.
                         System.out.println("Opción 1");
-                        registrarInfectados();
+                        municipiosTotales = registrarInfectados();
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         break;
                     //Caso 2 en donde se obtiene el número de hombres mayores a 50 años.
@@ -51,7 +51,7 @@ public class Principal {
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         //LLamado al método que contiene una varificación de la declaración global en caso de que no tenga valores asignados, dependiente del caso 1
                         System.out.println("Opción 2");
-                        validacion(2);
+                        validacion(opcion);
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         break;
                     //Caso 3 en donde se obtiene el número de mujeres mayores a 50 años.
@@ -59,7 +59,7 @@ public class Principal {
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         //LLamado al método que contiene una varificación de la declaración global en caso de que no tenga valores asignados, dependiente del caso 1
                         System.out.println("Opción 3");
-                        validacion(3);
+                        validacion(opcion);
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         break;
                     //Caso 4 en donde se obtiene el número de hombres que tienen alguna comorbilidad
@@ -67,7 +67,7 @@ public class Principal {
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         //LLamado al método que contiene una varificación de la declaración global en caso de que no tenga valores asignados, dependiente del caso 1
                         System.out.println("Opción 4");
-                        validacion(4);
+                        validacion(opcion);
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         break;
                     //Caso 5 en donde se obtiene se sale del ciclo while
@@ -96,7 +96,7 @@ public class Principal {
         }
     }
 
-    public static void registrarInfectados() {
+    public static Municipio[] registrarInfectados() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Registra los datos de los municipios");
         System.out.print("Ingresa en número de casos para " + CANCUN + ": ");
@@ -114,18 +114,17 @@ public class Principal {
         Municipio municipioIsla = new Municipio(ISLAMUJERES, infectadosIsla);
 
         Municipio municipios[] = {municipioCancun, municipioCarmen, municipioCozumel, municipioIsla};
-        municipiosTotales = municipios;
+        return municipios;
     }
-    public static void validacion(int casoMenu){
-        //int caso;
-        //caso = casoMenu;
-        if (municipiosTotales == null){
-            System.out.println("No ha registrado datos vuelve a la opción 1");
-        }else if(casoMenu == 2){
+
+    public static void validacion(int casoMenu) {
+        if (municipiosTotales == null) {
+            System.out.println("No ha registrado datos, vuelve a la opción 1");
+        } else if (casoMenu == 2) {
             semaforo(municipiosTotales);
-        }else if(casoMenu == 3){
-            mediaContagios();
-        }else if(casoMenu == 4){
+        } else if (casoMenu == 3) {
+            mediaContagios(total,municipiosTotales);
+        } else if (casoMenu == 4) {
             mayorContagio();
         }
     }
@@ -148,7 +147,7 @@ public class Principal {
             }
         }
 
-        System.out.println("El total de casos son  = " + j);
+        System.out.println("El total de infecciónes en Quinana Roo son: " + j);
         if ((j >= 0) && (j <= 25)) {
             System.out.println("La entidad tiene semaforo verde");
         }
@@ -161,11 +160,16 @@ public class Principal {
         if ((j > 75)) {
             System.out.println("La entidad tiene semaforo Rojo");
         }
-        
+        total = j;
     }
 
-    public static void mediaContagios() {
-        System.out.println("Método de los contagios");
+    public static void mediaContagios(int totalInfecciones, Municipio municipios[]) {
+        float media;
+        float totalFloat =(float) totalInfecciones;
+        float sizeFloat = (float) municipios.length;
+        media = totalFloat/sizeFloat;
+        System.out.println("El promedio de infectados son: " + media + " infectados/municipio");
+        
     }
 
     public static void mayorContagio() {
