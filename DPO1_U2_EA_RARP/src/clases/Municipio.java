@@ -1,8 +1,10 @@
 package clases;
 
 public class Municipio {
+
     private String nombreMunicipio;
     private int numeroInfectados;
+    private String semaforo;
 
     public Municipio(String nombreMunicipio, int numeroInfectados) {
         this.nombreMunicipio = nombreMunicipio;
@@ -25,9 +27,17 @@ public class Municipio {
         this.numeroInfectados = numeroInfectados;
     }
 
+    public String getSemaforo() {
+        return semaforo;
+    }
+
+    public void setSemaforo(String semaforo) {
+        this.semaforo = semaforo;
+    }
+
     @Override
     public String toString() {
-        return "Municipio{" + "nombreMunicipio=" + nombreMunicipio + ", numeroInfectados=" + numeroInfectados + '}';
+        return "Municipio{" + "nombreMunicipio=" + nombreMunicipio + ", numeroInfectados=" + numeroInfectados + ", semaforo=" + semaforo + '}';
     }
-    
+
 }

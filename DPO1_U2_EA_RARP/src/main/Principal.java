@@ -10,6 +10,7 @@ public class Principal {
     private static final String COZUMEL = "Cozumel";
     private static final String ISLAMUJERES = "Isla Mujeres";
     private static final String PLAYACARMEN = "Playa del Carmen";
+    private static Municipio municipiosTotales[];
     private static int total;
 
     public static void main(String[] args) {
@@ -50,7 +51,7 @@ public class Principal {
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         //LLamado al método que contiene una varificación de la declaración global en caso de que no tenga valores asignados, dependiente del caso 1
                         System.out.println("Opción 2");
-                        semaforo();
+                        semaforo(municipiosTotales);
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         break;
                     //Caso 3 en donde se obtiene el número de mujeres mayores a 50 años.
@@ -99,9 +100,8 @@ public class Principal {
         System.out.println("Método del registro");
 
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Si tiene datos");
         System.out.println("Registra los datos de los municipios");
-        System.out.print("Ingres en número de casos para " + CANCUN + ": ");
+        System.out.print("Ingresa en número de casos para " + CANCUN + ": ");
         int infectadosCancun = scanner.nextInt();
         System.out.print("Ingresa el número de casos para " + PLAYACARMEN + ": ");
         int infectadosCarmen = scanner.nextInt();
@@ -109,24 +109,38 @@ public class Principal {
         int infectadosCozumel = scanner.nextInt();
         System.out.print("Ingresa el número de casos para " + ISLAMUJERES + ": ");
         int infectadosIsla = scanner.nextInt();
-        
+
         Municipio municipioCancun = new Municipio(CANCUN, infectadosCancun);
         Municipio municipioCarmen = new Municipio(PLAYACARMEN, infectadosCarmen);
         Municipio municipioCozumel = new Municipio(COZUMEL, infectadosCozumel);
         Municipio municipioIsla = new Municipio(ISLAMUJERES, infectadosIsla);
-        
-        Municipio municipios[] ={municipioCancun,municipioCarmen,municipioCozumel,municipioIsla};
-        System.out.println("Municipios : " + municipios.length);
 
-        System.out.println("infectadosCarmen = " + infectadosCarmen);
-        System.out.println("infectadosCozumel = " + infectadosCozumel);
-        System.out.println("infectadosCancun = " + infectadosCancun);
-        System.out.println("infectadosIsla = " + infectadosIsla);
-
+        Municipio municipios[] = {municipioCancun, municipioCarmen, municipioCozumel, municipioIsla};
+        municipiosTotales = municipios;
     }
 
-    public static void semaforo() {
+    public static void semaforo(Municipio municipios[]) {
         System.out.println("Método del semaforo");
+        int j = 0;
+        for (int i = 0; i < municipios.length; i++) {
+            System.out.println("Municipios " + (i + 1) + ": " + municipios[i]);
+            j = j + municipios[i].getNumeroInfectados();
+        }
+
+        System.out.println("El total de casos son  = " + j);
+        if ((j >= 0) && (j <= 25)) {
+            System.out.println("La entidad tiene semaforo verde");
+        }
+        if ((j > 26) && (j <= 50)) {
+            System.out.println("La entidad tiene semaforo Amarillo");
+        }
+        if ((j > 50) && (j <= 75)) {
+            System.out.println("La entidad tiene semaforo Naranja");
+        }
+        if ((j > 75)) {
+            System.out.println("La entidad tiene semaforo Rojo");
+        }
+
     }
 
     public static void mediaContagios() {
