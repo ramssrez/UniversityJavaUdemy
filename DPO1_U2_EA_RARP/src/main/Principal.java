@@ -42,7 +42,6 @@ public class Principal {
                     case 1:
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         //LLamado al método que contiene una varificación del número ingresado, este método no retorna valores.
-                        System.out.println("Opción 1");
                         municipiosTotales = registrarInfectados();
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         break;
@@ -50,7 +49,6 @@ public class Principal {
                     case 2:
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         //LLamado al método que contiene una varificación de la declaración global en caso de que no tenga valores asignados, dependiente del caso 1
-                        System.out.println("Opción 2");
                         validacion(opcion);
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         break;
@@ -58,7 +56,6 @@ public class Principal {
                     case 3:
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         //LLamado al método que contiene una varificación de la declaración global en caso de que no tenga valores asignados, dependiente del caso 1
-                        System.out.println("Opción 3");
                         validacion(opcion);
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         break;
@@ -66,7 +63,6 @@ public class Principal {
                     case 4:
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         //LLamado al método que contiene una varificación de la declaración global en caso de que no tenga valores asignados, dependiente del caso 1
-                        System.out.println("Opción 4");
                         validacion(opcion);
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         break;
@@ -97,6 +93,7 @@ public class Principal {
     }
 
     public static Municipio[] registrarInfectados() {
+        System.out.println("Has seleccionado la opcion 1");
         Scanner scanner = new Scanner(System.in);
         System.out.println("Registra los datos de los municipios");
         System.out.print("Ingresa en número de casos para " + CANCUN + ": ");
@@ -123,13 +120,14 @@ public class Principal {
         } else if (casoMenu == 2) {
             semaforo(municipiosTotales);
         } else if (casoMenu == 3) {
-            mediaContagios(total,municipiosTotales);
+            mediaContagios(total, municipiosTotales);
         } else if (casoMenu == 4) {
-            mayorContagio();
+            mayorContagio(municipiosTotales);
         }
     }
 
     public static void semaforo(Municipio municipios[]) {
+        System.out.println("Has seleccionado la opcion 2");
         int j = 0;
         for (int i = 0; i < municipios.length; i++) {
             j = j + municipios[i].getNumeroInfectados();
@@ -164,15 +162,33 @@ public class Principal {
     }
 
     public static void mediaContagios(int totalInfecciones, Municipio municipios[]) {
+        System.out.println("Has seleccionado la opcion 3");
         float media;
-        float totalFloat =(float) totalInfecciones;
+        float totalFloat = (float) totalInfecciones;
         float sizeFloat = (float) municipios.length;
-        media = totalFloat/sizeFloat;
+        media = totalFloat / sizeFloat;
         System.out.println("El promedio de infectados son: " + media + " infectados/municipio");
-        
     }
 
-    public static void mayorContagio() {
-        System.out.println("Método de mayor contagio");
+    public static void mayorContagio(Municipio municipios[]) {
+        System.out.println("Has seleccionado la opcion 4");
+        int mayor = 0;
+        int menor = municipios[0].getNumeroInfectados();
+        String mayorContagios = "";
+        String menorContagios = municipios[0].getNombreMunicipio();
+        for (int i = 0; i < municipios.length; i++) {
+            if (municipios[i].getNumeroInfectados() > mayor) {
+                mayor = municipios[i].getNumeroInfectados();
+                mayorContagios = municipios[i].getNombreMunicipio();
+            }
+            if (municipios[i].getNumeroInfectados() < menor) {
+                menor = municipios[i].getNumeroInfectados();
+                menorContagios = municipios[i].getNombreMunicipio();
+            }
+        }
+
+        System.out.println("El municipio con menor contagios es: " + menorContagios);
+        System.out.println("El municipio con mayor contagios es: " + mayorContagios);
+
     }
 }
