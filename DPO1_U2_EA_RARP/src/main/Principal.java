@@ -1,15 +1,16 @@
 package main;
 
+import clases.Municipio;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Principal {
 
-    String cancun = "Cancún";
-    String cozumel = "Cozumel";
-    String islaMujeres = "Isla Mujeres";
-    String playaCarmen = "Playa del Carmen";
-    int total = 0;
+    private static final String CANCUN = "Cancún";
+    private static final String COZUMEL = "Cozumel";
+    private static final String ISLAMUJERES = "Isla Mujeres";
+    private static final String PLAYACARMEN = "Playa del Carmen";
+    private static int total;
 
     public static void main(String[] args) {
         System.out.println("Bienvenidos al registro de contagiados del estado de Quintana Roo");
@@ -96,6 +97,32 @@ public class Principal {
 
     public static void registrarInfectados() {
         System.out.println("Método del registro");
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Si tiene datos");
+        System.out.println("Registra los datos de los municipios");
+        System.out.print("Ingres en número de casos para " + CANCUN + ": ");
+        int infectadosCancun = scanner.nextInt();
+        System.out.print("Ingresa el número de casos para " + PLAYACARMEN + ": ");
+        int infectadosCarmen = scanner.nextInt();
+        System.out.print("Ingres en número de casos para " + COZUMEL + ": ");
+        int infectadosCozumel = scanner.nextInt();
+        System.out.print("Ingresa el número de casos para " + ISLAMUJERES + ": ");
+        int infectadosIsla = scanner.nextInt();
+        
+        Municipio municipioCancun = new Municipio(CANCUN, infectadosCancun);
+        Municipio municipioCarmen = new Municipio(PLAYACARMEN, infectadosCarmen);
+        Municipio municipioCozumel = new Municipio(COZUMEL, infectadosCozumel);
+        Municipio municipioIsla = new Municipio(ISLAMUJERES, infectadosIsla);
+        
+        Municipio municipios[] ={municipioCancun,municipioCarmen,municipioCozumel,municipioIsla};
+        System.out.println("Municipios : " + municipios.length);
+
+        System.out.println("infectadosCarmen = " + infectadosCarmen);
+        System.out.println("infectadosCozumel = " + infectadosCozumel);
+        System.out.println("infectadosCancun = " + infectadosCancun);
+        System.out.println("infectadosIsla = " + infectadosIsla);
+
     }
 
     public static void semaforo() {
