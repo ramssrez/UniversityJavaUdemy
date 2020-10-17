@@ -164,16 +164,16 @@ public class Principal {
         //Sentencia similar a la que se encuentra dentro del ciclo for, pero tomando el total de infecciones en la entidad
         System.out.println("El total de infecciónes en Quinana Roo son: " + j);
         if ((j >= 0) && (j <= 25)) {
-            System.out.println("La entidad tiene semaforo verde");
+            System.out.println("La entidad tiene semáforo verde");
         }
         if ((j > 25) && (j <= 50)) {
-            System.out.println("La entidad tiene semaforo Amarillo");
+            System.out.println("La entidad tiene semáforo Amarillo");
         }
         if ((j > 50) && (j <= 75)) {
-            System.out.println("La entidad tiene semaforo Naranja");
+            System.out.println("La entidad tiene semáforo Naranja");
         }
         if ((j > 75)) {
-            System.out.println("La entidad tiene semaforo Rojo");
+            System.out.println("La entidad tiene semáforo Rojo");
         }
         //Asignación del total en la variable global 
         total = j;
