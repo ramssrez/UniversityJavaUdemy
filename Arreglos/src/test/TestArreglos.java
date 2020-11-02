@@ -34,7 +34,15 @@ public class TestArreglos {
         for (int renglon = 0; renglon < edadesMatriz.length; renglon++) {
             for (int columna = 0; columna < edadesMatriz[renglon].length; columna++) {
                 System.out.println("Edades Matriz: " + renglon + "-" + columna + ": " + edadesMatriz[renglon][columna]);
+            }
+        }
 
+        //Uso de matriz con la seclaración ya realizada.
+        String frutas[][] ={{"Limon","Naranja"},{"Fresa", "Zarzamora"}};
+        
+        for (int renglon = 0; renglon < frutas.length; renglon++) {
+            for (int columna = 0; columna < frutas[renglon].length; columna++) {
+                System.out.println("Frutas: " + renglon + "-" + columna + ": " + frutas[renglon][columna]);
             }
         }
 
