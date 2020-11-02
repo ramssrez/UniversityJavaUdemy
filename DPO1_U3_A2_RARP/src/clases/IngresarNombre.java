@@ -20,7 +20,7 @@ public class IngresarNombre {
         this.nombre = nombre + " " + apellidoPaterno;
     }
 
-    //Tercer nombre con sobrecarga en donde se le asigna el nombre, apellido paterno y apellido materno
+    //Tercer nombre con sobrecarga en donde se le asigna el nombre, apellido paterno y apellido materno, además de sobrecarga del operador +
     public void agregarNombre(String nombre, String apellidoPaterno, String apellidoMaterno) {
         this.nombre = nombre + " " + apellidoPaterno + " " + apellidoMaterno;
     }
