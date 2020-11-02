@@ -15,10 +15,21 @@ public class Orden {
 
     public void agregarProducto(Producto producto) {
         if (this.contadorProductos < Orden.MAX_PRODUCTOS) {
-            productos[contadorProductos++] = producto;
+            this.productos[this.contadorProductos++] = producto;
         } else {
             System.out.println("Se ha superado el máximo de productos: " + Orden.MAX_PRODUCTOS);
         }
     }
 
+    public double calcularTotal() {
+        double total = 0;
+        for (int i = 0; i < this.contadorProductos; i++) {
+
+//            Producto producto = this.productos[i];
+//            total = total + producto.getPrecio();
+            total += this.productos[i].getPrecio();
+        }
+        return total;
+    }
+    
 }
