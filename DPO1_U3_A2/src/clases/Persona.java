@@ -1,13 +1,12 @@
 package clases;
 
 public class Persona {
-   private String nombre;
-   private String apellidoPaterno;
-   private String apellidoMaterno;
-   private int edad;
+    private String nombre;
+    private String apellidoPaterno;
+    private String apellidoMaterno;
+    private int edad;
 
     public Persona() {
-        System.out.println("Creacion del objeto Persona");
     }
 
     public Persona(String nombre) {
@@ -63,7 +62,5 @@ public class Persona {
     public String toString() {
         return "Persona{" + "Nombre: " + nombre + ", Apellido Paterno: " + apellidoPaterno + ", Apellido Materno: " + apellidoMaterno + ", Edad: " + edad + '}';
     }
-    
-   
-   
+
 }

@@ -8,15 +8,16 @@ public class IngresarNombre {
         return nombre;
     }
 
-     public void agregarNombre(String nombre) {
+    public void agregarNombre(String nombre) {
         this.nombre = nombre;
     }
+
     public void agregarNombre(String nombre, String apellidoPaterno) {
-        this.nombre = nombre + apellidoPaterno;
+        this.nombre = nombre + " " + apellidoPaterno;
     }
 
     public void agregarNombre(String nombre, String apellidoPaterno, String apellidoMaterno) {
-        this.nombre = nombre + apellidoPaterno + apellidoMaterno;
+        this.nombre = nombre + " " + apellidoPaterno + " " + apellidoMaterno;
     }
 
 }
