@@ -1,11 +1,11 @@
 package aritmetica;
 
-import excepcion.OperadorEcxepcion;
+import excepcion.OperadorExcepcion;
 
 public class Aritmetica {
-    public static int division(int numerador, int denominador) throws OperadorEcxepcion{
+    public static int division(int numerador, int denominador) throws OperadorExcepcion{
         if(denominador == 0){
-            throw new OperadorEcxepcion("Divición entre cero");
+            throw new OperadorExcepcion("Divición entre cero");
         }
         return numerador/denominador;
     }

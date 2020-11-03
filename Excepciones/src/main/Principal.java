@@ -1,15 +1,17 @@
 package main;
 
+import static aritmetica.Aritmetica.division;
+
 public class Principal {
 
     public static void main(String[] args) {
         double resultado = 0;
 
         try {
-            resultado = 10 / 0;
+            resultado = division(10, 0);
 
         } catch (Exception e) {
-            System.out.println("Ocurrio un error" + e.getMessage());
+            System.out.println("Ocurrio un error: " + e.getMessage());
             e.printStackTrace(System.out);
         }
         System.out.println("resultado = " + resultado);
