@@ -3,17 +3,16 @@ package main;
 public class Principal {
 
     public static void main(String[] args) {
-        double resultado;
+        double resultado = 0;
 
         try {
             resultado = 10 / 0;
-            System.out.println("resultado = " + resultado);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        } finally {
-            System.out.println("El try catch ha terminado");
-        }
 
+        } catch (Exception e) {
+            System.out.println("Ocurrio un error" + e.getMessage());
+            e.printStackTrace(System.out);
+        }
+        System.out.println("resultado = " + resultado);
     }
 
     public static double dividir(double dividiendo, double divisor) {
