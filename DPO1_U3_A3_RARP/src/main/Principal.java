@@ -1,22 +1,41 @@
 package main;
 
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 public class Principal {
 
     public static void main(String[] args) {
-        double resultado = 0;
-
+        int numeros[] = {1, 4, 2, 3};
+        /*
+        Primer ejemplo de la sentencia Try/catch, en la cual se tiene un tipo de Excepción
+        de tipo ArrayIndexOutOfBoundsException, esta excepción es lanzada para indicar que se ha accedido
+        a un vector con un índice que no existe, ya sea mayor al tamaño del vector o negativo, en nuestro caso 
+        queremos entrar al indice 10 de nuestro vector, pero solo tiene cuatro elementos.
+         */
         try {
-            resultado = 10 / 0;
-
-        } catch (Exception e) {
-            System.out.println("Ocurrio un error" + e.getMessage());
-            e.printStackTrace(System.out);
+            System.out.println(numeros[10]);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Se ha producido un error: " + e.getMessage());
         }
-        System.out.println("resultado = " + resultado);
-    }
 
-    public static double dividir(double dividiendo, double divisor) {
-        return (dividiendo / divisor);
+        int opcion;
+        Scanner sn = new Scanner(System.in);
+
+        /*
+        Segundo ejemplo de la sentencia Try/catch, en la cual se tiene un tipo de Excepción
+        de tipo InputMismatchException, esta excepción es lanzada por el Scanner para indicar 
+        que lo que se ingreso, no coincide con lo que necesitamos, en nuestro caso declaramos la variable como entero e 
+        ingresamos una letra, de esta manera tronaría nuestro programa, pero con la excepción se mandaría un mensaje de fallo
+         */
+        try {
+            System.out.print("Ingresa un número no una letra: ");
+            opcion = sn.nextInt();
+        } catch (InputMismatchException e) {
+            //InputMismatchException e
+            System.out.println("Debes insertar un número " + e.getMessage());
+        }
+
     }
 
 }

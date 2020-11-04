@@ -39,50 +39,51 @@ public class Principal {
 
                 //Uso de la sentencia Switch para los diferentes casos en los que el usuario haya elegido
                 switch (opcion) {
-                    //Caso 1 en donde se ingresallos datos del los municipios
-                    case 1:
+                    case 1 -> {
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         //LLamado al método que retorna un array de objeto de tipo municipio, donde se cargan los datos de los infectadis
                         municipiosTotales = registrarInfectados(); //Asignación de la variable global a lo que regresa el método
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
-                        break;
-                    //Caso 2. Donde se imprime el semaforo en donde se ubica la entidad en este momento.
-                    case 2:
+                    }
+                    case 2 -> {
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         //LLamado al método  que contiene una verificación en caso de que no se haya registrado datos en la opción 1
                         validacion(opcion);
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
-                        break;
-                    //Caso 3 en donde se obtiene el promedio de infecciones en la entidad.
-                    case 3:
+                    }
+                    case 3 -> {
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         //LLamado al método  que contiene una verificación en caso de que no se haya registrado datos en la opción 1
                         validacion(opcion);
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
-                        break;
-                    //Caso 4 en donde se los municipios que tiene un mayor contagio y los que no
-                    case 4:
+                    }
+                    case 4 -> {
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         //LLamado al método  que contiene una verificación en caso de que no se haya registrado datos en la opción 1
                         validacion(opcion);
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
-                        break;
-                    //Caso 5 en donde se sale del ciclo while
-                    case 5:
+                    }
+                    case 5 -> {
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         System.out.println("Has seleccionado la opcion 5");
                         //Cambio de asignación de la variable salir para que salga del ciclo while
                         salir = true;
                         System.out.println("Gracias por tu visita. Adiós!!!!!");
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
-                        break;
-                    //Caso default en el caso de que no ingrese un valor entre 1 y 5
-                    default:
+                    }
+                    default -> {
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         System.out.println("ERROR, el número no corresponde al rango de 1 a 5");
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
+                    }
                 }
-                //Continuación de la sentencia try/catch en donde mandamos un mesaje de que se debe ingresar números al menú.
+                //Caso 1 en donde se ingresallos datos del los municipios
+                //Caso 2. Donde se imprime el semaforo en donde se ubica la entidad en este momento.
+                //Caso 3 en donde se obtiene el promedio de infecciones en la entidad.
+                //Caso 4 en donde se los municipios que tiene un mayor contagio y los que no
+                //Caso 5 en donde se sale del ciclo while
+                //Caso default en el caso de que no ingrese un valor entre 1 y 5
+                                //Continuación de la sentencia try/catch en donde mandamos un mesaje de que se debe ingresar números al menú.
             } catch (InputMismatchException e) {
                 System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                 System.out.println("Debes insertar un número");
