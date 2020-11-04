@@ -22,7 +22,8 @@ public class ImplementacionMySql implements IAccesodatos {
 
     @Override
     public void eliminar() {
-        throw new UnsupportedOperationException("No se encuentra soportado aun."); //To change body of generated methods, choose Tools | Templates.
+       System.out.println("Eliminar desde MySql");
+        //throw new UnsupportedOperationException("No se encuentra soportado aun."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
