@@ -1,11 +1,10 @@
 package clases;
 
-public class Persona {
+public abstract class Persona {
     //Declaración de los atributos del objeto de tipo Personas
     private String nombre;
     private String apellidoPaterno;
     private String apellidoMaterno;
-    private int edad;
 
     //Constructor vacío para la creación del objeto de tipo Personas
     public Persona() {
@@ -28,9 +27,10 @@ public class Persona {
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPateeno;
         this.apellidoMaterno = apellidoMaterno;
-        this.edad = edad;
     }
 
+    public abstract void generarEdad();
+    
     //Métodos getter y setter para el atributo nombre
     public String getNombre() {
         return nombre;
@@ -56,19 +56,11 @@ public class Persona {
     public void setApellidoMaterno(String apellidoMaterno) {
         this.apellidoMaterno = apellidoMaterno;
     }
-    //Métodos getters y setters para el atributo edad
-    public int getEdad() {
-        return edad;
-    }
-
-    public void setEdad(int edad) {
-        this.edad = edad;
-    }
 
     //Sobreescritura del método toString para imprimir los atributos del objeto persona
     @Override
     public String toString() {
-        return "Persona{" + "Nombre: " + nombre + ", Apellido Paterno: " + apellidoPaterno + ", Apellido Materno: " + apellidoMaterno + ", Edad: " + edad + '}';
+        return "Persona{" + "Nombre: " + nombre + ", Apellido Paterno: " + apellidoPaterno + ", Apellido Materno: " + apellidoMaterno + '}';
     }
 
 }

@@ -8,19 +8,22 @@ public class Principal {
 
     //Creación del método principal main
     public static void main(String[] args) {
-        //Creación del objeto de tipo Persona donde se manda a llamar al segundo constructor ya aplicando sobrecarga
-        Persona personaDos = new Persona("Jesus");
-        //Impresión de pantalla del objeto personaDos
-        System.out.println("personaDos = " + personaDos);
-        //Creación del objeto de tipo Persona donde se manda a llamar al tercer constructor ya aplicando sobrecarga
-        Persona personaTres = new Persona("Jesus", "Esquivel", "Hernandez");
-        //Impresión de pantalla del objeto personaTres
-        System.out.println("personaTres = " + personaTres);
-        //Creación del objeto de tipo Persona donde se manda a llamar al cuarto constructor ya aplicando sobrecarga
-        Persona personaCuatro = new Persona("Jesus", "Esquivel", "Hernandez", 25);
-        //Impresión de pantalla del objeto personaTres
-        System.out.println("personaCuatro = " + personaCuatro);
+//        //Creación del objeto de tipo Persona donde se manda a llamar al segundo constructor ya aplicando sobrecarga
+//        Persona personaDos = new Persona("Jesus");
+//        //Impresión de pantalla del objeto personaDos
+//        System.out.println("personaDos = " + personaDos);
+//        //Creación del objeto de tipo Persona donde se manda a llamar al tercer constructor ya aplicando sobrecarga
+//        Persona personaTres = new Persona("Jesus", "Esquivel", "Hernandez");
+//        //Impresión de pantalla del objeto personaTres
+//        System.out.println("personaTres = " + personaTres);
+//        //Creación del objeto de tipo Persona donde se manda a llamar al cuarto constructor ya aplicando sobrecarga
+//        Persona personaCuatro = new Persona("Jesus", "Esquivel", "Hernandez", 25);
+//        //Impresión de pantalla del objeto personaTres
+//        System.out.println("personaCuatro = " + personaCuatro);
 
+        
+        
+        
         //Creación del objeto de tipo IngresarNombre
         IngresarNombre ingresarNombre = new IngresarNombre();
         //Ingreso del nombre en donde se ejecuta el método ya sobrecargado
