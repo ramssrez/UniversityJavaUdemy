@@ -5,7 +5,7 @@ public abstract class FiguraGeometrica {
     private String tipoFigura;
 
     protected FiguraGeometrica(String tipoFigura) {
-        System.out.println("Constructor de la clase");
+        System.out.println("Constructor de la clase abtracte");
         this.tipoFigura = tipoFigura;
     }
 
