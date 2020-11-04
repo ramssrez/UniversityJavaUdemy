@@ -19,15 +19,15 @@ public class Principal {
             System.out.println("Se ha producido un error: " + e.getMessage());
         }
 
-        int opcion;
-        Scanner sn = new Scanner(System.in);
-
         /*
         Segundo ejemplo de la sentencia Try/catch, en la cual se tiene un tipo de Excepción
         de tipo InputMismatchException, esta excepción es lanzada por el Scanner para indicar 
-        que lo que se ingreso, no coincide con lo que necesitamos, en nuestro caso declaramos la variable como entero e 
-        ingresamos una letra, de esta manera tronaría nuestro programa, pero con la excepción se mandaría un mensaje de fallo
+        que lo que se ingreso de la consola, no coincide con lo que necesitamos, en nuestro caso declaramos la variable como entero e 
+        ingresamos una letra o String, de esta manera tronaría nuestro programa, pero con la excepción se mandaría un mensaje de que se debe 
+        ingresar npumeros
          */
+        int opcion;
+        Scanner sn = new Scanner(System.in);
         try {
             System.out.print("Ingresa un número no una letra: ");
             opcion = sn.nextInt();
