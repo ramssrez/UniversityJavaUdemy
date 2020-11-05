@@ -23,7 +23,8 @@ public abstract class Persona {
         this.apellidoMaterno = apellidoMaterno;
     }
 
-    public abstract void generarEdad(String fechaNacimiento);
+    //Generación de método abstracto para crear la clase abstracta
+    public abstract void asignarEdad(String fechaNacimiento);
     
     //Métodos getter y setter para el atributo nombre
     public String getNombre() {
@@ -54,7 +55,7 @@ public abstract class Persona {
     //Sobreescritura del método toString para imprimir los atributos del objeto persona
     @Override
     public String toString() {
-        return "Persona{" + "Nombre: " + nombre + ", Apellido Paterno: " + apellidoPaterno + ", Apellido Materno: " + apellidoMaterno + '}';
+        return "Nombre: " + nombre + ", Apellido Paterno: " + apellidoPaterno + ", Apellido Materno: " + apellidoMaterno;
     }
 
 }

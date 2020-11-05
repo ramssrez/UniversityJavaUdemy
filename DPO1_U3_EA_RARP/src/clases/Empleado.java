@@ -25,28 +25,26 @@ public class Empleado extends Persona {
     }
 
     @Override
-    public void generarEdad(String fechaNacimiento) {
+    public void asignarEdad(String fechaNacimiento) {
+        //Instancia de la clase Date para obtener la fecha actual
         Date fecha = new Date();
+        //Asignamos el formato de la fecha que deseamos utilizar
         DateTimeFormatter dateFormater = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        //Pareseo del String de la fecha de nacimiento que ingreso en forma de String
         LocalDate fechaNaci = LocalDate.parse(fechaNacimiento, dateFormater);
+        //Declaramos el objeto zonaActual, ya que lo necesitamos para ubicar el lugar en donde nos encontramos
         ZoneId zonaActual = ZoneId.systemDefault();
+        //Parseo del objeto fecha de tipo Dare a objeto de tipo LocalDate 
         LocalDate fechaActual = fecha.toInstant().atZone(zonaActual).toLocalDate();
+        //Declaración del objeto perido donde se compara las fecha de nacimiento con la actual
         Period periodo = Period.between(fechaNaci, fechaActual);
-        System.out.println("Edad del empleado: " + periodo.getYears() + " años ");
+        //Asiganción de la edad que se obtuvo con el procedimiento anterior
         this.edad = periodo.getYears();
     }
 
-    
-    
-//    
-//    @Override
-//    public String toString() {
-//        return "Empleado{" + "edad=" + this.edad + " " + super.toString() + '}';
-//    }
-
     @Override
     public String toString() {
-        return "Empleado{" + "edad=" + edad + ", sueldo=" + sueldo + " "+super.toString()+ '}';
+        return super.toString() + ", edad: " + edad + " años" + ", sueldo: $" + sueldo;
     }
 
 }

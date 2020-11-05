@@ -3,15 +3,14 @@ package main;
 //Impirtación de las clases de otro paqeute
 
 import clases.*;
-import java.util.Date;
 
 public class Principal {
 
     //Creación del método principal main
     public static void main(String[] args) {
-        Date fecha = new Date();
         Persona empleado = new Empleado("Jesus", "Ezquivel", "Hernandez", 1500);
-        empleado.generarEdad("27/06/1992");
+        //Ingreso de la fecha de nacimiento del empleado
+        empleado.asignarEdad("27/06/1992");
         System.out.println(empleado.toString());
 //        //Creación del objeto de tipo Persona donde se manda a llamar al segundo constructor ya aplicando sobrecarga
 //        Persona personaDos = new Persona("Jesus");
