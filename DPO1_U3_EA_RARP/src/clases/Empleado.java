@@ -8,14 +8,17 @@ import java.util.Date;
 
 public class Empleado extends Persona {
 
+    //Declaración de atributos del objeto empleado
     private int edad;
     private double sueldo;
 
+    //Constructor del objeto Empleado con argumentos
     public Empleado(String nombre, String apellidoPaterno, String apellidoMaterno, double sueldo) {
         super(nombre, apellidoPaterno, apellidoMaterno);
         this.sueldo = sueldo;
     }
 
+    //Metodos getter y setter del atributo Sueldo
     public double getSueldo() {
         return sueldo;
     }
@@ -24,6 +27,7 @@ public class Empleado extends Persona {
         this.sueldo = sueldo;
     }
 
+    //Aplicación del método abstracto de la clase Persona
     @Override
     public void asignarEdad(String fechaNacimiento) {
         //Instancia de la clase Date para obtener la fecha actual
@@ -42,6 +46,7 @@ public class Empleado extends Persona {
         this.edad = periodo.getYears();
     }
 
+    //Sobreescitura  del metodo toString par presentar los paramentros del objeto empleado.
     @Override
     public String toString() {
         return super.toString() + ", edad: " + edad + " años" + ", sueldo: $" + sueldo;

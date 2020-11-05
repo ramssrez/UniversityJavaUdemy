@@ -12,6 +12,10 @@ public class Principal {
         //Ingreso de la fecha de nacimiento del empleado
         empleado.asignarEdad("27/06/1992");
         System.out.println(empleado.toString());
+        
+        Persona estudiante = new Estudiante("Raúl",8.5f);
+        estudiante.asignarEdad("14/01/1994");
+        System.out.println(estudiante.toString());
 //        //Creación del objeto de tipo Persona donde se manda a llamar al segundo constructor ya aplicando sobrecarga
 //        Persona personaDos = new Persona("Jesus");
 //        //Impresión de pantalla del objeto personaDos
