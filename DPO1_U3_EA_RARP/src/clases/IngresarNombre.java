@@ -1,6 +1,8 @@
 package clases;
 
-public class IngresarNombre {
+import interfaces.INombres;
+
+public class IngresarNombre{
 
     //Atributo de la clase IngresarNombre
     private String nombre;
