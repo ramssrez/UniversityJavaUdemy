@@ -22,14 +22,8 @@ public abstract class Persona {
         this.apellidoPaterno = apellidoPaterno;
         this.apellidoMaterno = apellidoMaterno;
     }
-    //Cuarto constructo que tiene parametos el nombre, apellido paterno, apellido materno y edad de la persona
-    public Persona(String nombre, String apellidoPateeno, String apellidoMaterno, int edad) {
-        this.nombre = nombre;
-        this.apellidoPaterno = apellidoPateeno;
-        this.apellidoMaterno = apellidoMaterno;
-    }
 
-    public abstract void generarEdad();
+    public abstract void generarEdad(String fechaNacimiento);
     
     //Métodos getter y setter para el atributo nombre
     public String getNombre() {
