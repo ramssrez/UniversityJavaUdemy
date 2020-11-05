@@ -2,7 +2,7 @@ package clases;
 
 import interfaces.INombres;
 
-public class IngresarNombre{
+public class IngresarNombre implements INombres{
 
     //Atributo de la clase IngresarNombre
     private String nombre;
@@ -11,20 +11,24 @@ public class IngresarNombre{
     public String obtenerNombre() {
         return nombre;
     }
-
-    //Primer método con sobrecarga en donde se asigna un nombre
-    public void agregarNombre(String nombre) {
+    
+    //Uso de la interface donde se ingresa el nombre de una persona
+    @Override
+    public void ingresarNombre(String nombre) {
         this.nombre = nombre;
     }
 
-    //Segundo nombre con sobrecarga en donde se le asigna nombre y apellido paterno
-    public void agregarNombre(String nombre, String apellidoPaterno) {
+    //Uso de la interface donde se asigna el nombre y el apellido paterno de una persona
+    @Override
+    public void ingresarNombreApellidoPaterno(String nombre, String apellidoPaterno) {
         this.nombre = nombre + " " + apellidoPaterno;
     }
 
-    //Tercer nombre con sobrecarga en donde se le asigna el nombre, apellido paterno y apellido materno, además de sobrecarga del operador +
-    public void agregarNombre(String nombre, String apellidoPaterno, String apellidoMaterno) {
+    //Ingreso de la interface donde se asigna el nombre completo de una persona
+    @Override
+    public void ingresarNombreCompleto(String nombre, String apellidoPaterno, String apellidoMaterno) {
         this.nombre = nombre + " " + apellidoPaterno + " " + apellidoMaterno;
     }
 
+    
 }
