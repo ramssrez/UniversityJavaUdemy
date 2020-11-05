@@ -17,7 +17,7 @@ public class Orden {
         if (this.contadorComputadoras < Orden.MAXIMO_COMPUTADORAS) {
             this.computadoras[this.contadorComputadoras++] = computadora;
         }else{
-            System.out.println("Has superado el límite " + Orden.MAXIMO_COMPUTADORAS);
+            System.out.println("Has superado el límite establecido: " + Orden.MAXIMO_COMPUTADORAS);
         }
     }
     
