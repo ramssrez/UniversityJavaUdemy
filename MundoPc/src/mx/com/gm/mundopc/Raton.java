@@ -14,5 +14,5 @@ public class Raton extends DispositivoEntrada {
     public String toString() {
         return "Raton{" + "idRaton=" + idRaton + " " + super.toString() + '}';
     }
-    
+
 }

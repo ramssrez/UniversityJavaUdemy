@@ -31,5 +31,4 @@ public class DispositivoEntrada {
         return "DispositivoEntrada{" + "tipoEntrada=" + tipoEntrada + ", marca=" + marca + '}';
     }
 
-    
 }

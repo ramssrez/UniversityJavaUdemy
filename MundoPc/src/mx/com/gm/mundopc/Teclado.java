@@ -1,6 +1,7 @@
 package mx.com.gm.mundopc;
 
 public class Teclado extends DispositivoEntrada {
+
     private final int idTeclado;
     private static int contadorTeclados;
 
@@ -11,9 +12,7 @@ public class Teclado extends DispositivoEntrada {
 
     @Override
     public String toString() {
-        return "Teclado{" + "idTeclado=" + idTeclado + '}';
+        return "Teclado{" + "idTeclado=" + idTeclado + " " + super.toString() + '}';
     }
-    
-    
-    
+
 }
