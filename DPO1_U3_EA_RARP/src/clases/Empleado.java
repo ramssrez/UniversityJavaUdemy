@@ -46,7 +46,7 @@ public class Empleado extends Persona {
         this.edad = periodo.getYears();
     }
 
-    //Sobreescitura  del metodo toString par presentar los paramentros del objeto empleado.
+    //Sobreescitura  del metodo toString par presentar los paramentros del objeto empleado
     @Override
     public String toString() {
         return super.toString() + ", edad: " + edad + " años" + ", sueldo: $" + sueldo;

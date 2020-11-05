@@ -8,12 +8,12 @@ public class Principal {
 
     //Creación del método principal main
     public static void main(String[] args) {
-        Persona empleado = new Empleado("Jesus", "Ezquivel", "Hernandez", 1500);
+        Empleado empleado = new Empleado("Jesus", "Ezquivel", "Hernandez", 1500);
         //Ingreso de la fecha de nacimiento del empleado
         empleado.asignarEdad("27/06/1992");
         System.out.println(empleado.toString());
         
-        Persona estudiante = new Estudiante("Raúl",8.5f);
+        Estudiante estudiante = new Estudiante("Raúl",8.5f);
         estudiante.asignarEdad("14/01/1994");
         System.out.println(estudiante.toString());
 //        //Creación del objeto de tipo Persona donde se manda a llamar al segundo constructor ya aplicando sobrecarga
