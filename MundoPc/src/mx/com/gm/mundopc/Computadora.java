@@ -10,10 +10,10 @@ public class Computadora {
     private static int contadorComputadoras;
 
     private Computadora() {
-        this.idComputadora = ++ Computadora.contadorComputadoras;
+        this.idComputadora = ++Computadora.contadorComputadoras;
     }
-    
-    public Computadora(String nombre, Monitor monitor, Teclado teclado, Raton raton){
+
+    public Computadora(String nombre, Monitor monitor, Teclado teclado, Raton raton) {
         this();
         this.nombre = nombre;
         this.monitor = monitor;
@@ -24,7 +24,6 @@ public class Computadora {
     public int getIdComputadora() {
         return idComputadora;
     }
-
 
     public String getNombre() {
         return nombre;
@@ -57,7 +56,6 @@ public class Computadora {
     public void setTeclado(Teclado teclado) {
         this.teclado = teclado;
     }
-    
 
     @Override
     public String toString() {
