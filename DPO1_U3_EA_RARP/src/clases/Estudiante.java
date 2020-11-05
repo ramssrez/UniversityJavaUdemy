@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+//Declaración de la clase Estudiante que hereda de la clase Persona
 public class Estudiante extends Persona {
 
     private int edad;
@@ -44,6 +45,7 @@ public class Estudiante extends Persona {
         } catch (ParseException ex) {
             System.out.println("Error  el ingresar la fecha" + ex.getMessage());
         }
+      
 
         //Intancia de la clase Calendar para utilizar el calendario actual
         //para la fecha de nacimiento que parseamos anteriormente y la fecha
@@ -52,7 +54,7 @@ public class Estudiante extends Persona {
         Calendar fechaActual = Calendar.getInstance();
 
        //Sentencia try/catch en donde se realiza la asignación de la fecha de nacimiento y la fecha actual con los objetos Calendar
-       //en caso de ser erroneo se manda un mensaje en consola
+       //en caso de ser erroneo se manda un mensaje en consola donde se imprime el error obtenido
         try {
             fechaN.setTime(nacimiento);
             fechaActual.setTime(fecha);
