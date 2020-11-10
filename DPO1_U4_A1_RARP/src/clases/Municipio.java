@@ -8,14 +8,26 @@ public class Municipio {
     private int numeroDefunciones;
     private int numeroRecuperados;
     private String semaforo;
+    
 
     //Constructor del objeto municipio
-    public Municipio(String nombreMunicipio, int numeroInfectados) {
+    public Municipio(String nombreMunicipio, int numeroPositivos) {
         this.nombreMunicipio = nombreMunicipio;
-        this.numeroPositivos = numeroInfectados;
+        this.numeroPositivos = numeroPositivos;
         this.asignarSemaforo();
     }
 
+      public Municipio(String nombreMunicipio, int numeroPositivos, int numeroDefunciones, int numeroRecuperados) {
+        this.nombreMunicipio = nombreMunicipio;
+        this.numeroPositivos = numeroPositivos;
+        this.numeroDefunciones = numeroDefunciones;
+        this.numeroRecuperados = numeroRecuperados;
+        this.asignarSemaforo();
+    }
+
+    public Municipio() {
+
+    }
     //Métodos getter y setter del atributo nombre de municipio
     public String getNombreMunicipio() {
         return nombreMunicipio;

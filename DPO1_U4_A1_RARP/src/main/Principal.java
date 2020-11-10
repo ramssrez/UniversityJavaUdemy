@@ -8,20 +8,6 @@ import java.util.Scanner;
 public class Principal {
 
     //Declaración de variables globales para la solución de este ejercicio
-    private static final String BACALAR = "Bacalar";
-    private static final String BENITO_JUAREZ = "Benito Juárez";
-    private static final String COZUMEL = "Cozumel";
-    private static final String FELIPE_CARRILLO_PUERTO = "Felipe Carrillo Puerto";
-    private static final String ISLAMUJERES = "Isla Mujeres";
-    private static final String JOSE_MARIA_MORELOS = "José María Morelos";
-    private static final String LAZARO_CARDENAZ = "Lázaro Cárdenas";
-    private static final String OTHON_BLANCO = "Othón P. Blanco";
-    private static final String PUERTO_MORELOS = "Pueto Morelos";
-    private static final String SOLARIDAD = "Solaridad";
-    private static final String TULUM = "Tulum";
-    private static final String CANCUN = "Cancún";
-
-    private static final String PLAYACARMEN = "Playa del Carmen";
     private static Municipio municipiosTotales[];
     private static int total;
 
@@ -65,7 +51,9 @@ public class Principal {
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         //LLamado al método  que contiene una verificación en caso de que no se haya registrado datos en la opción 1
                         validacion(opcion);
-                        System.out.println(Arrays.toString(municipiosTotales) + "Municipios totales");
+                        for (int i = 0; i < municipiosTotales.length; i++) {
+                            System.out.println("Municiopio " + i + " " + municipiosTotales[i].toString());
+                        }
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         break;
                     //Caso 3 en donde se obtiene el promedio de infecciones en la entidad.
@@ -114,23 +102,29 @@ public class Principal {
         System.out.println("Has seleccionado la opcion 1");
         Scanner scanner = new Scanner(System.in);
         System.out.println("Registra los datos de los municipios");
-        System.out.print("Ingresa en número de casos para " + CANCUN + ": ");
-        int infectadosCancun = scanner.nextInt();
-        System.out.print("Ingresa el número de casos para " + PLAYACARMEN + ": ");
-        int infectadosCarmen = scanner.nextInt();
-        System.out.print("Ingres en número de casos para " + COZUMEL + ": ");
-        int infectadosCozumel = scanner.nextInt();
-        System.out.print("Ingresa el número de casos para " + ISLAMUJERES + ": ");
-        int infectadosIsla = scanner.nextInt();
+        String municipioString[] = {"Bacalar", "Benito Juárez", "Cozumel", "Felipe Carrillo Puerto",
+            "Isla Mujeres", "José María Morelos", "Lázaro Cárdenas", "Othón P. Blanco", "Puerto Morelos",
+            "Solaridad", "Tulum"};
+        int positivosList[] = {245, 5426, 365, 317, 194, 119, 267, 3084, 29, 1451, 229};
+        int defuncionesList[] = {9, 1074, 67, 47, 15, 26, 20, 174, 12, 176, 17};
+        int recuperadosList[] = {204, 4136, 271, 240, 141, 77, 200, 2251, 14, 1198, 188};
+        Municipio municipios[] = new Municipio[municipioString.length];
+        for (int i = 0; i < municipioString.length; i++) {
+            Municipio municipioPrueba = new Municipio(municipioString[i], positivosList[i], defuncionesList[i], recuperadosList[i]);
+            municipios[i] = municipioPrueba;
+        }
 
-        //Creación de los objetos de tipo Municipio haciendo uso de las variables globales que se declararon al principio y los que ingreso el usuario
-        Municipio municipioCancun = new Municipio(CANCUN, infectadosCancun);
-        Municipio municipioCarmen = new Municipio(PLAYACARMEN, infectadosCarmen);
-        Municipio municipioCozumel = new Municipio(COZUMEL, infectadosCozumel);
-        Municipio municipioIsla = new Municipio(ISLAMUJERES, infectadosIsla);
-        //Creación del array de tipo Municipio que contiene los objetos que se crearon previamente.
-        Municipio municipios[] = {municipioCancun, municipioCarmen, municipioCozumel, municipioIsla};
-        //Retorno del array que contiene los objetos
+        //Bloque solo para pruebas
+//        for (int i = 0; i < municipioString.length; i++) {
+//            System.out.print("Ingresa el número de casos positivos para " + municipioString[i] + ": ");
+//            int positivos = scanner.nextInt();
+//            System.out.print("Ingresa el número de defunciones para " + municipioString[i] + ": ");
+//            int defunciones = scanner.nextInt();
+//            System.out.print("Ingresa el número de recuperados para " + municipioString[i] + ": ");
+//            int recuperados = scanner.nextInt();
+//            Municipio municipioPrueba = new Municipio(municipioString[i], positivos, defunciones, recuperados);
+//            municipios[i] = municipioPrueba;
+//        }
         return municipios;
     }
 
