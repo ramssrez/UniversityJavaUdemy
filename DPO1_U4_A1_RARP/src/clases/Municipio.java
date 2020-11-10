@@ -36,13 +36,9 @@ public class Municipio {
         this.numeroPositivos = numeroPositivos;
     }
 
-    //Métodos getter y setter del atributo del semáforo
+    //Métodos getter del atributo del semáforo
     public String getSemaforo() {
         return semaforo;
-    }
-
-    public void setSemaforo(String semaforo) {
-        this.semaforo = semaforo;
     }
 
     //Métodos getter y setter del atributo número de defunciones

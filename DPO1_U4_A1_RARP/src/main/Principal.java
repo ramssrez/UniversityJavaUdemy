@@ -117,28 +117,30 @@ public class Principal {
             "Isla Mujeres", "José María Morelos", "Lázaro Cárdenas", "Othón P. Blanco", "Puerto Morelos",
             "Solidaridad", "Tulum"};
         //Crecaión del arreglo que contiene los valores de los municipios, para uso de pruebas
-        int positivosList[] = {245, 5426, 365, 317, 194, 119, 267, 3084, 29, 1451, 229};
-        int defuncionesList[] = {9, 1074, 67, 47, 15, 26, 20, 174, 12, 176, 17};
-        int recuperadosList[] = {204, 4136, 271, 240, 141, 77, 200, 2251, 14, 1198, 188};
+//        int positivosList[] = {245, 5426, 365, 317, 194, 119, 267, 3084, 29, 1451, 229};
+//        int defuncionesList[] = {9, 1074, 67, 47, 15, 26, 20, 174, 12, 176, 17};
+//        int recuperadosList[] = {204, 4136, 271, 240, 141, 77, 200, 2251, 14, 1198, 188};
         //Creación del arreglo de objetos de tipo Municipio con el número de entidades
         Municipio municipios[] = new Municipio[municipioString.length];
         //Creación de un ciclo que se encaraga de llenar el arreglo de objetos de tipo Municipio para pruebas
-        for (int i = 0; i < municipioString.length; i++) {
-            Municipio municipioPrueba = new Municipio(municipioString[i], positivosList[i], defuncionesList[i], recuperadosList[i]);
-            municipios[i] = municipioPrueba;
-        }
+//        for (int i = 0; i < municipioString.length; i++) {
+//            Municipio municipioPrueba = new Municipio(municipioString[i], positivosList[i], defuncionesList[i], recuperadosList[i]);
+//            municipios[i] = municipioPrueba;
+//        }
 
         //Bloque Donde se efectua el llenado de datos de manera manual
-//        for (int i = 0; i < municipioString.length; i++) {
-//            System.out.print("Ingresa el número de infectados de " + municipioString[i] + ": ");
-//            int positivos = scanner.nextInt();
-//            System.out.print("Ingresa el número de defunciones de " + municipioString[i] + ": ");
-//            int defunciones = scanner.nextInt();
-//            System.out.print("Ingresa el número de recuperados de " + municipioString[i] + ": ");
-//            int recuperados = scanner.nextInt();
-//            Municipio municipio = new Municipio(municipioString[i], positivos, defunciones, recuperados);
-//            municipios[i] = municipio;
-//        }
+        System.out.println("\n");
+        for (int i = 0; i < municipioString.length; i++) {
+            System.out.print("Ingresa el número de infectados de " + municipioString[i] + ": ");
+            int positivos = scanner.nextInt();
+            System.out.print("Ingresa el número de defunciones de " + municipioString[i] + ": ");
+            int defunciones = scanner.nextInt();
+            System.out.print("Ingresa el número de recuperados de " + municipioString[i] + ": ");
+            int recuperados = scanner.nextInt();
+            Municipio municipio = new Municipio(municipioString[i], positivos, defunciones, recuperados);
+            municipios[i] = municipio;
+            System.out.println("\n");
+        }
         return municipios;
     }
 
