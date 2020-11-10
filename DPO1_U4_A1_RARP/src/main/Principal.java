@@ -38,7 +38,7 @@ public class Principal {
 
                 //Uso de la sentencia Switch para los diferentes casos en los que el usuario haya elegido
                 switch (opcion) {
-                    //Caso 1 en donde se ingresallos datos del los municipios
+                    //Caso 1 en donde se ingresan los datos del los municipios
                     case 1:
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         //LLamado al método que retorna un array de objeto de tipo municipio, donde se cargan los datos de los infectadis
@@ -52,31 +52,35 @@ public class Principal {
                         validacion(opcion);
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         break;
-                    //Caso 3 en donde se obtiene el promedio de infecciones en la entidad.
+                    //Caso 3 en donde se obtiene el total de defunciones en la entidad
                     case 3:
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         //LLamado al método  que contiene una verificación en caso de que no se haya registrado datos en la opción 1
                         validacion(opcion);
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         break;
-                    //Caso 4 en donde se los municipios que tiene un mayor contagio y los que no
+                    //Caso 4 en donde se obtiene el total de  casos positivos en la entidad
                     case 4:
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         //LLamado al método  que contiene una verificación en caso de que no se haya registrado datos en la opción 1
                         validacion(opcion);
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         break;
-                    //Caso 5 en donde se sale del ciclo while
+                    //Caso 5 en donde se obtiene el total de recuperados en la entidad
                     case 5:
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
+                        //LLamado al método  que contiene una verificación en caso de que no se haya registrado datos en la opción 1
                         validacion(opcion);
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         break;
+                    //Caso 6 en donde se imprime los municipios que tienen un mayor y menor contagio
                     case 6:
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
+                        //LLamado al método  que contiene una verificación en caso de que no se haya registrado datos en la opción 1
                         validacion(opcion);
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         break;
+                    //Caso 7 en donde se sale del ciclo while
                     case 7:
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         System.out.println("Has seleccionado la opcion 7");
@@ -85,7 +89,7 @@ public class Principal {
                         System.out.println("Gracias por tu visita. Adiós!!!!!");
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         break;
-                    //Caso default en el caso de que no ingrese un valor entre 1 y 5
+                    //Caso default en el caso de que no ingrese un valor entre 1 y 7
                     default:
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         System.out.println("ERROR, el número no corresponde al rango de 1 a 7");
@@ -112,13 +116,13 @@ public class Principal {
         String municipioString[] = {"Bacalar", "Benito Juárez", "Cozumel", "Felipe Carrillo Puerto",
             "Isla Mujeres", "José María Morelos", "Lázaro Cárdenas", "Othón P. Blanco", "Puerto Morelos",
             "Solidaridad", "Tulum"};
-        //Crecaión del arreglo que contiene los valores de los municipios
+        //Crecaión del arreglo que contiene los valores de los municipios, para uso de pruebas
         int positivosList[] = {245, 5426, 365, 317, 194, 119, 267, 3084, 29, 1451, 229};
         int defuncionesList[] = {9, 1074, 67, 47, 15, 26, 20, 174, 12, 176, 17};
         int recuperadosList[] = {204, 4136, 271, 240, 141, 77, 200, 2251, 14, 1198, 188};
         //Creación del arreglo de objetos de tipo Municipio con el número de entidades
         Municipio municipios[] = new Municipio[municipioString.length];
-        //Creación de un ciclo que se encaraga de llenar el arreglo de objetos de tipo Municipio
+        //Creación de un ciclo que se encaraga de llenar el arreglo de objetos de tipo Municipio para pruebas
         for (int i = 0; i < municipioString.length; i++) {
             Municipio municipioPrueba = new Municipio(municipioString[i], positivosList[i], defuncionesList[i], recuperadosList[i]);
             municipios[i] = municipioPrueba;
@@ -147,13 +151,14 @@ public class Principal {
         } else if (casoMenu == 2) {
             //Sentencia que manda a llamar un método que identifica que en que semáforo se encuentra la entidad
             semaforo(municipiosTotales);
-            System.out.println("Caso 2");
         } else if (casoMenu == 3) {
-            //Sentencia que manda a llamar un método que calcula la media de infecciones en la entidad
+            //Sentencia que manda a llamar un método que calcula el número de defunciones en la entidad
             System.out.println("El número de defunciones en Quintana Roo son: " + defuncionesTotal(municipiosTotales) + " personas");
         } else if (casoMenu == 4) {
+            //Sentencia que manda a llamar un método que calcula el número de casos positivos en la entidad
             System.out.println("El número de casos positivos en Quintana Roo son: " + positivosTotal(municipiosTotales) + " personas");
         } else if (casoMenu == 5) {
+            //Sentencia que manda a llamar un método que calcula el número de recuperados en la entidad
             System.out.println("El número de recuperados en Quintana Roo son: " + recuperadosTotal(municipiosTotales) + " personas");
         } else if (casoMenu == 6) {
             //Sentencia que determina el municipio que tiene mayor contagios y el que no
@@ -210,27 +215,13 @@ public class Principal {
 
     public static int recuperadosTotal(Municipio municipios[]) {
         System.out.println("Has seleccionado la opcion 5");
-        //Declaración de la variable que hace la suma de los infectados
+        //Declaración de la variable que hace la suma de los recuperados
         int recuperadosTotal = 0;
         for (Municipio municipio : municipios) {
             recuperadosTotal += municipio.getNumeroRecuperados();
         }
         return recuperadosTotal;
     }
-
-////    //Método que calcula la media de los contagiados en función del total y array que estan declarados globalmente
-////    public static void mediaContagios(int totalInfecciones, Municipio municipios[]) {
-////        System.out.println("Has seleccionado la opcion 3");
-////        //Declaración de las varaibles locales
-////        float media;
-////        //Parseo de las varibales que ingresaros para que no se presente un error logico al momento de compular
-////        float totalFloat = (float) totalInfecciones;
-////        float sizeFloat = (float) municipios.length;
-////        //Realización del calculo de la media
-////        media = totalFloat / sizeFloat;
-////        //Impresión de la media para que el usuario pueda observar el promedio
-////        System.out.println("El promedio de infectados son: " + media + " infectados/municipio");
-////    }
 
     //Método que determina el municipio con mayor y menor número de contagios
     public static void mayorContagio(Municipio municipios[]) {
