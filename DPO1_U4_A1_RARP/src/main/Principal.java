@@ -1,15 +1,26 @@
 package main;
 
 import clases.Municipio;
+import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Principal {
 
     //Declaración de variables globales para la solución de este ejercicio
-    private static final String CANCUN = "Cancún";
+    private static final String BACALAR = "Bacalar";
+    private static final String BENITO_JUAREZ = "Benito Juárez";
     private static final String COZUMEL = "Cozumel";
+    private static final String FELIPE_CARRILLO_PUERTO = "Felipe Carrillo Puerto";
     private static final String ISLAMUJERES = "Isla Mujeres";
+    private static final String JOSE_MARIA_MORELOS = "José María Morelos";
+    private static final String LAZARO_CARDENAZ = "Lázaro Cárdenas";
+    private static final String OTHON_BLANCO = "Othón P. Blanco";
+    private static final String PUERTO_MORELOS = "Pueto Morelos";
+    private static final String SOLARIDAD = "Solaridad";
+    private static final String TULUM = "Tulum";
+    private static final String CANCUN = "Cancún";
+
     private static final String PLAYACARMEN = "Playa del Carmen";
     private static Municipio municipiosTotales[];
     private static int total;
@@ -25,11 +36,14 @@ public class Principal {
         //Inicio del ciclo while con la sentencia de salir cuando sea verdadera
         while (!salir) {
             //Impresión del menú de los diferentes opciones que contiene, los cuales el usuario puede observar 
-            System.out.println("1. Registrar los infectados en los municipios");
+            System.out.println("1. Registrar los infectados en los municipios, defunciones y casos recuperados");
             System.out.println("2. Indicar el semáforo que corresponde la entidad");
+            System.out.println("3. Mostrar la cantidad total de defunciones");
+            System.out.println("4. Mostrar la cantidad total de positivos");
             System.out.println("3. Mostrar la media de contagios a nivel estatal");
-            System.out.println("4. Indicar el municipio que más contagios tuvo y el que menos contagios");
-            System.out.println("5. Salir");
+            System.out.println("5. Mostrar la cantidad total de recuperados");
+            System.out.println("6. Indicar el municipio que más contagios tuvo y el que menos contagios");
+            System.out.println("7. Salir");
             //Uso de la sentencia try/catch para el caso de que el ususario ingrese letras al menú
             try {
                 //Impresión para que el ususario registre alguna de las opciones que se le presenta
@@ -51,6 +65,7 @@ public class Principal {
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         //LLamado al método  que contiene una verificación en caso de que no se haya registrado datos en la opción 1
                         validacion(opcion);
+                        System.out.println(Arrays.toString(municipiosTotales) + "Municipios totales");
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         break;
                     //Caso 3 en donde se obtiene el promedio de infecciones en la entidad.
@@ -145,20 +160,7 @@ public class Principal {
         //Sentencia for que realiza la suma de los infectados
         for (int i = 0; i < municipios.length; i++) {
             //Uso de la variable j que realiza la suma de los infectados
-            j = j + municipios[i].getNumeroInfectados();
-            //Sentencias if, que asignana el semaforo al que pertenence el munucupio en función de los infectados registrados
-            if ((municipios[i].getNumeroInfectados() >= 0) && (municipios[i].getNumeroInfectados() <= 25)) {
-                municipios[i].setSemaforo("Verde");
-            }
-            if ((municipios[i].getNumeroInfectados() > 25) && (municipios[i].getNumeroInfectados() <= 50)) {
-                municipios[i].setSemaforo("Amarillo");
-            }
-            if ((municipios[i].getNumeroInfectados() > 50) && (municipios[i].getNumeroInfectados() <= 75)) {
-                municipios[i].setSemaforo("Naranja");
-            }
-            if ((municipios[i].getNumeroInfectados() > 75)) {
-                municipios[i].setSemaforo("Rojo");
-            }
+            j = j + municipios[i].getNumeroPositivos();
         }
 
         //Sentencia similar a la que se encuentra dentro del ciclo for, pero tomando el total de infecciones en la entidad
@@ -166,13 +168,13 @@ public class Principal {
         if ((j >= 0) && (j <= 25)) {
             System.out.println("La entidad tiene semáforo verde");
         }
-        if ((j > 25) && (j <= 50)) {
+        if ((j > 25) && (j <= 150)) {
             System.out.println("La entidad tiene semáforo Amarillo");
         }
-        if ((j > 50) && (j <= 75)) {
+        if ((j > 150) && (j <= 275)) {
             System.out.println("La entidad tiene semáforo Naranja");
         }
-        if ((j > 75)) {
+        if ((j > 275)) {
             System.out.println("La entidad tiene semáforo Rojo");
         }
         //Asignación del total en la variable global 
@@ -199,18 +201,18 @@ public class Principal {
         //Declaración de las variables auxiliares
         int mayor = 0;
         //Declaración de la variable menor, la cual se le tiene que asignar un valor que se encuentre en el array
-        int menor = municipios[0].getNumeroInfectados();
+        int menor = municipios[0].getNumeroPositivos();
         String mayorContagios = "";
         //Al igual que la varaible menor, se le tiene que asignar el valor que se encuentre en el array
         String menorContagios = municipios[0].getNombreMunicipio();
         //Ciclo for que recorre los objetos para poder determinar el municipio de mayor y menor contagios, haciendo uso de las variables auxiliares
         for (int i = 0; i < municipios.length; i++) {
-            if (municipios[i].getNumeroInfectados() > mayor) {
-                mayor = municipios[i].getNumeroInfectados();
+            if (municipios[i].getNumeroPositivos() > mayor) {
+                mayor = municipios[i].getNumeroPositivos();
                 mayorContagios = municipios[i].getNombreMunicipio();
             }
-            if (municipios[i].getNumeroInfectados() < menor) {
-                menor = municipios[i].getNumeroInfectados();
+            if (municipios[i].getNumeroPositivos() < menor) {
+                menor = municipios[i].getNumeroPositivos();
                 menorContagios = municipios[i].getNombreMunicipio();
             }
         }

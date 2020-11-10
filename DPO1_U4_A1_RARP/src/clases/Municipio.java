@@ -4,13 +4,16 @@ public class Municipio {
 
     //Declaración de los atributos del objetos Municipio
     private String nombreMunicipio;
-    private int numeroInfectados;
+    private int numeroPositivos;
+    private int numeroDefunciones;
+    private int numeroRecuperados;
     private String semaforo;
 
     //Constructor del objeto municipio
     public Municipio(String nombreMunicipio, int numeroInfectados) {
         this.nombreMunicipio = nombreMunicipio;
-        this.numeroInfectados = numeroInfectados;
+        this.numeroPositivos = numeroInfectados;
+        this.asignarSemaforo();
     }
 
     //Métodos getter y setter del atributo nombre de municipio
@@ -23,12 +26,12 @@ public class Municipio {
     }
 
     //Métodos getter y setter del atibuto numero de infectados
-    public int getNumeroInfectados() {
-        return numeroInfectados;
+    public int getNumeroPositivos() {
+        return numeroPositivos;
     }
 
-    public void setNumeroInfectados(int numeroInfectados) {
-        this.numeroInfectados = numeroInfectados;
+    public void setNumeroPositivos(int numeroPositivos) {
+        this.numeroPositivos = numeroPositivos;
     }
 
     //Métodos getter y setter del atributo del semáforo
@@ -40,10 +43,41 @@ public class Municipio {
         this.semaforo = semaforo;
     }
 
+    public int getNumeroDefunciones() {
+        return numeroDefunciones;
+    }
+
+    public void setNumeroDefunciones(int numeroDefunciones) {
+        this.numeroDefunciones = numeroDefunciones;
+    }
+
+    public int getNumeroRecuperados() {
+        return numeroRecuperados;
+    }
+
+    public void setNumeroRecuperados(int numeroRecuperados) {
+        this.numeroRecuperados = numeroRecuperados;
+    }
+
+    private void asignarSemaforo() {
+        if ((this.numeroPositivos >= 0) && (this.numeroPositivos <= 25)) {
+            this.semaforo = "Verde";
+        }
+        if ((this.numeroPositivos > 25) && (this.numeroPositivos <= 150)) {
+            this.semaforo = "Amarillo";
+        }
+        if ((this.numeroPositivos > 150) && (this.numeroPositivos <= 275)) {
+            this.semaforo = "Naranja";
+        }
+        if (this.numeroPositivos > 275) {
+            this.semaforo = "Rojo";
+        }
+    }
+
     //Método toString del objeto Municipio
     @Override
     public String toString() {
-        return "{" + "Nombre Municipio=" + nombreMunicipio + ", Número Infectados=" + numeroInfectados + ", Semaforo=" + semaforo + '}';
+        return "Municipio{" + "nombreMunicipio=" + nombreMunicipio + ", numeroPositivos=" + numeroPositivos + ", numeroDefunciones=" + numeroDefunciones + ", numeroRecuperados=" + numeroRecuperados + ", semaforo=" + semaforo + '}';
     }
 
 }
