@@ -158,12 +158,13 @@ public class Principal {
             System.out.println("Caso 3");
             System.out.println("El número de defunciones en Quintana Roo son: " + defuncionesTotal(municipiosTotales) + " personas");
         } else if (casoMenu == 4) {
-            //Sentencia que determina el municipio que tiene mayor contagios y el que no
-            //mayorContagio(municipiosTotales);
+            System.out.println("El número de casos positivos en Quintana Roo son: " + positivosTotal(municipiosTotales) + " personas");
             System.out.println("Caso 4");
         } else if (casoMenu == 5) {
             System.out.println("caso 5");
         } else if (casoMenu == 6) {
+            //mayorContagio(municipiosTotales);
+            //Sentencia que determina el municipio que tiene mayor contagios y el que no
             System.out.println("Caso 6");
         }
     }
@@ -197,12 +198,22 @@ public class Principal {
 
     public static int defuncionesTotal(Municipio municipios[]) {
         System.out.println("Has seleccionado la opcion 3");
-         //Declaración de la variable que hace la suma de los infectados
+        //Declaración de la variable que hace la suma de las defunciones en el estado
         int defuncionesTotal = 0;
         for (Municipio municipio : municipios) {
             defuncionesTotal += municipio.getNumeroDefunciones();
         }
         return defuncionesTotal;
+    }
+
+    public static int positivosTotal(Municipio municipios[]) {
+        System.out.println("Has seleccionado la opcion 4");
+        //Declaración de la variable que hace la suma de los infectados
+        int positivosTotal = 0;
+        for (Municipio municipio : municipios) {
+            positivosTotal += municipio.getNumeroPositivos();
+        }
+        return positivosTotal;
     }
 
     //Método que calcula la media de los contagiados en función del total y array que estan declarados globalmente
