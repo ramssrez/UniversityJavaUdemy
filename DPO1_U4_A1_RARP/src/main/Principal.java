@@ -22,7 +22,7 @@ public class Principal {
         //Inicio del ciclo while con la sentencia de salir cuando sea verdadera
         while (!salir) {
             //Impresión del menú de los diferentes opciones que contiene, los cuales el usuario puede observar 
-            System.out.println("1. Registrar los infectados en los municipios, defunciones y casos recuperados");
+            System.out.println("1. Registrar el número de infectados, defunciones y casos recuperados de los municipios");
             System.out.println("2. Indicar el semáforo que corresponde la entidad");
             System.out.println("3. Mostrar la cantidad total de defunciones");
             System.out.println("4. Mostrar la cantidad total de positivos");
@@ -73,7 +73,17 @@ public class Principal {
                     //Caso 5 en donde se sale del ciclo while
                     case 5:
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
-                        System.out.println("Has seleccionado la opcion 5");
+                        validacion(opcion);
+                        System.out.println("-----------------------------------------------------------------------------------------------------------------------");
+                        break;
+                    case 6:
+                        System.out.println("-----------------------------------------------------------------------------------------------------------------------");
+                        validacion(opcion);
+                        System.out.println("-----------------------------------------------------------------------------------------------------------------------");
+                        break;
+                    case 7:
+                        System.out.println("-----------------------------------------------------------------------------------------------------------------------");
+                        System.out.println("Has seleccionado la opcion 7");
                         //Cambio de asignación de la variable salir para que salga del ciclo while
                         salir = true;
                         System.out.println("Gracias por tu visita. Adiós!!!!!");
@@ -82,7 +92,7 @@ public class Principal {
                     //Caso default en el caso de que no ingrese un valor entre 1 y 5
                     default:
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
-                        System.out.println("ERROR, el número no corresponde al rango de 1 a 5");
+                        System.out.println("ERROR, el número no corresponde al rango de 1 a 7");
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                 }
                 //Continuación de la sentencia try/catch en donde mandamos un mesaje de que se debe ingresar números al menú.
@@ -102,28 +112,32 @@ public class Principal {
         System.out.println("Has seleccionado la opcion 1");
         Scanner scanner = new Scanner(System.in);
         System.out.println("Registra los datos de los municipios");
+        //Creación del arreglo que contiene los nombres de los municipios
         String municipioString[] = {"Bacalar", "Benito Juárez", "Cozumel", "Felipe Carrillo Puerto",
             "Isla Mujeres", "José María Morelos", "Lázaro Cárdenas", "Othón P. Blanco", "Puerto Morelos",
             "Solaridad", "Tulum"};
+        //Crecaión del arreglo que contiene los valores de los municipios
         int positivosList[] = {245, 5426, 365, 317, 194, 119, 267, 3084, 29, 1451, 229};
         int defuncionesList[] = {9, 1074, 67, 47, 15, 26, 20, 174, 12, 176, 17};
         int recuperadosList[] = {204, 4136, 271, 240, 141, 77, 200, 2251, 14, 1198, 188};
+        //Creación del arreglo de objetos de tipo Municipio con el número de entidades
         Municipio municipios[] = new Municipio[municipioString.length];
+        //Creación de un ciclo que se encaraga de llenar el arreglo de objetos de tipo Municipio
         for (int i = 0; i < municipioString.length; i++) {
             Municipio municipioPrueba = new Municipio(municipioString[i], positivosList[i], defuncionesList[i], recuperadosList[i]);
             municipios[i] = municipioPrueba;
         }
 
-        //Bloque solo para pruebas
+        //Bloque Donde se efectua el llenado de datos de manera manual
 //        for (int i = 0; i < municipioString.length; i++) {
-//            System.out.print("Ingresa el número de casos positivos para " + municipioString[i] + ": ");
+//            System.out.print("Ingresa el número de infectados de " + municipioString[i] + ": ");
 //            int positivos = scanner.nextInt();
-//            System.out.print("Ingresa el número de defunciones para " + municipioString[i] + ": ");
+//            System.out.print("Ingresa el número de defunciones de " + municipioString[i] + ": ");
 //            int defunciones = scanner.nextInt();
-//            System.out.print("Ingresa el número de recuperados para " + municipioString[i] + ": ");
+//            System.out.print("Ingresa el número de recuperados de " + municipioString[i] + ": ");
 //            int recuperados = scanner.nextInt();
-//            Municipio municipioPrueba = new Municipio(municipioString[i], positivos, defunciones, recuperados);
-//            municipios[i] = municipioPrueba;
+//            Municipio municipio = new Municipio(municipioString[i], positivos, defunciones, recuperados);
+//            municipios[i] = municipio;
 //        }
         return municipios;
     }
@@ -137,12 +151,20 @@ public class Principal {
         } else if (casoMenu == 2) {
             //Sentencia que manda a llamar un método que identifica que en que semáforo se encuentra la entidad
             semaforo(municipiosTotales);
+            System.out.println("Caso 2");
         } else if (casoMenu == 3) {
             //Sentencia que manda a llamar un método que calcula la media de infecciones en la entidad
-            mediaContagios(total, municipiosTotales);
+            //mediaContagios(total, municipiosTotales);
+            System.out.println("Caso 3");
+            System.out.println("El número de defunciones en Quintana Roo son: " + defuncionesTotal(municipiosTotales) + " personas");
         } else if (casoMenu == 4) {
             //Sentencia que determina el municipio que tiene mayor contagios y el que no
-            mayorContagio(municipiosTotales);
+            //mayorContagio(municipiosTotales);
+            System.out.println("Caso 4");
+        } else if (casoMenu == 5) {
+            System.out.println("caso 5");
+        } else if (casoMenu == 6) {
+            System.out.println("Caso 6");
         }
     }
 
@@ -171,8 +193,16 @@ public class Principal {
         if ((j > 275)) {
             System.out.println("La entidad tiene semáforo Rojo");
         }
-        //Asignación del total en la variable global 
-        total = j;
+    }
+
+    public static int defuncionesTotal(Municipio municipios[]) {
+        System.out.println("Has seleccionado la opcion 3");
+         //Declaración de la variable que hace la suma de los infectados
+        int defuncionesTotal = 0;
+        for (Municipio municipio : municipios) {
+            defuncionesTotal += municipio.getNumeroDefunciones();
+        }
+        return defuncionesTotal;
     }
 
     //Método que calcula la media de los contagiados en función del total y array que estan declarados globalmente
@@ -191,7 +221,7 @@ public class Principal {
 
     //Método que determina el municipio con mayor y menor número de contagios
     public static void mayorContagio(Municipio municipios[]) {
-        System.out.println("Has seleccionado la opcion 4");
+        System.out.println("Has seleccionado la opcion 6");
         //Declaración de las variables auxiliares
         int mayor = 0;
         //Declaración de la variable menor, la cual se le tiene que asignar un valor que se encuentre en el array

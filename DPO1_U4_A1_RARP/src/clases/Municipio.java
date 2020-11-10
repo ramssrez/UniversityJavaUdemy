@@ -24,10 +24,6 @@ public class Municipio {
         this.numeroRecuperados = numeroRecuperados;
         this.asignarSemaforo();
     }
-
-    public Municipio() {
-
-    }
     //Métodos getter y setter del atributo nombre de municipio
     public String getNombreMunicipio() {
         return nombreMunicipio;
