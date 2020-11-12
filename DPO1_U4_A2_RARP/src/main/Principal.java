@@ -1,49 +1,33 @@
 package main;
 
+import java.util.Scanner;
+
 public class Principal {
 
     public static void main(String[] args) {
-        System.out.println("args = " + args);
-        int arreglo[][][][] = new int[1][3][4][5];
-        //Uso de arreglos multi
-        for (int i = 0; i < arreglo.length; i++) {
-            for (int j = 0; j < arreglo[i].length; j++) {
-                for (int k = 0; k < arreglo[i][j].length; k++) {
-                    for (int l = 0; l < arreglo[i][j][k].length; l++) {
-                        arreglo[i][j][k][l] = 1;
-                    }
-                }
+        String areas[] = {"Administración", "Operaciones", "Recursos Humanos"};
+        int modulos[] = {1, 2};
+        double salario[][] = new double[modulos.length][areas.length];
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Ingresa los valores que se te solicitan ");
+        for (int i = 0; i < modulos.length; i++) {
+            System.out.println("Modulo " + (i + 1) + ": ");
+            for (int j = 0; j < areas.length; j++) {
+                System.out.println("Departamento de " + areas[j]);
+                System.out.print("Ingresa el salario del jefe: $");
+                salario[i][j] = scanner.nextDouble();
             }
+            System.out.println("****************************************************************************************+*******");
         }
 
-        //Impresion del arreglo
-        for (int i = 0; i < arreglo.length; i++) {
-            //System.out.println("i = " + i);
-            for (int j = 0; j < arreglo[i].length; j++) {
-                //System.out.println("j = " + j);
-                for (int k = 0; k < arreglo[i][j].length; k++) {
-                    //System.out.println("k = " + k);
-                    for (int l = 0; l < arreglo[i][j][k].length; l++) {
-                        //System.out.println("l = " + l);
-                        System.out.println(" " + i + " " + j + " " + k + " " + l + " = " + arreglo[i][j][k][l]);
-                    }
-                }
+        for (int i = 0; i < modulos.length; i++) {
+            System.out.println("Modulo " + (i + 1) + ": ");
+            for (int j = 0; j < areas.length; j++) {
+                System.out.println("Departamento de " + areas[j]);
+                System.out.println("Jefe encargado gana: $1500" + salario[i][j]);
             }
+            System.out.println("****************************************************************************************+*******");
         }
 
-        for (int i = 0; i < arreglo.length; i++) {
-            //System.out.println("i = " + i);
-            for (int j = 0; j < arreglo[i].length; j++) {
-                //System.out.println("j = " + j);
-                for (int k = 0; k < arreglo[i][j].length; k++) {
-                    //System.out.println("k = " + k);
-                    for (int l = 0; l < arreglo[i][j][k].length; l++) {
-                        //System.out.println("l = " + l);
-                        System.out.print(arreglo[i][j][k][l]);
-                        System.out.println("");
-                    }
-                }
-            }
-        }
     }
 }
