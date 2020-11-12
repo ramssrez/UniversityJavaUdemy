@@ -18,14 +18,29 @@ public class Principal {
 
         //Impresion del arreglo
         for (int i = 0; i < arreglo.length; i++) {
-            System.out.println("i = " + i);
+            //System.out.println("i = " + i);
             for (int j = 0; j < arreglo[i].length; j++) {
-                System.out.println("j = " + j);
+                //System.out.println("j = " + j);
                 for (int k = 0; k < arreglo[i][j].length; k++) {
-                    System.out.println("k = " + k);
+                    //System.out.println("k = " + k);
                     for (int l = 0; l < arreglo[i][j][k].length; l++) {
-                        System.out.println("l = " + l);
-                        System.out.println("i: " +i + "j: " + j + "k: " + k + "l: " + l + " = "+ arreglo[i][j][k][l]);
+                        //System.out.println("l = " + l);
+                        System.out.println(" " + i + " " + j + " " + k + " " + l + " = " + arreglo[i][j][k][l]);
+                    }
+                }
+            }
+        }
+
+        for (int i = 0; i < arreglo.length; i++) {
+            //System.out.println("i = " + i);
+            for (int j = 0; j < arreglo[i].length; j++) {
+                //System.out.println("j = " + j);
+                for (int k = 0; k < arreglo[i][j].length; k++) {
+                    //System.out.println("k = " + k);
+                    for (int l = 0; l < arreglo[i][j][k].length; l++) {
+                        //System.out.println("l = " + l);
+                        System.out.print(arreglo[i][j][k][l]);
+                        System.out.println("");
                     }
                 }
             }
