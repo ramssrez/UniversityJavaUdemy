@@ -116,7 +116,7 @@ public class Principal {
                     opcional = opcional + 1;
                     System.out.println("Registro Exitoso");
                 } else if ((asientos[i][j].getIdAsiento() == numeroAsiento) && (asientos[i][j].isOcupado())) {
-                    System.out.println("No se puede asignar este asiento");
+                    System.out.println("No se puede asignar este asiento, ya se encuentra reservado");
                 }
             }
         }
@@ -126,36 +126,37 @@ public class Principal {
 
     public static void creacionObjetosAsiento() {
         int suma = 0;
-        Asiento asientosEjemplos[][] = new Asiento[filas.length][columnas.length];
+        Asiento[][] asientosMetodo = new Asiento[filas.length][columnas.length];
 
         for (int i = 0; i < filas.length; i++) {
             for (int j = 0; j < columnas.length; j++) {
                 suma = suma + 1;
-                asientosEjemplos[i][j] = new Asiento(filas[i], columnas[j], false);
+                asientosMetodo[i][j] = new Asiento(filas[i], columnas[j], false);
             }
         }
-        asientosEjemplos[2][0].setOcupado(true);
-        asientosEjemplos[2][1].setOcupado(true);
-        asientosEjemplos[2][2].setOcupado(true);
-        asientosEjemplos[2][3].setOcupado(true);
-        asientosEjemplos[3][0].setOcupado(true);
-        asientosEjemplos[3][1].setOcupado(true);
-        asientosEjemplos[3][2].setOcupado(true);
-        asientosEjemplos[3][3].setOcupado(true);
-        asientosEjemplos[0][3].setOcupado(true);
-        asientosEjemplos[0][16].setOcupado(true);
-        asientosEjemplos[1][3].setOcupado(true);
-        asientosEjemplos[4][3].setOcupado(true);
-        asientosEjemplos[5][3].setOcupado(true);
-        asientosEjemplos[5][16].setOcupado(true);
+        asientosMetodo[2][0].setOcupado(true);
+        asientosMetodo[2][1].setOcupado(true);
+        asientosMetodo[2][2].setOcupado(true);
+        asientosMetodo[2][3].setOcupado(true);
+        asientosMetodo[3][0].setOcupado(true);
+        asientosMetodo[3][1].setOcupado(true);
+        asientosMetodo[3][2].setOcupado(true);
+        asientosMetodo[3][3].setOcupado(true);
+        asientosMetodo[0][3].setOcupado(true);
+        asientosMetodo[0][16].setOcupado(true);                
+        asientosMetodo[1][3].setOcupado(true);
+        asientosMetodo[4][3].setOcupado(true);
+        asientosMetodo[5][3].setOcupado(true);
+        asientosMetodo[5][16].setOcupado(true);
 
-        asientos = asientosEjemplos;
+        asientos = asientosMetodo;
+        //asientosMetodo = asientos;
     }
 
     public static void impresionAsientos(Asiento asientos[][]) {
         for (int i = 0; i < filas.length; i++) {
             for (int j = 0; j < columnas.length; j++) {
-                //System.out.println("Asientos: " + asientosEjemplos[i][j].toString());
+                //System.out.println("Asientos: " + asientosMetodo[i][j].toString());
                 if (asientos[i][j].isOcupado()) {
                     System.out.print(" 1 ");
                 } else {
