@@ -1,9 +1,9 @@
 package clases;
 
 public class Reserva {
-    private int numeroAsiento;
     private String nombre;
     private String apellido;
+    private int numeroAsiento;
 
     public Reserva(String nombre, String apellido,int numeroAsiento) {
         this.numeroAsiento = numeroAsiento;
@@ -37,7 +37,7 @@ public class Reserva {
 
     @Override
     public String toString() {
-        return "Reserva{" + "numeroAsiento=" + numeroAsiento + ", nombre=" + nombre + ", apellido=" + apellido + '}';
-    }   
+        return "Reserva{" + "nombre=" + nombre + ", apellido=" + apellido + ", numeroAsiento=" + numeroAsiento + '}';
+    }  
     
 }

@@ -10,6 +10,7 @@ public class Principal {
     public static Asiento asientos[][] = null;
     public static char filas[] = {'A', 'B', 'C', 'D', 'E', 'F'};
     public static int columnas[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30};
+    public static Reserva reservas[] = new Reserva[180];
 
     public static void main(String[] args) {
         creacionObjetosAsiento();
@@ -37,10 +38,8 @@ public class Principal {
                     case 1:
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         //Asignación de ciclo bidimencional de arreglos con un método que se manda a llamar
+                        opcional = crearReserva(asientos, opcional);
                         System.out.println("Opcional " + opcional);
-                        opcional = opcional + 1;
-                        System.out.println("opcional " + opcional);
-                        crearReserva(asientos);
 
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         break;
@@ -54,6 +53,8 @@ public class Principal {
                     case 3:
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         impresionAsientos(asientos);
+                        impresionReservas(reservas);
+
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         break;
                     //Caso 3 donde da por terminado el programa y sale del menú
@@ -82,7 +83,7 @@ public class Principal {
         }
     }
 
-    public static void crearReserva(Asiento asientos[][]) {
+    public static int crearReserva(Asiento asientos[][], int opcional) {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Ingresa tu nombre: ");
         String nombre = scanner.nextLine();
@@ -104,9 +105,23 @@ public class Principal {
                 salir = true;
             }
         }
-        
-        Reserva reserva = new Reserva(nombre, apellido, numeroAsiento);
 
+        for (int i = 0; i < filas.length; i++) {
+            for (int j = 0; j < columnas.length; j++) {
+                if ((asientos[i][j].getIdAsiento() == numeroAsiento) && (!asientos[i][j].isOcupado())) {
+                    asientos[i][j].setOcupado(true);
+                    //registroExitiso =true;
+                    Reserva reserva = new Reserva(nombre, apellido, numeroAsiento);
+                    reservas[opcional] = reserva;
+                    opcional = opcional + 1;
+                    System.out.println("Registro Exitoso");
+                } else if ((asientos[i][j].getIdAsiento() == numeroAsiento) && (asientos[i][j].isOcupado())) {
+                    System.out.println("No se puede asignar este asiento");
+                }
+            }
+        }
+
+        return opcional;
     }
 
     public static void creacionObjetosAsiento() {
@@ -148,6 +163,14 @@ public class Principal {
                 }
             }
             System.out.println(" ");
+        }
+    }
+
+    public static void impresionReservas(Reserva reservas[]) {
+        for (int i = 0; i < reservas.length; i++) {
+            if (!(reservas[i] == null)) {
+                System.out.println("Reservas " + reservas[i]);
+            }
         }
     }
 
