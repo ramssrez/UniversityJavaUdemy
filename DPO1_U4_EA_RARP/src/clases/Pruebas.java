@@ -43,19 +43,6 @@ public class Pruebas {
 
         Asiento ocupados[] = {asientosEjemplos[2][0]};
 
-        //Impresión de los asientos disponibles
-        for (int i = 0; i < filas.length; i++) {
-            for (int j = 0; j < columnas.length; j++) {
-                //System.out.println("Asientos: " + asientosEjemplos[i][j].toString());
-                if (asientosEjemplos[i][j].isOcupado()) {
-                    System.out.print(" 1 ");
-                } else {
-                    System.out.print(" 0 ");
-                }
-            }
-            System.out.println(" ");
-        }
-
         int opcional = 0;
         System.out.println("opcional " + opcional);
 
@@ -77,11 +64,45 @@ public class Pruebas {
         opcional = opcional + 1;
         System.out.println("opcional " + opcional);
 
+        int numeroAsiento = 125;
         //Impresión de las reservas realizadas
         for (int i = 0; i < reservas.length; i++) {
-            if(!(reservas[i]==null)){
-                            System.out.println("Reservas " + reservas[i]);
+            if (!(reservas[i] == null)) {
+                System.out.println("Reservas " + reservas[i]);
             }
+        }
+
+        boolean registroExitiso = false;
+        for (int i = 0; i < filas.length; i++) {
+            for (int j = 0; j < columnas.length; j++) {
+                if ((asientosEjemplos[i][j].getIdAsiento() == numeroAsiento) && (!asientosEjemplos[i][j].isOcupado())) {
+                    asientosEjemplos[i][j].setOcupado(true);
+                    registroExitiso =true;
+                    System.out.println("Registro Exitoso");
+                }else{
+                    registroExitiso = false;
+                }
+            }
+            System.out.println(" ");
+        }
+        
+        if(registroExitiso){
+            System.out.println("Registro exitoso");
+        }else{
+            System.out.println("No se puede realizar el registro");
+        }
+
+        //Impresión de los asientos disponibles
+        for (int i = 0; i < filas.length; i++) {
+            for (int j = 0; j < columnas.length; j++) {
+                //System.out.println("Asientos: " + asientosEjemplos[i][j].toString());
+                if (asientosEjemplos[i][j].isOcupado()) {
+                    System.out.print(" 1 ");
+                } else {
+                    System.out.print(" 0 ");
+                }
+            }
+            System.out.println(" ");
         }
 
         //Impresión del número de asientos.
@@ -92,48 +113,6 @@ public class Pruebas {
             System.out.println(" ");
         }
 
-//        //Creación del array del avion
-//        for (int i = 0; i < asiento.length; i++) {
-//            for (int j = 0; j < asiento[i].length; j++) {
-//                suma = suma + 1;
-//                asiento[i][j] = suma;
-//                asientoEjemplo = new Asiento(filas[i], suma, false);
-//                //System.out.println("Asiento ejemplo " + asientoEjemplo.toString());
-//                try {
-//                    asientos[j] = asientoEjemplo;
-//                } catch (Exception e) {
-//                    System.out.println("Error  = " + e.getMessage());
-//                }
-//
-//            }
-//        }
-//        //Impresion de la matriz
-//        for (int i = 0; i < asiento.length; i++) {
-//            //System.out.print("fila : " + filas[i] + " ");
-//            for (int j = 0; j < asiento[i].length; j++) {
-//                if ((asiento[i][j]) == 61 || (asiento[i][j] == 62) || (asiento[i][j] == 63) || (asiento[i][j] == 91) || (asiento[i][j] == 92) || (asiento[i][j] == 93)
-//                        || (asiento[i][j]) == 4 || (asiento[i][j] == 34) || (asiento[i][j] == 64) || (asiento[i][j] == 94) || (asiento[i][j] == 124) || (asiento[i][j] == 154)
-//                        || (asiento[i][j]) == 17 || (asiento[i][j] == 167)) {
-//                    System.out.print("  0  ");
-//                } else {
-//                    System.out.print(asiento[i][j] + "    ");
-//                }
-//
-//            }
-//            System.out.println("");
-//        }
-        //Crecion de los objetos tipo Asiento
-//        for (int i = 0; i < filas.length; i++) {
-//            for (int j = 0; j < columnas.length; j++) {
-//                Asiento asiento = new Asiento(filas[i], columnas[j]);
-//                
-//            }
-//            
-//        }
-        //Impresion de asientos de tipo objeto
-//        for (int i = 0; i < asientos.length; i++) {
-//            System.out.println("Asientos" + asientos[i].toString());
-//        }
     }
 
 }

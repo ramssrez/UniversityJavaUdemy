@@ -1,12 +1,18 @@
 package main;
 
+import clases.Asiento;
+import clases.Reserva;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Principal {
-    //public static int opcional = 0;
+
+    public static Asiento asientos[][] = null;
+    public static char filas[] = {'A', 'B', 'C', 'D', 'E', 'F'};
+    public static int columnas[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30};
 
     public static void main(String[] args) {
+        creacionObjetosAsiento();
         //Declaración de varaibles para hacer uso del menú
         boolean salir = false;
         int opcion; //Guardaremos la opcion del usuario
@@ -34,18 +40,20 @@ public class Principal {
                         System.out.println("Opcional " + opcional);
                         opcional = opcional + 1;
                         System.out.println("opcional " + opcional);
+                        crearReserva(asientos);
+
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         break;
                     //Caso 2 donde se verifica si ya hay información de los salarios y en caso afirmativo imprimir los salarios de las diferetes áreas
                     case 2:
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         //Sentencia if/else que verifica si el arreglo contiene datos
-
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         break;
 
                     case 3:
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
+                        impresionAsientos(asientos);
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         break;
                     //Caso 3 donde da por terminado el programa y sale del menú
@@ -73,4 +81,74 @@ public class Principal {
 
         }
     }
+
+    public static void crearReserva(Asiento asientos[][]) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Ingresa tu nombre: ");
+        String nombre = scanner.nextLine();
+        System.out.print("Ingresa tu apellido: ");
+        String apellido = scanner.nextLine();
+        //System.out.println("Ingresa el numero de asiento");
+        //int numeroAsiento = scanner.nextInt();
+        int numeroAsiento = 0;
+
+        boolean salir = false;
+        while (!salir) {
+            System.out.print("Ingresa el numero de asiento: ");
+            numeroAsiento = scanner.nextInt();
+            if ((numeroAsiento == 4) || (numeroAsiento == 17) || (numeroAsiento == 34) || (numeroAsiento == 61) || (numeroAsiento == 62)
+                    || (numeroAsiento == 63) || (numeroAsiento == 64) || (numeroAsiento == 91) || (numeroAsiento == 92) || (numeroAsiento == 93)
+                    || (numeroAsiento == 94) || (numeroAsiento == 124) || (numeroAsiento == 154) || (numeroAsiento == 167) || (numeroAsiento > 180)) {
+                System.out.println("No se puede asignar este asiento");
+            } else {
+                salir = true;
+            }
+        }
+        
+        Reserva reserva = new Reserva(nombre, apellido, numeroAsiento);
+
+    }
+
+    public static void creacionObjetosAsiento() {
+        int suma = 0;
+        Asiento asientosEjemplos[][] = new Asiento[filas.length][columnas.length];
+
+        for (int i = 0; i < filas.length; i++) {
+            for (int j = 0; j < columnas.length; j++) {
+                suma = suma + 1;
+                asientosEjemplos[i][j] = new Asiento(filas[i], columnas[j], false);
+            }
+        }
+        asientosEjemplos[2][0].setOcupado(true);
+        asientosEjemplos[2][1].setOcupado(true);
+        asientosEjemplos[2][2].setOcupado(true);
+        asientosEjemplos[2][3].setOcupado(true);
+        asientosEjemplos[3][0].setOcupado(true);
+        asientosEjemplos[3][1].setOcupado(true);
+        asientosEjemplos[3][2].setOcupado(true);
+        asientosEjemplos[3][3].setOcupado(true);
+        asientosEjemplos[0][3].setOcupado(true);
+        asientosEjemplos[0][16].setOcupado(true);
+        asientosEjemplos[1][3].setOcupado(true);
+        asientosEjemplos[4][3].setOcupado(true);
+        asientosEjemplos[5][3].setOcupado(true);
+        asientosEjemplos[5][16].setOcupado(true);
+
+        asientos = asientosEjemplos;
+    }
+
+    public static void impresionAsientos(Asiento asientos[][]) {
+        for (int i = 0; i < filas.length; i++) {
+            for (int j = 0; j < columnas.length; j++) {
+                //System.out.println("Asientos: " + asientosEjemplos[i][j].toString());
+                if (asientos[i][j].isOcupado()) {
+                    System.out.print(" 1 ");
+                } else {
+                    System.out.print(" 0 ");
+                }
+            }
+            System.out.println(" ");
+        }
+    }
+
 }
