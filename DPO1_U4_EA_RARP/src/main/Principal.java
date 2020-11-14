@@ -85,19 +85,24 @@ public class Principal {
 
     public static int crearReserva(Asiento asientos[][], int opcional) {
         Scanner scanner = new Scanner(System.in);
+        //System.out.println("Ingresa el numero de asiento");
+        //int numeroAsiento = scanner.nextInt();
+        System.out.println("Bienvenidos al sistema de reserva, a continuación se presentará la disponibilidad de asientos en función de las filas disponibles, los asientos que están ");
+        System.out.println("marcados con R son asientos ya reservados y los asientos que puedes observar su número son los disponibles.\n");
+        impresionNumeroAsientos(asientos);
+        System.out.println("\nPara poder realizar tu registro es necesario que registres tu nombre, apellido y el número de asiento");
+        int numeroAsiento = 0;
+        boolean salir = false;
+
         System.out.print("Ingresa tu nombre: ");
         String nombre = scanner.nextLine();
         System.out.print("Ingresa tu apellido: ");
         String apellido = scanner.nextLine();
-        //System.out.println("Ingresa el numero de asiento");
-        //int numeroAsiento = scanner.nextInt();
-        int numeroAsiento = 0;
 
-        boolean salir = false;
         while (!salir) {
             System.out.print("Ingresa el numero de asiento: ");
             numeroAsiento = scanner.nextInt();
-            if ((numeroAsiento == 4) || (numeroAsiento == 17) || (numeroAsiento == 34) || (numeroAsiento == 61) || (numeroAsiento == 62)
+            if ((numeroAsiento == 0) || (numeroAsiento == 4) || (numeroAsiento == 17) || (numeroAsiento == 34) || (numeroAsiento == 61) || (numeroAsiento == 62)
                     || (numeroAsiento == 63) || (numeroAsiento == 64) || (numeroAsiento == 91) || (numeroAsiento == 92) || (numeroAsiento == 93)
                     || (numeroAsiento == 94) || (numeroAsiento == 124) || (numeroAsiento == 154) || (numeroAsiento == 167) || (numeroAsiento > 180)) {
                 System.out.println("No se puede asignar este asiento");
@@ -115,8 +120,11 @@ public class Principal {
                     reservas[opcional] = reserva;
                     opcional = opcional + 1;
                     System.out.println("Registro Exitoso");
+                    System.out.println("Tu asiento es: " + asientos[i][j].getIdAsiento());
+                    System.out.println("Se encuentra en la fila: " + asientos[i][j].getFila() + asientos[i][j].getNumeroAsiento());
                 } else if ((asientos[i][j].getIdAsiento() == numeroAsiento) && (asientos[i][j].isOcupado())) {
-                    System.out.println("No se puede asignar este asiento, ya se encuentra reservado");
+                    System.out.println("No se puede asignar este asiento, ya se encuetra reservado");
+                    System.out.println("Vuelve a registrar tu datos");
                 }
             }
         }
@@ -143,24 +151,45 @@ public class Principal {
         asientosMetodo[3][2].setOcupado(true);
         asientosMetodo[3][3].setOcupado(true);
         asientosMetodo[0][3].setOcupado(true);
-        asientosMetodo[0][16].setOcupado(true);                
+        asientosMetodo[0][16].setOcupado(true);
         asientosMetodo[1][3].setOcupado(true);
         asientosMetodo[4][3].setOcupado(true);
         asientosMetodo[5][3].setOcupado(true);
         asientosMetodo[5][16].setOcupado(true);
 
         asientos = asientosMetodo;
-        //asientosMetodo = asientos;
     }
 
     public static void impresionAsientos(Asiento asientos[][]) {
         for (int i = 0; i < filas.length; i++) {
+            System.out.print(filas[i] + " ");
             for (int j = 0; j < columnas.length; j++) {
-                //System.out.println("Asientos: " + asientosMetodo[i][j].toString());
                 if (asientos[i][j].isOcupado()) {
                     System.out.print(" 1 ");
                 } else {
                     System.out.print(" 0 ");
+                }
+
+            }
+            System.out.println(" ");
+        }
+    }
+
+    public static void impresionNumeroAsientos(Asiento asientos[][]) {
+        for (int i = 0; i < filas.length; i++) {
+            System.out.print(filas[i] + " ");
+            for (int j = 0; j < columnas.length; j++) {
+                if (asientos[i][j].isOcupado()) {
+                    System.out.print("  R  ");
+
+                } else if (asientos[i][j].getIdAsiento() < 10) {
+                    System.out.print(" " + "00" + asientos[i][j].getIdAsiento() + " ");
+
+                } else if ((asientos[i][j].getIdAsiento() > 9) && (asientos[i][j].getIdAsiento() < 100)) {
+                    System.out.print(" " + "0" + asientos[i][j].getIdAsiento() + " ");
+
+                } else {
+                    System.out.print(" " + asientos[i][j].getIdAsiento() + " ");
                 }
             }
             System.out.println(" ");
