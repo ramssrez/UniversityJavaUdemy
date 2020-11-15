@@ -21,9 +21,17 @@ public class Principal {
         Scanner scan = new Scanner(System.in);
         //Varaible que incrementa el número de reservas1 realizadas
         int opcional = 0;
+        System.out.println("\nBienvenido al centro de reservas, a continuación se presentará un menú para que escoga la opción que desee");
+        System.out.println("Nuestro avión tiene un total de 166 asientos disponibles, los cuales los puedes consulta el la opción 1, ");
+        System.out.println("además de que esta dividido en 6 filas (A,B,C,D,E,F) y puede escoger la opción que mas le convenga.");
+        System.out.println("\nLa primera opción es parar reservar una asiento en el avión, nuestro avión cuenta con 12 asientos de primera clase");
+        System.out.println("que se encuentran al inicio del avión y 154 asientos de segunda clase.");
+        System.out.println("\nLa segunda opción es para cancelar la reservación del asiento ingresando el número de asiento que ha seleccionado.");
+        System.out.println("\nLa tercera opción es para consultar su reservación, ingresando el número que ha seleccionado.");
+        System.out.println("\nPor último, la cuarta opción es para salir de nuestro sistema de reservas");
         while (!salir) {
             //Impresión de las opciones del menú
-            System.out.println("1.- Reservar");
+            System.out.println("\n1.- Reservar");
             System.out.println("2.- Cancelar Reserva");
             System.out.println("3.- Consular");
             System.out.println("4.- Salir");
@@ -39,7 +47,6 @@ public class Principal {
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         //Asignación de ciclo bidimencional de arreglos con un método que se manda a llamar
                         opcional = crearReserva(asientos, opcional);
-                        System.out.println("Opcional " + opcional);
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         break;
                     //Caso 2 donde se verifica si ya hay información de los salarios y en caso afirmativo imprimir los salarios de las diferetes áreas
@@ -53,16 +60,17 @@ public class Principal {
                     case 3:
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         consultarReserva(asientos);
-                        impresionNumeroAsientos(asientos);
-                        impresionReservas(reservas);
-
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         break;
                     //Caso 3 donde da por terminado el programa y sale del menú
                     case 4:
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
-                        System.out.println("Has seleccionado la opción 4");
-                        System.out.println("Gracias por tu visita. Adiós!!!!!");
+                        System.out.println("\nReservas actualizadas");
+                        impresionReservas(reservas);
+                        System.out.println("\nLugares ocupados en el avión");
+                        impresionNumeroAsientos(asientos);
+                        System.out.println("\n\nGracias por tu visita. Adiós!!!!!");
+
                         salir = true;
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         break;
@@ -88,7 +96,7 @@ public class Principal {
         Scanner scanner = new Scanner(System.in);
         //System.out.println("Ingresa el numero de asiento");
         //int numeroAsiento = scanner.nextInt();
-        System.out.println("Bienvenidos al sistema de reserva, a continuación se presentará la disponibilidad de asientos en función de las filas disponibles, los asientos que están ");
+        System.out.println("Bienvenidos a la sección de reserva, a continuación se presentará la disponibilidad de asientos en función de las filas disponibles, los asientos que están ");
         System.out.println("marcados con R son asientos ya reservados y los asientos que puedes observar su número son los disponibles.\n");
         impresionNumeroAsientos(asientos);
         System.out.println("\nPara poder realizar tu registro es necesario que registres tu nombre, apellido y el número de asiento");
@@ -101,12 +109,12 @@ public class Principal {
         String apellido = scanner.nextLine();
 
         while (!salir) {
-            System.out.print("Ingresa el numero de asiento: ");
+            System.out.print("Ingresa el número de asiento: ");
             numeroAsiento = scanner.nextInt();
             if ((numeroAsiento == 0) || (numeroAsiento == 4) || (numeroAsiento == 17) || (numeroAsiento == 34) || (numeroAsiento == 61) || (numeroAsiento == 62)
                     || (numeroAsiento == 63) || (numeroAsiento == 64) || (numeroAsiento == 91) || (numeroAsiento == 92) || (numeroAsiento == 93)
                     || (numeroAsiento == 94) || (numeroAsiento == 124) || (numeroAsiento == 154) || (numeroAsiento == 167) || (numeroAsiento > 180)) {
-                System.out.println("No se puede asignar este asiento");
+                System.out.println("No existe este asiento, vuelve a ingresar el número de asiento");
             } else {
                 salir = true;
             }
@@ -116,17 +124,15 @@ public class Principal {
             for (int j = 0; j < columnas.length; j++) {
                 if ((asientos[i][j].getIdAsiento() == numeroAsiento) && (!asientos[i][j].isOcupado())) {
                     asientos[i][j].setOcupado(true);
-                    //registroExitiso =true
                     Reserva reserva = new Reserva(nombre, apellido, numeroAsiento);
                     reservas[opcional] = reserva;
                     opcional = opcional + 1;
-                    asientos[i][j].setReserva(reserva);
                     System.out.println("\nRegistro Exitoso");
                     System.out.println("Tu número de asiento es: " + asientos[i][j].getIdAsiento());
                     System.out.println("Se encuentra en la fila: " + asientos[i][j].getFila() + asientos[i][j].getNumeroAsiento());
                 } else if ((asientos[i][j].getIdAsiento() == numeroAsiento) && (asientos[i][j].isOcupado())) {
                     System.out.println("No se puede asignar este asiento, ya se encuetra reservado");
-                    System.out.println("Vuelve a registrar tu datos");
+                    System.out.println("Vuelve a escoger un asiento");
                 }
             }
         }
@@ -137,22 +143,23 @@ public class Principal {
         int numeroAsiento = 0;
         boolean salir = false;
         Scanner scanner = new Scanner(System.in);
+        System.out.println("Bienvenidos a la sección de cancelación de reserva, vamos a necesitar el número de asiento para poder realizar la cancelación del asiento");
         while (!salir) {
-            System.out.print("Ingresa el numero de asiento para cancelar: ");
+            System.out.print("Ingresa el número de asiento por cancelar: ");
             numeroAsiento = scanner.nextInt();
             if ((numeroAsiento == 0) || (numeroAsiento == 4) || (numeroAsiento == 17) || (numeroAsiento == 34) || (numeroAsiento == 61) || (numeroAsiento == 62)
                     || (numeroAsiento == 63) || (numeroAsiento == 64) || (numeroAsiento == 91) || (numeroAsiento == 92) || (numeroAsiento == 93)
                     || (numeroAsiento == 94) || (numeroAsiento == 124) || (numeroAsiento == 154) || (numeroAsiento == 167) || (numeroAsiento > 180)) {
-                System.out.println("No se tiene reserva de este asiento");
+                System.out.println("No existe este asiento, vuelve a ingresar el número de asiento");
             } else {
                 salir = true;
             }
         }
+
         for (int i = 0; i < filas.length; i++) {
             for (int j = 0; j < columnas.length; j++) {
                 if ((asientos[i][j].getIdAsiento() == numeroAsiento) && (asientos[i][j].isOcupado())) {
                     asientos[i][j].setOcupado(false);
-                    asientos[i][j].setReserva(null);
                     for (int k = 0; k < reservas.length; k++) {
                         if (reservas[k] != null) {
                             if ((reservas[k].getNumeroAsiento() == numeroAsiento)) {
@@ -162,7 +169,7 @@ public class Principal {
                         }
                     }
                 } else if ((asientos[i][j].getIdAsiento() == numeroAsiento) && (!asientos[i][j].isOcupado())) {
-                    System.out.println("No se tiene reserva de este asiento");
+                    System.out.println("Este asiento no se encuentra reservado");
                 }
             }
         }
@@ -172,13 +179,14 @@ public class Principal {
         int numeroAsiento = 0;
         boolean salir = false;
         Scanner scanner = new Scanner(System.in);
+        System.out.println("Bienvenidos a la sección de consulta de reserva, vamos a necesitar el número de asiento para poder realizar la consulta del asiento");
         while (!salir) {
-            System.out.print("Ingresa el numero de asiento para consultar: ");
+            System.out.print("Ingresa el número de asiento para consultar: ");
             numeroAsiento = scanner.nextInt();
             if ((numeroAsiento == 0) || (numeroAsiento == 4) || (numeroAsiento == 17) || (numeroAsiento == 34) || (numeroAsiento == 61) || (numeroAsiento == 62)
                     || (numeroAsiento == 63) || (numeroAsiento == 64) || (numeroAsiento == 91) || (numeroAsiento == 92) || (numeroAsiento == 93)
                     || (numeroAsiento == 94) || (numeroAsiento == 124) || (numeroAsiento == 154) || (numeroAsiento == 167) || (numeroAsiento > 180)) {
-                System.out.println("No se tiene información de este asiento");
+                System.out.println("No existe este asiento, vuelve a ingresar el número de asiento");
             } else {
                 for (int i = 0; i < filas.length; i++) {
                     for (int j = 0; j < columnas.length; j++) {
@@ -191,7 +199,7 @@ public class Principal {
                                 }
                             }
                         } else if ((asientos[i][j].getIdAsiento() == numeroAsiento) && (!asientos[i][j].isOcupado())) {
-                            System.out.println("Este asiento no se encuentra reservado");
+                            System.out.println("Este asiento no se encuentra reservado, esta disponible para reservar");
                         }
                     }
                 }
@@ -229,21 +237,6 @@ public class Principal {
         asientos = asientosMetodo;
     }
 
-    public static void impresionAsientos(Asiento asientos[][]) {
-        for (int i = 0; i < filas.length; i++) {
-            System.out.print(filas[i] + " ");
-            for (int j = 0; j < columnas.length; j++) {
-                if (asientos[i][j].isOcupado()) {
-                    System.out.print(" 1 ");
-                } else {
-                    System.out.print(" 0 ");
-                }
-
-            }
-            System.out.println(" ");
-        }
-    }
-
     public static void impresionNumeroAsientos(Asiento asientos[][]) {
         for (int i = 0; i < filas.length; i++) {
             System.out.print(filas[i] + " ");
@@ -268,10 +261,8 @@ public class Principal {
     public static void impresionReservas(Reserva reservas[]) {
         for (int i = 0; i < reservas.length; i++) {
             if (!(reservas[i] == null)) {
-                System.out.println("Reservas " + reservas[i]);
-            } //else {
-            //System.out.println("Reservas " + reservas[i]);
-            //}
+                System.out.println(reservas[i]);
+            }
         }
     }
 

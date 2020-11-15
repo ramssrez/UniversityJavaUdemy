@@ -7,7 +7,6 @@ public class Asiento {
     private char fila;
     private boolean ocupado;
     private static int contadorAsientos;
-    private Reserva reserva;
 
     public Asiento(char fila,int numeroAsiento, boolean ocupado) {
         this.idAsiento = ++Asiento.contadorAsientos;
@@ -46,16 +45,7 @@ public class Asiento {
 
     public static int getContadorAsientos() {
         return contadorAsientos;
-    }  
-
-    public Reserva getReserva() {
-        return reserva;
-    }
-
-    public void setReserva(Reserva reserva) {
-        this.reserva = reserva;
-    }
-    
+    }      
 
     @Override
     public String toString() {
