@@ -10,7 +10,7 @@ public class Principal {
     public static Asiento asientos[][] = null;
     public static char filas[] = {'A', 'B', 'C', 'D', 'E', 'F'};
     public static int columnas[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30};
-    public static Reserva reservas[] = new Reserva[180];
+    public static Reserva reservas[] = new Reserva[2];
 
     public static void main(String[] args) {
         creacionObjetosAsiento();
@@ -19,7 +19,7 @@ public class Principal {
         int opcion; //Guardaremos la opcion del usuario
         //Uso de la clase Scanner para recibir valores de la consola
         Scanner scan = new Scanner(System.in);
-        //Varaible que incrementa el número de reservas realizadas
+        //Varaible que incrementa el número de reservas1 realizadas
         int opcional = 0;
         while (!salir) {
             //Impresión de las opciones del menú
@@ -40,19 +40,19 @@ public class Principal {
                         //Asignación de ciclo bidimencional de arreglos con un método que se manda a llamar
                         opcional = crearReserva(asientos, opcional);
                         System.out.println("Opcional " + opcional);
-
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         break;
                     //Caso 2 donde se verifica si ya hay información de los salarios y en caso afirmativo imprimir los salarios de las diferetes áreas
                     case 2:
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         //Sentencia if/else que verifica si el arreglo contiene datos
+                        cancelarReserva(asientos);
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         break;
 
                     case 3:
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
-                        impresionAsientos(asientos);
+                        impresionNumeroAsientos(asientos);
                         impresionReservas(reservas);
 
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
@@ -115,12 +115,13 @@ public class Principal {
             for (int j = 0; j < columnas.length; j++) {
                 if ((asientos[i][j].getIdAsiento() == numeroAsiento) && (!asientos[i][j].isOcupado())) {
                     asientos[i][j].setOcupado(true);
-                    //registroExitiso =true;
+                    //registroExitiso =true
                     Reserva reserva = new Reserva(nombre, apellido, numeroAsiento);
                     reservas[opcional] = reserva;
                     opcional = opcional + 1;
-                    System.out.println("Registro Exitoso");
-                    System.out.println("Tu asiento es: " + asientos[i][j].getIdAsiento());
+                    asientos[i][j].setReserva(reserva);
+                    System.out.println("\nRegistro Exitoso");
+                    System.out.println("Tu número de asiento es: " + asientos[i][j].getIdAsiento());
                     System.out.println("Se encuentra en la fila: " + asientos[i][j].getFila() + asientos[i][j].getNumeroAsiento());
                 } else if ((asientos[i][j].getIdAsiento() == numeroAsiento) && (asientos[i][j].isOcupado())) {
                     System.out.println("No se puede asignar este asiento, ya se encuetra reservado");
@@ -128,8 +129,60 @@ public class Principal {
                 }
             }
         }
-
         return opcional;
+    }
+
+    public static void cancelarReserva(Asiento asientos[][]) {
+        int numeroAsiento = 0;
+        boolean salir = false;
+        Scanner scanner = new Scanner(System.in);
+        while (!salir) {
+            System.out.print("Ingresa el numero de asiento para cancelar: ");
+            numeroAsiento = scanner.nextInt();
+            if ((numeroAsiento == 0) || (numeroAsiento == 4) || (numeroAsiento == 17) || (numeroAsiento == 34) || (numeroAsiento == 61) || (numeroAsiento == 62)
+                    || (numeroAsiento == 63) || (numeroAsiento == 64) || (numeroAsiento == 91) || (numeroAsiento == 92) || (numeroAsiento == 93)
+                    || (numeroAsiento == 94) || (numeroAsiento == 124) || (numeroAsiento == 154) || (numeroAsiento == 167) || (numeroAsiento > 180)) {
+                System.out.println("No se tiene reserva de este asiento");
+            } else {
+                salir = true;
+            }
+        }
+        for (int i = 0; i < filas.length; i++) {
+            for (int j = 0; j < columnas.length; j++) {
+                if ((asientos[i][j].getIdAsiento() == numeroAsiento) && (asientos[i][j].isOcupado())) {
+                    asientos[i][j].setOcupado(false);
+                    for (int k = 0; k < reservas.length; k++) {
+                        if (reservas[k] != null) {
+                            if ((reservas[k].getNumeroAsiento() == numeroAsiento)) {
+                                reservas[k] = null;
+                                System.out.println("Reserva cancelada");
+                            }
+                        }
+                    }
+                } else if ((asientos[i][j].getIdAsiento() == numeroAsiento) && (!asientos[i][j].isOcupado())) {
+                    System.out.println("No se tiene reserva de este asiento");
+                }
+            }
+        }
+
+//        System.out.println("Numero asiento: " + numeroAsiento);
+//        try {
+//            for (int i = 0; i < reservas.length; i++) {
+//                if (reservas[i] != null) {
+//                    if ((reservas[i].getNumeroAsiento() == numeroAsiento)) {
+//                        reservas[i] = null;
+//                        System.out.println("Reserva cancelada");
+//                    } else {
+//                        System.out.println("Este asiento no se encuentra reservado");
+//
+//                    }
+//                }
+//
+//            }
+//        } catch (Exception e) {
+//            System.out.println("Error " + e.getMessage());
+//        }
+
     }
 
     public static void creacionObjetosAsiento() {
@@ -200,7 +253,9 @@ public class Principal {
         for (int i = 0; i < reservas.length; i++) {
             if (!(reservas[i] == null)) {
                 System.out.println("Reservas " + reservas[i]);
-            }
+            } //else {
+            //System.out.println("Reservas " + reservas[i]);
+            //}
         }
     }
 

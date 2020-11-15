@@ -5,10 +5,10 @@ public class Reserva {
     private String apellido;
     private int numeroAsiento;
 
-    public Reserva(String nombre, String apellido,int numeroAsiento) {
-        this.numeroAsiento = numeroAsiento;
+    public Reserva(String nombre, String apellido, int numeroAsiento) {
         this.nombre = nombre;
         this.apellido = apellido;
+        this.numeroAsiento = numeroAsiento;
     }
 
     public int getNumeroAsiento() {
@@ -38,6 +38,6 @@ public class Reserva {
     @Override
     public String toString() {
         return "Reserva{" + "nombre=" + nombre + ", apellido=" + apellido + ", numeroAsiento=" + numeroAsiento + '}';
-    }  
+    }
     
 }
