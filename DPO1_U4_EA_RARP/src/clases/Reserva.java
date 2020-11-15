@@ -1,16 +1,19 @@
 package clases;
 
 public class Reserva {
+    //Atributos del objeto reserva
     private String nombre;
     private String apellido;
     private int numeroAsiento;
 
+    //Constructor del objeto reserva
     public Reserva(String nombre, String apellido, int numeroAsiento) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.numeroAsiento = numeroAsiento;
     }
 
+    //Métodos getter y setter del atributo número de asiento
     public int getNumeroAsiento() {
         return numeroAsiento;
     }
@@ -19,6 +22,7 @@ public class Reserva {
         this.numeroAsiento = numeroAsiento;
     }
 
+    //Métodos getter y setters del atributo nombre
     public String getNombre() {
         return nombre;
     }
@@ -27,6 +31,7 @@ public class Reserva {
         this.nombre = nombre;
     }
 
+    //Métodos getter y setter del atributo apellido
     public String getApellido() {
         return apellido;
     }
@@ -35,6 +40,7 @@ public class Reserva {
         this.apellido = apellido;
     }
 
+    //Método toString() para poder visualizar los atributos del objeto
     @Override
     public String toString() {
         return  nombre  + " " +  apellido + ", asiento: " + numeroAsiento;
