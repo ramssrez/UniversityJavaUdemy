@@ -10,7 +10,7 @@ public class Principal {
     public static Asiento asientos[][] = null;
     public static char filas[] = {'A', 'B', 'C', 'D', 'E', 'F'};
     public static int columnas[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30};
-    public static Reserva reservas[] = new Reserva[2];
+    public static Reserva reservas[] = new Reserva[360];
 
     public static void main(String[] args) {
         creacionObjetosAsiento();
@@ -52,6 +52,7 @@ public class Principal {
 
                     case 3:
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
+                        consultarReserva(asientos);
                         impresionNumeroAsientos(asientos);
                         impresionReservas(reservas);
 
@@ -151,6 +152,7 @@ public class Principal {
             for (int j = 0; j < columnas.length; j++) {
                 if ((asientos[i][j].getIdAsiento() == numeroAsiento) && (asientos[i][j].isOcupado())) {
                     asientos[i][j].setOcupado(false);
+                    asientos[i][j].setReserva(null);
                     for (int k = 0; k < reservas.length; k++) {
                         if (reservas[k] != null) {
                             if ((reservas[k].getNumeroAsiento() == numeroAsiento)) {
@@ -164,24 +166,38 @@ public class Principal {
                 }
             }
         }
+    }
 
-//        System.out.println("Numero asiento: " + numeroAsiento);
-//        try {
-//            for (int i = 0; i < reservas.length; i++) {
-//                if (reservas[i] != null) {
-//                    if ((reservas[i].getNumeroAsiento() == numeroAsiento)) {
-//                        reservas[i] = null;
-//                        System.out.println("Reserva cancelada");
-//                    } else {
-//                        System.out.println("Este asiento no se encuentra reservado");
-//
-//                    }
-//                }
-//
-//            }
-//        } catch (Exception e) {
-//            System.out.println("Error " + e.getMessage());
-//        }
+    public static void consultarReserva(Asiento sientos[][]) {
+        int numeroAsiento = 0;
+        boolean salir = false;
+        Scanner scanner = new Scanner(System.in);
+        while (!salir) {
+            System.out.print("Ingresa el numero de asiento para consultar: ");
+            numeroAsiento = scanner.nextInt();
+            if ((numeroAsiento == 0) || (numeroAsiento == 4) || (numeroAsiento == 17) || (numeroAsiento == 34) || (numeroAsiento == 61) || (numeroAsiento == 62)
+                    || (numeroAsiento == 63) || (numeroAsiento == 64) || (numeroAsiento == 91) || (numeroAsiento == 92) || (numeroAsiento == 93)
+                    || (numeroAsiento == 94) || (numeroAsiento == 124) || (numeroAsiento == 154) || (numeroAsiento == 167) || (numeroAsiento > 180)) {
+                System.out.println("No se tiene información de este asiento");
+            } else {
+                for (int i = 0; i < filas.length; i++) {
+                    for (int j = 0; j < columnas.length; j++) {
+                        if ((asientos[i][j].getIdAsiento() == numeroAsiento) && (asientos[i][j].isOcupado())) {
+                            for (int k = 0; k < reservas.length; k++) {
+                                if (reservas[k] != null) {
+                                    if ((reservas[k].getNumeroAsiento() == numeroAsiento)) {
+                                        System.out.println("Este asiento esta reservado por " + reservas[k].getNombre() + " " + reservas[k].getApellido());
+                                    }
+                                }
+                            }
+                        } else if ((asientos[i][j].getIdAsiento() == numeroAsiento) && (!asientos[i][j].isOcupado())) {
+                            System.out.println("Este asiento no se encuentra reservado");
+                        }
+                    }
+                }
+                salir = true;
+            }
+        }
 
     }
 
