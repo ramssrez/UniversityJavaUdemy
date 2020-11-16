@@ -51,7 +51,19 @@ public class Principal {
                     case 4:
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
 
-                        System.out.println("\n\nGracias por tu visita. Adiós!!!!!");
+                        System.out.println("-----------------------------------------------------------------------------------------------------------------------");
+                        break;
+                    //Caso 5 donde da por terminado el programa y sale del menú, además de imprimir los lugares del avión ocupado y las reservas solicitadas
+                    case 5:
+                        System.out.println("-----------------------------------------------------------------------------------------------------------------------");
+
+                        System.out.println("-----------------------------------------------------------------------------------------------------------------------");
+                        break;
+
+                    //Caso 6 donde da por terminado el programa y sale del menú, además de imprimir los lugares del avión ocupado y las reservas solicitadas
+                    case 6:
+                        System.out.println("-----------------------------------------------------------------------------------------------------------------------");
+                        System.out.println("\nGracias por tu visita. Adiós!!!!!\n");
                         //Asignación para que salga del menú y de por finalizada la ejecución del programa
                         salir = true;
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
