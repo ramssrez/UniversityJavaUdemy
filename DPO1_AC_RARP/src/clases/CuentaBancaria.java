@@ -4,7 +4,7 @@ public class CuentaBancaria {
 
     private String nombreCliente;
     private String numeroCuenta;
-    private Double saldo;
+    private double saldo;
 
     public String getNombreCliente() {
         return nombreCliente;
@@ -12,7 +12,7 @@ public class CuentaBancaria {
 
     public void setNombreCliente(String nombreCliente) {
         if (nombreCliente.isEmpty()) {
-            System.out.println("Cadena Vacía");
+            System.out.println("Cadena vacía, se necesita un nombre");
         } else {
             this.nombreCliente = nombreCliente;
         }
@@ -23,7 +23,11 @@ public class CuentaBancaria {
     }
 
     public void setNumeroCuenta(String numeroCuenta) {
-        this.numeroCuenta = numeroCuenta;
+        if (nombreCliente.isEmpty()) {
+            System.out.println("Cadena vacía, se necesita una cuenta valida");
+        } else {
+            this.numeroCuenta = numeroCuenta;
+        }
     }
 
     public double getSaldo() {
@@ -31,7 +35,11 @@ public class CuentaBancaria {
     }
 
     public void setSaldo(double saldo) {
-        this.saldo = saldo;
+        if(saldo<0){
+            System.out.println("No se permite valores negativos en la cuenta");
+        }else{
+             this.saldo = saldo;
+        }
     }
 
     @Override

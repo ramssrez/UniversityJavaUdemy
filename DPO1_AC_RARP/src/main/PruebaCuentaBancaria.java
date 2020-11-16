@@ -1,5 +1,6 @@
 package main;
 
+import clases.CuentaBancaria;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -15,6 +16,7 @@ public class PruebaCuentaBancaria {
         int opcional = 0;
         //Impresión de una pequeña introducción para hacer uso del sistema
         //Comienzo del ciclo repetitivo while pa el menú
+        CuentaBancaria cuenta = new CuentaBancaria();
         while (!salir) {
             //Impresión de las opciones del menú
             System.out.println("\n1.- Dar de alta datos del cliente");
@@ -33,11 +35,31 @@ public class PruebaCuentaBancaria {
                     case 1:
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         //Asignación de la variable local para poder crear los objetos de tipo Reserva
+                        scan.nextLine();
+                        String nombre;
+                        double ingreso;
+                        System.out.print("Ingresa el nombre: ");
+                        nombre = scan.nextLine();
+
+                        if (nombre.isEmpty()) {
+                            System.out.println("La cadena se encuentra vacía");
+                        } else {
+                            System.out.println("La cadena no se encuentra vacía");
+                        }
+                        System.out.println("Ingresa el saldo");
+                        ingreso = scan.nextDouble();
+
+                        cuenta.setNombreCliente(nombre);
+                        cuenta.setSaldo(ingreso);
+                        
+
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         break;
                     //Caso 2 donde se realiza la cancelación de la reserva de nuestro programa
                     case 2:
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
+                        
+                        System.out.println("" + cuenta.toString());
                         //Llamado del métodoq que se encarga de realizar la cancelación de la reserva, con parámetros de entrada como el arreglo bidimencional de tipo asiento
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         break;
