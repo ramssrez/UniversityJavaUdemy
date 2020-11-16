@@ -3,7 +3,7 @@ package main;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Principal {
+public class PruebaCuentaBancaria {
 
     public static void main(String[] args) {
         //Declaración de varaibles para hacer uso del menú
