@@ -24,7 +24,7 @@ public class PruebaCuentaBancaria {
             System.out.println("\n1.- Dar de alta datos del cliente");
             System.out.println("2.- Realizar Abono");
             System.out.println("3.- Realizar Retiro");
-            System.out.println("4.- Consultar saldo");
+            System.out.println("4.- Consultar Saldo");
             System.out.println("5.- Consultar movimientos");
             System.out.println("6.- Salir");
             //Uso de la sentecia try/catch para que solo ingrese un número
@@ -48,7 +48,11 @@ public class PruebaCuentaBancaria {
                         if (cuentaBancaria == null) {
                             System.out.println("No se han registrado cuentas");
                         } else {
-                            cuentaBancaria.getNombreCliente();
+                            System.out.println("Tu saldo actual es: " + cuentaBancaria.getSaldo());
+                            realizarAbono();
+                            System.out.println("Tu saldo actualizado es: " + cuentaBancaria.getSaldo());
+                            System.out.println("movimientos " + cuentaBancaria.getMovimientos());
+                            
                         }
                         //System.out.println("" + cuenta.toString());
                         //Llamado del métodoq que se encarga de realizar la cancelación de la reserva, con parámetros de entrada como el arreglo bidimencional de tipo asiento
@@ -106,11 +110,11 @@ public class PruebaCuentaBancaria {
         double saldoInicial;
         CuentaBancaria cuenta = null;
 
-        System.out.println("Ingresa el nombre del usuario: ");
+        System.out.print("Ingresa el nombre del usuario: ");
         nombre = scanner.nextLine();
-        System.out.println("Ingresa el número de cuenta: ");
+        System.out.print("Ingresa el número de cuenta: ");
         numeroCuenta = scanner.nextLine();
-        System.out.println("Ingresa el monto inicial: ");
+        System.out.print("Ingresa el monto inicial: ");
         saldoInicial = scanner.nextDouble();
 
         if ((nombre.equals("")) || (numeroCuenta.equals(""))) {
@@ -118,13 +122,16 @@ public class PruebaCuentaBancaria {
         } else if (saldoInicial < 0) {
             System.out.println("Se ha ingresado un saldo negativo, no se puede crear la cuenta");
         } else {
-            System.out.println("Se ha creado la cuenta");
             cuenta = new CuentaBancaria(nombre, numeroCuenta, saldoInicial);
         }
         return cuenta;
     }
-    
-    public static void realizarAbono(){
-        
+
+    public static void realizarAbono() {
+        Scanner scanner = new Scanner(System.in);
+        double saldo;
+        System.out.print("Ingresa el monto a ingresar: ");
+        saldo = scanner.nextDouble();
+        cuentaBancaria.asignarSaldoCuenta(saldo);
     }
 }

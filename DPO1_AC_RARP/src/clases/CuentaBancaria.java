@@ -26,6 +26,10 @@ public class CuentaBancaria {
         }
 
     }
+    
+    public int getMovimientos(){
+        return movimietno;
+    }
 
     public String getNombreCliente() {
         return nombreCliente;
