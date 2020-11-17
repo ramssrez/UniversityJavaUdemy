@@ -55,11 +55,11 @@ public class CuentaBancaria {
         this.saldo = saldo;
     }
 
-    public void asignarSaldoCuenta(double saldo) {
-        if (saldo < 0) {
+    public void asignarSaldoCuenta(double saldoIngresado) {
+        if (saldoIngresado < 0) {
             System.out.println("Cantidad negativa, no es válida");
         } else {
-            this.saldo = this.saldo + saldo;
+            this.saldo = this.saldo + saldoIngresado;
         }
         this.movimietno = this.movimietno + 1;
     }

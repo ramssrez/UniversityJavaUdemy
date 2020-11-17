@@ -61,13 +61,14 @@ public class PruebaCuentaBancaria {
                     //Caso 3. donde se realiza la consulta de la reserva realizada en la opción uno, un función del número de asiento
                     case 3:
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
-                        //Llamado del método que realiza la consulta de aseintos de nuestro sistema de reservas
+                        realizarRetiro();
+//Llamado del método que realiza la consulta de aseintos de nuestro sistema de reservas
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         break;
                     //Caso 4 donde da por terminado el programa y sale del menú, además de imprimir los lugares del avión ocupado y las reservas solicitadas
                     case 4:
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
-
+                        consultarSaldo();
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         break;
                     //Caso 5 donde da por terminado el programa y sale del menú, además de imprimir los lugares del avión ocupado y las reservas solicitadas
@@ -129,9 +130,51 @@ public class PruebaCuentaBancaria {
 
     public static void realizarAbono() {
         Scanner scanner = new Scanner(System.in);
-        double saldo;
+        double saldoIngresado;
         System.out.print("Ingresa el monto a ingresar: ");
-        saldo = scanner.nextDouble();
-        cuentaBancaria.asignarSaldoCuenta(saldo);
+        saldoIngresado = scanner.nextDouble();
+        cuentaBancaria.asignarSaldoCuenta(saldoIngresado);
+    }
+    
+    public static void realizarRetiro(){
+        Scanner scanner = new Scanner(System.in);
+        double saldoRetirar;
+        System.out.println("Ingresa el monto a retirar: ");
+        saldoRetirar = scanner.nextDouble();
+        cuentaBancaria.retiroSaldoCuenta(saldoRetirar);
+    }
+    
+    public static void consultarSaldo(){
+        Scanner scanner = new Scanner(System.in);
+        String nombre;
+        String numeroCuenta;
+        double saldo;
+
+        System.out.print("Ingresa el nombre del usuario: ");
+        nombre = scanner.nextLine();
+        System.out.print("Ingresa el número de cuenta: ");
+        numeroCuenta = scanner.nextLine();
+        saldo = cuentaBancaria.consultarSaldo(nombre, numeroCuenta);
+        System.out.println("Tu saldo es " + saldo);
+        
+    }
+    
+    public static void validarOpciones(int opcion){
+        switch (opcion) {
+            case 2:
+                realizarAbono();
+                break;
+            case 3:
+                realizarRetiro();
+                break;
+            case 4:
+                consultarSaldo();
+                break;
+            case 5:
+                System.out.println("Ver movimientos");
+                break;
+            default:
+                break;
+        }
     }
 }
