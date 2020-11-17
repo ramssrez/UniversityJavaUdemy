@@ -16,7 +16,7 @@ public class PruebaCuentaBancaria {
         int opcional = 0;
         //Impresión de una pequeña introducción para hacer uso del sistema
         //Comienzo del ciclo repetitivo while pa el menú
-        CuentaBancaria cuenta = new CuentaBancaria();
+        //CuentaBancaria cuenta = new CuentaBancaria();
         while (!salir) {
             //Impresión de las opciones del menú
             System.out.println("\n1.- Dar de alta datos del cliente");
@@ -29,37 +29,39 @@ public class PruebaCuentaBancaria {
             try {
                 System.out.print("Selecciona una de la opciones: ");
                 opcion = scan.nextInt();
+                scan.nextLine();
                 //Uso de la sentencia switch para las opciones del menú
                 switch (opcion) {
+
                     //Caso 1 en donde se realiza la reserva de un asiento
                     case 1:
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         //Asignación de la variable local para poder crear los objetos de tipo Reserva
-                        scan.nextLine();
-                        String nombre;
-                        double ingreso;
-                        System.out.print("Ingresa el nombre: ");
-                        nombre = scan.nextLine();
 
-                        if (nombre.isEmpty()) {
-                            System.out.println("La cadena se encuentra vacía");
-                        } else {
-                            System.out.println("La cadena no se encuentra vacía");
-                        }
-                        System.out.println("Ingresa el saldo");
-                        ingreso = scan.nextDouble();
-
-                        cuenta.setNombreCliente(nombre);
-                        cuenta.setSaldo(ingreso);
-                        
-
+//                        String nombre;
+//                        double ingreso;
+//                        System.out.print("Ingresa el nombre: ");
+//                        nombre = scan.nextLine();
+//
+//                        if (nombre.isEmpty()) {
+//                            System.out.println("La cadena se encuentra vacía");
+//                        } else {
+//                            System.out.println("La cadena no se encuentra vacía");
+//                        }
+//                        System.out.println("Ingresa el saldo");
+//                        ingreso = scan.nextDouble();
+//
+//                        cuenta.setNombreCliente(nombre);
+//                        cuenta.setSaldo(ingreso);
+//                        
+                        crearCuenta();
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         break;
                     //Caso 2 donde se realiza la cancelación de la reserva de nuestro programa
                     case 2:
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
-                        
-                        System.out.println("" + cuenta.toString());
+
+                        //System.out.println("" + cuenta.toString());
                         //Llamado del métodoq que se encarga de realizar la cancelación de la reserva, con parámetros de entrada como el arreglo bidimencional de tipo asiento
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         break;
@@ -106,6 +108,36 @@ public class PruebaCuentaBancaria {
             }
 
         }
+    }
+
+    public static void crearCuenta() {
+        Scanner scanner = new Scanner(System.in);
+        String nombre;
+        String numeroCuenta;
+        double saldoInicial;
+        boolean salir = false;
+
+//        while (!salir) {
+            System.out.println("Ingresa tu nombre: ");
+            nombre = scanner.nextLine();
+//            if(nombre.equals("")){
+//                System.out.println("Cadena vacía en el nombre");
+//                salir = false;
+//            }
+//            
+//            salir = true;
+//
+//        }
+
+//        //cuenta.setNombreCliente(nombre);
+        System.out.println("Ingresa el número de cuenta: ");
+        numeroCuenta = scanner.nextLine();
+//        //cuenta.setNumeroCuenta(numeroCuenta);
+        System.out.println("Ingresa el monto inicial: ");
+        saldoInicial = scanner.nextDouble();
+//        //cuenta.setSaldo(saldoInicial);
+        CuentaBancaria cuenta = new CuentaBancaria(nombre, numeroCuenta, saldoInicial);
+
     }
 
 }
