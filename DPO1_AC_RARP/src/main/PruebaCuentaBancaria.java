@@ -6,6 +6,8 @@ import java.util.Scanner;
 
 public class PruebaCuentaBancaria {
 
+    public static CuentaBancaria cuentaBancaria = null;
+
     public static void main(String[] args) {
         //Declaración de varaibles para hacer uso del menú
         boolean salir = false;
@@ -36,31 +38,18 @@ public class PruebaCuentaBancaria {
                     //Caso 1 en donde se realiza la reserva de un asiento
                     case 1:
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
-                        //Asignación de la variable local para poder crear los objetos de tipo Reserva
-
-//                        String nombre;
-//                        double ingreso;
-//                        System.out.print("Ingresa el nombre: ");
-//                        nombre = scan.nextLine();
-//
-//                        if (nombre.isEmpty()) {
-//                            System.out.println("La cadena se encuentra vacía");
-//                        } else {
-//                            System.out.println("La cadena no se encuentra vacía");
-//                        }
-//                        System.out.println("Ingresa el saldo");
-//                        ingreso = scan.nextDouble();
-//
-//                        cuenta.setNombreCliente(nombre);
-//                        cuenta.setSaldo(ingreso);
-//                        
-                        crearCuenta();
+                        //Asignación de la variable local para poder crear los objetos de tipo Reserva                       
+                        cuentaBancaria = crearCuenta();
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         break;
                     //Caso 2 donde se realiza la cancelación de la reserva de nuestro programa
                     case 2:
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
-
+                        if (cuentaBancaria == null) {
+                            System.out.println("No se han registrado cuentas");
+                        } else {
+                            cuentaBancaria.getNombreCliente();
+                        }
                         //System.out.println("" + cuenta.toString());
                         //Llamado del métodoq que se encarga de realizar la cancelación de la reserva, con parámetros de entrada como el arreglo bidimencional de tipo asiento
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
@@ -110,34 +99,32 @@ public class PruebaCuentaBancaria {
         }
     }
 
-    public static void crearCuenta() {
+    public static CuentaBancaria crearCuenta() {
         Scanner scanner = new Scanner(System.in);
         String nombre;
         String numeroCuenta;
         double saldoInicial;
-        boolean salir = false;
+        CuentaBancaria cuenta = null;
 
-//        while (!salir) {
-            System.out.println("Ingresa tu nombre: ");
-            nombre = scanner.nextLine();
-//            if(nombre.equals("")){
-//                System.out.println("Cadena vacía en el nombre");
-//                salir = false;
-//            }
-//            
-//            salir = true;
-//
-//        }
-
-//        //cuenta.setNombreCliente(nombre);
+        System.out.println("Ingresa el nombre del usuario: ");
+        nombre = scanner.nextLine();
         System.out.println("Ingresa el número de cuenta: ");
         numeroCuenta = scanner.nextLine();
-//        //cuenta.setNumeroCuenta(numeroCuenta);
         System.out.println("Ingresa el monto inicial: ");
         saldoInicial = scanner.nextDouble();
-//        //cuenta.setSaldo(saldoInicial);
-        CuentaBancaria cuenta = new CuentaBancaria(nombre, numeroCuenta, saldoInicial);
 
+        if ((nombre.equals("")) || (numeroCuenta.equals(""))) {
+            System.out.println("No se puede crear la cuenta, el nombre del usuario o el número de cuenta están vacíos");
+        } else if (saldoInicial < 0) {
+            System.out.println("Se ha ingresado un saldo negativo, no se puede crear la cuenta");
+        } else {
+            System.out.println("Se ha creado la cuenta");
+            cuenta = new CuentaBancaria(nombre, numeroCuenta, saldoInicial);
+        }
+        return cuenta;
     }
-
+    
+    public static void realizarAbono(){
+        
+    }
 }

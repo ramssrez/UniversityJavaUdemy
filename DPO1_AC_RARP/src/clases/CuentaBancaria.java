@@ -15,14 +15,14 @@ public class CuentaBancaria {
 
     public CuentaBancaria(String nombreCliente, String numeroCuenta, double saldo) {
         if ((nombreCliente.equals("")) || (numeroCuenta.equals(""))) {
-            System.out.println("No se puede crear la cuenta, el nombre o el número de cuenta están vacíos");
-        }else if(saldo<0){
+            System.out.println("No se puede crear la cuenta, el nombre del usuario o el número de cuenta están vacíos");
+        } else if (saldo < 0) {
             System.out.println("Se ha ingresado un saldo negativo, no se puede crear la cuenta");
-        }
-        else {
+        } else {
             this.nombreCliente = nombreCliente;
             this.numeroCuenta = numeroCuenta;
             this.saldo = saldo;
+            System.out.println("Se ha creado una cuenta");
         }
 
     }
@@ -32,11 +32,6 @@ public class CuentaBancaria {
     }
 
     public void setNombreCliente(String nombreCliente) {
-//        if (nombreCliente.isEmpty()) {
-//            System.out.println("Cadena vacía, se necesita un nombre");
-//        } else {
-//            this.nombreCliente = nombreCliente;
-//        }
         this.nombreCliente = nombreCliente;
     }
 
@@ -45,11 +40,6 @@ public class CuentaBancaria {
     }
 
     public void setNumeroCuenta(String numeroCuenta) {
-//        if (numeroCuenta.isEmpty()) {
-//            System.out.println("Cuenta no valida, se necesita una cuenta valida");
-//        } else {
-//            this.numeroCuenta = numeroCuenta;
-//        }
         this.numeroCuenta = numeroCuenta;
     }
 
@@ -58,11 +48,6 @@ public class CuentaBancaria {
     }
 
     public void setSaldo(double saldo) {
-//        if (saldo < 0) {
-//            System.out.println("Cantidad negativa, no es válida");
-//        } else {
-//            this.saldo = saldo;
-//        }
         this.saldo = saldo;
     }
 
