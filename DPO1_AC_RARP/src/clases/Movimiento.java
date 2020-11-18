@@ -4,23 +4,20 @@ import java.util.Date;
 
 public class Movimiento {
 
-    private int numeroMovimiento;
-    private Date fecha;
+    private String fecha;
     private String movimiento;
 
-    public int getNumeroMovimiento() {
-        return numeroMovimiento;
+    public Movimiento(String movimiento, String fecha){
+        this.movimiento = movimiento;
+        this.fecha =  fecha;
     }
+    
 
-    public void setNumeroMovimiento(int numeroMovimiento) {
-        this.numeroMovimiento = numeroMovimiento;
-    }
-
-    public Date getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 
@@ -34,7 +31,7 @@ public class Movimiento {
 
     @Override
     public String toString() {
-        return "Movimiento{" + "numeroMovimiento=" + numeroMovimiento + ", fecha=" + fecha + ", movimiento=" + movimiento + '}';
+        return "movimiento: " + movimiento  + ", fecha: " + fecha;
     }
 
     

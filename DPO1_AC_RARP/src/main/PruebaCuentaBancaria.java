@@ -14,11 +14,8 @@ public class PruebaCuentaBancaria {
         int opcion; //Guardaremos la opcion del usuario
         //Uso de la clase Scanner para recibir valores de la consola
         Scanner scan = new Scanner(System.in);
-        //Varaible que incrementa el número de reservas1 realizadas
-        int opcional = 0;
         //Impresión de una pequeña introducción para hacer uso del sistema
-        //Comienzo del ciclo repetitivo while pa el menú
-        //CuentaBancaria cuenta = new CuentaBancaria();
+        //Comienzo del ciclo repetitivo while para el menú
         while (!salir) {
             //Impresión de las opciones del menú
             System.out.println("\n1.- Dar de alta datos del cliente");
@@ -39,46 +36,39 @@ public class PruebaCuentaBancaria {
                     case 1:
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         //Asignación de la variable local para poder crear los objetos de tipo Reserva                       
-                        cuentaBancaria = crearCuenta();
+                        //cuentaBancaria = crearCuenta();
+                        cuentaBancaria = new CuentaBancaria("Jose", "1234", 15000.0);
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         break;
                     //Caso 2 donde se realiza la cancelación de la reserva de nuestro programa
-                    case 2:
+                    case 2:                            
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
-                        if (cuentaBancaria == null) {
-                            System.out.println("No se han registrado cuentas");
-                        } else {
-                            System.out.println("Tu saldo actual es: " + cuentaBancaria.getSaldo());
-                            realizarAbono();
-                            System.out.println("Tu saldo actualizado es: " + cuentaBancaria.getSaldo());
-                            System.out.println("movimientos " + cuentaBancaria.getMovimientos());
-                            
-                        }
-                        //System.out.println("" + cuenta.toString());
+                        validarOpciones(opcion);
                         //Llamado del métodoq que se encarga de realizar la cancelación de la reserva, con parámetros de entrada como el arreglo bidimencional de tipo asiento
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         break;
                     //Caso 3. donde se realiza la consulta de la reserva realizada en la opción uno, un función del número de asiento
                     case 3:
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
-                        realizarRetiro();
-//Llamado del método que realiza la consulta de aseintos de nuestro sistema de reservas
+                        validarOpciones(opcion);
+                        //Llamado del método que realiza la consulta de aseintos de nuestro sistema de reservas
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         break;
                     //Caso 4 donde da por terminado el programa y sale del menú, además de imprimir los lugares del avión ocupado y las reservas solicitadas
                     case 4:
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
-                        consultarSaldo();
+                        validarOpciones(opcion);
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         break;
                     //Caso 5 donde da por terminado el programa y sale del menú, además de imprimir los lugares del avión ocupado y las reservas solicitadas
                     case 5:
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
-
+                        //cuentaBancaria.movimientos()
+                        validarOpciones(opcion);
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         break;
 
-                    //Caso 6 donde da por terminado el programa y sale del menú, además de imprimir los lugares del avión ocupado y las reservas solicitadas
+                    //Caso 6 donde da por terminado el programa y salida del menú
                     case 6:
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         System.out.println("\nGracias por tu visita. Adiós!!!!!\n");
@@ -89,7 +79,7 @@ public class PruebaCuentaBancaria {
                     //Caso default que manda un error en caso de que no se cumpla con las cuatra primeras opciones
                     default:
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
-                        System.out.println("ERROR, el número no corresponde al rango de 1 a 4");
+                        System.out.println("ERROR, el número no corresponde al rango de 1 a 6");
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         break;
                 }
@@ -131,9 +121,11 @@ public class PruebaCuentaBancaria {
     public static void realizarAbono() {
         Scanner scanner = new Scanner(System.in);
         double saldoIngresado;
+        System.out.println("Tu saldo actual es: " + cuentaBancaria.getSaldo());
         System.out.print("Ingresa el monto a ingresar: ");
         saldoIngresado = scanner.nextDouble();
         cuentaBancaria.asignarSaldoCuenta(saldoIngresado);
+        System.out.println("Tu saldo actualizado es: " + cuentaBancaria.getSaldo());
     }
     
     public static void realizarRetiro(){
@@ -160,21 +152,18 @@ public class PruebaCuentaBancaria {
     }
     
     public static void validarOpciones(int opcion){
-        switch (opcion) {
-            case 2:
-                realizarAbono();
-                break;
-            case 3:
-                realizarRetiro();
-                break;
-            case 4:
-                consultarSaldo();
-                break;
-            case 5:
-                System.out.println("Ver movimientos");
-                break;
-            default:
-                break;
+        if(cuentaBancaria == null){
+            System.out.println("No se ha registrado una cuenta");
+        }else if(opcion == 2){
+            realizarAbono();
+        }else if(opcion == 3){
+            realizarRetiro();
+        }else if(opcion == 4){
+            consultarSaldo();
+        }else if(opcion == 5){
+            System.out.println("Ver movimientos");
+            cuentaBancaria.movimientos();
+                    
         }
     }
 }

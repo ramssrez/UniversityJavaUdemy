@@ -1,16 +1,18 @@
 package clases;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class CuentaBancaria {
 
     private String nombreCliente;
     private String numeroCuenta;
     private double saldo;
-    private int[] numeroMovimientos;
-    private int movimietno;
+    private int movimientoEntero;
+    private Movimiento movimientos[] = new Movimiento[200];
 
     private CuentaBancaria() {
-        numeroMovimientos = new int[200];
-        movimietno = 0;
+        movimientoEntero = 0;
     }
 
     public CuentaBancaria(String nombreCliente, String numeroCuenta, double saldo) {
@@ -26,9 +28,9 @@ public class CuentaBancaria {
         }
 
     }
-    
-    public int getMovimientos(){
-        return movimietno;
+
+    public int getMovimientos() {
+        return movimientoEntero;
     }
 
     public String getNombreCliente() {
@@ -61,7 +63,7 @@ public class CuentaBancaria {
         } else {
             this.saldo = this.saldo + saldoIngresado;
         }
-        this.movimietno = this.movimietno + 1;
+        crearMovimientos("Agregar Saldo");
     }
 
     public void retiroSaldoCuenta(double retiro) {
@@ -70,7 +72,7 @@ public class CuentaBancaria {
         } else {
             this.saldo = this.saldo - retiro;
         }
-        this.movimietno = this.movimietno + 1;
+        crearMovimientos("Retirar Saldo");
     }
 
     public double consultarSaldo(String nombre, String numeroCuenta) {
@@ -80,16 +82,25 @@ public class CuentaBancaria {
         } else {
             System.out.println("Los datos no son correctos, verifica tus datos");
         }
-        this.movimietno = this.movimietno + 1;
+        crearMovimientos("Consultar Saldo");
         return saldoRetorno;
     }
 
-    public void movimientos() {
-        numeroMovimientos[this.movimietno] = this.movimietno;
-        for (int i = 0; i < numeroMovimientos.length; i++) {
-            System.out.println("Los movimientos han sido: " + numeroMovimientos[i]);
-        }
+    private void crearMovimientos(String motivo) {
+        Date fecha = new Date();
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyy - HH:mm:ss");
+        String fechaTexto = formato.format(fecha);
+        Movimiento movimiento = new Movimiento(motivo, fechaTexto);
+        movimientos[this.movimientoEntero] = movimiento;
+        this.movimientoEntero = this.movimientoEntero + 1;
+    }
 
+    public void movimientos() {
+        for (int i = 0; i < movimientos.length; i++) {
+            if (movimientos[i] != null) {
+                System.out.println((i+1) + ".- " + movimientos[i].toString());
+            }
+        }
     }
 
     @Override
