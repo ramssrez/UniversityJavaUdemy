@@ -17,6 +17,7 @@ public class PruebaCuentaBancaria {
         int opcion;
         //Uso de la clase Scanner para recibir valores de la consola
         Scanner scan = new Scanner(System.in);
+        System.out.println("El siguiente menú es para poder realizar las funciones principales de una cuenta bancaria");
         //Comienzo del ciclo repetitivo while para el menú
         while (!salir) {
             //Impresión de las opciones del menú
@@ -38,8 +39,8 @@ public class PruebaCuentaBancaria {
                     case 1:
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         //Asignación de la variable global con el llamado de un método que se encarga de crear una cuenta
-                        //cuentaBancaria = crearCuenta();
-                        cuentaBancaria = new CuentaBancaria("Jose", "1234", 15000.0);
+                        cuentaBancaria = crearCuenta();
+                        //cuentaBancaria = new CuentaBancaria("Jose", "1234", 15000.0);
                         System.out.println("-----------------------------------------------------------------------------------------------------------------------");
                         break;
                     //Caso 2 donde se realiza el abono de saldo a la cuenta
@@ -105,6 +106,8 @@ public class PruebaCuentaBancaria {
         String numeroCuenta;
         double saldoInicial;
         CuentaBancaria cuenta = null;
+        System.out.println("Ingresa el nombre del usuario, numero de cuenta y el monto iniciar para poder crear una cuenta");
+        System.out.println("Ninguno de los parametros que se solicitan, deben de estar vacíos");
         //Solicitud de datos para poder crear la cuenta
         System.out.print("Ingresa el nombre del usuario: ");
         nombre = scanner.nextLine();
@@ -131,6 +134,7 @@ public class PruebaCuentaBancaria {
         //Declaración de variables locales
         Scanner scanner = new Scanner(System.in);
         double saldoIngresado;
+        System.out.println("En esta sección se realizará el abono a una cuenta, los valores que se ingresen no deben ser menores a cero");
         //Impresión del saldo actual
         System.out.println("Tu saldo actual es: " + cuentaBancaria.getSaldo());
         //Solicitud del saldo a ingresar
@@ -147,8 +151,9 @@ public class PruebaCuentaBancaria {
         //Declaración de variables locales
         Scanner scanner = new Scanner(System.in);
         double saldoRetirar;
+        System.out.println("En esta sección se realizará el retiro de saldo de una cuenta.");
         //Solicitud del saldo a retirar
-        System.out.println("Ingresa el monto a retirar: ");
+        System.out.print("Ingresa el monto a retirar: ");
         saldoRetirar = scanner.nextDouble();
         //Llamado del método que se encarga de realizar el retiro de saldo
         cuentaBancaria.retiroSaldoCuenta(saldoRetirar);
@@ -161,6 +166,7 @@ public class PruebaCuentaBancaria {
         String nombre;
         String numeroCuenta;
         double saldo;
+        System.out.println("En esta sección se realizará la consulta de saldo de una cuenta, recuerda que se debe de ingresar el nombre y numero de cuenta del usuario");
 
         //Solicitud de los datos para poder realizar la consulta de saldo
         System.out.print("Ingresa el nombre del usuario: ");
@@ -190,6 +196,7 @@ public class PruebaCuentaBancaria {
             consultarSaldo();
         } else if (opcion == 5) {
             //Sentencia que se encarga de imprimir los movimienos que se ha realizado en la cuenta
+            System.out.println("Los últimos movimientos realizados en la cuenta son los siguientes: ");
             cuentaBancaria.movimientos();
         }
     }
