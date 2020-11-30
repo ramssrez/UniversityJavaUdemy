@@ -1,15 +1,71 @@
 <!DOCTYPE html>
-
-<html>  
+<!--Componentes HTML
+componentes de hipervínculos (Links, Botones e imagenes)
+componentes de un formulario (Formulario, checboxes, radioButtons, listas, campos de texto y de área)
+Otros componentes (Frames, Gráficos, Div, Objetos Embebidos, etc)
+-->
+<html>
     <head>
-        <title>
-            Hola con HTML
-        </title>
         <meta charset="UTF-8">
-        <!--Esto es un comentario para un warning-->
-        <link rel="icon" href="data:;base64, iVBORw0KGgo=">
-    </head>
+        <title>Componentes HTML</title>
+    </head> 
     <body>
-        Hola mundo con HTML
+        <h1>Algunos componentes HTML</h1>
+        <!--Con la siguiente etiqueta se agrega un parrafo -->
+        <p>Nuevo parrafo</p>
+        <!--Con la siguiente etiqueta se agrega una tabla-->
+        Creación de una tabla
+        <table width="200" border="1" bgcolor="white" >
+            <tr>
+                <th>
+                    Titulo 1
+                </th>
+                <th>
+                    Titulo 2
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    Dato 1
+                </td>
+                <td>
+                    Dato 2
+                </td>
+            </tr>
+        </table>
+        <p></p>
+        <!--Con la siguiente etiqueta se agrega un link -->
+        <a href="https://www.youtube.com/watch?v=PUXOR0dZ1TE&list=RDPUXOR0dZ1TE&start_radio=1">
+            Link para ir a youtube     
+        </a>
+        <p></p>
+        <!--Con la siguiente etiqueta se agrega una lista de opciones -->
+        Lista:
+        <select name="Lista 1">
+            <option>Opcion1</option>
+            <option>Opcion2</option>
+            <option>Opcion3</option>
+        </select>
+        <p></p>
+        <!--Con la siguiente etiqueta se agrega una imagen -->
+        Inclusion de una imagen: <img src="http://globalmentoring.com.mx/images/logo-top.png" alt="Logotipo Global Mentoring" />
+        <p></p>
+        <!--Con la siguiente etiqueta se agrega un formulario -->
+        <form name="formalurio1" action="/recursoEnServidor">
+            <fieldset>
+                <legend>
+                    Persona:
+                </legend>
+                Name: <input type="text" size="30" name="nombre" />
+                <br/>
+                Email: <input type="text" size="30" name="email"/>
+                <br/>
+                <button type="submit">
+                    Enviar Datos
+                </button>
+            </fieldset>
+        </form>
     </body>
 </html>
+
+ 
