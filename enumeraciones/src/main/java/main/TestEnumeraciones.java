@@ -1,14 +1,40 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package main;
 
-/**
- *
- * @author ramssrez
- */
+import enumeracion.Dias;
+
 public class TestEnumeraciones {
-    
+
+    public static void main(String[] args) {
+        System.out.println("Dia 1: " + Dias.LUNES);
+        indicarDiaSemana(Dias.LUNES);
+    }
+
+    private static void indicarDiaSemana(Dias dias) {
+        switch (dias) {
+            case LUNES:
+                System.out.println("Primer día de la semana");
+                break;
+            case MARTES:
+                System.out.println("Segundo día de la semana");
+                break;
+            case MIERCOLES:
+                System.out.println("Tercer día de la semana");
+                break;
+            case JUEVES:
+                System.out.println("Cuarto día de la semana");
+                break;
+            case VIERNES:
+                System.out.println("Quinto día de la semana");
+                break;
+            case SABADO:
+                System.out.println("Sexto día de la semana");
+                break;
+            case DOMINGO:
+                System.out.println("Septimo día de la semana");
+                break;
+            default:
+                System.out.println("No se han ingresado dias de la semana");
+                break;
+        }
+    }
 }
