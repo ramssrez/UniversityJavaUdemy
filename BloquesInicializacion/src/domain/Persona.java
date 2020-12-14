@@ -27,5 +27,12 @@ public class Persona {
     public int getIdPersona() {
         return idPersona;
     }
+
+    @Override
+    public String toString() {
+        return "Persona{" + "idPersona=" + idPersona + '}';
+    }
+    
+    
     
 }
