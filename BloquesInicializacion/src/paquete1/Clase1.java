@@ -3,7 +3,7 @@ package paquete1;
 
 //uso del modificador de acceso default o package el cual no tiene modificador
 class Clase1 {
-    //Protected no esta en el nivel de la clase
+    //Protected  ni private no esta en el nivel de la clase
     String atributoDefaul = "Valos atributo Default";
     
     Clase1 (){
