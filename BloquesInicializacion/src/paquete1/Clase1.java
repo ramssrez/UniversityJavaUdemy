@@ -1,25 +1,17 @@
 
 package paquete1;
 
-
-public class Clase1 {
+//uso del modificador de acceso default o package el cual no tiene modificador
+class Clase1 {
     //Protected no esta en el nivel de la clase
-    public String atributoPublico ="valor atriuto publico";
-    protected String atributoProtected = "Valos atributo protected";
+    String atributoDefaul = "Valos atributo Default";
     
-    protected Clase1 (){
-        System.out.println("Constructor protected");
+    Clase1 (){
+        System.out.println("Constructor default");
     }
-    public Clase1 (String args){
-        System.out.println("Constructor publico");
-    }
-    
-    public void metodoPublico(String args){
-        System.out.println("Esto es un metodo publico");
-    }
-    
-    protected void metodoProtected(){
-        System.out.println("Esto es un método protected");
+   
+    void metodoDefault(){
+        System.out.println("Esto es un método default");
     }
     
 }
