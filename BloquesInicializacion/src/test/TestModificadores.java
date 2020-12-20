@@ -9,6 +9,6 @@ public class TestModificadores {
         //Tenemos acceso al atributo publico de la clase que se ha declarado en otro paquete
         System.out.println("");
         System.out.println("clase1 = " + clase1.atributoPublico);
-        
+        clase1.metodoPublico();
     }
 }
