@@ -16,12 +16,24 @@ public class TestSobrescritura {
         //Esto es despues para el polimorfismo
         System.out.println("");
         imprimir(empleado);
+        determinarTipo(empleado);
         System.out.println("");
-        imprimir(gerente);
+        empleado = new Gerente ("Karla", 10000, "Contabilidad");
+        imprimir(empleado);
+        determinarTipo(empleado);
     }
     
     public static void imprimir (Empleado empleado){
         System.out.println("empleado = " + empleado.obtenerDetalles());
+    }
+    
+    //Las siguientes lineas es para determinar el tipo de la variable
+    public static void determinarTipo (Empleado empleado){
+        if(empleado instanceof Gerente){
+            System.out.println("Es de tipo Gerente");
+        }else if(empleado instanceof Empleado){
+            System.out.println("Es de tipo Empleado ");
+        }
     }
     
 }
