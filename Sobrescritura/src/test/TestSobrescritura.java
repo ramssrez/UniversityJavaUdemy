@@ -41,6 +41,10 @@ public class TestSobrescritura {
             //De la clase Empleado a la clase Gerente
             Gerente gerente = (Gerente)empleado;
             System.out.println("gerente = " + gerente.getDepartamento());
+            
+            //Otra manera de realizar el parseo se puede realizar de la siguiente manera
+            ((Gerente) empleado).getDepartamento(); //De esta manera nos ahorramos una línea de oigo
+            
  
         } else if (empleado instanceof Empleado) {
             System.out.println("Es de tipo Empleado ");
@@ -54,7 +58,7 @@ public class TestSobrescritura {
  
         } else if (empleado instanceof Object) {
             System.out.println("Es de tipo Object");
-            empleado.toString();
+            System.out.println("empleado = " + empleado.toString());
         }
     }
 
