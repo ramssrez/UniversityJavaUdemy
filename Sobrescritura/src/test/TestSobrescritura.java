@@ -27,12 +27,14 @@ public class TestSobrescritura {
         System.out.println("empleado = " + empleado.obtenerDetalles());
     }
     
-    //Las siguientes lineas es para determinar el tipo de la variable
+    //Las siguientes lineas es para determinar el tipo de la variable con un intance of
     public static void determinarTipo (Empleado empleado){
         if(empleado instanceof Gerente){
             System.out.println("Es de tipo Gerente");
-        }else if(empleado instanceof Empleado){
+        } if(empleado instanceof Empleado){
             System.out.println("Es de tipo Empleado ");
+        } if (empleado instanceof Object){
+            System.out.println("Es de tipo Object");
         }
     }
     
