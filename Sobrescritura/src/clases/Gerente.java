@@ -21,5 +21,9 @@ public class Gerente extends Empleado {
     public String obtenerDetalles(){
         return super.obtenerDetalles() +", departamento: "+ this.departamento;
     }
-    
+
+    @Override
+    public String toString() {
+        return "Gerente{" + "departamento=" + departamento + '}';
+    }
 }

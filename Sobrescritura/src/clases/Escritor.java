@@ -7,10 +7,14 @@ public class Escritor extends Empleado{
         super(nombre,sueldo);
         this.tipoEscritura = tipoEscritura;
     } 
+
+    public TipoEscritura getTipoEscritura() {
+        return this.tipoEscritura;
+    }
     
     @Override
     public String obtenerDetalles(){
-        return super.obtenerDetalles() + ", tipoEscritura"+ tipoEscritura.getDescripcion();
+        return super.obtenerDetalles() + ", Tipo Escritura: "+ tipoEscritura.getDescripcion();
     }
 
     @Override
