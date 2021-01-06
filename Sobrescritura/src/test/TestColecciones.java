@@ -1,7 +1,9 @@
 package test;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 //Uso de API Colleciones para Java
 public class TestColecciones {
@@ -27,6 +29,20 @@ public class TestColecciones {
         //uso de operaciones tipo landa o flecha
         miLista.forEach(elemento -> {
             System.out.println("elemento: " + elemento);
+        });
+        
+        System.out.println("");
+        //Uso de set, es similar al array pero con la diferencia que no guarda un orden
+        Set miSet = new HashSet();
+        miSet.add("Lunes");
+        miSet.add("Martes");
+        miSet.add("Miercoles");
+        miSet.add("Jueves");
+        miSet.add("Viernes");
+                
+        
+        miSet.forEach(elemento ->{
+                System.out.println("elemento: " + elemento);
         });
     }
            
