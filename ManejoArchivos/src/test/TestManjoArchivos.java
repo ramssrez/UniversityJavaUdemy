@@ -1,10 +1,12 @@
 package test;
 
-import static manejoarcivos.ManejoArchivos.crearArchivo;
+import static manejoarcivos.ManejoArchivos.*;
 
 public class TestManjoArchivos {
     public static void main(String[] args) {
         var nombreArchivo = "Prueba.txt";
         crearArchivo(nombreArchivo);
+        escribiArchivo(nombreArchivo, "Hola desde Java");
+        
     }
 }
