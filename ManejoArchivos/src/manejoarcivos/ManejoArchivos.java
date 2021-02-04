@@ -1,7 +1,9 @@
 package manejoarcivos;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -41,11 +43,30 @@ public class ManejoArchivos {
             PrintWriter salida = new PrintWriter(new FileWriter(archivo, true));
             salida.println(contenido);
             salida.close();
-            System.out.println("Se ha reescrito al archivo");
+            System.out.println("Se ha anexado información al archivo");
         } catch (FileNotFoundException ex) {
             ex.printStackTrace(System.out);
         } catch (IOException ex) {
             ex.printStackTrace(System.out);
         }
+    }
+
+    //El siguiente metodo realiza la lectura de la información del archivo
+    public static void leerArchivo(String nombreArchivo) {
+        var archivo = new File(nombreArchivo);
+        try {
+            var entrada = new BufferedReader(new FileReader(archivo));
+            var lectura = entrada.readLine();
+            while(lectura !=null){
+                System.out.println("lectura: " + lectura);
+                lectura = entrada.readLine();
+            }
+            entrada.close();
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace(System.out);
+        } catch (IOException ex) {
+            ex.printStackTrace(System.out);
+        }
+        
     }
 }

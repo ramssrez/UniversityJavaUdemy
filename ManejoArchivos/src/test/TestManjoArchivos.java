@@ -8,5 +8,7 @@ public class TestManjoArchivos {
         crearArchivo(nombreArchivo);
         escribiArchivo(nombreArchivo, "Hola desde Java");
         anexarArchivo(nombreArchivo, "Adios");
+        anexarArchivo(nombreArchivo, "Que tranza papus");
+        leerArchivo(nombreArchivo);
     }
 }
