@@ -1,14 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mx.gm.peliculas.excepciones;
 
-/**
- *
- * @author ramssrez
- */
-public class AccesoDatosEx {
-    
+//Extiende de la clase Excepción para poder hacer uso de la sentencia try/catch
+//Se puede hacer uso de RuntimeExeption pero para poder observar la clase Exeption
+public class AccesoDatosEx extends Exception{
+    public AccesoDatosEx (String mensaje){
+        super(mensaje);
+    }
 }
