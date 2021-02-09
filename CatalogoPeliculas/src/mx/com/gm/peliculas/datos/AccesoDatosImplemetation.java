@@ -15,7 +15,7 @@ import mx.com.gm.peliculas.excepciones.*;
 public class AccesoDatosImplemetation implements IAccesoDatos {
 
     @Override
-    public boolean existe(String nombreRecurso) throws AccesoDatosEx {
+    public boolean existe(String nombreRecurso) {
         File archivo = new File(nombreRecurso);
         return archivo.exists();
     }
@@ -67,12 +67,12 @@ public class AccesoDatosImplemetation implements IAccesoDatos {
             String linea = null;
             linea = entrada.readLine();
             var indice = 1;
-            while (linea !=null) {   
-                if (buscar !=null &&buscar.equalsIgnoreCase(linea)) {
+            while (linea != null) {
+                if (buscar != null && buscar.equalsIgnoreCase(linea)) {
                     resultado = "Pelicula " + linea + " encontrada en el indice: " + indice;
                     break;
                 }
-                linea= entrada.readLine();
+                linea = entrada.readLine();
                 indice++;
             }
             entrada.close();
@@ -88,10 +88,24 @@ public class AccesoDatosImplemetation implements IAccesoDatos {
 
     @Override
     public void crear(String nombreRecurso) throws AccesoDatosEx {
+        var archivo = new File(nombreRecurso);
+        try {
+            var salida = new PrintWriter(new FileWriter(archivo));
+            salida.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            throw new AccesoDatosEx("Excepcion al crear archivos: " + ex.getMessage());
+        }
+
     }
 
     @Override
-    public void borrar(String nombreRecurso) throws AccesoDatosEx {
+    public void borrar(String nombreRecurso) {
+        var archivo = new File(nombreRecurso);
+        if (archivo.exists()) {
+            archivo.delete();
+            System.out.println("Se ha borado el archivo");
+        }
     }
 
 }
