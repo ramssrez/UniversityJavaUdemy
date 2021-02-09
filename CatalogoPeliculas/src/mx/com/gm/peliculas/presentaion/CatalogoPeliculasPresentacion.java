@@ -25,7 +25,7 @@ public class CatalogoPeliculasPresentacion {
                     catalogo.iniciarCatalogoPeliculas();
                     break;
                 case 2:
-                    System.out.println("Introduce el nombre de la pelicul");
+                    System.out.println("Introduce el nombre de la pelicula");
                     var nombrePeliula = scanner.nextLine();
                     catalogo.agregarPelicula(nombrePeliula);
                     break;

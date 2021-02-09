@@ -21,7 +21,7 @@ public class CatalogoPelicuasImp implements ICatalogoPeliculas {
             anexar = datos.existe(NOMBRE_RECURSO);
             datos.escribir(pelicula, NOMBRE_RECURSO, anexar);
         } catch (AccesoDatosEx ex) {
-            System.out.println("Error de aeso a datos");
+            System.out.println("Error de acceso a datos");
             ex.printStackTrace(System.out);
         }
     }
@@ -48,7 +48,11 @@ public class CatalogoPelicuasImp implements ICatalogoPeliculas {
             System.out.println("Error de acceso datos");
             ex.printStackTrace(System.out);
         }
+        if (resultado == null) {
+            System.out.println("No se encuentra el registro de esta pelicula");
+        }
         System.out.println("resultdo = " + resultado);
+
     }
 
     @Override
@@ -57,13 +61,14 @@ public class CatalogoPelicuasImp implements ICatalogoPeliculas {
             if (this.datos.existe(NOMBRE_RECURSO)) {
                 datos.borrar(NOMBRE_RECURSO);
                 datos.crear(NOMBRE_RECURSO);
-            }else{
+            } else {
                 datos.crear(NOMBRE_RECURSO);
             }
         } catch (AccesoDatosEx ex) {
-            System.out.println("Error al iniiar catalogo de peliculas");
+            System.out.println("Error al iniciar catalogo de peliculas");
             ex.printStackTrace(System.out);
         }
+        System.out.println("Se ha creado el archivo");
     }
 
 }

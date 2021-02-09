@@ -51,7 +51,7 @@ public class AccesoDatosImplemetation implements IAccesoDatos {
             var salida = new PrintWriter(new FileWriter(archivo, anexar));
             salida.println(pelicula.toString());
             salida.close();
-            System.out.println("Se ha escrito informaión al archivo: " + pelicula);
+            System.out.println("Se ha escrito información al archivo: " + pelicula);
         } catch (IOException ex) {
             ex.printStackTrace();
             throw new EscrituraDatosEx("Exepcion al listareliculas: " + ex.getMessage());
