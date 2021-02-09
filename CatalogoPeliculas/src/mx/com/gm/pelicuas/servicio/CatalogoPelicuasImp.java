@@ -52,7 +52,7 @@ public class CatalogoPelicuasImp implements ICatalogoPeliculas {
     }
 
     @Override
-    public void iniciarCatalogoPeiulas() {
+    public void iniciarCatalogoPeliculas() {
         try {
             if (this.datos.existe(NOMBRE_RECURSO)) {
                 datos.borrar(NOMBRE_RECURSO);
