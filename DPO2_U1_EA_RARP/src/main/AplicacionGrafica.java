@@ -48,7 +48,7 @@ public class AplicacionGrafica extends JFrame {
         buttonGroup.add(rdButton2);
         //(Uso de checbox para poderlo ver en los diferentes opciones que seleccionamos
         JCheckBox checkBox = new JCheckBox("Opción 1", true);
-        JCheckBox checkBox1 = new JCheckBox("Opción 2" ,true);
+        JCheckBox checkBox1 = new JCheckBox("Opción 2", true);
         JCheckBox checkBox2 = new JCheckBox("Opcion 3", false);
         checkBox.setBounds(43, 305, 97, 23);
         checkBox1.setBounds(43, 325, 97, 23);
@@ -78,13 +78,22 @@ public class AplicacionGrafica extends JFrame {
         comboBox.addItem("Alberto");
         comboBox.addItem("Arturo");
         //Uso de interruptores comoT Toggl Button
-        JToggleButton tgButton = new JToggleButton("Interruptor",true);
+        JToggleButton tgButton = new JToggleButton("Interruptor", true);
         tgButton.setBounds(189, 291, 121, 23);
         contentPanel.add(tgButton);
         //Uso de Spinner para aumentar o disminuir un valor
         JSpinner spinner = new JSpinner();
         spinner.setBounds(371, 20, 29, 20);
         contentPanel.add(spinner);
+        //Arrays de String
+        String pelis[] = {"Star wars: la venganza de los siths", "El señor de los anillos: el retorno del rey", "Guerra mundial Z", "Revolution", "007: Todo o Nada"};
+        JList list = new JList<>(pelis);
+        list.setBounds(371, 72, 86, 80);
+        contentPanel.add(list);
+        //Scroll asociado a la lista
+        JScrollPane scroll2 = new JScrollPane(list); //Objeto
+        scroll2.setBounds(371, 72, 86, 80); //Misma coordenadas y tamaño que el objeto
+        contentPanel.add(scroll2);
     }
 
     public static void main(String[] args) {
