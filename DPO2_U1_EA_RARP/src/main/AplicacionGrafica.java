@@ -46,6 +46,18 @@ public class AplicacionGrafica extends JFrame {
         buttonGroup.add(rdButton);
         buttonGroup.add(rdButton1);
         buttonGroup.add(rdButton2);
+        
+        JCheckBox checkBox = new JCheckBox("Opción 1", true);
+        JCheckBox checkBox1 = new JCheckBox("Opción 2" ,true);
+        JCheckBox checkBox2 = new JCheckBox("Opcion 3", false);
+        checkBox.setBounds(43, 305, 97, 23);
+        checkBox1.setBounds(43, 325, 97, 23);
+        checkBox2.setBounds(43, 346, 97, 23);
+        contentPanel.add(checkBox);
+        contentPanel.add(checkBox1);
+        contentPanel.add(checkBox2);
+        
+        
     }
 
     public static void main(String[] args) {
