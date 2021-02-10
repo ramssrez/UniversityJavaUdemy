@@ -62,10 +62,15 @@ public class AplicacionGrafica extends JFrame {
         jTextArea.setWrapStyleWord(true);
         jTextArea.setLineWrap(true);
         contentPanel.add(jTextArea);
-        
+        //Uso de scroll para el áreade texto
         JScrollPane scrollPane = new JScrollPane(jTextArea);
         scrollPane.setBounds(189, 18, 141, 117);
         contentPanel.add(scrollPane);
+        //Uso de campo para una contraseña
+        JPasswordField passwordField = new JPasswordField("JefedeJefes34.");
+        passwordField.setBounds(189, 171, 139, 20);
+        contentPanel.add(passwordField);
+        
     }
 
     public static void main(String[] args) {
