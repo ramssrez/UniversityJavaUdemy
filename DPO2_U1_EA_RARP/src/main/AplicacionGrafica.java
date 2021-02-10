@@ -77,6 +77,14 @@ public class AplicacionGrafica extends JFrame {
         comboBox.addItem("Fernando");
         comboBox.addItem("Alberto");
         comboBox.addItem("Arturo");
+        //Uso de interruptores comoT Toggl Button
+        JToggleButton tgButton = new JToggleButton("Interruptor",true);
+        tgButton.setBounds(189, 291, 121, 23);
+        contentPanel.add(tgButton);
+        //Uso de Spinner para aumentar o disminuir un valor
+        JSpinner spinner = new JSpinner();
+        spinner.setBounds(371, 20, 29, 20);
+        contentPanel.add(spinner);
     }
 
     public static void main(String[] args) {
