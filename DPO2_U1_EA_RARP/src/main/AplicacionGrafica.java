@@ -12,6 +12,12 @@ public class AplicacionGrafica  extends JFrame{
         contentPanel = new JPanel();
         contentPanel.setLayout(null);
         setContentPane(contentPanel);
+        
+        //Asignación de una pantalla
+        JLabel etiqueta =new JLabel("Hola mundo desde interfaz gráfica");
+        etiqueta.setBounds(60, 20, 150, 20);
+        contentPanel.add(etiqueta);
+        
     }
    
     public static void main(String[] args) {
