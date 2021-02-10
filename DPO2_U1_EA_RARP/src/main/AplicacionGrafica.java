@@ -41,12 +41,12 @@ public class AplicacionGrafica extends JFrame {
         contentPanel.add(rdButton);
         contentPanel.add(rdButton1);
         contentPanel.add(rdButton2);
-        
+        //Uso de readioButton con su contenedor
         ButtonGroup buttonGroup = new ButtonGroup();
         buttonGroup.add(rdButton);
         buttonGroup.add(rdButton1);
         buttonGroup.add(rdButton2);
-        
+        //(Uso de checbox para poderlo ver en los diferentes opciones que seleccionamos
         JCheckBox checkBox = new JCheckBox("Opción 1", true);
         JCheckBox checkBox1 = new JCheckBox("Opción 2" ,true);
         JCheckBox checkBox2 = new JCheckBox("Opcion 3", false);
@@ -56,8 +56,16 @@ public class AplicacionGrafica extends JFrame {
         contentPanel.add(checkBox);
         contentPanel.add(checkBox1);
         contentPanel.add(checkBox2);
+        //Uso de una textArea para escribir dentro de ella.
+        JTextArea jTextArea = new JTextArea("Esto es una prueba");
+        jTextArea.setBounds(189, 18, 141, 117);
+        jTextArea.setWrapStyleWord(true);
+        jTextArea.setLineWrap(true);
+        contentPanel.add(jTextArea);
         
-        
+        JScrollPane scrollPane = new JScrollPane(jTextArea);
+        scrollPane.setBounds(189, 18, 141, 117);
+        contentPanel.add(scrollPane);
     }
 
     public static void main(String[] args) {
