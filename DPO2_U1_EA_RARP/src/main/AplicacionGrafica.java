@@ -70,7 +70,13 @@ public class AplicacionGrafica extends JFrame {
         JPasswordField passwordField = new JPasswordField("JefedeJefes34.");
         passwordField.setBounds(189, 171, 139, 20);
         contentPanel.add(passwordField);
-        
+        //Uso de menu de seleccion o comboBox
+        JComboBox comboBox = new JComboBox<>();
+        comboBox.setBounds(189, 221, 141, 22);
+        contentPanel.add(comboBox);
+        comboBox.addItem("Fernando");
+        comboBox.addItem("Alberto");
+        comboBox.addItem("Arturo");
     }
 
     public static void main(String[] args) {
