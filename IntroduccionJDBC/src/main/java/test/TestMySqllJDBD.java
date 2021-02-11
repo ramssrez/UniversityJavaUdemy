@@ -14,7 +14,17 @@ public class TestMySqllJDBD {
             Statement statement = connection.createStatement();
             var sql = "SELECT idpersona, nombre,apellido,email,telefono FROM persona";
             ResultSet resultSet = statement.executeQuery(sql);
-            
+            while (resultSet.next()) {
+                System.out.print(" Id Persona: " + resultSet.getInt("idpersona"));
+                System.out.print(" Nombre: " + resultSet.getString("nombre"));
+                System.out.print(" Apellido: " + resultSet.getString("apellido"));
+                System.out.print(" Email: " + resultSet.getString("email"));
+                System.out.println(" Telefono: " + resultSet.getString("telefono"));
+
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
         } catch (ClassNotFoundException ex) {
             ex.printStackTrace(System.out);
             System.out.println("error ClassNotFoundException" + ex.getMessage());
