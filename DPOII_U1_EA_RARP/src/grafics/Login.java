@@ -1,5 +1,6 @@
 package grafics;
 
+import javax.swing.JOptionPane;
 
 public class Login extends javax.swing.JFrame {
 
@@ -7,6 +8,10 @@ public class Login extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setTitle("Inicio de Sesión");
+        String email = "ejemplo@ejemplo.com";
+        String password = "123456";
+        txtfEmail.setText(email);
+        psfPassword.setText(password);
     }
 
     /**
@@ -50,7 +55,7 @@ public class Login extends javax.swing.JFrame {
         jlbEmail.setForeground(new java.awt.Color(184, 7, 11));
         jlbEmail.setText("Correo");
 
-        btnLogin.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnLogin.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnLogin.setForeground(new java.awt.Color(0, 218, 11));
         btnLogin.setText("Ingresar");
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
@@ -59,7 +64,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        btnClose.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnClose.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnClose.setForeground(new java.awt.Color(184, 7, 11));
         btnClose.setText("Cerrar");
         btnClose.addActionListener(new java.awt.event.ActionListener() {
@@ -162,8 +167,15 @@ public class Login extends javax.swing.JFrame {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         System.out.println("Esto es el boton de login");
-        Inicio inicio = new Inicio();
-        inicio.setVisible(true);
+        String password = new String(psfPassword.getPassword());
+        if ("ejemplo@ejemplo.com".equals(txtfEmail.getText()) && password.equals("12345")) {
+            Inicio inicio = new Inicio();
+            inicio.setVisible(true);
+        }else{
+            System.out.println("Esto esta mal");
+            JOptionPane.showMessageDialog(null, "Las credenciales no son correctas");
+        }
+
     }//GEN-LAST:event_btnLoginActionPerformed
 
     /**

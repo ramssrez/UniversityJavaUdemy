@@ -41,15 +41,17 @@ public class Inicio extends javax.swing.JFrame {
 
         lebelWelcome.setFont(new java.awt.Font("Tahoma", 0, 40)); // NOI18N
         lebelWelcome.setForeground(new java.awt.Color(0, 20, 223));
-        lebelWelcome.setText("Bienvenido Profesor Iram");
+        lebelWelcome.setText("Bienvenido Profesor ");
 
-        rdbOpción1.setText("Ingrear Examen");
+        rdbOpción1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        rdbOpción1.setText("Ingresar Examen");
         rdbOpción1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rdbOpción1ActionPerformed(evt);
             }
         });
 
+        rdbOpcion2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         rdbOpcion2.setText("Lista de Alumnos");
         rdbOpcion2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -57,6 +59,7 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
+        rdbOpcion3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         rdbOpcion3.setText("Calificaciones");
         rdbOpcion3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -64,6 +67,8 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
+        btnIngresar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnIngresar.setForeground(new java.awt.Color(184, 7, 11));
         btnIngresar.setText("Ingresar");
         btnIngresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -71,6 +76,7 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
+        rdbOpcion4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         rdbOpcion4.setText("Subir Archivos");
         rdbOpcion4.setToolTipText("");
         rdbOpcion4.addActionListener(new java.awt.event.ActionListener() {
@@ -79,7 +85,7 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        lebelOpciones.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lebelOpciones.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lebelOpciones.setForeground(new java.awt.Color(0, 218, 11));
         lebelOpciones.setText("¿Qué opción desea realizar?");
         lebelOpciones.setToolTipText("");
@@ -88,48 +94,47 @@ public class Inicio extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(56, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(lebelOpciones, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(110, 110, 110))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(rdbOpción1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(rdbOpcion4, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(rdbOpcion2, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(rdbOpcion3, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(161, 161, 161))))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lebelWelcome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(183, 183, 183)
-                        .addComponent(btnIngresar)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                            .addComponent(lebelWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(19, 19, 19)
+                                .addComponent(lebelOpciones, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(37, 37, 37))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(rdbOpción1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(rdbOpcion2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(rdbOpcion3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(rdbOpcion4, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(29, 29, 29)
+                                .addComponent(btnIngresar)
+                                .addGap(71, 71, 71)))
+                        .addGap(139, 139, 139))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(18, 18, 18)
                 .addComponent(lebelWelcome)
                 .addGap(18, 18, 18)
-                .addComponent(lebelOpciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lebelOpciones, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(rdbOpción1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(rdbOpcion2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(rdbOpcion3)
                 .addGap(4, 4, 4)
                 .addComponent(rdbOpcion4)
-                .addGap(38, 38, 38)
+                .addGap(18, 18, 18)
                 .addComponent(btnIngresar)
-                .addGap(56, 56, 56))
+                .addGap(66, 66, 66))
         );
 
         pack();
