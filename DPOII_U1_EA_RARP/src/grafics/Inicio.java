@@ -51,7 +51,8 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        rdbOpcion3.setText("Csaificaciones");
+        rdbOpcion3.setText("Calificaciones");
+        rdbOpcion3.setActionCommand("Calificaciones");
         rdbOpcion3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rdbOpcion3ActionPerformed(evt);
@@ -98,7 +99,7 @@ public class Inicio extends javax.swing.JFrame {
                             .addComponent(rdbOpcion4, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(137, 137, 137)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(

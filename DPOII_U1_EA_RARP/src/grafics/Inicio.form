@@ -54,7 +54,7 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="137" max="-2" attributes="0"/>
-                      <Component id="jLabel2" min="-2" pref="176" max="-2" attributes="0"/>
+                      <Component id="jLabel2" min="-2" pref="205" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="33" max="32767" attributes="0"/>
@@ -113,7 +113,8 @@
     </Component>
     <Component class="javax.swing.JRadioButton" name="rdbOpcion3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Csaificaciones"/>
+        <Property name="text" type="java.lang.String" value="Calificaciones"/>
+        <Property name="actionCommand" type="java.lang.String" value="Calificaciones"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rdbOpcion3ActionPerformed"/>
