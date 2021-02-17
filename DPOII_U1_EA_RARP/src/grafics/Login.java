@@ -62,6 +62,11 @@ public class Login extends javax.swing.JFrame {
         btnLogin.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnLogin.setForeground(new java.awt.Color(0, 218, 11));
         btnLogin.setText("Ingresar");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
 
         btnClose.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnClose.setForeground(new java.awt.Color(184, 7, 11));
@@ -152,16 +157,20 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
-        // TODO add your handling code here:
+        System.out.println("Esto es el boton de cerrar");
     }//GEN-LAST:event_btnCloseActionPerformed
 
     private void txtfEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtfEmailActionPerformed
-        // TODO add your handling code here:
+        System.out.println("Esto es el correo");
     }//GEN-LAST:event_txtfEmailActionPerformed
 
     private void psfPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_psfPasswordActionPerformed
-        // TODO add your handling code here:
+        System.out.println("Esto es pasword");
     }//GEN-LAST:event_psfPasswordActionPerformed
+
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        System.out.println("Esto es el boton de login");
+    }//GEN-LAST:event_btnLoginActionPerformed
 
     /**
      * @param args the command line arguments
