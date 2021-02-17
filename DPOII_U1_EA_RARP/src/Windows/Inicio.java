@@ -156,6 +156,8 @@ public class Inicio extends javax.swing.JFrame {
         String mensaje = "";
         if (rdbOpción1.isSelected()) {
             mensaje = "Seleccionaste opción 1";
+            Examen examen = new Examen();
+            examen.setVisible(true);
         } else if (rdbOpcion2.isSelected()) {
             mensaje = "Seleccionaste la opción 2";
         } else if (rdbOpcion3.isSelected()) {
