@@ -16,6 +16,25 @@ public class ListaAlumnos extends javax.swing.JFrame {
      */
     public ListaAlumnos() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        this.setTitle("Lista de Alumnos");
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+                new Object[][]{
+                    {"Raúl Ramírez", 10, 10, 10, 10, null, null},
+                    {"José Rodriguez", 10, 10, 10, 10, null, null},
+                    {"Leslie Perez", 10, 10, 10, 10, null, null},
+                    {"Alba Lopez", 10, 10, 10, 10, null, null},
+                    {"Pedro Paramo", 10, 10, 10, 10, null, null},
+                    {"Rosa Mercado", 10, 10, 10, 10, null, null},
+                    {"Martha Paredes", 10, 10, 10, 10, null, null},
+                    {"Adrian Rojas", 10, 10, 10, 10, null, null},
+                    {"Jesus Sanchez", 10, 10, 10, 10, null, null},
+                    {"Omar Cortez", 10, 10, 10, 10, null, null}
+                },
+                new String[]{
+                    "Nombre", "Modulo 1", "Modulo 2", "Modulo 3", "Modulo 4", "Modulo 5", "Modulo 6"
+                }
+        ));
     }
 
     /**
@@ -27,21 +46,95 @@ public class ListaAlumnos extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lebelExam = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        btncalificaciones = new javax.swing.JButton();
+        btnRegresarLista = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        lebelExam.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lebelExam.setForeground(new java.awt.Color(0, 20, 223));
+        lebelExam.setText("Lista de Alumnos y Calificaciones");
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        btncalificaciones.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btncalificaciones.setForeground(new java.awt.Color(0, 218, 11));
+        btncalificaciones.setText("Guardar");
+        btncalificaciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btncalificacionesActionPerformed(evt);
+            }
+        });
+
+        btnRegresarLista.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnRegresarLista.setForeground(new java.awt.Color(184, 7, 11));
+        btnRegresarLista.setText("Regresar");
+        btnRegresarLista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarListaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btncalificaciones)
+                .addGap(84, 84, 84)
+                .addComponent(btnRegresarLista)
+                .addGap(161, 161, 161))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 538, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(101, 101, 101)
+                        .addComponent(lebelExam)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lebelExam)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnRegresarLista)
+                    .addComponent(btncalificaciones))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btncalificacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncalificacionesActionPerformed
+        System.out.println("Se sctualizo las calificaciones");
+    }//GEN-LAST:event_btncalificacionesActionPerformed
+
+    private void btnRegresarListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarListaActionPerformed
+        System.out.println("Esto es el boton de regresar al inicio");
+        //        Inicio inicio = new Inicio();
+        //        inicio.setVisible(true);
+    }//GEN-LAST:event_btnRegresarListaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +172,10 @@ public class ListaAlumnos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnRegresarLista;
+    private javax.swing.JButton btncalificaciones;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lebelExam;
     // End of variables declaration//GEN-END:variables
 }
