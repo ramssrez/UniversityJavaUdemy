@@ -1,7 +1,7 @@
 package main;
 
-import grafics.Inicio;
-import grafics.Login;
+import windows.Inicio;
+import windows.Login;
 
 public class Principal {
 

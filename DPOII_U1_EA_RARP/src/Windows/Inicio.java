@@ -1,6 +1,5 @@
-package grafics;
+package windows;
 
-import java.awt.Color;
 import javax.swing.JOptionPane;
 
 public class Inicio extends javax.swing.JFrame {
@@ -126,13 +125,13 @@ public class Inicio extends javax.swing.JFrame {
                 .addComponent(lebelOpciones, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(rdbOpción1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(rdbOpcion2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(rdbOpcion3)
-                .addGap(4, 4, 4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(rdbOpcion4)
-                .addGap(18, 18, 18)
+                .addGap(24, 24, 24)
                 .addComponent(btnIngresar)
                 .addGap(66, 66, 66))
         );

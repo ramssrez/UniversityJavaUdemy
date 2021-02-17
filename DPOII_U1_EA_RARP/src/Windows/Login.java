@@ -1,4 +1,4 @@
-package grafics;
+package windows;
 
 import javax.swing.JOptionPane;
 
@@ -9,7 +9,7 @@ public class Login extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setTitle("Inicio de Sesión");
         String email = "ejemplo@ejemplo.com";
-        String password = "123456";
+        String password = "password";
         txtfEmail.setText(email);
         psfPassword.setText(password);
     }
