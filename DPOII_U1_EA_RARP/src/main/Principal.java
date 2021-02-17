@@ -1,5 +1,6 @@
 package main;
 
+import grafics.Inicio;
 import grafics.Login;
 
 public class Principal {
@@ -8,7 +9,9 @@ public class Principal {
         var grafico = new Login();
         grafico.setTitle("Inicio de sesión");
         grafico.setVisible(true);
-
+        var grafico2 = new Inicio();
+        grafico2.setTitle("Inicio");
+        grafico2.setVisible(true);   
     }
 
 }
