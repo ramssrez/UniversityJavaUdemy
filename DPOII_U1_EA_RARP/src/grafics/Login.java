@@ -1,21 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package grafics;
 
-/**
- *
- * @author Elia
- */
+
 public class Login extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Grafico
-     */
     public Login() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        this.setTitle("Inicio de Sesión");
     }
 
     /**
@@ -146,7 +137,7 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(jlblPassword)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(psfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnClose)
                     .addComponent(btnLogin))
@@ -158,6 +149,7 @@ public class Login extends javax.swing.JFrame {
 
     private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
         System.out.println("Esto es el boton de cerrar");
+        System.exit(0);
     }//GEN-LAST:event_btnCloseActionPerformed
 
     private void txtfEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtfEmailActionPerformed
@@ -170,6 +162,8 @@ public class Login extends javax.swing.JFrame {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         System.out.println("Esto es el boton de login");
+        Inicio inicio = new Inicio();
+        inicio.setVisible(true);
     }//GEN-LAST:event_btnLoginActionPerformed
 
     /**

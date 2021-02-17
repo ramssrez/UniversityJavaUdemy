@@ -1,6 +1,7 @@
 package grafics;
 
-import javax.swing.ButtonGroup;
+import java.awt.Color;
+import javax.swing.JOptionPane;
 
 public class Inicio extends javax.swing.JFrame {
 
@@ -9,6 +10,12 @@ public class Inicio extends javax.swing.JFrame {
      */
     public Inicio() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        this.setTitle("Inicio");
+        btngrup.add(rdbOpción1);
+        btngrup.add(rdbOpcion2);
+        btngrup.add(rdbOpcion3);
+        btngrup.add(rdbOpcion4);
     }
 
     /**
@@ -20,22 +27,21 @@ public class Inicio extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
-        buttonGroup2 = new javax.swing.ButtonGroup();
-        buttonGroup3 = new javax.swing.ButtonGroup();
-        jLabel1 = new javax.swing.JLabel();
+        btngrup = new javax.swing.ButtonGroup();
+        lebelWelcome = new javax.swing.JLabel();
         rdbOpción1 = new javax.swing.JRadioButton();
         rdbOpcion2 = new javax.swing.JRadioButton();
         rdbOpcion3 = new javax.swing.JRadioButton();
-        btn_ingresar = new javax.swing.JButton();
+        btnIngresar = new javax.swing.JButton();
         rdbOpcion4 = new javax.swing.JRadioButton();
-        jLabel2 = new javax.swing.JLabel();
+        lebelOpciones = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(0, 51, 51));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 20, 223));
-        jLabel1.setText("Bienvenido Profesor Iram");
+        lebelWelcome.setFont(new java.awt.Font("Tahoma", 0, 40)); // NOI18N
+        lebelWelcome.setForeground(new java.awt.Color(0, 20, 223));
+        lebelWelcome.setText("Bienvenido Profesor Iram");
 
         rdbOpción1.setText("Ingrear Examen");
         rdbOpción1.addActionListener(new java.awt.event.ActionListener() {
@@ -52,17 +58,16 @@ public class Inicio extends javax.swing.JFrame {
         });
 
         rdbOpcion3.setText("Calificaciones");
-        rdbOpcion3.setActionCommand("Calificaciones");
         rdbOpcion3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rdbOpcion3ActionPerformed(evt);
             }
         });
 
-        btn_ingresar.setText("Ingresar");
-        btn_ingresar.addActionListener(new java.awt.event.ActionListener() {
+        btnIngresar.setText("Ingresar");
+        btnIngresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_ingresarActionPerformed(evt);
+                btnIngresarActionPerformed(evt);
             }
         });
 
@@ -74,52 +79,57 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("Que opción desea realizar profesor");
-        jLabel2.setToolTipText("");
+        lebelOpciones.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lebelOpciones.setForeground(new java.awt.Color(0, 218, 11));
+        lebelOpciones.setText("¿Qué opción desea realizar?");
+        lebelOpciones.setToolTipText("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lebelOpciones, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(110, 110, 110))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rdbOpción1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(rdbOpcion4, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(rdbOpcion2, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(rdbOpcion3, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(161, 161, 161))))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(jLabel1))
+                        .addContainerGap()
+                        .addComponent(lebelWelcome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(179, 179, 179)
-                        .addComponent(btn_ingresar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(167, 167, 167)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(rdbOpcion2)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(rdbOpcion3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(rdbOpción1, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE))
-                            .addComponent(rdbOpcion4, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(137, 137, 137)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(33, Short.MAX_VALUE))
+                        .addGap(183, 183, 183)
+                        .addComponent(btnIngresar)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(87, 87, 87)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lebelWelcome)
+                .addGap(18, 18, 18)
+                .addComponent(lebelOpciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(rdbOpción1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(rdbOpcion3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(rdbOpcion2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rdbOpcion3)
+                .addGap(4, 4, 4)
                 .addComponent(rdbOpcion4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-                .addComponent(btn_ingresar)
-                .addGap(35, 35, 35))
+                .addGap(38, 38, 38)
+                .addComponent(btnIngresar)
+                .addGap(56, 56, 56))
         );
 
         pack();
@@ -137,25 +147,40 @@ public class Inicio extends javax.swing.JFrame {
         System.out.println("Seleccionsndo la opcion 3");
     }//GEN-LAST:event_rdbOpcion2ActionPerformed
 
-    private void btn_ingresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ingresarActionPerformed
+    private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         System.out.println("Seleccionando el boton");
-    }//GEN-LAST:event_btn_ingresarActionPerformed
+        String mensaje = "";
+        if (rdbOpción1.isSelected()) {
+            mensaje = "Seleccionaste opción 1";
+        } else if (rdbOpcion2.isSelected()) {
+            mensaje = "Seleccionaste la opción 2";
+        } else if (rdbOpcion3.isSelected()) {
+            mensaje = "Seleccionaste la opción 3";
+        } else if (rdbOpcion4.isSelected()) {
+            mensaje = "Seleccionamos la opción 4";
+        } else {
+            mensaje = "No se ha seleccionado una opción";
+        }
+        JOptionPane.showMessageDialog(null, mensaje);
+    }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void rdbOpcion4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbOpcion4ActionPerformed
         System.out.println("Seleccionando la opcion 4");
     }//GEN-LAST:event_rdbOpcion4ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    public static void main(String args[]) {
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Inicio().setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_ingresar;
-    private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.ButtonGroup buttonGroup2;
-    private javax.swing.ButtonGroup buttonGroup3;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton btnIngresar;
+    private javax.swing.ButtonGroup btngrup;
+    private javax.swing.JLabel lebelOpciones;
+    private javax.swing.JLabel lebelWelcome;
     private javax.swing.JRadioButton rdbOpcion2;
     private javax.swing.JRadioButton rdbOpcion3;
     private javax.swing.JRadioButton rdbOpcion4;

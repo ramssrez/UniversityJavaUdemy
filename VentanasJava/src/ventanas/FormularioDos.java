@@ -3,7 +3,7 @@ package ventanas;
 import javax.swing.JOptionPane;
 
 public class FormularioDos extends javax.swing.JFrame {
-
+    
     public FormularioDos() {
         initComponents();
         this.setLocationRelativeTo(null);
