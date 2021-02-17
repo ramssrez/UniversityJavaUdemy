@@ -3,18 +3,17 @@ package ventanas;
 import java.awt.event.*;
 import javax.swing.*;
 
-
 public class Formulario extends JFrame implements ActionListener {
-
+    
     private JButton button;
     private JTextField txtFiel;
     private JLabel label;
-
+    
     public Formulario() {
         setLayout(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         
-        label = new JLabel("Mensaje");
+        label = new JLabel("Mensaje: ");
         label.setBounds(15, 10, 100, 30);
         add(label);
         
@@ -23,11 +22,11 @@ public class Formulario extends JFrame implements ActionListener {
         add(txtFiel);
         
         button = new JButton("Mostrar");
-        button.setBounds(10, 60, 100, 30);
+        button.setBounds(80, 60, 100, 30);
         add(button);
         button.addActionListener(this);
     }
-
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == button) {
@@ -38,10 +37,11 @@ public class Formulario extends JFrame implements ActionListener {
     }
     
     public static void main(String[] args) {
-        var formulario =new Formulario();
+        var formulario = new Formulario();
         formulario.setBounds(0, 0, 300, 150);
+        formulario.setTitle("Formulario");
         formulario.setVisible(true);
         formulario.setLocationRelativeTo(null);
     }
-
+    
 }

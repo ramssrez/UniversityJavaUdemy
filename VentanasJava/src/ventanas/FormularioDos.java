@@ -1,9 +1,13 @@
 package ventanas;
 
+import javax.swing.JOptionPane;
+
 public class FormularioDos extends javax.swing.JFrame {
 
     public FormularioDos() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        this.setTitle("Formulario");
     }
 
     /**
@@ -15,21 +19,54 @@ public class FormularioDos extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        txtlabel = new javax.swing.JLabel();
+        texField = new javax.swing.JTextField();
+        buttonOne = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        txtlabel.setText("Mensaje:");
+
+        buttonOne.setText("Mostrar");
+        buttonOne.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonOneActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(txtlabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(buttonOne)
+                    .addComponent(texField, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtlabel)
+                    .addComponent(texField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(buttonOne)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void buttonOneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOneActionPerformed
+        System.out.println("Esta presionando el boton");
+        String cadena = texField.getText();
+        JOptionPane.showMessageDialog(null, cadena);
+    }//GEN-LAST:event_buttonOneActionPerformed
 
     /**
      * @param args the command line arguments
@@ -67,5 +104,8 @@ public class FormularioDos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buttonOne;
+    private javax.swing.JTextField texField;
+    private javax.swing.JLabel txtlabel;
     // End of variables declaration//GEN-END:variables
 }
