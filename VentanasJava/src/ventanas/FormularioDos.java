@@ -26,8 +26,18 @@ public class FormularioDos extends javax.swing.JFrame {
         textField1 = new java.awt.TextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentMoved(java.awt.event.ComponentEvent evt) {
+                formComponentMoved(evt);
+            }
+        });
 
         txtlabel.setText("Mensaje:");
+        txtlabel.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentResized(java.awt.event.ComponentEvent evt) {
+                txtlabelComponentResized(evt);
+            }
+        });
 
         buttonOne.setText("Mostrar");
         buttonOne.addActionListener(new java.awt.event.ActionListener() {
@@ -101,6 +111,16 @@ public class FormularioDos extends javax.swing.JFrame {
         System.out.println("El texto ha cambiado");
         txtlabel.setText(textField1.getText());
     }//GEN-LAST:event_textField1TextValueChanged
+
+    private void formComponentMoved(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentMoved
+        System.out.println("Se esta moviendo");
+        
+    }//GEN-LAST:event_formComponentMoved
+
+    private void txtlabelComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_txtlabelComponentResized
+        var x = txtlabel.getSize();
+        System.out.println("x " + x);
+    }//GEN-LAST:event_txtlabelComponentResized
 
     /**
      * @param args the command line arguments

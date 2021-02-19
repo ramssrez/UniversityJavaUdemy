@@ -5,6 +5,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.TextEvent;
@@ -33,7 +36,7 @@ public class Formulario extends JFrame {
         etiqueta = new JLabel("Mensaje: ");
         //Dimensiones que se le asignan a la etiqueta
         etiqueta.setBounds(15, 10, 200, 30);
-        //Se agrega la etiqueta al Frame para que se pueda visualizar
+        //Se agrega la etiqueta al Frame para que se pueda visualizar      
         add(etiqueta);
 
         //Intancia del objeto boton con un texto en su interior
@@ -133,7 +136,7 @@ public class Formulario extends JFrame {
         //Se agrega el TextFiel al Frame
         add(textField);
         
-
+            
     }
 
     public static void main(String[] args) {
