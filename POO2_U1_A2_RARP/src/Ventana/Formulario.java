@@ -50,6 +50,13 @@ public class Formulario extends JFrame {
                 //minimizado
                 JOptionPane.showMessageDialog(null, "Ventana se ha minimizado");
             }
+            //Sobrescrituradel método windowDeinconified
+            @Override
+            public void windowDeiconified(WindowEvent e) {
+                //Creación de una pantalla que menciona que la ventana se ha
+                //maximizado
+                JOptionPane.showMessageDialog(null, "Ventana ha maximizado");
+            }
         });
     }
 
