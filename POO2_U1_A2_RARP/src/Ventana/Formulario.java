@@ -1,8 +1,9 @@
 package Ventana;
 
-import java.awt.Checkbox;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.AdjustmentEvent;
+import java.awt.event.AdjustmentListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.WindowAdapter;
@@ -12,6 +13,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollBar;
 
 public class Formulario extends JFrame {
 
@@ -19,6 +21,7 @@ public class Formulario extends JFrame {
     private JLabel etiqueta;
     private JButton boton;
     private JCheckBox checkbox;
+    private JScrollBar scrollBar;
 
     public Formulario() {
         setLayout(null);
@@ -93,6 +96,24 @@ public class Formulario extends JFrame {
         });
         //Agregar el checkbox en el Frame
         add(checkbox);
+        
+        //Instancia del Scrollbar
+        scrollBar = new JScrollBar();
+        //Asignación de tamaño y posición de scrollbar
+        scrollBar.setBounds(250, 10, 30, 150);
+        //Implementación listner para el scrollbar
+        scrollBar.addAdjustmentListener(new AdjustmentListener() {
+            //Sobrescritura del método que recibe el cambio del scrollbar
+            @Override
+            public void adjustmentValueChanged(AdjustmentEvent e) {
+                //Cambio de texto de la etiqueta con la posición del scrollbar
+                etiqueta.setText("Scrollbar posición: " + scrollBar.getValue());
+            }
+        });
+        //Se agrega el scrollbar en el Frame
+        add(scrollBar);
+        
+        
 
     }
 
