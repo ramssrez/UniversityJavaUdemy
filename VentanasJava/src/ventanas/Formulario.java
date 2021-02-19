@@ -102,7 +102,8 @@ public class Formulario extends JFrame implements ActionListener {
             
  
         });
-        //        addWindowListener(new WindowAdapter() {
+
+        //
 //            @Override
 //            public void windowClosing(WindowEvent e) {
 //                System.out.println("Se ha cerrado");
@@ -111,22 +112,10 @@ public class Formulario extends JFrame implements ActionListener {
 //            }
 //
 //            @Override
-//            public void windowIconified(WindowEvent e) {
-//                System.out.println("La ventana se ha minimizado");
-//                JOptionPane.showMessageDialog(null, "Ventana se ha minimizado");
-//            }
-//
-//            @Override
 //            public void windowDeiconified(WindowEvent e) {
 //                System.out.println("La ventana ha vuelto");
 //                JOptionPane.showMessageDialog(null, "Ventana ha maximizado");
 //            }
-//        });
-        
-        
-        
-        
-        
     }
 
     @Override

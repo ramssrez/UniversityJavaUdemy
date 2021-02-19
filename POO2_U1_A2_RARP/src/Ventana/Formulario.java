@@ -39,6 +39,18 @@ public class Formulario extends JFrame {
                 etiqueta.setText("Se ha presionado el botón");
             }
         });
+        
+        
+        //Uso de listener para la ventana y pueda ser escuchado
+        addWindowListener(new WindowAdapter() {
+            //Sobreescritura del método windowIconified
+            @Override
+            public void windowIconified(WindowEvent e) {
+                //Creación de una pantalla que menciona que la ventana se ha
+                //minimizado
+                JOptionPane.showMessageDialog(null, "Ventana se ha minimizado");
+            }
+        });
     }
 
     public static void main(String[] args) {
