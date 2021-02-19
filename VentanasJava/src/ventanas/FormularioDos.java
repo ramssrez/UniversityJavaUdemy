@@ -23,6 +23,7 @@ public class FormularioDos extends javax.swing.JFrame {
         texField = new javax.swing.JTextField();
         buttonOne = new javax.swing.JButton();
         jScrollBar1 = new javax.swing.JScrollBar();
+        textField1 = new java.awt.TextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -41,6 +42,12 @@ public class FormularioDos extends javax.swing.JFrame {
             }
         });
 
+        textField1.addTextListener(new java.awt.event.TextListener() {
+            public void textValueChanged(java.awt.event.TextEvent evt) {
+                textField1TextValueChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -51,24 +58,27 @@ public class FormularioDos extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(texField, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonOne))
-                .addGap(26, 26, 26)
+                    .addComponent(buttonOne)
+                    .addComponent(textField1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(45, 45, 45)
                 .addComponent(jScrollBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtlabel)
                             .addComponent(texField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(buttonOne)
-                        .addGap(0, 97, Short.MAX_VALUE))
-                    .addComponent(jScrollBar1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(42, 42, 42)
+                        .addComponent(textField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 35, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -85,6 +95,12 @@ public class FormularioDos extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.out.println("Se ha movido");
     }//GEN-LAST:event_jScrollBar1AdjustmentValueChanged
+
+    private void textField1TextValueChanged(java.awt.event.TextEvent evt) {//GEN-FIRST:event_textField1TextValueChanged
+        // TODO add your handling code here:
+        System.out.println("El texto ha cambiado");
+        txtlabel.setText(textField1.getText());
+    }//GEN-LAST:event_textField1TextValueChanged
 
     /**
      * @param args the command line arguments
@@ -125,6 +141,7 @@ public class FormularioDos extends javax.swing.JFrame {
     private javax.swing.JButton buttonOne;
     private javax.swing.JScrollBar jScrollBar1;
     private javax.swing.JTextField texField;
+    private java.awt.TextField textField1;
     private javax.swing.JLabel txtlabel;
     // End of variables declaration//GEN-END:variables
 }

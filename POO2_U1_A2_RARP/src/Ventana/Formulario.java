@@ -1,11 +1,14 @@
 package Ventana;
 
+import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.TextEvent;
+import java.awt.event.TextListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JButton;
@@ -22,6 +25,7 @@ public class Formulario extends JFrame {
     private JButton boton;
     private JCheckBox checkbox;
     private JScrollBar scrollBar;
+    private TextField textField;
 
     public Formulario() {
         setLayout(null);
@@ -113,6 +117,21 @@ public class Formulario extends JFrame {
         //Se agrega el scrollbar en el Frame
         add(scrollBar);
         
+        //Instancia del TextField
+        textField = new TextField();
+        //Asignacipon de tamaño y posición
+        textField.setBounds(15, 120, 200, 30);
+        //Implementación del listener
+        textField.addTextListener(new TextListener() {
+            //Sobrescritura del método que recibe el cambio del texto en el TextField
+            @Override
+            public void textValueChanged(TextEvent e) {
+                //Cambio del texto de la etiqueta con lo que se obtien del TextField
+                etiqueta.setText(textField.getText());
+            }
+        });
+        //Se agrega el TextFiel al Frame
+        add(textField);
         
 
     }
