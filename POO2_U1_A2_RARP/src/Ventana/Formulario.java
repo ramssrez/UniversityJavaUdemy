@@ -11,23 +11,32 @@ import javax.swing.JOptionPane;
 
 public class Formulario extends JFrame {
 
-    private JLabel label;
-    private JButton button;
+    //Declaración de las variables etiqueta y boton
+    private JLabel etiqueta;
+    private JButton boton;
 
     public Formulario() {
         setLayout(null);
-        label = new JLabel("Mensaje: ");
-        label.setBounds(15, 10, 150, 30);
-        add(label);
+        //Declaración de una etiqueta que contiene el texto Mensaje
+        etiqueta = new JLabel("Mensaje: ");
+        //Dimensiones que se le asignan a la etiqueta
+        etiqueta.setBounds(15, 10, 150, 30);
+        //Se agrega la etiqueta al Frame para que se pueda visualizar
+        add(etiqueta);
 
-        button = new JButton("Presionar");
-        button.setBounds(80, 60, 100, 30);
-        add(button);
-        button.addActionListener(new ActionListener() {
+        //Intancia del objeto boton con un texto en su interior
+        boton = new JButton("Presionar");
+        //Dimensiones que se le asigna al boton
+        boton.setBounds(80, 60, 100, 30);
+        //Se agrega la boton al Frame para que se pueda visualizar
+        add(boton);
+        //Uso del listener para que el boton pueda ser escuchado
+        boton.addActionListener(new ActionListener() {
+            //Sobreescritura del método actionPerformed
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "El botón se ha presionado");
-                label.setText("Se ha presionado el botón");
+                //Se cambia el texto de la etiqueta
+                etiqueta.setText("Se ha presionado el botón");
             }
         });
     }
