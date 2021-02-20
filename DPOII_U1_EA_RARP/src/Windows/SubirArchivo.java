@@ -40,6 +40,7 @@ public class SubirArchivo extends javax.swing.JFrame {
         direccion = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         btnSubir = new javax.swing.JButton();
+        btnRegresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,6 +64,15 @@ public class SubirArchivo extends javax.swing.JFrame {
             }
         });
 
+        btnRegresar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnRegresar.setForeground(new java.awt.Color(184, 7, 11));
+        btnRegresar.setText("Regresar");
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -80,13 +90,15 @@ public class SubirArchivo extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(jLabel1)))
-                        .addGap(0, 120, Short.MAX_VALUE))
+                        .addGap(0, 107, Short.MAX_VALUE))
                     .addComponent(direccion))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(79, 79, 79)
                 .addComponent(btnSubir)
-                .addGap(152, 152, 152))
+                .addGap(57, 57, 57)
+                .addComponent(btnRegresar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -99,9 +111,11 @@ public class SubirArchivo extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(direccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnSubir)
-                .addContainerGap(128, Short.MAX_VALUE))
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnRegresar)
+                    .addComponent(btnSubir))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -122,6 +136,12 @@ JFileChooser jf = new JFileChooser();
     private void btnSubirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubirActionPerformed
         JOptionPane.showMessageDialog(null, "Se ha subido correctamente el documento");
     }//GEN-LAST:event_btnSubirActionPerformed
+
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+        System.out.println("Esto es el boton de regresar al inicio");
+        //        Inicio inicio = new Inicio();
+        //        inicio.setVisible(true);
+    }//GEN-LAST:event_btnRegresarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -159,6 +179,7 @@ JFileChooser jf = new JFileChooser();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnRegresar;
     private javax.swing.JButton btnSubir;
     private javax.swing.JTextField direccion;
     private javax.swing.JButton jButton1;

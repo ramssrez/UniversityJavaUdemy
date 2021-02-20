@@ -88,6 +88,12 @@ public class Examen extends javax.swing.JFrame {
 
         jRadioButton4.setText("Bird");
 
+        jSpinner1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinner1StateChanged(evt);
+            }
+        });
+
         jTextField2.setText("¿How do you say mesa in english?");
 
         jRadioButton5.setText("Hat");
@@ -307,6 +313,11 @@ public class Examen extends javax.swing.JFrame {
 //        Inicio inicio = new Inicio();
 //        inicio.setVisible(true);
     }//GEN-LAST:event_btnRegresarActionPerformed
+
+    private void jSpinner1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner1StateChanged
+        // TODO add your handling code here:
+        System.out.println("ha cambiado" + jSpinner1.getValue());
+    }//GEN-LAST:event_jSpinner1StateChanged
 
     /**
      * @param args the command line arguments
