@@ -1,14 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package interfacesgrafica;
 
-/**
- *
- * @author ramssrez
- */
+import javax.swing.JOptionPane;
+
 public class Presentation extends javax.swing.JFrame {
 
     /**
@@ -17,6 +10,7 @@ public class Presentation extends javax.swing.JFrame {
     public Presentation() {
         initComponents();
         setTitle("Rines");
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -104,8 +98,14 @@ public class Presentation extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (txtRin.getText().equals("") && txtPorcentaje.getText().equals("") && txtAerodinamica.getText().equals("")) {
             System.out.println("Los campos estan vacios");
+            JOptionPane.showMessageDialog(null, "Los campos estan vacios");
+        } else if ((txtRin.getText().equals(""))
+                || (txtAerodinamica.getText().equals(""))
+                || txtPorcentaje.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Faltan datos");
+            System.out.println("No se ha agregado la ");
         } else {
-            System.out.println("Los campos estan llenos");
+            JOptionPane.showMessageDialog(null, "Todos los datos estan llenos");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
