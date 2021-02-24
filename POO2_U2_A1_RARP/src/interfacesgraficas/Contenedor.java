@@ -16,7 +16,7 @@ public class Contenedor extends javax.swing.JFrame {
      */
     public Contenedor() {
         initComponents();
-        setTitle("Ejemplo de Panel");
+        setTitle("Ejemplo de Frame");
         setLocationRelativeTo(null);
     }
 
@@ -35,11 +35,11 @@ public class Contenedor extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 412, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 350, Short.MAX_VALUE)
         );
 
         pack();
