@@ -1,5 +1,8 @@
 package interfacesgrafica;
 
+import clases.RinClass;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 public class Presentation extends javax.swing.JFrame {
@@ -7,6 +10,8 @@ public class Presentation extends javax.swing.JFrame {
     /**
      * Creates new form Presentation
      */
+    List<RinClass> rinesGeneral = new ArrayList();
+
     public Presentation() {
         initComponents();
         setTitle("Rines");
@@ -95,7 +100,7 @@ public class Presentation extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+
         if (txtRin.getText().equals("") && txtPorcentaje.getText().equals("") && txtAerodinamica.getText().equals("")) {
             System.out.println("Los campos estan vacios");
             JOptionPane.showMessageDialog(null, "Los campos estan vacios");
@@ -105,7 +110,14 @@ public class Presentation extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Faltan datos");
             System.out.println("No se ha agregado la ");
         } else {
+            float aero = Float.parseFloat(txtAerodinamica.getText());
+            float porcentaje = Float.parseFloat(txtPorcentaje.getText());
+            RinClass rin = new RinClass(txtRin.getText(), porcentaje, aero);
+            rinesGeneral.add(rin);
             JOptionPane.showMessageDialog(null, "Todos los datos estan llenos");
+            for (RinClass rine : rinesGeneral) {
+                System.out.println("rine = " + rine);
+            }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
