@@ -14,6 +14,13 @@ public class Principal {
         //Lagomera, 30%, 0.005
         //Pantera, 10%, 0.013       
 
+        /*
+            Organizar la información de mejor a peor aerodinámica
+            Valido el último de los rines mayor que 33.0% porcentaje absoluto seleccionas ese rin
+            Mayor o igual a 67% del porcentaje absoluto, checar la mejor aerodinámica selecciono ese rin.
+            Si no se cumple, se tendrá que hacer uso se la suma de los rines y seleccionar el peor.
+
+         */
         RinClass rinClass = new RinClass("Katana", 20f, 0.008f);
         RinClass rinClass1 = new RinClass("Lagomera", 30f, 0.005f);
         RinClass rinClass2 = new RinClass("Pantera", 10f, 0.013f);
@@ -52,6 +59,33 @@ public class Principal {
         for (RinClass rine : rines) {
             System.out.println("rine = " + rine);
         }
+
+        System.out.println("el ultimo valor " + rines.size());
+        RinClass ultimoRin = rines.get(rines.size() - 1);
+        System.out.println("ultimoRin = " + ultimoRin);
+        System.out.println("");
+
+        RinClass primerRin = rines.get(0);
+        System.out.println("primerRin = " + primerRin);
+        System.out.println("");
+        if (ultimoRin.getPorcentajeAbsoluto() > 33) {
+            System.out.println("El rin seleccionado es: " + ultimoRin.getNombre());
+        } else if (primerRin.getPorcentajeAbsoluto() >= 67) {
+            System.out.println("El rin seleccionado es: " + primerRin.getNombre());
+        } else {
+            var sumaAbsolutos = 0.0f;
+            for (int i = 0; i < rines.size(); i++) {
+                sumaAbsolutos = sumaAbsolutos + rines.get(i).getPorcentajeAbsoluto();
+                if (sumaAbsolutos >= 67) {
+                    System.out.println("Los rines seleccionados son: " + rines.get(i-1).toString());
+                    System.out.println("Los rines seleccionados son: " + rines.get(i).toString());
+                    System.out.println("La suma de información es: " + sumaAbsolutos);
+                    break;
+                    //break;
+                }
+            }
+        }
+
 //        var sumaAbsolutos = 0.0f;
 //        var peorAero = 0.0;
 //
@@ -70,7 +104,6 @@ public class Principal {
 //        }
 //
 //        System.out.println("Peor aero " + peorAero);
-
     }
 
 }
