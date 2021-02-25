@@ -21,14 +21,18 @@ public class Principal {
             Si no se cumple, se tendrá que hacer uso se la suma de los rines y seleccionar el peor.
 
          */
-        RinClass rinClass = new RinClass("Katana", 20f, 0.008f);
-        RinClass rinClass1 = new RinClass("Lagomera", 30f, 0.005f);
-        RinClass rinClass2 = new RinClass("Pantera", 10f, 0.013f);
+        RinClass rinClass = new RinClass("Katana", 25f, 0.008f);
+        RinClass rinClass1 = new RinClass("Lagomera", 5f, 0.005f);
+        RinClass rinClass2 = new RinClass("Pantera", 20f, 0.013f);
+        RinClass rinClass3 = new RinClass("Sakura", 15f, 0.009f);
+         RinClass rinClass4 = new RinClass("Aries", 10f, 0.0010f);
         List<RinClass> rines = new ArrayList<>();
 
         rines.add(rinClass);
         rines.add(rinClass1);
         rines.add(rinClass2);
+        rines.add(rinClass3);
+        rines.add(rinClass4);
         float sumaRelative = 0.0f;
         rines.forEach(rin -> {
             System.out.println("rin" + rin);
@@ -68,22 +72,29 @@ public class Principal {
         RinClass primerRin = rines.get(0);
         System.out.println("primerRin = " + primerRin);
         System.out.println("");
+        List<RinClass> nuevalista = new ArrayList<>();
         if (ultimoRin.getPorcentajeAbsoluto() > 33) {
-            System.out.println("El rin seleccionado es: " + ultimoRin.getNombre());
+            System.out.println("El rin seleccionado es: " + ultimoRin.toString());
         } else if (primerRin.getPorcentajeAbsoluto() >= 67) {
-            System.out.println("El rin seleccionado es: " + primerRin.getNombre());
+            System.out.println("El rin seleccionado es: " + primerRin.toString());
         } else {
             var sumaAbsolutos = 0.0f;
+
             for (int i = 0; i < rines.size(); i++) {
                 sumaAbsolutos = sumaAbsolutos + rines.get(i).getPorcentajeAbsoluto();
+                nuevalista.add(rines.get(i));
                 if (sumaAbsolutos >= 67) {
-                    System.out.println("Los rines seleccionados son: " + rines.get(i-1).toString());
-                    System.out.println("Los rines seleccionados son: " + rines.get(i).toString());
+                    //(System.out.println("Los rines seleccionados son: " + rines.get(i - 1).toString());
+                    //System.out.println("Los rines seleccionados son: " + rines.get(i).toString());
                     System.out.println("La suma de información es: " + sumaAbsolutos);
                     break;
-                    //break;
                 }
             }
+            System.out.println("Los rines son");
+            nuevalista.forEach(rin -> {
+                System.out.println("rin " + rin.toString());
+            });
+
         }
 
 //        var sumaAbsolutos = 0.0f;

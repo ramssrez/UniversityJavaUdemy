@@ -163,7 +163,7 @@ public class Presentation extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-         float sumaRelative = 0.0f;
+        float sumaRelative = 0.0f;
         for (RinClass rin : rinesGeneral) {
             sumaRelative = sumaRelative + rin.getPorcentajeRelativo();
             System.out.println("suma " + sumaRelative);
