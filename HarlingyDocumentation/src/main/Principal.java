@@ -21,11 +21,11 @@ public class Principal {
             Si no se cumple, se tendrá que hacer uso se la suma de los rines y seleccionar el peor.
 
          */
-        RinClass rinClass = new RinClass("Katana", 25f, 0.008f);
-        RinClass rinClass1 = new RinClass("Lagomera", 5f, 0.005f);
-        RinClass rinClass2 = new RinClass("Pantera", 20f, 0.013f);
-        RinClass rinClass3 = new RinClass("Sakura", 15f, 0.009f);
-         RinClass rinClass4 = new RinClass("Aries", 10f, 0.0010f);
+        RinClass rinClass = new RinClass("Katana", 25f, 1f);
+        RinClass rinClass1 = new RinClass("Lagomera", 5f, 3f);
+        RinClass rinClass2 = new RinClass("Pantera", 20f, 4f);
+        RinClass rinClass3 = new RinClass("Sakura", 15f, 2);
+        RinClass rinClass4 = new RinClass("Aries", 10f, 5f);
         List<RinClass> rines = new ArrayList<>();
 
         rines.add(rinClass);
@@ -54,16 +54,33 @@ public class Principal {
         Collections.sort(rines, new Comparator<RinClass>() {
             @Override
             public int compare(RinClass p1, RinClass p2) {
-                return p1.getAerodinamica().compareTo(p2.getAerodinamica());
+                //return p1.getAerodinamica().compareTo(p2.getAerodinamica());
+                return p2.getAerodinamica().compareTo(p1.getAerodinamica());
             }
         });
 
+        
+        System.out.println("Ordenamiento de mayor a menor");
         //Comparacion
         System.out.println("");
         for (RinClass rine : rines) {
             System.out.println("rine = " + rine);
         }
+        
+         //Ordenamiento de la lista de menor a mayor
+        Collections.sort(rines, new Comparator<RinClass>() {
+            @Override
+            public int compare(RinClass p1, RinClass p2) {
+                return p1.getAerodinamica().compareTo(p2.getAerodinamica());
+                //return p2.getAerodinamica().compareTo(p1.getAerodinamica());
+            }
+        });
 
+        System.out.println("Orrdenamietno de menor a mayor");
+          System.out.println("");
+        for (RinClass rine : rines) {
+            System.out.println("rine = " + rine);
+        }
         System.out.println("el ultimo valor " + rines.size());
         RinClass ultimoRin = rines.get(rines.size() - 1);
         System.out.println("ultimoRin = " + ultimoRin);
@@ -96,25 +113,6 @@ public class Principal {
             });
 
         }
-
-//        var sumaAbsolutos = 0.0f;
-//        var peorAero = 0.0;
-//
-//        for (RinClass rin : rines) {
-//
-//            if (rin.getPorcentajeAbsoluto() >= 33.0f) {
-//                if (peorAero < rin.getAerodinamica()) {
-//                    peorAero = rin.getAerodinamica();
-//                    System.out.println("Este es el rin: " + rin.getNombre());
-//                }
-//
-//            } else if (rin.getPorcentajeAbsoluto() <= 67.0f) {
-//                System.out.println("Se toma este rin: " + rin.getNombre());
-//            }
-//
-//        }
-//
-//        System.out.println("Peor aero " + peorAero);
     }
 
 }
