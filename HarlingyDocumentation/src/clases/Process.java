@@ -1,14 +1,43 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package clases;
 
-/**
- *
- * @author ramssrez
- */
+import java.util.ArrayList;
+import java.util.List;
+
 public class Process {
+    private List <RinClass> listaRines = new ArrayList<>();
+
+    public Process() {
+    }
+    
+    public Process(List<RinClass> listaRines){
+        this.listaRines = listaRines;
+    }
+      public void agregarRegistro(RinClass rinClass){
+        this.listaRines.add(rinClass);
+    }
+
+    public void modificarRegistro(int i, RinClass rinClass){
+        this.listaRines.set(i, rinClass);
+    }
+    
+    public void eliminarRegistro(int i){
+        this.listaRines.remove(i);
+    }
+    
+    public RinClass obtenerRegistro(int i){
+        return listaRines.get(i);
+    }
+    
+    public int cantidadRegistro(){
+        return this.listaRines.size();
+    }
+    
+//    public int buscaCodigo(int codigo){
+//        for(int i = 0; i < cantidadRegistro(); i++){
+//            if(codigo == obtenerRegistro(i).getCodigo())return i;
+//        }
+//        return -1;
+//    }
+    
     
 }
