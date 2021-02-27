@@ -2,15 +2,20 @@ package interfacesgrafica;
 
 import clases.ProcessRin;
 import clases.RinClass;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.StringTokenizer;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import otros.ImgTabla;
+import otros.LimpiarTxt;
 
 public class Presentation extends javax.swing.JFrame {
 
@@ -19,16 +24,26 @@ public class Presentation extends javax.swing.JFrame {
      */
     List<RinClass> rinesGeneral = new ArrayList();
 
-    private String rutaTxt = "mi.txt";
-
+    private String rutaTxt = "datos.txt";
     RinClass rinClass;
     ProcessRin processRin;
     int clicTabla;
+    LimpiarTxt limpiarTxt = new LimpiarTxt();
 
     public Presentation() {
         initComponents();
         setTitle("Rines");
         setLocationRelativeTo(null);
+        processRin = new ProcessRin();
+
+        try {
+            //cargar_txt();
+            cargarTxt();
+            listarRegistro();
+        } catch (Exception ex) {
+            mensaje("No existe el archivo txt");
+        }
+
     }
 
     public void listarRegistro() {
@@ -43,18 +58,18 @@ public class Presentation extends javax.swing.JFrame {
         dt.addColumn("Porcentaje Absoluto");
         dt.addColumn("Aerodinamica");
 
-        //tableRegistros.setDefaultRenderer(Object.class, new imgTabla());
+        tableRegistros.setDefaultRenderer(Object.class, new ImgTabla());
         Object fila[] = new Object[dt.getColumnCount()];
-//        for (int i = 0; i < rp.cantidadRegistro(); i++) {
-//            p = rp.obtenerRegistro(i);
-//            fila[0] = p.getCodigo();
-//            fila[1] = p.getNombre();
-//            fila[2] = p.getPrecio();
-//            fila[3] = p.getDescripcion();
-//            dt.addRow(fila);
-//        }
-//        tabla.setModel(dt);
-//        tabla.setRowHeight(60);
+        for (int i = 0; i < processRin.cantidadRegistro(); i++) {
+            rinClass = processRin.obtenerRegistro(i);
+            fila[0] = rinClass.getNombre();
+            fila[1] = rinClass.getPorcentajeRelativo();
+            fila[2] = rinClass.getPorcentajeAbsoluto();
+            fila[3] = rinClass.getAerodinamica();
+            dt.addRow(fila);
+        }
+        tableRegistros.setModel(dt);
+        tableRegistros.setRowHeight(60);
     }
 
     //Método que crea un mensaje en caso generalizado
@@ -136,6 +151,30 @@ public class Presentation extends javax.swing.JFrame {
 
         } catch (Exception ex) {
             mensaje("Error al grabar archivo: " + ex.getMessage());
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    public void cargarTxt() {
+        File ruta = new File(rutaTxt);
+        try {
+
+            FileReader fileReader = new FileReader(ruta);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+            String linea = null;
+            while ((linea = bufferedReader.readLine()) != null) {
+                StringTokenizer st = new StringTokenizer(linea, ",");
+                rinClass = new RinClass();
+                rinClass.setNombre(st.nextToken());
+                rinClass.setPorcentajeRelativo(Float.parseFloat(st.nextToken()));
+                rinClass.setPorcentajeAbsoluto(Float.parseFloat(st.nextToken()));
+                rinClass.setAerodinamica(Float.parseFloat(st.nextToken()));
+                processRin.agregarRegistro(rinClass);
+            }
+            bufferedReader.close();
+        } catch (Exception ex) {
+            mensaje("Error al cargar archivo: " + ex.getMessage());
             System.out.println(ex.getMessage());
         }
     }

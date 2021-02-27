@@ -1,4 +1,4 @@
-package Otros;
+package otros;
 
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;

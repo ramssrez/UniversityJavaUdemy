@@ -1,4 +1,4 @@
-package Otros;
+package otros;
 
 import java.awt.Component;
 import javax.swing.JButton;
