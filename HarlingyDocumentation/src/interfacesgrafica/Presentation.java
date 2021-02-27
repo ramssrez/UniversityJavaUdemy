@@ -59,7 +59,30 @@ public class Presentation extends javax.swing.JFrame {
             String nombre = txtRinNombre.getText().trim().replace(" ", "_");
             return nombre;
         } catch (Exception ex) {
+            System.out.println("ex: " + ex.getMessage());
             return null;
+        }
+    }
+
+    //Método que se encarga de verificar el campo de aerodinamica
+    public float leerAerodinamica() {
+        try {
+            float codigo = Float.parseFloat(txtAerodinamica.getText().trim());
+            return codigo;
+        } catch (Exception ex) {
+            System.out.println("ex = " + ex.getMessage());
+            return -666;
+        }
+    }
+
+    //Método que se encarga de verificar el campo de porfcentaje
+    public float leerPorcentaje() {
+        try {
+            float codigo = Float.parseFloat(txtPorcentaje.getText().trim());
+            return codigo;
+        } catch (Exception ex) {
+            System.out.println("ex = " + ex.getMessage());
+            return -666;
         }
     }
 
