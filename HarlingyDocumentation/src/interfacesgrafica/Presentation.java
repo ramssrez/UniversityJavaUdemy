@@ -1,6 +1,10 @@
 package interfacesgrafica;
 
+import clases.ProcessRin;
 import clases.RinClass;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -15,6 +19,12 @@ public class Presentation extends javax.swing.JFrame {
      */
     List<RinClass> rinesGeneral = new ArrayList();
 
+    private String rutaTxt = "mi.txt";
+
+    RinClass rinClass;
+    ProcessRin processRin;
+    int clicTabla;
+
     public Presentation() {
         initComponents();
         setTitle("Rines");
@@ -28,13 +38,12 @@ public class Presentation extends javax.swing.JFrame {
                 return false;
             }
         };
-
-        dt.addColumn("Codigo");
         dt.addColumn("Nombre");
-        dt.addColumn("Precio");
-        dt.addColumn("Descripcion");
+        dt.addColumn("Porcentaje Relativo");
+        dt.addColumn("Porcentaje Absoluto");
+        dt.addColumn("Aerodinamica");
 
-        //table.setDefaultRenderer(Object.class, new imgTabla());
+        //tableRegistros.setDefaultRenderer(Object.class, new imgTabla());
         Object fila[] = new Object[dt.getColumnCount()];
 //        for (int i = 0; i < rp.cantidadRegistro(); i++) {
 //            p = rp.obtenerRegistro(i);
@@ -86,6 +95,51 @@ public class Presentation extends javax.swing.JFrame {
         }
     }
 
+    public void ingresarRegistro(File ruta) {
+        try {
+            if (leerNombre() == null) {
+                mensaje("Ingresar el nombre");
+            } else if (leerAerodinamica() == -666) {
+                mensaje("Ingresar Aerodinamica");
+            } else if (leerPorcentaje() == -666) {
+                mensaje("Ingresar Porcentaje");
+            } else {
+                rinClass = new RinClass(leerNombre(), leerPorcentaje(), leerAerodinamica());
+                processRin.agregarRegistro(rinClass);
+                grabarTxt();
+                listarRegistro();
+
+                //p = new Producto(leerCodigo(), leerNombre(), leerPrecio(), leerDescripcion());
+//                if(rp.buscaCodigo(p.getCodigo())!= -1)mensaje("Este codigo ya existe");
+//                else rp.agregarRegistro(p);
+//                grabar_txt();
+//                listarRegistro();
+//                lt.limpiar_texto(panel); 
+            }
+        } catch (Exception ex) {
+            mensaje(ex.getMessage());
+        }
+    }
+
+    public void grabarTxt() {
+        FileWriter fileWriter;
+        PrintWriter printWriter;
+        try {
+            fileWriter = new FileWriter(rutaTxt);
+            printWriter = new PrintWriter(fileWriter);
+
+            for (int i = 0; i < processRin.cantidadRegistro(); i++) {
+                rinClass = processRin.obtenerRegistro(i);
+                printWriter.println(String.valueOf(rinClass.getNombre() + ", " + rinClass.getPorcentajeRelativo() + ", " + rinClass.getAerodinamica()));
+            }
+            printWriter.close();
+
+        } catch (Exception ex) {
+            mensaje("Error al grabar archivo: " + ex.getMessage());
+            System.out.println(ex.getMessage());
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -105,7 +159,7 @@ public class Presentation extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableRegistros = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -115,7 +169,7 @@ public class Presentation extends javax.swing.JFrame {
 
         jLabel3.setText("Aerodinamica");
 
-        jButton1.setText("Crear");
+        jButton1.setText("Agregar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -136,7 +190,7 @@ public class Presentation extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tableRegistros.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -147,37 +201,36 @@ public class Presentation extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tableRegistros);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(67, 67, 67)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(37, 37, 37)
-                        .addComponent(txtRinNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtAerodinamica, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtPorcentaje, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(180, 180, 180)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton3)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addContainerGap(222, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 545, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(37, 37, 37)
+                                .addComponent(txtRinNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtAerodinamica, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtPorcentaje, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(180, 180, 180)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton3)
+                            .addComponent(jButton1)
+                            .addComponent(jButton2))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -298,7 +351,7 @@ public class Presentation extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tableRegistros;
     private javax.swing.JTextField txtAerodinamica;
     private javax.swing.JTextField txtPorcentaje;
     private javax.swing.JTextField txtRinNombre;

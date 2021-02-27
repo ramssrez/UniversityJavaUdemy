@@ -3,13 +3,13 @@ package clases;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Process {
+public class ProcessRin {
     private List <RinClass> listaRines = new ArrayList<>();
 
-    public Process() {
+    public ProcessRin() {
     }
     
-    public Process(List<RinClass> listaRines){
+    public ProcessRin(List<RinClass> listaRines){
         this.listaRines = listaRines;
     }
       public void agregarRegistro(RinClass rinClass){
