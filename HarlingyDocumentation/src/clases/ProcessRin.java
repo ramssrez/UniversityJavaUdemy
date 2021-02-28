@@ -31,7 +31,10 @@ public class ProcessRin {
     public int cantidadRegistro(){
         return this.listaRines.size();
     }
-   
+    
+    public void ordenarLista(){
+        
+    }
     
 //    public int buscaCodigo(int codigo){
 //        for(int i = 0; i < cantidadRegistro(); i++){

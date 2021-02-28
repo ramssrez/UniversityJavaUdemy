@@ -37,7 +37,6 @@ public class Presentation extends javax.swing.JFrame {
         processRin = new ProcessRin();
 
         try {
-            //cargar_txt();
             cargarTxt();
             listarRegistro();
         } catch (Exception ex) {
@@ -69,7 +68,7 @@ public class Presentation extends javax.swing.JFrame {
             dt.addRow(fila);
         }
         tableRegistros.setModel(dt);
-        tableRegistros.setRowHeight(60);
+        tableRegistros.setRowHeight(20);
     }
 
     //Método que crea un mensaje en caso generalizado
@@ -123,12 +122,75 @@ public class Presentation extends javax.swing.JFrame {
                 processRin.agregarRegistro(rinClass);
                 grabarTxt();
                 listarRegistro();
+                calculoPorcentajeAbsoluto();
                 limpiarTxt.limpiarTexto(panel);
             }
         } catch (Exception ex) {
             mensaje(ex.getMessage());
         }
     }
+
+    public void calculoPorcentajeAbsoluto() {
+        try {
+            float sumaRelativa = 0.0f;
+            for (int i = 0; i < processRin.cantidadRegistro(); i++) {
+                sumaRelativa = sumaRelativa + processRin.obtenerRegistro(i).getPorcentajeRelativo();
+            }
+            for (int i = 0; i < processRin.cantidadRegistro(); i++) {
+                var absoluto = (processRin.obtenerRegistro(i).getPorcentajeRelativo() * 100f) / sumaRelativa;
+                processRin.obtenerRegistro(i).setPorcentajeAbsoluto(absoluto);
+            }
+            listarRegistro();
+            grabarTxt();
+
+        } catch (Exception ex) {
+            mensaje(ex.getMessage());
+        }
+    }
+
+//    public void calculoPorcentajeAbsoluto(File ruta) {
+//        try {
+//            /*
+//                    float sumaRelative = 0.0f;
+//        for (RinClass rin : rinesGeneral) {
+//            sumaRelative = sumaRelative + rin.getPorcentajeRelativo();
+//            System.out.println("suma " + sumaRelative);
+//        }
+//        for (RinClass rin : rinesGeneral) {
+//            var absoluto = (rin.getPorcentajeRelativo() * 100f) / sumaRelative;
+//            rin.setPorcentajeAbsoluto(absoluto);
+//        }
+//             */
+//
+//            float sumaRelativa = 0.0f;
+//            for (int i = 0; i < processRin.cantidadRegistro(); i++) {
+//                sumaRelativa = sumaRelativa + processRin.obtenerRegistro(i).getPorcentajeRelativo();
+//            }
+//            System.out.println("suma relativa " + sumaRelativa);
+//            for (int i = 0; i < processRin.cantidadRegistro(); i++) {
+//                var absoluto = (processRin.obtenerRegistro(i).getPorcentajeRelativo() * 100f) / sumaRelativa;
+//                processRin.obtenerRegistro(i).setPorcentajeAbsoluto(absoluto);
+//            }
+//            listarRegistro();
+//            grabarTxt();
+//
+////            if (leerNombre() == null) {
+////                mensaje("Ingresar el nombre");
+////            } else if (leerAerodinamica() == -666) {
+////                mensaje("Ingresar Aerodinamica");
+////            } else if (leerPorcentaje() == -666) {
+////                mensaje("Ingresar Porcentaje");
+////            } else {
+////                rinClass = new RinClass(leerNombre(), leerPorcentaje(), leerAerodinamica());
+////                processRin.agregarRegistro(rinClass);
+////                grabarTxt();
+////                listarRegistro();
+////                limpiarTxt.limpiarTexto(panel);
+////            }
+//        } catch (Exception ex) {
+//            mensaje(ex.getMessage());
+//        }
+//    }
 
     public void grabarTxt() {
         FileWriter fileWriter;
@@ -139,7 +201,7 @@ public class Presentation extends javax.swing.JFrame {
 
             for (int i = 0; i < processRin.cantidadRegistro(); i++) {
                 rinClass = processRin.obtenerRegistro(i);
-                printWriter.println(String.valueOf(rinClass.getNombre() + ", " + rinClass.getPorcentajeRelativo() + ", "+ rinClass.getPorcentajeAbsoluto() + ", " + rinClass.getAerodinamica()));
+                printWriter.println(String.valueOf(rinClass.getNombre() + ", " + rinClass.getPorcentajeRelativo() + ", " + rinClass.getPorcentajeAbsoluto() + ", " + rinClass.getAerodinamica()));
             }
             printWriter.close();
 
@@ -351,15 +413,17 @@ public class Presentation extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonOrganizarActionPerformed
 
     private void buttonPorAbsoliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPorAbsoliActionPerformed
-        float sumaRelative = 0.0f;
-        for (RinClass rin : rinesGeneral) {
-            sumaRelative = sumaRelative + rin.getPorcentajeRelativo();
-            System.out.println("suma " + sumaRelative);
-        }
-        for (RinClass rin : rinesGeneral) {
-            var absoluto = (rin.getPorcentajeRelativo() * 100f) / sumaRelative;
-            rin.setPorcentajeAbsoluto(absoluto);
-        }
+//        float sumaRelative = 0.0f;
+//        for (RinClass rin : rinesGeneral) {
+//            sumaRelative = sumaRelative + rin.getPorcentajeRelativo();
+//            System.out.println("suma " + sumaRelative);
+//        }
+//        for (RinClass rin : rinesGeneral) {
+//            var absoluto = (rin.getPorcentajeRelativo() * 100f) / sumaRelative;
+//            rin.setPorcentajeAbsoluto(absoluto);
+//        }
+        //File ruta = new File(rutaTxt);
+        //calculoPorcentajeAbsoluto(ruta);
     }//GEN-LAST:event_buttonPorAbsoliActionPerformed
 
     /**
