@@ -40,8 +40,8 @@ public class ProcessRin {
         Collections.sort(listaRines, new Comparator<RinClass>() {
             @Override
             public int compare(RinClass p1, RinClass p2) {
-                //return p1.getAerodinamica().compareTo(p2.getAerodinamica());
-                return p2.getAerodinamica().compareTo(p1.getAerodinamica());
+                return p1.getAerodinamica().compareTo(p2.getAerodinamica());
+                //return p2.getAerodinamica().compareTo(p1.getAerodinamica());
             }
         });
     }
