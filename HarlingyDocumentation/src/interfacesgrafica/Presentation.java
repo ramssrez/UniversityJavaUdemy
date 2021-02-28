@@ -8,8 +8,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.StringTokenizer;
 import javax.swing.JOptionPane;
@@ -23,28 +21,35 @@ public class Presentation extends javax.swing.JFrame {
      * Creates new form Presentation
      */
     List<RinClass> rinesGeneral = new ArrayList();
-
+    
     private String rutaTxt = "datos.txt";
-    RinClass rinClass;
-    ProcessRin processRin;
-    int clicTabla;
-    LimpiarTxt limpiarTxt = new LimpiarTxt();
-
+    private String rutaTxtSeleccion = "seleccion.txt";
+    private RinClass rinClass;
+    private ProcessRin processRin;
+    private ProcessRin processRinEleccion;
+    private int clicTabla;
+    private LimpiarTxt limpiarTxt = new LimpiarTxt();
+    
     public Presentation() {
         initComponents();
         setTitle("Rines");
         setLocationRelativeTo(null);
         processRin = new ProcessRin();
-
+        processRinEleccion = new ProcessRin();
+        
         try {
+            //Datos que se van a seleccionar
             cargarTxt();
             listarRegistro();
+            //Datos que se van a seleccionar
+//            listarSeleccion();
+//            cargarTxtEleccion();
         } catch (Exception ex) {
             mensaje("No existe el archivo txt");
         }
-
+        
     }
-
+    
     public void listarRegistro() {
         DefaultTableModel dt = new DefaultTableModel() {
             @Override
@@ -56,7 +61,7 @@ public class Presentation extends javax.swing.JFrame {
         dt.addColumn("Porcentaje Relativo");
         dt.addColumn("Porcentaje Absoluto");
         dt.addColumn("Aerodinamica");
-
+        
         tableRegistros.setDefaultRenderer(Object.class, new ImgTabla());
         Object fila[] = new Object[dt.getColumnCount()];
         for (int i = 0; i < processRin.cantidadRegistro(); i++) {
@@ -69,6 +74,31 @@ public class Presentation extends javax.swing.JFrame {
         }
         tableRegistros.setModel(dt);
         tableRegistros.setRowHeight(20);
+    }
+      public void listarRegistroSelecionado() {
+        DefaultTableModel dt = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        dt.addColumn("Nombre");
+        dt.addColumn("Porcentaje Relativo");
+        dt.addColumn("Porcentaje Absoluto");
+        dt.addColumn("Aerodinamica");
+        
+        tableMostrar.setDefaultRenderer(Object.class, new ImgTabla());
+        Object fila[] = new Object[dt.getColumnCount()];
+        for (int i = 0; i < processRin.cantidadRegistro(); i++) {
+            rinClass = processRin.obtenerRegistro(i);
+            fila[0] = rinClass.getNombre();
+            fila[1] = rinClass.getPorcentajeRelativo();
+            fila[2] = rinClass.getPorcentajeAbsoluto();
+            fila[3] = rinClass.getAerodinamica();
+            dt.addRow(fila);
+        }
+        tableMostrar.setModel(dt);
+        tableMostrar.setRowHeight(20);
     }
 
     //Método que crea un mensaje en caso generalizado
@@ -108,10 +138,12 @@ public class Presentation extends javax.swing.JFrame {
             return -666;
         }
     }
-
+    
     public void ingresarRegistro() {
         try {
-            if (leerNombre() == null) {
+            if ((leerNombre() == null) && (leerAerodinamica() == -666) && (leerPorcentaje() == -666)) {
+                mensaje("Los campos esta vacios");
+            } else if (leerNombre() == null) {
                 mensaje("Ingresar el nombre");
             } else if (leerAerodinamica() == -666) {
                 mensaje("Ingresar Aerodinamica");
@@ -131,7 +163,7 @@ public class Presentation extends javax.swing.JFrame {
             mensaje(ex.getMessage());
         }
     }
-
+    
     public void ordenarLista() {
         try {
             processRin.ordenarLista();
@@ -141,7 +173,7 @@ public class Presentation extends javax.swing.JFrame {
             mensaje(ex.getMessage());
         }
     }
-
+    
     public void calculoPorcentajeAbsoluto() {
         try {
             float sumaRelativa = 0.0f;
@@ -154,78 +186,83 @@ public class Presentation extends javax.swing.JFrame {
             }
             listarRegistro();
             grabarTxt();
-
+            
         } catch (Exception ex) {
             mensaje(ex.getMessage());
         }
     }
-
-//    public void calculoPorcentajeAbsoluto(File ruta) {
-//        try {
-//            /*
-//                    float sumaRelative = 0.0f;
-//        for (RinClass rin : rinesGeneral) {
-//            sumaRelative = sumaRelative + rin.getPorcentajeRelativo();
-//            System.out.println("suma " + sumaRelative);
-//        }
-//        for (RinClass rin : rinesGeneral) {
-//            var absoluto = (rin.getPorcentajeRelativo() * 100f) / sumaRelative;
-//            rin.setPorcentajeAbsoluto(absoluto);
-//        }
-//             */
-//
-//            float sumaRelativa = 0.0f;
-//            for (int i = 0; i < processRin.cantidadRegistro(); i++) {
-//                sumaRelativa = sumaRelativa + processRin.obtenerRegistro(i).getPorcentajeRelativo();
-//            }
-//            System.out.println("suma relativa " + sumaRelativa);
-//            for (int i = 0; i < processRin.cantidadRegistro(); i++) {
-//                var absoluto = (processRin.obtenerRegistro(i).getPorcentajeRelativo() * 100f) / sumaRelativa;
-//                processRin.obtenerRegistro(i).setPorcentajeAbsoluto(absoluto);
-//            }
-//            listarRegistro();
-//            grabarTxt();
-//
-////            if (leerNombre() == null) {
-////                mensaje("Ingresar el nombre");
-////            } else if (leerAerodinamica() == -666) {
-////                mensaje("Ingresar Aerodinamica");
-////            } else if (leerPorcentaje() == -666) {
-////                mensaje("Ingresar Porcentaje");
-////            } else {
-////                rinClass = new RinClass(leerNombre(), leerPorcentaje(), leerAerodinamica());
-////                processRin.agregarRegistro(rinClass);
-////                grabarTxt();
-////                listarRegistro();
-////                limpiarTxt.limpiarTexto(panel);
-////            }
-//        } catch (Exception ex) {
-//            mensaje(ex.getMessage());
-//        }
-//    }
+    
+    public void validacionRines() {
+        cargarTxt();
+        listarRegistroSelecionado();
+        if (processRin.ultimoRin().getPorcentajeAbsoluto() > 33) {
+            System.out.println("El rin seleccionado es: " + processRin.ultimoRin().toString());
+        } else if (processRin.primerRin().getPorcentajeAbsoluto() >= 67) {
+            System.out.println("El rin seleccionado es: " + processRin.primerRin().toString());
+        } else {
+            var sumaAbsolutos = 0.0f;
+            
+            for (int i = 0; i < processRin.cantidadRegistro(); i++) {
+                sumaAbsolutos = sumaAbsolutos + processRin.obtenerRegistro(i).getPorcentajeAbsoluto();
+                processRinEleccion.agregarRegistro(processRin.obtenerRegistro(i));
+                if (sumaAbsolutos >= 67) {
+                    break;
+                }
+            }
+            System.out.println("suma :" + sumaAbsolutos);
+            System.out.println("Los rines son");
+            for (int i = 0; i < processRinEleccion.cantidadRegistro(); i++) {
+                System.out.println(" " + processRinEleccion.obtenerRegistro(i).toString());
+            }
+        }
+        processRinEleccion = new ProcessRin();
+    }
+    
     public void grabarTxt() {
         FileWriter fileWriter;
         PrintWriter printWriter;
         try {
             fileWriter = new FileWriter(rutaTxt);
             printWriter = new PrintWriter(fileWriter);
-
+            
             for (int i = 0; i < processRin.cantidadRegistro(); i++) {
                 rinClass = processRin.obtenerRegistro(i);
                 printWriter.println(String.valueOf(rinClass.getNombre() + ", " + rinClass.getPorcentajeRelativo() + ", " + rinClass.getPorcentajeAbsoluto() + ", " + rinClass.getAerodinamica()));
             }
             printWriter.close();
-
+            
         } catch (Exception ex) {
             mensaje("Error al grabar archivo: " + ex.getMessage());
             System.out.println(ex.getMessage());
         }
     }
-
+    
     public void cargarTxt() {
         File ruta = new File(rutaTxt);
         try {
-
+            
+            FileReader fileReader = new FileReader(ruta);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            String linea = null;
+            while ((linea = bufferedReader.readLine()) != null) {
+                StringTokenizer st = new StringTokenizer(linea, ",");
+                rinClass = new RinClass();
+                rinClass.setNombre(st.nextToken());
+                rinClass.setPorcentajeRelativo(Float.parseFloat(st.nextToken()));
+                rinClass.setPorcentajeAbsoluto(Float.parseFloat(st.nextToken()));
+                rinClass.setAerodinamica(Float.parseFloat(st.nextToken()));
+                processRin.agregarRegistro(rinClass);
+            }
+            bufferedReader.close();
+        } catch (Exception ex) {
+            mensaje("Error al cargar archivo: " + ex.getMessage());
+            System.out.println(ex.getMessage());
+        }
+    }
+       public void cargarTxtSeleccionado() {
+        File ruta = new File(rutaTxt);
+        try {
+            
             FileReader fileReader = new FileReader(ruta);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             String linea = null;
@@ -254,6 +291,10 @@ public class Presentation extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
         panel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtPorcentaje = new javax.swing.JTextField();
@@ -262,14 +303,40 @@ public class Presentation extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         txtAerodinamica = new javax.swing.JTextField();
         buttonAdd = new javax.swing.JButton();
-        buttonOrganizar = new javax.swing.JButton();
-        buttonPorAbsoli = new javax.swing.JButton();
+        buttonValidarRines = new javax.swing.JButton();
         panelDatos = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableRegistros = new javax.swing.JTable();
-        panelEleccion = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tablaEleccion = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tableMostrar = new javax.swing.JTable();
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable1);
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(jTable2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -286,17 +353,10 @@ public class Presentation extends javax.swing.JFrame {
             }
         });
 
-        buttonOrganizar.setText("Organizar ");
-        buttonOrganizar.addActionListener(new java.awt.event.ActionListener() {
+        buttonValidarRines.setText("Listar Rines");
+        buttonValidarRines.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonOrganizarActionPerformed(evt);
-            }
-        });
-
-        buttonPorAbsoli.setText("Absoluto");
-        buttonPorAbsoli.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonPorAbsoliActionPerformed(evt);
+                buttonValidarRinesActionPerformed(evt);
             }
         });
 
@@ -319,17 +379,11 @@ public class Presentation extends javax.swing.JFrame {
                         .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtAerodinamica, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtPorcentaje, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(61, 61, 61)
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelLayout.createSequentialGroup()
-                        .addGap(180, 180, 180)
-                        .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(buttonPorAbsoli)
-                            .addComponent(buttonAdd))
-                        .addGap(10, 10, 10))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonOrganizar)
-                        .addContainerGap())))
+                    .addComponent(buttonValidarRines)
+                    .addComponent(buttonAdd))
+                .addGap(129, 129, 129))
         );
         panelLayout.setVerticalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -343,13 +397,12 @@ public class Presentation extends javax.swing.JFrame {
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtPorcentaje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonPorAbsoli))
+                    .addComponent(buttonValidarRines))
                 .addGap(18, 18, 18)
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txtAerodinamica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonOrganizar))
-                .addContainerGap(34, Short.MAX_VALUE))
+                    .addComponent(txtAerodinamica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         tableRegistros.setModel(new javax.swing.table.DefaultTableModel(
@@ -371,18 +424,18 @@ public class Presentation extends javax.swing.JFrame {
             panelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelDatosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE)
                 .addContainerGap())
         );
         panelDatosLayout.setVerticalGroup(
             panelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelDatosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        tablaEleccion.setModel(new javax.swing.table.DefaultTableModel(
+        tableMostrar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -393,23 +446,39 @@ public class Presentation extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(tablaEleccion);
+        jScrollPane4.setViewportView(tableMostrar);
 
-        javax.swing.GroupLayout panelEleccionLayout = new javax.swing.GroupLayout(panelEleccion);
-        panelEleccion.setLayout(panelEleccionLayout);
-        panelEleccionLayout.setHorizontalGroup(
-            panelEleccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelEleccionLayout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 497, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 473, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        panelEleccionLayout.setVerticalGroup(
-            panelEleccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelEleccionLayout.createSequentialGroup()
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
                 .addContainerGap())
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -419,10 +488,12 @@ public class Presentation extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(panelDatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(panelEleccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(18, Short.MAX_VALUE))
+                    .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -431,8 +502,8 @@ public class Presentation extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelDatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelEleccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -466,20 +537,7 @@ public class Presentation extends javax.swing.JFrame {
 
     }//GEN-LAST:event_buttonAddActionPerformed
 
-    private void buttonOrganizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOrganizarActionPerformed
-//        Collections.sort(rinesGeneral, new Comparator<RinClass>() {
-//            @Override
-//            public int compare(RinClass p1, RinClass p2) {
-//                return p1.getAerodinamica().compareTo(p2.getAerodinamica());
-//            }
-//        });
-//        rinesGeneral.forEach(rine -> {
-//            System.out.println("rine = " + rine);
-//            System.out.println("");
-//        });
-    }//GEN-LAST:event_buttonOrganizarActionPerformed
-
-    private void buttonPorAbsoliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPorAbsoliActionPerformed
+    private void buttonValidarRinesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonValidarRinesActionPerformed
 //        float sumaRelative = 0.0f;
 //        for (RinClass rin : rinesGeneral) {
 //            sumaRelative = sumaRelative + rin.getPorcentajeRelativo();
@@ -491,7 +549,8 @@ public class Presentation extends javax.swing.JFrame {
 //        }
         //File ruta = new File(rutaTxt);
         //calculoPorcentajeAbsoluto(ruta);
-    }//GEN-LAST:event_buttonPorAbsoliActionPerformed
+        validacionRines();
+    }//GEN-LAST:event_buttonValidarRinesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -530,17 +589,21 @@ public class Presentation extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAdd;
-    private javax.swing.JButton buttonOrganizar;
-    private javax.swing.JButton buttonPorAbsoli;
+    private javax.swing.JButton buttonValidarRines;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
     private javax.swing.JPanel panel;
     private javax.swing.JPanel panelDatos;
-    private javax.swing.JPanel panelEleccion;
-    private javax.swing.JTable tablaEleccion;
+    private javax.swing.JTable tableMostrar;
     private javax.swing.JTable tableRegistros;
     private javax.swing.JTextField txtAerodinamica;
     private javax.swing.JTextField txtPorcentaje;
