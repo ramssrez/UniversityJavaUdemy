@@ -45,6 +45,15 @@ public class ProcessRin {
             }
         });
     }
+    
+    public RinClass primerRin(){
+        RinClass primerRin = listaRines.get(0);
+        return primerRin;
+    }
+    
+    public RinClass ultimoRin(){
+        return listaRines.get(listaRines.size()-1);
+    }
 
 //    public int buscaCodigo(int codigo){
 //        for(int i = 0; i < cantidadRegistro(); i++){
