@@ -109,7 +109,7 @@ public class Presentation extends javax.swing.JFrame {
         }
     }
 
-    public void ingresarRegistro(File ruta) {
+    public void ingresarRegistro() {
         try {
             if (leerNombre() == null) {
                 mensaje("Ingresar el nombre");
@@ -123,8 +123,20 @@ public class Presentation extends javax.swing.JFrame {
                 grabarTxt();
                 listarRegistro();
                 calculoPorcentajeAbsoluto();
+                //processRin.ordenarLista();
+                ordenarLista();
                 limpiarTxt.limpiarTexto(panel);
             }
+        } catch (Exception ex) {
+            mensaje(ex.getMessage());
+        }
+    }
+
+    public void ordenarLista() {
+        try {
+            processRin.ordenarLista();
+            listarRegistro();
+            grabarTxt();
         } catch (Exception ex) {
             mensaje(ex.getMessage());
         }
@@ -191,7 +203,6 @@ public class Presentation extends javax.swing.JFrame {
 //            mensaje(ex.getMessage());
 //        }
 //    }
-
     public void grabarTxt() {
         FileWriter fileWriter;
         PrintWriter printWriter;
@@ -394,22 +405,22 @@ public class Presentation extends javax.swing.JFrame {
 //                System.out.println("");
 //            });
 //        }
-        File ruta = new File(rutaTxt);
-        this.ingresarRegistro(ruta);
+        //File ruta = new File(rutaTxt);
+        this.ingresarRegistro();
 
     }//GEN-LAST:event_buttonAddActionPerformed
 
     private void buttonOrganizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonOrganizarActionPerformed
-        Collections.sort(rinesGeneral, new Comparator<RinClass>() {
-            @Override
-            public int compare(RinClass p1, RinClass p2) {
-                return p1.getAerodinamica().compareTo(p2.getAerodinamica());
-            }
-        });
-        rinesGeneral.forEach(rine -> {
-            System.out.println("rine = " + rine);
-            System.out.println("");
-        });
+//        Collections.sort(rinesGeneral, new Comparator<RinClass>() {
+//            @Override
+//            public int compare(RinClass p1, RinClass p2) {
+//                return p1.getAerodinamica().compareTo(p2.getAerodinamica());
+//            }
+//        });
+//        rinesGeneral.forEach(rine -> {
+//            System.out.println("rine = " + rine);
+//            System.out.println("");
+//        });
     }//GEN-LAST:event_buttonOrganizarActionPerformed
 
     private void buttonPorAbsoliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPorAbsoliActionPerformed
