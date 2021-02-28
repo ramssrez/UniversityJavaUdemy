@@ -6,7 +6,7 @@ import javax.swing.JTextField;
 
 public class LimpiarTxt {
     
-    public void limpiar_texto(JPanel panel){
+    public void limpiarTexto(JPanel panel){
         for(int i = 0; panel.getComponents().length > i; i++){
             if(panel.getComponents()[i] instanceof JTextField){
                 ((JTextField)panel.getComponents()[i]).setText("");
