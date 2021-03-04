@@ -1,11 +1,14 @@
 package interfaces;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author ramssrez
  */
 public class InventarioAltas extends javax.swing.JFrame {
 
+    DefaultTableModel modelo;
     /**
      * Creates new form InventarioAltas
      */
@@ -13,6 +16,14 @@ public class InventarioAltas extends javax.swing.JFrame {
         initComponents();
         this.setTitle("Altas al inventario");
         this.setLocationRelativeTo(null);
+        modelo = new DefaultTableModel();
+        modelo.addColumn("Código");
+        modelo.addColumn("Artículo");
+        modelo.addColumn("Sucursal");
+        modelo.addColumn("Insumo");
+        modelo.addColumn("Existencia");
+        modelo.addColumn("Marca");
+        this.tableRegistro.setModel(modelo);
     }
 
     /**
@@ -40,14 +51,16 @@ public class InventarioAltas extends javax.swing.JFrame {
         txtinsumo = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
         jleExistencia = new javax.swing.JLabel();
-        txtinsumo1 = new javax.swing.JTextField();
+        txtExistencia = new javax.swing.JTextField();
         jPanel6 = new javax.swing.JPanel();
         jleMarca = new javax.swing.JLabel();
-        txtinsumo2 = new javax.swing.JTextField();
+        txtMarca = new javax.swing.JTextField();
         jPanel7 = new javax.swing.JPanel();
         btnGuardar = new javax.swing.JButton();
         btnlimpiar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tableRegistro = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -55,7 +68,7 @@ public class InventarioAltas extends javax.swing.JFrame {
         jPanel8.setBackground(new java.awt.Color(255, 230, 52));
 
         paneldatos.setBackground(new java.awt.Color(255, 255, 255));
-        paneldatos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Registro de insumos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
+        paneldatos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Registro de insumos  ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -174,7 +187,7 @@ public class InventarioAltas extends javax.swing.JFrame {
         jleExistencia.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jleExistencia.setText("Existencia:");
 
-        txtinsumo1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtExistencia.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -184,7 +197,7 @@ public class InventarioAltas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jleExistencia)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txtinsumo1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtExistencia, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -193,7 +206,7 @@ public class InventarioAltas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jleExistencia)
-                    .addComponent(txtinsumo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtExistencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -202,7 +215,7 @@ public class InventarioAltas extends javax.swing.JFrame {
         jleMarca.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jleMarca.setText("Marca:");
 
-        txtinsumo2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtMarca.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -212,7 +225,7 @@ public class InventarioAltas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jleMarca)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                .addComponent(txtinsumo2, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
@@ -221,7 +234,7 @@ public class InventarioAltas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jleMarca)
-                    .addComponent(txtinsumo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -299,16 +312,32 @@ public class InventarioAltas extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        tableRegistro.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane1.setViewportView(tableRegistro);
+
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addComponent(paneldatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(100, 100, 100)
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addComponent(paneldatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(100, 100, 100)
+                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -320,22 +349,20 @@ public class InventarioAltas extends javax.swing.JFrame {
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addGap(85, 85, 85)
                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -389,6 +416,7 @@ public class InventarioAltas extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel jleArticulo;
     private javax.swing.JLabel jleCodigo;
     private javax.swing.JLabel jleExistencia;
@@ -396,11 +424,12 @@ public class InventarioAltas extends javax.swing.JFrame {
     private javax.swing.JLabel jleMarca;
     private javax.swing.JLabel jlesucursal;
     private javax.swing.JPanel paneldatos;
+    private javax.swing.JTable tableRegistro;
     private javax.swing.JTextField txtArticulo;
     private javax.swing.JTextField txtCodigo;
+    private javax.swing.JTextField txtExistencia;
+    private javax.swing.JTextField txtMarca;
     private javax.swing.JTextField txtSucursal;
     private javax.swing.JTextField txtinsumo;
-    private javax.swing.JTextField txtinsumo1;
-    private javax.swing.JTextField txtinsumo2;
     // End of variables declaration//GEN-END:variables
 }
