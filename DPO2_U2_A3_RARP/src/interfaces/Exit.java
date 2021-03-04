@@ -42,7 +42,7 @@ public class Exit extends javax.swing.JFrame {
 
         jLabel1.setText("Esta pantalla es secundaria");
 
-        btnExit.setText("Exit");
+        btnExit.setText("Salir");
         btnExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnExitActionPerformed(evt);
