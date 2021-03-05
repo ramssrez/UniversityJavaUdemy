@@ -9,6 +9,7 @@ import javax.swing.table.DefaultTableModel;
 public class EmpleadosAltas extends javax.swing.JFrame {
 
     DefaultTableModel modelo;
+
     /**
      * Creates new form InventarioAltas
      */
@@ -17,12 +18,17 @@ public class EmpleadosAltas extends javax.swing.JFrame {
         this.setTitle("Altas al inventario");
         this.setLocationRelativeTo(null);
         modelo = new DefaultTableModel();
-        modelo.addColumn("Código");
-        modelo.addColumn("Artículo");
+        modelo.addColumn("# Empleado");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Apellido P.");
+        modelo.addColumn("Apellido M");
+        modelo.addColumn("F. Nacimiento");
+        modelo.addColumn("CURP");
+        modelo.addColumn("RFC");
+        modelo.addColumn("Sueldo");
+        modelo.addColumn("Puesto");
         modelo.addColumn("Sucursal");
-        modelo.addColumn("Insumo");
-        modelo.addColumn("Existencia");
-        modelo.addColumn("Marca");
+        modelo.addColumn("F.Ingreso");
         this.tableRegistro.setModel(modelo);
     }
 
@@ -84,7 +90,7 @@ public class EmpleadosAltas extends javax.swing.JFrame {
         jPanel8.setBackground(new java.awt.Color(0, 153, 153));
 
         paneldatos.setBackground(new java.awt.Color(51, 255, 255));
-        paneldatos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos empleado", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
+        paneldatos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos empleado  ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -343,7 +349,7 @@ public class EmpleadosAltas extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tableRegistro);
 
         paneldatos2.setBackground(new java.awt.Color(51, 255, 255));
-        paneldatos2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos empleado", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
+        paneldatos2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos empleado  ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
 
         jPanel15.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -522,15 +528,15 @@ public class EmpleadosAltas extends javax.swing.JFrame {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addComponent(paneldatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(49, 49, 49)
-                        .addComponent(paneldatos2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 21, Short.MAX_VALUE)
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(147, 147, 147))
+                        .addComponent(paneldatos2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, Short.MAX_VALUE)
+                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1))
+                .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -546,22 +552,18 @@ public class EmpleadosAltas extends javax.swing.JFrame {
                             .addComponent(paneldatos2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(131, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 10, Short.MAX_VALUE))
+            .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -609,10 +611,6 @@ public class EmpleadosAltas extends javax.swing.JFrame {
     private javax.swing.JButton btnSalir;
     private javax.swing.JButton btnlimpiar;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel12;
-    private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
@@ -627,7 +625,6 @@ public class EmpleadosAltas extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel jleArticulo;
-    private javax.swing.JLabel jleArticulo1;
     private javax.swing.JLabel jleArticulo2;
     private javax.swing.JLabel jleCodigo;
     private javax.swing.JLabel jleCodigo1;
@@ -636,19 +633,12 @@ public class EmpleadosAltas extends javax.swing.JFrame {
     private javax.swing.JLabel jleExistencia;
     private javax.swing.JLabel jleInsumo;
     private javax.swing.JLabel jleInsumo1;
-    private javax.swing.JLabel jleMarca1;
-    private javax.swing.JLabel jleMarca2;
-    private javax.swing.JLabel jleMarca3;
     private javax.swing.JLabel jlesucursal;
     private javax.swing.JLabel jlesucursal1;
     private javax.swing.JPanel paneldatos;
-    private javax.swing.JPanel paneldatos1;
     private javax.swing.JPanel paneldatos2;
     private javax.swing.JTable tableRegistro;
     private javax.swing.JTextField txtExistencia;
-    private javax.swing.JTextField txtMarca1;
-    private javax.swing.JTextField txtMarca2;
-    private javax.swing.JTextField txtMarca3;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtNombre1;
     private javax.swing.JTextField txtNombre2;
@@ -658,7 +648,6 @@ public class EmpleadosAltas extends javax.swing.JFrame {
     private javax.swing.JTextField txtinsumo;
     private javax.swing.JTextField txtinsumo1;
     private javax.swing.JTextField txtpaterno;
-    private javax.swing.JTextField txtpaterno1;
     private javax.swing.JTextField txtpaterno2;
     // End of variables declaration//GEN-END:variables
 }
