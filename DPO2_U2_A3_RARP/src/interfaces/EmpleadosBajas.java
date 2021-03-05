@@ -313,14 +313,17 @@ public class EmpleadosBajas extends javax.swing.JFrame {
 
         btnGuardar.setBackground(new java.awt.Color(102, 0, 102));
         btnGuardar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/salir.png"))); // NOI18N
         btnGuardar.setText("Salir");
 
         btnlimpiar.setBackground(new java.awt.Color(102, 0, 102));
         btnlimpiar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnlimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar.png"))); // NOI18N
         btnlimpiar.setText("Nueva Busqueda");
 
         btnSalir.setBackground(new java.awt.Color(102, 0, 102));
         btnSalir.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/eliminar.png"))); // NOI18N
         btnSalir.setText("Eliminar");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -535,8 +538,8 @@ public class EmpleadosBajas extends javax.swing.JFrame {
 
         btnGuardar1.setBackground(new java.awt.Color(102, 0, 102));
         btnGuardar1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnGuardar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar.png"))); // NOI18N
         btnGuardar1.setText("Buscar");
-        btnGuardar1.setActionCommand("Buscar");
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -547,7 +550,7 @@ public class EmpleadosBajas extends javax.swing.JFrame {
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(25, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addComponent(paneldatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(9, 9, 9)
