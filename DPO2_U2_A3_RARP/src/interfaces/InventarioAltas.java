@@ -68,7 +68,7 @@ public class InventarioAltas extends javax.swing.JFrame {
         jPanel8.setBackground(new java.awt.Color(255, 230, 52));
 
         paneldatos.setBackground(new java.awt.Color(255, 255, 255));
-        paneldatos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Registro de insumos  ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
+        paneldatos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Registro de insumos ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
