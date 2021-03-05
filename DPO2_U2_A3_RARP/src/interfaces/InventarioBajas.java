@@ -71,10 +71,10 @@ public class InventarioBajas extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel8.setBackground(new java.awt.Color(0, 255, 51));
+        jPanel8.setBackground(new java.awt.Color(0, 255, 0));
         jPanel8.setPreferredSize(new java.awt.Dimension(574, 593));
 
-        paneldatos.setBackground(new java.awt.Color(153, 255, 255));
+        paneldatos.setBackground(new java.awt.Color(204, 255, 204));
         paneldatos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Baja de insumos ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -278,7 +278,7 @@ public class InventarioBajas extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel7.setBackground(new java.awt.Color(153, 255, 255));
+        jPanel7.setBackground(new java.awt.Color(204, 255, 204));
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Acciones", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
 
         btnBuscar.setBackground(new java.awt.Color(102, 102, 255));

@@ -6,14 +6,14 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author ramssrez
  */
-public class EmpleadosAltas extends javax.swing.JFrame {
+public class EmpleadosBajas extends javax.swing.JFrame {
 
     DefaultTableModel modelo;
 
     /**
      * Creates new form InventarioAltas
      */
-    public EmpleadosAltas() {
+    public EmpleadosBajas() {
         initComponents();
         this.setTitle("Altas al inventario");
         this.setLocationRelativeTo(null);
@@ -87,7 +87,7 @@ public class EmpleadosAltas extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel8.setBackground(new java.awt.Color(0, 102, 102));
+        jPanel8.setBackground(new java.awt.Color(0, 153, 153));
 
         paneldatos.setBackground(new java.awt.Color(51, 255, 255));
         paneldatos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos empleado  ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
@@ -586,21 +586,23 @@ public class EmpleadosAltas extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EmpleadosAltas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EmpleadosBajas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EmpleadosAltas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EmpleadosBajas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EmpleadosAltas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EmpleadosBajas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EmpleadosAltas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EmpleadosBajas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EmpleadosAltas().setVisible(true);
+                new EmpleadosBajas().setVisible(true);
             }
         });
 
