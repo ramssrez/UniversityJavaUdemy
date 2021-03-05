@@ -281,15 +281,15 @@ public class InventarioBajas extends javax.swing.JFrame {
         jPanel7.setBackground(new java.awt.Color(204, 255, 204));
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Acciones", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
 
-        btnBuscar.setBackground(new java.awt.Color(102, 102, 255));
+        btnBuscar.setBackground(new java.awt.Color(51, 153, 0));
         btnBuscar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnBuscar.setText("Buscar");
 
-        btnEliminar.setBackground(new java.awt.Color(102, 102, 255));
+        btnEliminar.setBackground(new java.awt.Color(51, 153, 0));
         btnEliminar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnEliminar.setText("Eliminar");
 
-        btnSalir.setBackground(new java.awt.Color(102, 102, 255));
+        btnSalir.setBackground(new java.awt.Color(51, 153, 0));
         btnSalir.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnSalir.setText("Salir");
 

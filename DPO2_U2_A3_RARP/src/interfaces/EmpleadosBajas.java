@@ -15,8 +15,21 @@ public class EmpleadosBajas extends javax.swing.JFrame {
      */
     public EmpleadosBajas() {
         initComponents();
-        this.setTitle("Altas al inventario");
+        this.setTitle("Baja Empleado");
         this.setLocationRelativeTo(null);
+        txtNombre.setEnabled(false);
+        txtPaterno.setEnabled(false);
+        txtMaterno.setEnabled(false);
+        txtRfc.setEnabled(false);
+        txtCurp.setEnabled(false);
+        txtSueldo.setEnabled(false);
+        txtFIngreso.setEnabled(false);
+        txtFNacimieto.setEnabled(false);
+        txtPuesto.setEnabled(false);
+        txtSucursal.setEnabled(false);
+        
+        
+
         modelo = new DefaultTableModel();
         modelo.addColumn("# Empleado");
         modelo.addColumn("Nombre");
@@ -45,22 +58,22 @@ public class EmpleadosBajas extends javax.swing.JFrame {
         paneldatos = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jleArticulo = new javax.swing.JLabel();
-        txtpaterno = new javax.swing.JTextField();
+        txtPaterno = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jleCodigo = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jlesucursal = new javax.swing.JLabel();
-        txtSucursal = new javax.swing.JTextField();
+        txtMaterno = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jleInsumo = new javax.swing.JLabel();
-        txtinsumo = new javax.swing.JTextField();
+        txtFNacimieto = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
         jleExistencia = new javax.swing.JLabel();
-        txtExistencia = new javax.swing.JTextField();
+        txtCurp = new javax.swing.JTextField();
         jPanel9 = new javax.swing.JPanel();
         jleCodigo1 = new javax.swing.JLabel();
-        txtNombre1 = new javax.swing.JTextField();
+        txtNEmpleado = new javax.swing.JTextField();
         jPanel7 = new javax.swing.JPanel();
         btnGuardar = new javax.swing.JButton();
         btnlimpiar = new javax.swing.JButton();
@@ -70,26 +83,27 @@ public class EmpleadosBajas extends javax.swing.JFrame {
         paneldatos2 = new javax.swing.JPanel();
         jPanel15 = new javax.swing.JPanel();
         jleArticulo2 = new javax.swing.JLabel();
-        txtpaterno2 = new javax.swing.JTextField();
+        txtPuesto = new javax.swing.JTextField();
         jPanel16 = new javax.swing.JPanel();
         jleCodigo2 = new javax.swing.JLabel();
-        txtNombre2 = new javax.swing.JTextField();
+        txtSueldo = new javax.swing.JTextField();
         jPanel17 = new javax.swing.JPanel();
         jlesucursal1 = new javax.swing.JLabel();
-        txtSucursal1 = new javax.swing.JTextField();
+        txtSucursal = new javax.swing.JTextField();
         jPanel18 = new javax.swing.JPanel();
         jleInsumo1 = new javax.swing.JLabel();
-        txtinsumo1 = new javax.swing.JTextField();
+        txtFIngreso = new javax.swing.JTextField();
         jPanel21 = new javax.swing.JPanel();
         jleCodigo3 = new javax.swing.JLabel();
-        txtNombre3 = new javax.swing.JTextField();
+        txtRfc = new javax.swing.JTextField();
+        btnGuardar1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel8.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel8.setBackground(new java.awt.Color(255, 51, 204));
 
-        paneldatos.setBackground(new java.awt.Color(51, 255, 255));
+        paneldatos.setBackground(new java.awt.Color(255, 153, 255));
         paneldatos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos empleado  ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -97,7 +111,7 @@ public class EmpleadosBajas extends javax.swing.JFrame {
         jleArticulo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jleArticulo.setText("Apellido Paterno:");
 
-        txtpaterno.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtPaterno.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -107,7 +121,7 @@ public class EmpleadosBajas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jleArticulo)
                 .addGap(40, 40, 40)
-                .addComponent(txtpaterno, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtPaterno, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -116,7 +130,7 @@ public class EmpleadosBajas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jleArticulo)
-                    .addComponent(txtpaterno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPaterno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -153,7 +167,7 @@ public class EmpleadosBajas extends javax.swing.JFrame {
         jlesucursal.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jlesucursal.setText("Apellido Materno:");
 
-        txtSucursal.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtMaterno.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -163,7 +177,7 @@ public class EmpleadosBajas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jlesucursal)
                 .addGap(37, 37, 37)
-                .addComponent(txtSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtMaterno, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -172,7 +186,7 @@ public class EmpleadosBajas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlesucursal)
-                    .addComponent(txtSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtMaterno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -181,7 +195,7 @@ public class EmpleadosBajas extends javax.swing.JFrame {
         jleInsumo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jleInsumo.setText("Fecha de Nacimiento");
 
-        txtinsumo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtFNacimieto.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -191,7 +205,7 @@ public class EmpleadosBajas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jleInsumo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtinsumo, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtFNacimieto, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -200,7 +214,7 @@ public class EmpleadosBajas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jleInsumo)
-                    .addComponent(txtinsumo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtFNacimieto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -209,7 +223,7 @@ public class EmpleadosBajas extends javax.swing.JFrame {
         jleExistencia.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jleExistencia.setText("CURP:");
 
-        txtExistencia.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtCurp.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -219,7 +233,7 @@ public class EmpleadosBajas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jleExistencia)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txtExistencia, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtCurp, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -228,7 +242,7 @@ public class EmpleadosBajas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jleExistencia)
-                    .addComponent(txtExistencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCurp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -237,7 +251,7 @@ public class EmpleadosBajas extends javax.swing.JFrame {
         jleCodigo1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jleCodigo1.setText("N. Empleado:");
 
-        txtNombre1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtNEmpleado.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -247,7 +261,7 @@ public class EmpleadosBajas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jleCodigo1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txtNombre1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtNEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
@@ -256,7 +270,7 @@ public class EmpleadosBajas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jleCodigo1)
-                    .addComponent(txtNombre1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -294,44 +308,41 @@ public class EmpleadosBajas extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel7.setBackground(new java.awt.Color(255, 153, 255));
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Acciones", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
 
-        btnGuardar.setBackground(new java.awt.Color(102, 102, 255));
+        btnGuardar.setBackground(new java.awt.Color(102, 0, 102));
         btnGuardar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btnGuardar.setText("Guardar");
+        btnGuardar.setText("Salir");
 
-        btnlimpiar.setBackground(new java.awt.Color(102, 102, 255));
+        btnlimpiar.setBackground(new java.awt.Color(102, 0, 102));
         btnlimpiar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btnlimpiar.setText("Limpiar");
+        btnlimpiar.setText("Nueva Busqueda");
 
-        btnSalir.setBackground(new java.awt.Color(102, 102, 255));
+        btnSalir.setBackground(new java.awt.Color(102, 0, 102));
         btnSalir.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        btnSalir.setText("Salir");
+        btnSalir.setText("Eliminar");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+            .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel7Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnGuardar))
-                    .addComponent(btnlimpiar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnSalir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnlimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addComponent(btnlimpiar)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSalir)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -348,15 +359,15 @@ public class EmpleadosBajas extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tableRegistro);
 
-        paneldatos2.setBackground(new java.awt.Color(51, 255, 255));
-        paneldatos2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos empleado", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
+        paneldatos2.setBackground(new java.awt.Color(255, 153, 255));
+        paneldatos2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos empleado  ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
 
         jPanel15.setBackground(new java.awt.Color(255, 255, 255));
 
         jleArticulo2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jleArticulo2.setText("Puesto:");
 
-        txtpaterno2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtPuesto.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
         jPanel15.setLayout(jPanel15Layout);
@@ -366,7 +377,7 @@ public class EmpleadosBajas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jleArticulo2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txtpaterno2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtPuesto, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel15Layout.setVerticalGroup(
@@ -375,7 +386,7 @@ public class EmpleadosBajas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jleArticulo2)
-                    .addComponent(txtpaterno2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPuesto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -384,7 +395,7 @@ public class EmpleadosBajas extends javax.swing.JFrame {
         jleCodigo2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jleCodigo2.setText("Sueldo Bruto:");
 
-        txtNombre2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtSueldo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
         jPanel16.setLayout(jPanel16Layout);
@@ -394,7 +405,7 @@ public class EmpleadosBajas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jleCodigo2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txtNombre2, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtSueldo, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel16Layout.setVerticalGroup(
@@ -403,7 +414,7 @@ public class EmpleadosBajas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jleCodigo2)
-                    .addComponent(txtNombre2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtSueldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -412,7 +423,7 @@ public class EmpleadosBajas extends javax.swing.JFrame {
         jlesucursal1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jlesucursal1.setText("Sucursal:");
 
-        txtSucursal1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtSucursal.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
         jPanel17.setLayout(jPanel17Layout);
@@ -422,7 +433,7 @@ public class EmpleadosBajas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jlesucursal1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txtSucursal1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel17Layout.setVerticalGroup(
@@ -431,7 +442,7 @@ public class EmpleadosBajas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlesucursal1)
-                    .addComponent(txtSucursal1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtSucursal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -440,7 +451,7 @@ public class EmpleadosBajas extends javax.swing.JFrame {
         jleInsumo1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jleInsumo1.setText("Fecha ingreso");
 
-        txtinsumo1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtFIngreso.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
         jPanel18.setLayout(jPanel18Layout);
@@ -450,7 +461,7 @@ public class EmpleadosBajas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jleInsumo1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtinsumo1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtFIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel18Layout.setVerticalGroup(
@@ -459,7 +470,7 @@ public class EmpleadosBajas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jleInsumo1)
-                    .addComponent(txtinsumo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtFIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -468,7 +479,7 @@ public class EmpleadosBajas extends javax.swing.JFrame {
         jleCodigo3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jleCodigo3.setText("RFC :");
 
-        txtNombre3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtRfc.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
         jPanel21.setLayout(jPanel21Layout);
@@ -478,7 +489,7 @@ public class EmpleadosBajas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jleCodigo3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txtNombre3, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtRfc, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel21Layout.setVerticalGroup(
@@ -487,7 +498,7 @@ public class EmpleadosBajas extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jleCodigo3)
-                    .addComponent(txtNombre3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtRfc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -522,6 +533,11 @@ public class EmpleadosBajas extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        btnGuardar1.setBackground(new java.awt.Color(102, 0, 102));
+        btnGuardar1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnGuardar1.setText("Buscar");
+        btnGuardar1.setActionCommand("Buscar");
+
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
@@ -530,26 +546,33 @@ public class EmpleadosBajas extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(25, Short.MAX_VALUE))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
                         .addComponent(paneldatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(49, 49, 49)
+                        .addGap(9, 9, 9)
+                        .addComponent(btnGuardar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(paneldatos2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, Short.MAX_VALUE)
-                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1))
-                .addContainerGap())
+                        .addGap(28, 28, 28)
+                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(49, 49, 49))))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGap(88, 88, 88)
-                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel8Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(paneldatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(paneldatos2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(paneldatos2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addComponent(btnGuardar1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGap(77, 77, 77)
+                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -610,6 +633,7 @@ public class EmpleadosBajas extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnGuardar1;
     private javax.swing.JButton btnSalir;
     private javax.swing.JButton btnlimpiar;
     private javax.swing.JPanel jPanel1;
@@ -640,16 +664,16 @@ public class EmpleadosBajas extends javax.swing.JFrame {
     private javax.swing.JPanel paneldatos;
     private javax.swing.JPanel paneldatos2;
     private javax.swing.JTable tableRegistro;
-    private javax.swing.JTextField txtExistencia;
+    private javax.swing.JTextField txtCurp;
+    private javax.swing.JTextField txtFIngreso;
+    private javax.swing.JTextField txtFNacimieto;
+    private javax.swing.JTextField txtMaterno;
+    private javax.swing.JTextField txtNEmpleado;
     private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtNombre1;
-    private javax.swing.JTextField txtNombre2;
-    private javax.swing.JTextField txtNombre3;
+    private javax.swing.JTextField txtPaterno;
+    private javax.swing.JTextField txtPuesto;
+    private javax.swing.JTextField txtRfc;
     private javax.swing.JTextField txtSucursal;
-    private javax.swing.JTextField txtSucursal1;
-    private javax.swing.JTextField txtinsumo;
-    private javax.swing.JTextField txtinsumo1;
-    private javax.swing.JTextField txtpaterno;
-    private javax.swing.JTextField txtpaterno2;
+    private javax.swing.JTextField txtSueldo;
     // End of variables declaration//GEN-END:variables
 }
