@@ -1,5 +1,6 @@
 package interfaces;
 
+import dialogs.ConfimarSalir;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -298,6 +299,11 @@ public class EmpleadosBajas extends javax.swing.JFrame {
         btnGuardar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/salir.png"))); // NOI18N
         btnGuardar.setText("Salir");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
 
         btnlimpiar.setBackground(new java.awt.Color(102, 0, 102));
         btnlimpiar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -566,6 +572,12 @@ public class EmpleadosBajas extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        ConfimarSalir confimarSalir = new ConfimarSalir(this, true);
+        confimarSalir.setVisible(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGuardarActionPerformed
 
     /**
      * @param args the command line arguments
