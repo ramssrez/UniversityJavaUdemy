@@ -1,5 +1,6 @@
 package interfaces;
 
+import dialogs.Limpieza;
 import dialogs.Confimar;
 import dialogs.ConfimarSalir;
 import javax.security.auth.callback.ConfirmationCallback;
@@ -301,6 +302,11 @@ public class EmpleadosAltas extends javax.swing.JFrame {
         btnlimpiar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnlimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/limpiarB.png"))); // NOI18N
         btnlimpiar.setText("Limpiar");
+        btnlimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnlimpiarActionPerformed(evt);
+            }
+        });
 
         btnSalir.setBackground(new java.awt.Color(0, 51, 51));
         btnSalir.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -566,6 +572,11 @@ public class EmpleadosAltas extends javax.swing.JFrame {
         Confimar confirmar = new Confimar(this,true);
         confirmar.setVisible(true);
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void btnlimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlimpiarActionPerformed
+        Limpieza borrarCampos = new Limpieza(this, true);
+        borrarCampos.setVisible(true);
+    }//GEN-LAST:event_btnlimpiarActionPerformed
 
     /**
      * @param args the command line arguments
