@@ -1,7 +1,7 @@
 package interfaces;
 
 import dialogs.ConfimarSalir;
-import dialogs.Eliminar;
+import dialogs.ConfirmarEliminar;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -586,7 +586,7 @@ public class EmpleadosBajas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        Eliminar eliminar = new Eliminar(this, true);
+        ConfirmarEliminar eliminar = new ConfirmarEliminar(this, true);
         eliminar.setVisible(true);
     }//GEN-LAST:event_btnSalirActionPerformed
 

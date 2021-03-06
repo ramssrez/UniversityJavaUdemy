@@ -1,7 +1,7 @@
 package interfaces;
 
 import dialogs.Limpieza;
-import dialogs.Confimar;
+import dialogs.ConfimarLimpieza;
 import dialogs.ConfimarSalir;
 import javax.swing.table.DefaultTableModel;
 
@@ -373,7 +373,7 @@ public class InventarioAltas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        Confimar confirmar = new Confimar(this, true);
+        ConfimarLimpieza confirmar = new ConfimarLimpieza(this, true);
         confirmar.setVisible(true);
     }//GEN-LAST:event_btnGuardarActionPerformed
 
