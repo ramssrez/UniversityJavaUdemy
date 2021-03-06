@@ -22,16 +22,6 @@ public class InventarioBajas extends javax.swing.JFrame {
         txtInsumo.setEnabled(false);
         txtArticulo.setEnabled(false);
         txtSucursal.setEnabled(false);
-        
-//        modelo = new DefaultTableModel();
-//        modelo.addColumn("Código");
-//        modelo.addColumn("Artículo");
-//        modelo.addColumn("Sucursal");
-//        modelo.addColumn("Insumo");
-//        modelo.addColumn("Existencia");
-//        modelo.addColumn("Marca");
-//        this.tableBaja.setModel(modelo);
-        
     }
 
     /**

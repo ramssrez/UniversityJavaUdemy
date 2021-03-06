@@ -27,20 +27,6 @@ public class EmpleadosBajas extends javax.swing.JFrame {
         txtFNacimieto.setEnabled(false);
         txtPuesto.setEnabled(false);
         txtSucursal.setEnabled(false);
-
-//        modelo = new DefaultTableModel();
-//        modelo.addColumn("# Empleado");
-//        modelo.addColumn("Nombre");
-//        modelo.addColumn("Apellido P.");
-//        modelo.addColumn("Apellido M");
-//        modelo.addColumn("F. Nacimiento");
-//        modelo.addColumn("CURP");
-//        modelo.addColumn("RFC");
-//        modelo.addColumn("Sueldo");
-//        modelo.addColumn("Puesto");
-//        modelo.addColumn("Sucursal");
-//        modelo.addColumn("F.Ingreso");
-//        this.tableRegistro.setModel(modelo);
     }
 
     /**

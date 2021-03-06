@@ -16,14 +16,6 @@ public class InventarioAltas extends javax.swing.JFrame {
         initComponents();
         this.setTitle("Altas al inventario");
         this.setLocationRelativeTo(null);
-//        modelo = new DefaultTableModel();
-//        modelo.addColumn("Código");
-//        modelo.addColumn("Artículo");
-//        modelo.addColumn("Sucursal");
-//        modelo.addColumn("Insumo");
-//        modelo.addColumn("Existencia");
-//        modelo.addColumn("Marca");
-//        this.tableRegistro.setModel(modelo);
     }
 
     /**

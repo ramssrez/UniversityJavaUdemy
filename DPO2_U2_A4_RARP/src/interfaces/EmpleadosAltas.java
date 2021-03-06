@@ -1,5 +1,6 @@
 package interfaces;
 
+import dialogs.ConfimarSalir;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -17,19 +18,6 @@ public class EmpleadosAltas extends javax.swing.JFrame {
         initComponents();
         this.setTitle("Alta Empleado");
         this.setLocationRelativeTo(null);
-//        modelo = new DefaultTableModel();
-//        modelo.addColumn("# Empleado");
-//        modelo.addColumn("Nombre");
-//        modelo.addColumn("Apellido P.");
-//        modelo.addColumn("Apellido M");
-//        modelo.addColumn("F. Nacimiento");
-//        modelo.addColumn("CURP");
-//        modelo.addColumn("RFC");
-//        modelo.addColumn("Sueldo");
-//        modelo.addColumn("Puesto");
-//        modelo.addColumn("Sucursal");
-//        modelo.addColumn("F.Ingreso");
-//        this.tableRegistro.setModel(modelo);
     }
 
     /**
@@ -311,6 +299,11 @@ public class EmpleadosAltas extends javax.swing.JFrame {
         btnSalir.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/salir.png"))); // NOI18N
         btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -556,6 +549,11 @@ public class EmpleadosAltas extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        ConfimarSalir salir = new ConfimarSalir(this,true);
+        salir.setVisible(true);
+    }//GEN-LAST:event_btnSalirActionPerformed
 
     /**
      * @param args the command line arguments
