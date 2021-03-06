@@ -1,6 +1,8 @@
 package interfaces;
 
+import dialogs.Confimar;
 import dialogs.ConfimarSalir;
+import javax.security.auth.callback.ConfirmationCallback;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -289,6 +291,11 @@ public class EmpleadosAltas extends javax.swing.JFrame {
         btnGuardar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/guarda.png"))); // NOI18N
         btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
 
         btnlimpiar.setBackground(new java.awt.Color(0, 51, 51));
         btnlimpiar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -554,6 +561,11 @@ public class EmpleadosAltas extends javax.swing.JFrame {
         ConfimarSalir salir = new ConfimarSalir(this,true);
         salir.setVisible(true);
     }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        Confimar confirmar = new Confimar(this,true);
+        confirmar.setVisible(true);
+    }//GEN-LAST:event_btnGuardarActionPerformed
 
     /**
      * @param args the command line arguments

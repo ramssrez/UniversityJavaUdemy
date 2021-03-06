@@ -1,6 +1,7 @@
 package interfaces;
 
 import dialogs.ConfimarSalir;
+import dialogs.Eliminar;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -282,6 +283,11 @@ public class InventarioBajas extends javax.swing.JFrame {
         btnEliminar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/eliminar.png"))); // NOI18N
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         btnSalir.setBackground(new java.awt.Color(51, 153, 0));
         btnSalir.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -369,6 +375,11 @@ public class InventarioBajas extends javax.swing.JFrame {
         ConfimarSalir confimarSalir = new ConfimarSalir(this, true);
         confimarSalir.setVisible(true);
     }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        Eliminar eliminar = new Eliminar(this, true);
+        eliminar.setVisible(true);
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     /**
      * @param args the command line arguments

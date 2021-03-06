@@ -17,8 +17,8 @@ public class Confimar extends javax.swing.JDialog {
     public Confimar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        this.setTitle("Salir");
-        setTitle("Confirmar");
+        this.setLocationRelativeTo(null);
+        setTitle("Confirmación");
     }
 
     /**
@@ -92,7 +92,7 @@ public class Confimar extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        System.exit(0);
+        dispose();
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     /**
