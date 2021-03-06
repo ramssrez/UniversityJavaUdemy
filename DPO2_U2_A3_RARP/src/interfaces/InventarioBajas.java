@@ -20,6 +20,8 @@ public class InventarioBajas extends javax.swing.JFrame {
         txtExistencia.setEnabled(false);
         txtMarca.setEnabled(false);
         txtInsumo.setEnabled(false);
+        txtArticulo.setEnabled(false);
+        txtSucursal.setEnabled(false);
         
 //        modelo = new DefaultTableModel();
 //        modelo.addColumn("Código");
