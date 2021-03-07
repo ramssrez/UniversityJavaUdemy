@@ -40,13 +40,18 @@ public class Principal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         btnSalir = new javax.swing.JButton();
-        jMenuBar1 = new javax.swing.JMenuBar();
+        menuBarPrincipal = new javax.swing.JMenuBar();
         menuEmpleado = new javax.swing.JMenu();
         menuAltaEmpleado = new javax.swing.JMenuItem();
         menuBajaEmpleado = new javax.swing.JMenuItem();
         menuInventario = new javax.swing.JMenu();
         menuIteAltaInsumo = new javax.swing.JMenuItem();
         menuIteBjaInsumo = new javax.swing.JMenuItem();
+        menuNomina = new javax.swing.JMenu();
+        menuItemCalclarNomina = new javax.swing.JMenuItem();
+        menuConsultas = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -107,7 +112,6 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap(30, Short.MAX_VALUE))
         );
 
-        menuEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/empleo.png"))); // NOI18N
         menuEmpleado.setText("Empleado");
 
         menuAltaEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/altaEmp.png"))); // NOI18N
@@ -128,9 +132,8 @@ public class Principal extends javax.swing.JFrame {
         });
         menuEmpleado.add(menuBajaEmpleado);
 
-        jMenuBar1.add(menuEmpleado);
+        menuBarPrincipal.add(menuEmpleado);
 
-        menuInventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/inventarios.png"))); // NOI18N
         menuInventario.setText("Insumos");
 
         menuIteAltaInsumo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/InsumoBaja_1.png"))); // NOI18N
@@ -151,9 +154,27 @@ public class Principal extends javax.swing.JFrame {
         });
         menuInventario.add(menuIteBjaInsumo);
 
-        jMenuBar1.add(menuInventario);
+        menuBarPrincipal.add(menuInventario);
 
-        setJMenuBar(jMenuBar1);
+        menuNomina.setText("Nómina");
+
+        menuItemCalclarNomina.setText("Calcular Nómina");
+        menuItemCalclarNomina.setToolTipText("");
+        menuNomina.add(menuItemCalclarNomina);
+
+        menuBarPrincipal.add(menuNomina);
+
+        menuConsultas.setText("Consultas");
+
+        jMenuItem3.setText("jMenuItem3");
+        menuConsultas.add(jMenuItem3);
+
+        jMenuItem4.setText("jMenuItem4");
+        menuConsultas.add(jMenuItem4);
+
+        menuBarPrincipal.add(menuConsultas);
+
+        setJMenuBar(menuBarPrincipal);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -259,13 +280,18 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenuItem menuAltaEmpleado;
     private javax.swing.JMenuItem menuBajaEmpleado;
+    private javax.swing.JMenuBar menuBarPrincipal;
+    private javax.swing.JMenu menuConsultas;
     private javax.swing.JMenu menuEmpleado;
     private javax.swing.JMenu menuInventario;
     private javax.swing.JMenuItem menuIteAltaInsumo;
     private javax.swing.JMenuItem menuIteBjaInsumo;
+    private javax.swing.JMenuItem menuItemCalclarNomina;
+    private javax.swing.JMenu menuNomina;
     // End of variables declaration//GEN-END:variables
 }
