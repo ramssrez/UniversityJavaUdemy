@@ -6,6 +6,7 @@
 package main;
 
 import dialogs.ConfimarSalir;
+import interfaces.CalculoNomina;
 import interfaces.EmpleadosAltas;
 import interfaces.EmpleadosBajas;
 import interfaces.InventarioAltas;
@@ -22,7 +23,7 @@ public class Principal extends javax.swing.JFrame {
      */
     public Principal() {
         initComponents();
-        this.setTitle("Página Principal");
+        this.setTitle("Inicio");
         this.setLocationRelativeTo(null);
     }
 
@@ -50,8 +51,8 @@ public class Principal extends javax.swing.JFrame {
         menuNomina = new javax.swing.JMenu();
         menuItemCalclarNomina = new javax.swing.JMenuItem();
         menuConsultas = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        menuItemConsultaPersonal = new javax.swing.JMenuItem();
+        menuItemConsultaInsumos = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -158,19 +159,27 @@ public class Principal extends javax.swing.JFrame {
 
         menuNomina.setText("Nómina");
 
+        menuItemCalclarNomina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/calcular.png"))); // NOI18N
         menuItemCalclarNomina.setText("Calcular Nómina");
         menuItemCalclarNomina.setToolTipText("");
+        menuItemCalclarNomina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemCalclarNominaActionPerformed(evt);
+            }
+        });
         menuNomina.add(menuItemCalclarNomina);
 
         menuBarPrincipal.add(menuNomina);
 
         menuConsultas.setText("Consultas");
 
-        jMenuItem3.setText("jMenuItem3");
-        menuConsultas.add(jMenuItem3);
+        menuItemConsultaPersonal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/empleo.png"))); // NOI18N
+        menuItemConsultaPersonal.setText("Consulta Personal");
+        menuConsultas.add(menuItemConsultaPersonal);
 
-        jMenuItem4.setText("jMenuItem4");
-        menuConsultas.add(jMenuItem4);
+        menuItemConsultaInsumos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/inventarios.png"))); // NOI18N
+        menuItemConsultaInsumos.setText("Consulta Insumos");
+        menuConsultas.add(menuItemConsultaInsumos);
 
         menuBarPrincipal.add(menuConsultas);
 
@@ -238,6 +247,13 @@ public class Principal extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_menuIteBjaInsumoActionPerformed
 
+    //Método que permite abrir la ventana de calculo de nomina
+    private void menuItemCalclarNominaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCalclarNominaActionPerformed
+//        CalculoNomina nomina = new CalculoNomina();
+//        nomina.setVisible(true);
+//        dispose();
+    }//GEN-LAST:event_menuItemCalclarNominaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -280,8 +296,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenuItem menuAltaEmpleado;
     private javax.swing.JMenuItem menuBajaEmpleado;
@@ -292,6 +306,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuIteAltaInsumo;
     private javax.swing.JMenuItem menuIteBjaInsumo;
     private javax.swing.JMenuItem menuItemCalclarNomina;
+    private javax.swing.JMenuItem menuItemConsultaInsumos;
+    private javax.swing.JMenuItem menuItemConsultaPersonal;
     private javax.swing.JMenu menuNomina;
     // End of variables declaration//GEN-END:variables
 }
