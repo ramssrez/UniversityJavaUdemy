@@ -3,7 +3,6 @@ package interfaces;
 import dialogs.ConfimarBusqueda;
 import dialogs.ConfimarSalir;
 import dialogs.ConfirmarEliminar;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -11,15 +10,16 @@ import javax.swing.table.DefaultTableModel;
  */
 public class InventarioBajas extends javax.swing.JFrame {
 
-    DefaultTableModel modelo;
-
     /**
      * Creates new form InventarioAltas
      */
     public InventarioBajas() {
         initComponents();
+        //Asignación de titulo a la ventana
         this.setTitle("Bajas del inventario");
+        //Método que permite centrar la pantalla en medio de la pantalla general
         this.setLocationRelativeTo(null);
+        //Implementación de bloqueo de los campos de la pantalla
         txtExistencia.setEnabled(false);
         txtMarca.setEnabled(false);
         txtInsumo.setEnabled(false);
@@ -426,6 +426,7 @@ public class InventarioBajas extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+    //Función principal de la ventana
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -460,6 +461,7 @@ public class InventarioBajas extends javax.swing.JFrame {
 
     }
 
+    //Variables de los diferentes componentes de la ventana
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnEliminar;

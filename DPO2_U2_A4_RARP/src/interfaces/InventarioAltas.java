@@ -3,7 +3,6 @@ package interfaces;
 import dialogs.ConfirmarLimpieza;
 import dialogs.ConfimarGuardado;
 import dialogs.ConfimarSalir;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -11,14 +10,14 @@ import javax.swing.table.DefaultTableModel;
  */
 public class InventarioAltas extends javax.swing.JFrame {
 
-    DefaultTableModel modelo;
-
     /**
      * Creates new form InventarioAltas
      */
     public InventarioAltas() {
         initComponents();
+        //Asignación de titulo a la ventana
         this.setTitle("Altas al inventario");
+        //Método que permite centrar la pantalla en medio de la pantalla general
         this.setLocationRelativeTo(null);
     }
 
@@ -420,6 +419,7 @@ public class InventarioAltas extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+    //Función principal de la ventana
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -453,6 +453,7 @@ public class InventarioAltas extends javax.swing.JFrame {
 
     }
 
+    //Variables de los diferentes componentes de la ventana
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnSalir;
