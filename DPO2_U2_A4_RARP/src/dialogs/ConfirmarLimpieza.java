@@ -117,11 +117,15 @@ public class ConfirmarLimpieza extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //Método que permite validar la acción del Dialog por medio del usuario
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+        //Metodo para cerrar el Dialog, hasta integrar otras opciones
         dispose();
     }//GEN-LAST:event_btnAceptarActionPerformed
 
+    //Método que permite cancelar la acción del Dialog por medio del usuario que seleccione
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        //Metodo para cerrar el Dialog, hasta integrar otras opciones
         dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
@@ -173,6 +177,8 @@ public class ConfirmarLimpieza extends javax.swing.JDialog {
             }
         });
     }
+
+    //Variables de los diferentes componentes de la ventana
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;

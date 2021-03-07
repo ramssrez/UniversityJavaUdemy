@@ -187,7 +187,9 @@ public class Principal extends javax.swing.JFrame {
             }
         });
     }
+    //Variables de los diferentes componentes de la ventana
 
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
