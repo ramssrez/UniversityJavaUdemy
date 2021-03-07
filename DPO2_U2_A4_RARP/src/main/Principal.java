@@ -215,7 +215,6 @@ public class Principal extends javax.swing.JFrame {
         bajas.setVisible(true);
         //Método que cierra la ventana para abrir otra
         dispose();
-// TODO add your handling code here:
     }//GEN-LAST:event_menuIteBjaInsumoActionPerformed
 
     /**
