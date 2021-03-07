@@ -1,5 +1,6 @@
 package interfaces;
 
+import dialogs.ConfimarBusqueda;
 import dialogs.ConfimarSalir;
 import dialogs.ConfirmarEliminar;
 import javax.swing.table.DefaultTableModel;
@@ -317,6 +318,11 @@ public class EmpleadosBajas extends javax.swing.JFrame {
         btnlimpiar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnlimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar.png"))); // NOI18N
         btnlimpiar.setText("Nueva Busqueda");
+        btnlimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnlimpiarActionPerformed(evt);
+            }
+        });
 
         btnSalir.setBackground(new java.awt.Color(102, 0, 102));
         btnSalir.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -332,6 +338,11 @@ public class EmpleadosBajas extends javax.swing.JFrame {
         btnGuardar1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnGuardar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar.png"))); // NOI18N
         btnGuardar1.setText("Buscar");
+        btnGuardar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardar1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -545,11 +556,11 @@ public class EmpleadosBajas extends javax.swing.JFrame {
                 .addComponent(paneldatos2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel8Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGap(56, 56, 56)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 24, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
@@ -618,6 +629,16 @@ public class EmpleadosBajas extends javax.swing.JFrame {
         ConfirmarEliminar eliminar = new ConfirmarEliminar(this, true);
         eliminar.setVisible(true);
     }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void btnGuardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardar1ActionPerformed
+        ConfimarBusqueda busqueda = new ConfimarBusqueda(this, true);
+        busqueda.setVisible(true);
+    }//GEN-LAST:event_btnGuardar1ActionPerformed
+
+    private void btnlimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlimpiarActionPerformed
+        ConfimarBusqueda busqueda = new ConfimarBusqueda(this, true);
+        busqueda.setVisible(true);
+    }//GEN-LAST:event_btnlimpiarActionPerformed
 
     /**
      * @param args the command line arguments

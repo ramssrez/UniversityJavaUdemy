@@ -1,5 +1,6 @@
 package interfaces;
 
+import dialogs.ConfimarBusqueda;
 import dialogs.ConfimarSalir;
 import dialogs.ConfirmarEliminar;
 import javax.swing.table.DefaultTableModel;
@@ -285,6 +286,11 @@ public class InventarioBajas extends javax.swing.JFrame {
         btnBuscar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar.png"))); // NOI18N
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         btnEliminar.setBackground(new java.awt.Color(51, 153, 0));
         btnEliminar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -411,6 +417,11 @@ public class InventarioBajas extends javax.swing.JFrame {
         ConfirmarEliminar eliminar = new ConfirmarEliminar(this, true);
         eliminar.setVisible(true);
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        ConfimarBusqueda busqueda = new ConfimarBusqueda(this, true);
+        busqueda.setVisible(true);
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
     /**
      * @param args the command line arguments
