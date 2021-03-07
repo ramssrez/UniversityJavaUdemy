@@ -7,6 +7,7 @@ package main;
 
 import dialogs.ConfimarSalir;
 import interfaces.CalculoNomina;
+import interfaces.ConsultaPersonal;
 import interfaces.EmpleadosAltas;
 import interfaces.EmpleadosBajas;
 import interfaces.InventarioAltas;
@@ -175,6 +176,11 @@ public class Principal extends javax.swing.JFrame {
 
         menuItemConsultaPersonal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/empleo.png"))); // NOI18N
         menuItemConsultaPersonal.setText("Consulta Personal");
+        menuItemConsultaPersonal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemConsultaPersonalActionPerformed(evt);
+            }
+        });
         menuConsultas.add(menuItemConsultaPersonal);
 
         menuItemConsultaInsumos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/inventarios.png"))); // NOI18N
@@ -256,6 +262,14 @@ public class Principal extends javax.swing.JFrame {
         //Método que cierra la ventana para abrir otra
         dispose();
     }//GEN-LAST:event_menuItemCalcluarNominaActionPerformed
+
+        //Método que permite abrir la ventana de consulta de personal
+    private void menuItemConsultaPersonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemConsultaPersonalActionPerformed
+        ConsultaPersonal cp = new ConsultaPersonal();
+        cp.setVisible(true);
+        dispose();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuItemConsultaPersonalActionPerformed
 
     /**
      * @param args the command line arguments
