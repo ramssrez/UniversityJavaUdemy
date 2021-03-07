@@ -499,7 +499,7 @@ public class InventarioBajas extends javax.swing.JFrame {
 
     //Método que permite abrir la ventana para dar de baja un Insumo
     private void menuIteBjaInsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuIteBjaInsumoActionPerformed
-        //Instancia para la ventana de  alta de insumos
+        //Instancia para la ventana de  baja de insumos
         InventarioBajas bajas = new InventarioBajas();
         //Método que permite visualizar la ventana
         bajas.setVisible(true);
