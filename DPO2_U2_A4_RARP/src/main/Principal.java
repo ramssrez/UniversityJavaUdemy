@@ -5,6 +5,8 @@
  */
 package main;
 
+import dialogs.ConfimarSalir;
+
 /**
  *
  * @author ramssrez
@@ -144,7 +146,8 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        dispose();
+        ConfimarSalir salir = new ConfimarSalir(this, true);
+        salir.setVisible(true);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     /**
