@@ -60,6 +60,13 @@ public class InventarioBajas extends javax.swing.JFrame {
         btnEliminar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        menuEmpleado = new javax.swing.JMenu();
+        menuAltaEmpleado = new javax.swing.JMenuItem();
+        menuBajaEmpleado = new javax.swing.JMenuItem();
+        menuInventario = new javax.swing.JMenu();
+        menuIteAltaInsumo = new javax.swing.JMenuItem();
+        menuIteBjaInsumo = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -336,7 +343,7 @@ public class InventarioBajas extends javax.swing.JFrame {
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -350,22 +357,46 @@ public class InventarioBajas extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
+
+        menuEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/empleo.png"))); // NOI18N
+        menuEmpleado.setText("Empleado");
+
+        menuAltaEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/altaEmp.png"))); // NOI18N
+        menuAltaEmpleado.setText("Alta Empleado");
+        menuEmpleado.add(menuAltaEmpleado);
+
+        menuBajaEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/bajasEmpleado.png"))); // NOI18N
+        menuBajaEmpleado.setText("Baja Empleado");
+        menuEmpleado.add(menuBajaEmpleado);
+
+        jMenuBar1.add(menuEmpleado);
+
+        menuInventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/inventarios.png"))); // NOI18N
+        menuInventario.setText("Inventario");
+
+        menuIteAltaInsumo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/InsumoBaja_1.png"))); // NOI18N
+        menuIteAltaInsumo.setText("Alta Insumo");
+        menuInventario.add(menuIteAltaInsumo);
+
+        menuIteBjaInsumo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/insumoAlta.png"))); // NOI18N
+        menuIteBjaInsumo.setText("Baja Insumo");
+        menuInventario.add(menuIteBjaInsumo);
+
+        jMenuBar1.add(menuInventario);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 569, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 581, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -423,6 +454,7 @@ public class InventarioBajas extends javax.swing.JFrame {
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -437,6 +469,12 @@ public class InventarioBajas extends javax.swing.JFrame {
     private javax.swing.JLabel jleInsumo;
     private javax.swing.JLabel jleMarca;
     private javax.swing.JLabel jlesucursal;
+    private javax.swing.JMenuItem menuAltaEmpleado;
+    private javax.swing.JMenuItem menuBajaEmpleado;
+    private javax.swing.JMenu menuEmpleado;
+    private javax.swing.JMenu menuInventario;
+    private javax.swing.JMenuItem menuIteAltaInsumo;
+    private javax.swing.JMenuItem menuIteBjaInsumo;
     private javax.swing.JPanel paneldatos;
     private javax.swing.JTextField txtArticulo;
     private javax.swing.JTextField txtCodigo;

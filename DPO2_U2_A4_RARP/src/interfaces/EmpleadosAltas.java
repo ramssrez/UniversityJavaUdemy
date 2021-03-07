@@ -32,6 +32,7 @@ public class EmpleadosAltas extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenu1 = new javax.swing.JMenu();
         jPanel8 = new javax.swing.JPanel();
         paneldatos = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -73,6 +74,15 @@ public class EmpleadosAltas extends javax.swing.JFrame {
         jleCodigo3 = new javax.swing.JLabel();
         txtRfc = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        menuEmpleado = new javax.swing.JMenu();
+        menuAltaEmpleado = new javax.swing.JMenuItem();
+        menuBajaEmpleado = new javax.swing.JMenuItem();
+        menuInventario = new javax.swing.JMenu();
+        menuIteAltaInsumo = new javax.swing.JMenuItem();
+        menuIteBjaInsumo = new javax.swing.JMenuItem();
+
+        jMenu1.setText("jMenu1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -533,7 +543,7 @@ public class EmpleadosAltas extends javax.swing.JFrame {
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -546,14 +556,42 @@ public class EmpleadosAltas extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
+
+        menuEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/empleo.png"))); // NOI18N
+        menuEmpleado.setText("Empleado");
+
+        menuAltaEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/altaEmp.png"))); // NOI18N
+        menuAltaEmpleado.setText("Alta Empleado");
+        menuEmpleado.add(menuAltaEmpleado);
+
+        menuBajaEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/bajasEmpleado.png"))); // NOI18N
+        menuBajaEmpleado.setText("Baja Empleado");
+        menuEmpleado.add(menuBajaEmpleado);
+
+        jMenuBar1.add(menuEmpleado);
+
+        menuInventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/inventarios.png"))); // NOI18N
+        menuInventario.setText("Inventario");
+
+        menuIteAltaInsumo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/InsumoBaja_1.png"))); // NOI18N
+        menuIteAltaInsumo.setText("Alta Insumo");
+        menuInventario.add(menuIteAltaInsumo);
+
+        menuIteBjaInsumo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/insumoAlta.png"))); // NOI18N
+        menuIteBjaInsumo.setText("Baja Insumo");
+        menuInventario.add(menuIteBjaInsumo);
+
+        jMenuBar1.add(menuInventario);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -564,18 +602,18 @@ public class EmpleadosAltas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        ConfimarSalir salir = new ConfimarSalir(this,true);
+        ConfimarSalir salir = new ConfimarSalir(this, true);
         salir.setVisible(true);
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        ConfimarGuardado confirmar = new ConfimarGuardado(this,true);
+        ConfimarGuardado confirmar = new ConfimarGuardado(this, true);
         confirmar.setVisible(true);
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnlimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlimpiarActionPerformed
-        ConfirmarLimpieza borrarCampos = new ConfirmarLimpieza(this, true);
-        borrarCampos.setVisible(true);
+        ConfirmarLimpieza limpiar = new ConfirmarLimpieza(this, true);
+        limpiar.setVisible(true);
     }//GEN-LAST:event_btnlimpiarActionPerformed
 
     /**
@@ -620,6 +658,8 @@ public class EmpleadosAltas extends javax.swing.JFrame {
     private javax.swing.JButton btnSalir;
     private javax.swing.JButton btnlimpiar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
@@ -644,6 +684,12 @@ public class EmpleadosAltas extends javax.swing.JFrame {
     private javax.swing.JLabel jleInsumo1;
     private javax.swing.JLabel jlesucursal;
     private javax.swing.JLabel jlesucursal1;
+    private javax.swing.JMenuItem menuAltaEmpleado;
+    private javax.swing.JMenuItem menuBajaEmpleado;
+    private javax.swing.JMenu menuEmpleado;
+    private javax.swing.JMenu menuInventario;
+    private javax.swing.JMenuItem menuIteAltaInsumo;
+    private javax.swing.JMenuItem menuIteBjaInsumo;
     private javax.swing.JPanel paneldatos;
     private javax.swing.JPanel paneldatos2;
     private javax.swing.JTextField txtApellidoMaterno;
