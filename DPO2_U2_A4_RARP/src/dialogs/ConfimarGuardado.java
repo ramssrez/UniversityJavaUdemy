@@ -9,16 +9,16 @@ package dialogs;
  *
  * @author ramssrez
  */
-public class ConfimarLimpieza extends javax.swing.JDialog {
+public class ConfimarGuardado extends javax.swing.JDialog {
 
     /**
      * Creates new form Confimar
      */
-    public ConfimarLimpieza(java.awt.Frame parent, boolean modal) {
+    public ConfimarGuardado(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
-        setTitle("Confirmación");
+        setTitle("¿Guardar?");
     }
 
     /**
@@ -41,7 +41,7 @@ public class ConfimarLimpieza extends javax.swing.JDialog {
         jPanel1.setPreferredSize(new java.awt.Dimension(452, 193));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setText("¿Estás seguro de limpiarlo?");
+        jLabel1.setText("¿Estás seguro de guardarlo?");
 
         btnAceptar.setBackground(new java.awt.Color(0, 153, 0));
         btnAceptar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -83,7 +83,7 @@ public class ConfimarLimpieza extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(48, 48, 48))
+                .addGap(44, 44, 44))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -99,7 +99,7 @@ public class ConfimarLimpieza extends javax.swing.JDialog {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jLabel3)))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -141,21 +141,23 @@ public class ConfimarLimpieza extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ConfimarLimpieza.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConfimarGuardado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ConfimarLimpieza.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConfimarGuardado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ConfimarLimpieza.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConfimarGuardado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ConfimarLimpieza.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConfimarGuardado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ConfimarLimpieza dialog = new ConfimarLimpieza(new javax.swing.JFrame(), true);
+                ConfimarGuardado dialog = new ConfimarGuardado(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

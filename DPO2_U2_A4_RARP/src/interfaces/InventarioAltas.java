@@ -1,7 +1,7 @@
 package interfaces;
 
-import dialogs.Limpieza;
-import dialogs.ConfimarLimpieza;
+import dialogs.ConfirmarLimpieza;
+import dialogs.ConfimarGuardado;
 import dialogs.ConfimarSalir;
 import javax.swing.table.DefaultTableModel;
 
@@ -373,12 +373,12 @@ public class InventarioAltas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        ConfimarLimpieza confirmar = new ConfimarLimpieza(this, true);
+        ConfimarGuardado confirmar = new ConfimarGuardado(this, true);
         confirmar.setVisible(true);
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnlimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlimpiarActionPerformed
-        Limpieza borrarCampos = new Limpieza(this, true);
+        ConfirmarLimpieza borrarCampos = new ConfirmarLimpieza(this, true);
         borrarCampos.setVisible(true);
     }//GEN-LAST:event_btnlimpiarActionPerformed
 

@@ -18,7 +18,7 @@ public class ConfirmarEliminar extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
-        this.setTitle("Eliminado");
+        this.setTitle("¿Eliminar?");
     }
 
     /**
