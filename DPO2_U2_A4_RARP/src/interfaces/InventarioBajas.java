@@ -408,18 +408,27 @@ public class InventarioBajas extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //Método que manda a llamar el Dialog de confirmar para salir del sistema
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        //Instancia del Dialog para confirmar la salida del sistema
         ConfimarSalir confimarSalir = new ConfimarSalir(this, true);
+        //Método que permite visualizar la ventana
         confimarSalir.setVisible(true);
     }//GEN-LAST:event_btnSalirActionPerformed
 
+    //Método que permite llamar al Dialog para eliminar un registro del sistema o base de datos
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        //Instancia del Dialog para confirmar borrar o eliminar el registro del sistema
         ConfirmarEliminar eliminar = new ConfirmarEliminar(this, true);
+        //Método que permite visualizar la ventana
         eliminar.setVisible(true);
     }//GEN-LAST:event_btnEliminarActionPerformed
 
+    //Método que permite llamar al Dialog para buscar un registro del sistema o base de datos
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        //Instancia del Dialog para confirmar la busqueda del registro en el sistema
         ConfimarBusqueda busqueda = new ConfimarBusqueda(this, true);
+        //Método que permite visualizar la ventana
         busqueda.setVisible(true);
     }//GEN-LAST:event_btnBuscarActionPerformed
 

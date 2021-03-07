@@ -400,19 +400,27 @@ public class InventarioAltas extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    //Método que manda a llamar el Dialog de confirmar para salir del sistema
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        //Instancia del Dialog para confirmar la salida del sistema
         ConfimarSalir confimarSalir = new ConfimarSalir(this, true);
+        //Método que permite visualizar la ventana
         confimarSalir.setVisible(true);
     }//GEN-LAST:event_btnSalirActionPerformed
 
+    //Método que permite guardar un registro o datos de un inventario
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        //Instancia del Dialog para confirmar el guardado de datos en el sistema
         ConfimarGuardado confirmar = new ConfimarGuardado(this, true);
+        //Método que permite visualizar la ventana
         confirmar.setVisible(true);
     }//GEN-LAST:event_btnGuardarActionPerformed
 
+    //Método que permite limpiar los campos de texto
     private void btnlimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlimpiarActionPerformed
+        //Instancia del Dialog para confirmar la limpieza de los campos de texto del módulo
         ConfirmarLimpieza limpiar = new ConfirmarLimpieza(this, true);
+        //Método que permite visualizar la ventana
         limpiar.setVisible(true);
     }//GEN-LAST:event_btnlimpiarActionPerformed
 
