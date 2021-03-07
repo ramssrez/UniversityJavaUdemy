@@ -3,6 +3,7 @@ package interfaces;
 import dialogs.ConfimarBusqueda;
 import dialogs.ConfimarSalir;
 import dialogs.ConfirmarEliminar;
+import main.Principal;
 
 /**
  *
@@ -92,6 +93,8 @@ public class EmpleadosBajas extends javax.swing.JFrame {
         menuInventario = new javax.swing.JMenu();
         menuIteAltaInsumo = new javax.swing.JMenuItem();
         menuIteBjaInsumo = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        menuItemPrincipal = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -579,7 +582,6 @@ public class EmpleadosBajas extends javax.swing.JFrame {
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
-        menuEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/empleo.png"))); // NOI18N
         menuEmpleado.setText("Empleado");
 
         menuAltaEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/altaEmp.png"))); // NOI18N
@@ -602,7 +604,6 @@ public class EmpleadosBajas extends javax.swing.JFrame {
 
         jMenuBar1.add(menuEmpleado);
 
-        menuInventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/inventarios.png"))); // NOI18N
         menuInventario.setText("Inventario");
 
         menuIteAltaInsumo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/InsumoBaja_1.png"))); // NOI18N
@@ -624,6 +625,19 @@ public class EmpleadosBajas extends javax.swing.JFrame {
         menuInventario.add(menuIteBjaInsumo);
 
         jMenuBar1.add(menuInventario);
+
+        jMenu2.setText("Principal");
+
+        menuItemPrincipal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/salir.png"))); // NOI18N
+        menuItemPrincipal.setText("Regresar Inicio");
+        menuItemPrincipal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemPrincipalActionPerformed(evt);
+            }
+        });
+        jMenu2.add(menuItemPrincipal);
+
+        jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
 
@@ -702,7 +716,7 @@ public class EmpleadosBajas extends javax.swing.JFrame {
         //Método que cierra la ventana para abrir otra
         dispose();
     }//GEN-LAST:event_menuIteAltaInsumoActionPerformed
-    
+
     //Método que permite abrir la ventana para dar de baja un Insumo
     private void menuIteBjaInsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuIteBjaInsumoActionPerformed
         //Instancia para la ventana de  alta de insumos
@@ -712,6 +726,16 @@ public class EmpleadosBajas extends javax.swing.JFrame {
         //Método que cierra la ventana para abrir otra
         dispose();
     }//GEN-LAST:event_menuIteBjaInsumoActionPerformed
+
+    //Método que permite regresar a la pagina principal
+    private void menuItemPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemPrincipalActionPerformed
+        //Instancia para la ventana Principal
+        Principal principal = new Principal();
+        //Método que permite visualizar la ventana
+        principal.setVisible(true);
+        //Método que cierra la ventana para abrir otra
+        dispose();
+    }//GEN-LAST:event_menuItemPrincipalActionPerformed
 
     /**
      * @param args the command line arguments
@@ -760,6 +784,7 @@ public class EmpleadosBajas extends javax.swing.JFrame {
     private javax.swing.JButton btnNuevaBusqueda;
     private javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel15;
@@ -791,6 +816,7 @@ public class EmpleadosBajas extends javax.swing.JFrame {
     private javax.swing.JMenu menuInventario;
     private javax.swing.JMenuItem menuIteAltaInsumo;
     private javax.swing.JMenuItem menuIteBjaInsumo;
+    private javax.swing.JMenuItem menuItemPrincipal;
     private javax.swing.JPanel paneldatos;
     private javax.swing.JPanel paneldatos2;
     private javax.swing.JTextField txtCurp;

@@ -3,6 +3,7 @@ package interfaces;
 import dialogs.ConfirmarLimpieza;
 import dialogs.ConfimarGuardado;
 import dialogs.ConfimarSalir;
+import main.Principal;
 
 /**
  *
@@ -33,6 +34,7 @@ public class EmpleadosAltas extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jPanel8 = new javax.swing.JPanel();
         paneldatos = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -81,8 +83,12 @@ public class EmpleadosAltas extends javax.swing.JFrame {
         menuInventario = new javax.swing.JMenu();
         menuIteAltaInsumo = new javax.swing.JMenuItem();
         menuIteBjaInsumo = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        menuItemPrincipal = new javax.swing.JMenuItem();
 
         jMenu1.setText("jMenu1");
+
+        jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -559,7 +565,6 @@ public class EmpleadosAltas extends javax.swing.JFrame {
                 .addContainerGap(32, Short.MAX_VALUE))
         );
 
-        menuEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/empleo.png"))); // NOI18N
         menuEmpleado.setText("Empleado");
 
         menuAltaEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/altaEmp.png"))); // NOI18N
@@ -582,7 +587,6 @@ public class EmpleadosAltas extends javax.swing.JFrame {
 
         jMenuBar1.add(menuEmpleado);
 
-        menuInventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/inventarios.png"))); // NOI18N
         menuInventario.setText("Inventario");
 
         menuIteAltaInsumo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/InsumoBaja_1.png"))); // NOI18N
@@ -604,6 +608,19 @@ public class EmpleadosAltas extends javax.swing.JFrame {
         menuInventario.add(menuIteBjaInsumo);
 
         jMenuBar1.add(menuInventario);
+
+        jMenu2.setText("Principal");
+
+        menuItemPrincipal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/salir.png"))); // NOI18N
+        menuItemPrincipal.setText("Regresar Inicio");
+        menuItemPrincipal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemPrincipalActionPerformed(evt);
+            }
+        });
+        jMenu2.add(menuItemPrincipal);
+
+        jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
 
@@ -685,6 +702,16 @@ public class EmpleadosAltas extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_menuIteBjaInsumoActionPerformed
 
+    //Método que permite regresar a la pagina principal
+    private void menuItemPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemPrincipalActionPerformed
+        //Instancia para la ventana Principal
+        Principal principal = new Principal();
+        //Método que permite visualizar la ventana
+        principal.setVisible(true);
+        //Método que cierra la ventana para abrir otra
+        dispose();
+    }//GEN-LAST:event_menuItemPrincipalActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -730,7 +757,9 @@ public class EmpleadosAltas extends javax.swing.JFrame {
     private javax.swing.JButton btnlimpiar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
@@ -761,6 +790,7 @@ public class EmpleadosAltas extends javax.swing.JFrame {
     private javax.swing.JMenu menuInventario;
     private javax.swing.JMenuItem menuIteAltaInsumo;
     private javax.swing.JMenuItem menuIteBjaInsumo;
+    private javax.swing.JMenuItem menuItemPrincipal;
     private javax.swing.JPanel paneldatos;
     private javax.swing.JPanel paneldatos2;
     private javax.swing.JTextField txtApellidoMaterno;

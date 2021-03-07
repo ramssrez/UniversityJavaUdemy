@@ -3,6 +3,7 @@ package interfaces;
 import dialogs.ConfimarBusqueda;
 import dialogs.ConfimarSalir;
 import dialogs.ConfirmarEliminar;
+import main.Principal;
 
 /**
  *
@@ -68,6 +69,8 @@ public class InventarioBajas extends javax.swing.JFrame {
         menuInventario = new javax.swing.JMenu();
         menuIteAltaInsumo = new javax.swing.JMenuItem();
         menuIteBjaInsumo = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        menuItemPrincipal = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -366,31 +369,62 @@ public class InventarioBajas extends javax.swing.JFrame {
                 .addContainerGap(33, Short.MAX_VALUE))
         );
 
-        menuEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/empleo.png"))); // NOI18N
         menuEmpleado.setText("Empleado");
 
         menuAltaEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/altaEmp.png"))); // NOI18N
         menuAltaEmpleado.setText("Alta Empleado");
+        menuAltaEmpleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuAltaEmpleadoActionPerformed(evt);
+            }
+        });
         menuEmpleado.add(menuAltaEmpleado);
 
         menuBajaEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/bajasEmpleado.png"))); // NOI18N
         menuBajaEmpleado.setText("Baja Empleado");
+        menuBajaEmpleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuBajaEmpleadoActionPerformed(evt);
+            }
+        });
         menuEmpleado.add(menuBajaEmpleado);
 
         jMenuBar1.add(menuEmpleado);
 
-        menuInventario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/inventarios.png"))); // NOI18N
         menuInventario.setText("Inventario");
 
         menuIteAltaInsumo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/InsumoBaja_1.png"))); // NOI18N
         menuIteAltaInsumo.setText("Alta Insumo");
+        menuIteAltaInsumo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuIteAltaInsumoActionPerformed(evt);
+            }
+        });
         menuInventario.add(menuIteAltaInsumo);
 
         menuIteBjaInsumo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/insumoAlta.png"))); // NOI18N
         menuIteBjaInsumo.setText("Baja Insumo");
+        menuIteBjaInsumo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuIteBjaInsumoActionPerformed(evt);
+            }
+        });
         menuInventario.add(menuIteBjaInsumo);
 
         jMenuBar1.add(menuInventario);
+
+        jMenu2.setText("Principal");
+
+        menuItemPrincipal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/salir.png"))); // NOI18N
+        menuItemPrincipal.setText("Regresar Inicio");
+        menuItemPrincipal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemPrincipalActionPerformed(evt);
+            }
+        });
+        jMenu2.add(menuItemPrincipal);
+
+        jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
 
@@ -431,6 +465,57 @@ public class InventarioBajas extends javax.swing.JFrame {
         //Método que permite visualizar la ventana
         busqueda.setVisible(true);
     }//GEN-LAST:event_btnBuscarActionPerformed
+
+    //Método que permite abrir la ventana para dar de alta un Empleado
+    private void menuAltaEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAltaEmpleadoActionPerformed
+        //Instancia para la ventana de alta de empleados
+        EmpleadosAltas altas = new EmpleadosAltas();
+        //Método que permite visualizar la ventana
+        altas.setVisible(true);
+        //Método que cierra la ventana para abrir otra
+        dispose();
+    }//GEN-LAST:event_menuAltaEmpleadoActionPerformed
+
+    //Método que permite abrir la ventana para dar de baja a un Empleado
+    private void menuBajaEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuBajaEmpleadoActionPerformed
+        //Instancia para la ventana de baja de empleados
+        EmpleadosBajas bajas = new EmpleadosBajas();
+        //Método que permite visualizar la ventana
+        bajas.setVisible(true);
+        //Método que cierra la ventana para abrir otra
+        dispose();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuBajaEmpleadoActionPerformed
+
+    //Método que permite abrir la ventana para dar de alta un insumo
+    private void menuIteAltaInsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuIteAltaInsumoActionPerformed
+        //Instancia para la ventana de  alta de insumos
+        InventarioAltas altas = new InventarioAltas();
+        //Método que permite visualizar la ventana
+        altas.setVisible(true);
+        //Método que cierra la ventana para abrir otra
+        dispose();
+    }//GEN-LAST:event_menuIteAltaInsumoActionPerformed
+
+    //Método que permite abrir la ventana para dar de baja un Insumo
+    private void menuIteBjaInsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuIteBjaInsumoActionPerformed
+        //Instancia para la ventana de  alta de insumos
+        InventarioBajas bajas = new InventarioBajas();
+        //Método que permite visualizar la ventana
+        bajas.setVisible(true);
+        //Método que cierra la ventana para abrir otra
+        dispose();
+    }//GEN-LAST:event_menuIteBjaInsumoActionPerformed
+
+    //Método que permite regresar a la pagina principal
+    private void menuItemPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemPrincipalActionPerformed
+        //Instancia para la ventana Principal
+        Principal principal = new Principal();
+        //Método que permite visualizar la ventana
+        principal.setVisible(true);
+        //Método que cierra la ventana para abrir otra
+        dispose();
+    }//GEN-LAST:event_menuItemPrincipalActionPerformed
 
     /**
      * @param args the command line arguments
@@ -476,6 +561,7 @@ public class InventarioBajas extends javax.swing.JFrame {
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -497,6 +583,7 @@ public class InventarioBajas extends javax.swing.JFrame {
     private javax.swing.JMenu menuInventario;
     private javax.swing.JMenuItem menuIteAltaInsumo;
     private javax.swing.JMenuItem menuIteBjaInsumo;
+    private javax.swing.JMenuItem menuItemPrincipal;
     private javax.swing.JPanel paneldatos;
     private javax.swing.JTextField txtArticulo;
     private javax.swing.JTextField txtCodigo;
