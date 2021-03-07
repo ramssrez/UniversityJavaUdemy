@@ -160,7 +160,7 @@ public class Principal extends javax.swing.JFrame {
         menuNomina.setText("Nómina");
 
         menuItemCalclarNomina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/calcular.png"))); // NOI18N
-        menuItemCalclarNomina.setText("Calcular Nómina");
+        menuItemCalclarNomina.setText("Cálcular Nómina");
         menuItemCalclarNomina.setToolTipText("");
         menuItemCalclarNomina.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -249,9 +249,9 @@ public class Principal extends javax.swing.JFrame {
 
     //Método que permite abrir la ventana de calculo de nomina
     private void menuItemCalclarNominaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCalclarNominaActionPerformed
-//        CalculoNomina nomina = new CalculoNomina();
-//        nomina.setVisible(true);
-//        dispose();
+        CalculoNomina nomina = new CalculoNomina();
+        nomina.setVisible(true);
+        dispose();
     }//GEN-LAST:event_menuItemCalclarNominaActionPerformed
 
     /**
