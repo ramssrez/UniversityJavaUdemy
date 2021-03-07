@@ -7,6 +7,7 @@ package main;
 
 import dialogs.ConfimarSalir;
 import interfaces.CalculoNomina;
+import interfaces.ConsultaInsumos;
 import interfaces.ConsultaPersonal;
 import interfaces.EmpleadosAltas;
 import interfaces.EmpleadosBajas;
@@ -185,6 +186,11 @@ public class Principal extends javax.swing.JFrame {
 
         menuItemConsultaInsumos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/inventarios.png"))); // NOI18N
         menuItemConsultaInsumos.setText("Consulta Insumos");
+        menuItemConsultaInsumos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemConsultaInsumosActionPerformed(evt);
+            }
+        });
         menuConsultas.add(menuItemConsultaInsumos);
 
         menuBarPrincipal.add(menuConsultas);
@@ -272,6 +278,16 @@ public class Principal extends javax.swing.JFrame {
         //Método que cierra la ventana para abrir otra
         dispose();
     }//GEN-LAST:event_menuItemConsultaPersonalActionPerformed
+
+    //Método que permite abrir la ventana de consulta de insumos
+    private void menuItemConsultaInsumosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemConsultaInsumosActionPerformed
+        //Instancia para la ventana de Consulta de insumos
+        ConsultaInsumos insumos = new ConsultaInsumos();
+        //Método que permite visualizar la ventana
+        insumos.setVisible(true);
+        //Método que cierra la ventana para abrir otra
+        dispose();
+    }//GEN-LAST:event_menuItemConsultaInsumosActionPerformed
 
     /**
      * @param args the command line arguments
