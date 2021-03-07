@@ -263,12 +263,14 @@ public class Principal extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_menuItemCalcluarNominaActionPerformed
 
-        //Método que permite abrir la ventana de consulta de personal
+    //Método que permite abrir la ventana de consulta de personal
     private void menuItemConsultaPersonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemConsultaPersonalActionPerformed
+        //Instancia para la ventana de Consulta de personal
         ConsultaPersonal cp = new ConsultaPersonal();
+        //Método que permite visualizar la ventana
         cp.setVisible(true);
+        //Método que cierra la ventana para abrir otra
         dispose();
-        // TODO add your handling code here:
     }//GEN-LAST:event_menuItemConsultaPersonalActionPerformed
 
     /**
