@@ -49,7 +49,7 @@ public class Principal extends javax.swing.JFrame {
         menuIteAltaInsumo = new javax.swing.JMenuItem();
         menuIteBjaInsumo = new javax.swing.JMenuItem();
         menuNomina = new javax.swing.JMenu();
-        menuItemCalclarNomina = new javax.swing.JMenuItem();
+        menuItemCalcluarNomina = new javax.swing.JMenuItem();
         menuConsultas = new javax.swing.JMenu();
         menuItemConsultaPersonal = new javax.swing.JMenuItem();
         menuItemConsultaInsumos = new javax.swing.JMenuItem();
@@ -159,15 +159,15 @@ public class Principal extends javax.swing.JFrame {
 
         menuNomina.setText("Nómina");
 
-        menuItemCalclarNomina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/calcular.png"))); // NOI18N
-        menuItemCalclarNomina.setText("Cálcular Nómina");
-        menuItemCalclarNomina.setToolTipText("");
-        menuItemCalclarNomina.addActionListener(new java.awt.event.ActionListener() {
+        menuItemCalcluarNomina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/calcular.png"))); // NOI18N
+        menuItemCalcluarNomina.setText("Cálcular Nómina");
+        menuItemCalcluarNomina.setToolTipText("");
+        menuItemCalcluarNomina.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemCalclarNominaActionPerformed(evt);
+                menuItemCalcluarNominaActionPerformed(evt);
             }
         });
-        menuNomina.add(menuItemCalclarNomina);
+        menuNomina.add(menuItemCalcluarNomina);
 
         menuBarPrincipal.add(menuNomina);
 
@@ -248,11 +248,14 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_menuIteBjaInsumoActionPerformed
 
     //Método que permite abrir la ventana de calculo de nomina
-    private void menuItemCalclarNominaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCalclarNominaActionPerformed
+    private void menuItemCalcluarNominaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCalcluarNominaActionPerformed
+        //Instancia para la ventana de  calculo de nómina
         CalculoNomina nomina = new CalculoNomina();
+        //Método que permite visualizar la ventana
         nomina.setVisible(true);
+        //Método que cierra la ventana para abrir otra
         dispose();
-    }//GEN-LAST:event_menuItemCalclarNominaActionPerformed
+    }//GEN-LAST:event_menuItemCalcluarNominaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -305,7 +308,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenu menuInventario;
     private javax.swing.JMenuItem menuIteAltaInsumo;
     private javax.swing.JMenuItem menuIteBjaInsumo;
-    private javax.swing.JMenuItem menuItemCalclarNomina;
+    private javax.swing.JMenuItem menuItemCalcluarNomina;
     private javax.swing.JMenuItem menuItemConsultaInsumos;
     private javax.swing.JMenuItem menuItemConsultaPersonal;
     private javax.swing.JMenu menuNomina;

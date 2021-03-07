@@ -67,7 +67,7 @@
             <Property name="text" type="java.lang.String" value="N&#xf3;mina"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="menuItemCalclarNomina">
+            <MenuItem class="javax.swing.JMenuItem" name="menuItemCalcluarNomina">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/imagenes/calcular.png"/>
@@ -76,7 +76,7 @@
                 <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemCalclarNominaActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemCalcluarNominaActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>

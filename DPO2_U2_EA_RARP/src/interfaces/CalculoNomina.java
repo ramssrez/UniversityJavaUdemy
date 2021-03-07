@@ -1,6 +1,7 @@
 package interfaces;
 
 import dialogs.ConfimarBusqueda;
+import dialogs.ConfimarCalculo;
 import dialogs.ConfirmarLimpieza;
 import dialogs.ConfimarGuardado;
 import dialogs.ConfimarSalir;
@@ -580,26 +581,26 @@ public class CalculoNomina extends javax.swing.JFrame {
         salir.setVisible(true);
     }//GEN-LAST:event_btnSalirActionPerformed
 
-    //Método que permite guardar un registro o datos de un empleado
+    //Método que permite un nuevo calculo de la nómina
     private void btnCalculoNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalculoNuevoActionPerformed
-        //Instancia del Dialog para confirmar el guardado de datos en el sistema
-        ConfimarGuardado confirmar = new ConfimarGuardado(this, true);
+        //Instancia del Dialog para confirmar el cálculo de la nomina 
+        ConfimarCalculo confirmar = new ConfimarCalculo(this, true);
         //Método que permite visualizar la ventana
         confirmar.setVisible(true);
     }//GEN-LAST:event_btnCalculoNuevoActionPerformed
 
-    //Método que permite limpiar los campos de texto
+    //Método que permite calcular la nómina de un empleado
     private void btnCalcularNominaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularNominaActionPerformed
-        //Instancia del Dialog para confirmar la limpieza de los campos de texto del módulo
-        ConfirmarLimpieza limpiar = new ConfirmarLimpieza(this, true);
+        //Instancia del Dialog para confirmar el cálculo de la nomina 
+        ConfimarCalculo confirmar = new ConfimarCalculo(this, true);
         //Método que permite visualizar la ventana
-        limpiar.setVisible(true);
+        confirmar.setVisible(true);
     }//GEN-LAST:event_btnCalcularNominaActionPerformed
 
     //Método que permite abrir la ventana para dar de alta un Empleado
     private void menuAltaEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAltaEmpleadoActionPerformed
         //Instancia para la ventana de alta de empleados
-        CalculoNomina altas = new CalculoNomina();
+        EmpleadosAltas altas = new EmpleadosAltas();
         //Método que permite visualizar la ventana
         altas.setVisible(true);
         //Método que cierra la ventana para abrir otra
