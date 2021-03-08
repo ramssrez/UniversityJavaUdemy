@@ -85,6 +85,11 @@ public class CalculoNomina extends javax.swing.JFrame {
         menuInventario = new javax.swing.JMenu();
         menuIteAltaInsumo = new javax.swing.JMenuItem();
         menuIteBjaInsumo = new javax.swing.JMenuItem();
+        menuNomina = new javax.swing.JMenu();
+        menuItemCalcluarNomina = new javax.swing.JMenuItem();
+        menuConsultas = new javax.swing.JMenu();
+        menuItemConsultaPersonal = new javax.swing.JMenuItem();
+        menuItemConsultaInsumos = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         menuItemPrincipal = new javax.swing.JMenuItem();
 
@@ -544,6 +549,42 @@ public class CalculoNomina extends javax.swing.JFrame {
 
         jMenuBar1.add(menuInventario);
 
+        menuNomina.setText("Nómina");
+
+        menuItemCalcluarNomina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/calcular.png"))); // NOI18N
+        menuItemCalcluarNomina.setText("Cálcular Nómina");
+        menuItemCalcluarNomina.setToolTipText("");
+        menuItemCalcluarNomina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemCalcluarNominaActionPerformed(evt);
+            }
+        });
+        menuNomina.add(menuItemCalcluarNomina);
+
+        jMenuBar1.add(menuNomina);
+
+        menuConsultas.setText("Consultas");
+
+        menuItemConsultaPersonal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/empleo.png"))); // NOI18N
+        menuItemConsultaPersonal.setText("Consulta Personal");
+        menuItemConsultaPersonal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemConsultaPersonalActionPerformed(evt);
+            }
+        });
+        menuConsultas.add(menuItemConsultaPersonal);
+
+        menuItemConsultaInsumos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/inventarios.png"))); // NOI18N
+        menuItemConsultaInsumos.setText("Consulta Insumos");
+        menuItemConsultaInsumos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemConsultaInsumosActionPerformed(evt);
+            }
+        });
+        menuConsultas.add(menuItemConsultaInsumos);
+
+        jMenuBar1.add(menuConsultas);
+
         jMenu2.setText("Principal");
 
         menuItemPrincipal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/salir.png"))); // NOI18N
@@ -655,6 +696,36 @@ public class CalculoNomina extends javax.swing.JFrame {
         busqueda.setVisible(true);
     }//GEN-LAST:event_btnBuscarActionPerformed
 
+    //Método que permite abrir la ventana de calculo de nomina
+    private void menuItemCalcluarNominaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCalcluarNominaActionPerformed
+        //Instancia para la ventana de  calculo de nómina
+        CalculoNomina nomina = new CalculoNomina();
+        //Método que permite visualizar la ventana
+        nomina.setVisible(true);
+        //Método que cierra la ventana para abrir otra
+        dispose();
+    }//GEN-LAST:event_menuItemCalcluarNominaActionPerformed
+
+    //Método que permite abrir la ventana de consulta de personal
+    private void menuItemConsultaPersonalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemConsultaPersonalActionPerformed
+        //Instancia para la ventana de Consulta de personal
+        ConsultaPersonal cp = new ConsultaPersonal();
+        //Método que permite visualizar la ventana
+        cp.setVisible(true);
+        //Método que cierra la ventana para abrir otra
+        dispose();
+    }//GEN-LAST:event_menuItemConsultaPersonalActionPerformed
+
+//Método que permite abrir la ventana de consulta de insumos
+    private void menuItemConsultaInsumosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemConsultaInsumosActionPerformed
+        //Instancia para la ventana de Consulta de insumos
+        ConsultaInsumos insumos = new ConsultaInsumos();
+        //Método que permite visualizar la ventana
+        insumos.setVisible(true);
+        //Método que cierra la ventana para abrir otra
+        dispose();
+    }//GEN-LAST:event_menuItemConsultaInsumosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -727,11 +798,16 @@ public class CalculoNomina extends javax.swing.JFrame {
     private javax.swing.JLabel jlesucursal;
     private javax.swing.JMenuItem menuAltaEmpleado;
     private javax.swing.JMenuItem menuBajaEmpleado;
+    private javax.swing.JMenu menuConsultas;
     private javax.swing.JMenu menuEmpleado;
     private javax.swing.JMenu menuInventario;
     private javax.swing.JMenuItem menuIteAltaInsumo;
     private javax.swing.JMenuItem menuIteBjaInsumo;
+    private javax.swing.JMenuItem menuItemCalcluarNomina;
+    private javax.swing.JMenuItem menuItemConsultaInsumos;
+    private javax.swing.JMenuItem menuItemConsultaPersonal;
     private javax.swing.JMenuItem menuItemPrincipal;
+    private javax.swing.JMenu menuNomina;
     private javax.swing.JPanel paneldatos;
     private javax.swing.JPanel paneldatos1;
     private javax.swing.JTextField txtApellidoMaterno;
