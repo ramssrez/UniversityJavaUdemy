@@ -17,7 +17,9 @@ public class PersonaDAO {
     private static final String SQL_INSERT = "INSERT INTO persona(nombre, apellido, email, telefono) VALUES(?,?,?,?)";
     //Definicicion de la sentencia SQL para actualizar un registro
     private static final String SQL_UPDATE = "UPDATE persona SET nombre = ?, apellido = ?, email = ?, telefono = ? WHERE idpersona = ?";
-
+    //Definición de la sentencia SQL para eliminar un regitro
+    private static final String SQL_DELETE = "DELETE FROM persona WHERE idpersona = ?";
+    
     //Creación del metodo que selecciona los objetos de tipo personaa
     public List<Persona> seleccionar() {
         //Declaración de la variable conn de tipo Connection
@@ -101,6 +103,28 @@ public class PersonaDAO {
             stmt.setString(3, persona.getEmail());
             stmt.setString(4, persona.getTelefono());
             stmt.setInt(5, persona.getIdPersona());
+            registros = stmt.executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            try {
+                close(stmt);
+                close(conn);
+            } catch (SQLException ex) {
+                ex.printStackTrace(System.out);
+            }
+        }
+        return registros;
+    }
+    
+     public int eliminar(Persona persona) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        int registros = 0;
+        try {
+            conn = Conexion.getConnection();
+            stmt = conn.prepareStatement(SQL_DELETE);
+            stmt.setInt(1, persona.getIdPersona());
             registros = stmt.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
