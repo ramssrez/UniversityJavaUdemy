@@ -15,9 +15,9 @@ public class UsuarioDAO {
     //Definir la sentecia SQL para poder ingresar a la base de datos
     private static final String SQL_SELECT = "SELECT idusuario, username, password FROM usuario";
     //Definicion de sentecia SQL para insertar un registro a la columna
-    private static final String SQL_INSERT = "INSERT INTO persona(nombre, apellido, email, telefono) VALUES(?,?,?,?)";
+    private static final String SQL_INSERT = "INSERT INTO usuario(username, password) VALUES(?,?)";
     //Definicicion de la sentencia SQL para actualizar un registro
-    private static final String SQL_UPDATE = "UPDATE persona SET nombre = ?, apellido = ?, email = ?, telefono = ? WHERE idpersona = ?";
+    private static final String SQL_UPDATE = "UPDATE usuario SET username = ?, password = ? WHERE idusuario = ?";
     //Definición de la sentencia SQL para eliminar un regitro
     private static final String SQL_DELETE = "DELETE FROM persona WHERE idpersona = ?";
     
@@ -65,17 +65,15 @@ public class UsuarioDAO {
         return usuarios;
     }
 
-    public int insertar(Persona persona) {
+    public int insertar(Usuario usuario) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int registros = 0;
         try {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_INSERT);
-            stmt.setString(1, persona.getNombre());
-            stmt.setString(2, persona.getApellido());
-            stmt.setString(3, persona.getEmail());
-            stmt.setString(4, persona.getTelefono());
+            stmt.setString(1, usuario.getUsuario());
+            stmt.setString(2, usuario.getPassword());
             registros = stmt.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
