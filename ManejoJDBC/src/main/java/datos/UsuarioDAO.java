@@ -2,6 +2,7 @@ package datos;
 
 import static datos.Conexion.*;
 import domain.Persona;
+import domain.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,7 +13,7 @@ import java.util.List;
 public class UsuarioDAO {
 
     //Definir la sentecia SQL para poder ingresar a la base de datos
-    private static final String SQL_SELECT = "SELECT idPersona, nombre,apellido, email, telefono FROM persona";
+    private static final String SQL_SELECT = "SELECT idusuario, username, password FROM usuario";
     //Definicion de sentecia SQL para insertar un registro a la columna
     private static final String SQL_INSERT = "INSERT INTO persona(nombre, apellido, email, telefono) VALUES(?,?,?,?)";
     //Definicicion de la sentencia SQL para actualizar un registro
@@ -21,7 +22,7 @@ public class UsuarioDAO {
     private static final String SQL_DELETE = "DELETE FROM persona WHERE idpersona = ?";
     
     //Creación del metodo que selecciona los objetos de tipo personaa
-    public List<Persona> seleccionar() {
+    public List<Usuario> seleccionar() {
         //Declaración de la variable conn de tipo Connection
         Connection conn = null;
         //Declaraión de la variable statmente de tipo PreparedStatment
@@ -29,9 +30,9 @@ public class UsuarioDAO {
         //Declaración de la variable resultSet de tipo ResultSet
         ResultSet resultSet = null;
         //Declaración de objeto de tipo persona
-        Persona persona = null;
+        Usuario usuario = null;
         //Declaración de las lista de tipo personas
-        List<Persona> personas = new ArrayList<>();
+        List<Usuario> usuarios = new ArrayList<>();
 
         //Bloque try catch para recuperar los datos de la base de datos
         try {
@@ -42,13 +43,11 @@ public class UsuarioDAO {
             //Sentencia que comienza con la conexion con la base de datos
             resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                int idPersona = resultSet.getInt("idpersona");
-                String nombre = resultSet.getString("nombre");
-                String apellido = resultSet.getString("apellido");
-                String email = resultSet.getString("email");
-                String telefono = resultSet.getString("telefono");
-                persona = new Persona(idPersona, nombre, apellido, email, telefono);
-                personas.add(persona);
+                int idusuario = resultSet.getInt("idusuario");
+                String username = resultSet.getString("username");
+                String password = resultSet.getString("password");
+                usuario = new Usuario(idusuario,username,password);
+                usuarios.add(usuario);
             }
         } catch (SQLException ex) {
 
@@ -63,7 +62,7 @@ public class UsuarioDAO {
 
         }
 
-        return personas;
+        return usuarios;
     }
 
     public int insertar(Persona persona) {
