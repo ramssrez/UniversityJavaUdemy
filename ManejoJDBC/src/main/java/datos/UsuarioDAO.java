@@ -19,8 +19,8 @@ public class UsuarioDAO {
     //Definicicion de la sentencia SQL para actualizar un registro
     private static final String SQL_UPDATE = "UPDATE usuario SET username = ?, password = ? WHERE idusuario = ?";
     //Definición de la sentencia SQL para eliminar un regitro
-    private static final String SQL_DELETE = "DELETE FROM persona WHERE idpersona = ?";
-    
+    private static final String SQL_DELETE = "DELETE FROM usuario WHERE idusuario = ?";
+
     //Creación del metodo que selecciona los objetos de tipo personaa
     public List<Usuario> seleccionar() {
         //Declaración de la variable conn de tipo Connection
@@ -46,7 +46,7 @@ public class UsuarioDAO {
                 int idusuario = resultSet.getInt("idusuario");
                 String username = resultSet.getString("username");
                 String password = resultSet.getString("password");
-                usuario = new Usuario(idusuario,username,password);
+                usuario = new Usuario(idusuario, username, password);
                 usuarios.add(usuario);
             }
         } catch (SQLException ex) {
@@ -88,18 +88,16 @@ public class UsuarioDAO {
         return registros;
     }
 
-    public int actualizar(Persona persona) {
+    public int actualizar(Usuario usuario) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int registros = 0;
         try {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_UPDATE);
-            stmt.setString(1, persona.getNombre());
-            stmt.setString(2, persona.getApellido());
-            stmt.setString(3, persona.getEmail());
-            stmt.setString(4, persona.getTelefono());
-            stmt.setInt(5, persona.getIdPersona());
+            stmt.setString(1, usuario.getUsuario());
+            stmt.setString(2, usuario.getPassword());
+            stmt.setInt(3, usuario.getIdusuario());
             registros = stmt.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
@@ -113,15 +111,15 @@ public class UsuarioDAO {
         }
         return registros;
     }
-    
-     public int eliminar(Persona persona) {
+
+    public int eliminar(Usuario usuario) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int registros = 0;
         try {
             conn = Conexion.getConnection();
             stmt = conn.prepareStatement(SQL_DELETE);
-            stmt.setInt(1, persona.getIdPersona());
+            stmt.setInt(1, usuario.getIdusuario());
             registros = stmt.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);

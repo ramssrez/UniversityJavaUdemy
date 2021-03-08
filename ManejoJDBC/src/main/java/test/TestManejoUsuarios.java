@@ -10,9 +10,16 @@ public class TestManejoUsuarios {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         
         //Insertar un nuevo registro a la tabla
-        Usuario usuarioNuevo = new Usuario("raul.lopez", "698");
-        usuarioDAO.insertar(usuarioNuevo);
+        //Usuario usuarioNuevo = new Usuario("raul.lopez", "698");
+        //usuarioDAO.insertar(usuarioNuevo);
         
+        //Actualizar un registro
+        //Usuario usuarioActualizar = new Usuario(4, "snadra.sanchez", "5862");
+        //usuarioDAO.actualizar(usuarioActualizar);
+        
+        //Eliminar un registro de la tabla
+        Usuario usuarioEliminar = new Usuario(5);
+        usuarioDAO.eliminar(usuarioEliminar);
         
         List<Usuario> usuarios = usuarioDAO.seleccionar();
         imprimir(usuarios);       
