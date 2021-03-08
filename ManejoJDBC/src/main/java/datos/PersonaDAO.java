@@ -15,6 +15,8 @@ public class PersonaDAO {
     private static final String SQL_SELECT = "SELECT idPersona, nombre,apellido, email, telefono FROM persona";
     //Definicion de sentecia SQL para insertar un registro a la columna
     private static final String SQL_INSERT = "INSERT INTO persona(nombre, apellido, email, telefono) VALUES(?,?,?,?)";
+    //Definicicion de la sentencia SQL para actualizar un registro
+    private static final String SQL_UPDATE = "UPDATE persona SET nombre = ?, apellido = ?, email = ?, telefono = ? WHERE idpersona = ?";
 
     //Creación del metodo que selecciona los objetos de tipo personaa
     public List<Persona> seleccionar() {
@@ -87,4 +89,29 @@ public class PersonaDAO {
         return registros;
     }
 
+    public int actualizar(Persona persona) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        int registros = 0;
+        try {
+            conn = Conexion.getConnection();
+            stmt = conn.prepareStatement(SQL_UPDATE);
+            stmt.setString(1, persona.getNombre());
+            stmt.setString(2, persona.getApellido());
+            stmt.setString(3, persona.getEmail());
+            stmt.setString(4, persona.getTelefono());
+            stmt.setInt(5, persona.getIdPersona());
+            registros = stmt.executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            try {
+                close(stmt);
+                close(conn);
+            } catch (SQLException ex) {
+                ex.printStackTrace(System.out);
+            }
+        }
+        return registros;
+    }
 }
