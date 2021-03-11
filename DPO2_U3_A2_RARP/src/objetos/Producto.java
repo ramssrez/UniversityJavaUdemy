@@ -26,14 +26,15 @@ public class Producto {
         this.marcaProducto = marcaProducto;
     }
 
-    public Producto(int codigoProducto, String nombreProducto, String insumoProducto, String sucursalProducto, String marcaProducto) {
+    public Producto(int codigoProducto, String nombreProducto, String insumoProducto, String sucursalProducto, int existenciaProducto, String marcaProducto) {
         this.codigoProducto = codigoProducto;
         this.nombreProducto = nombreProducto;
         this.insumoProducto = insumoProducto;
         this.sucursalProducto = sucursalProducto;
+        this.existenciaProducto = existenciaProducto;
         this.marcaProducto = marcaProducto;
     }
-
+    
     public int getIdProducto() {
         return idProducto;
     }

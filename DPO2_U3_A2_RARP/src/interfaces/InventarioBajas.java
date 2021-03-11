@@ -503,7 +503,7 @@ public class InventarioBajas extends javax.swing.JFrame {
         ProductoDAO productodao = new ProductoDAO();
         try{
         Producto producto = productodao.seleccionar(txtCodigo.getText(), txtSucursal.getText());
-        //txtArticulo.setText(producto.getNombreProducto());
+        txtArticulo.setText(producto.getNombreProducto());
         txtMarca.setText(producto.getMarcaProducto());
         txtExistencia.setText(String.valueOf(producto.getExistenciaProducto()));
         txtInsumo.setText(producto.getInsumoProducto());

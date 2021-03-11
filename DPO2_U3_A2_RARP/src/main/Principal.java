@@ -223,7 +223,7 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(119, 119, 119)
                 .addComponent(btnproductos)
-                .addGap(159, 159, 159)
+                .addGap(18, 18, 18)
                 .addComponent(btntrabajador)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );

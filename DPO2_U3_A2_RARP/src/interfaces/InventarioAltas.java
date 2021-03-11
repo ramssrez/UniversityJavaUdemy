@@ -3,10 +3,13 @@
  */
 package interfaces;
 
+import database.ProductoDAO;
 import dialogs.ConfirmarLimpieza;
 import dialogs.ConfimarGuardado;
 import dialogs.ConfimarSalir;
+import javax.swing.JOptionPane;
 import main.Principal;
+import objetos.Producto;
 
 public class InventarioAltas extends javax.swing.JFrame {
 
@@ -481,6 +484,25 @@ public class InventarioAltas extends javax.swing.JFrame {
 
     //Método que permite guardar un registro o datos de un inventario
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        ProductoDAO productoDAO = new ProductoDAO();
+        int codigo = Integer.parseInt(txtCodigo.getText());
+        String nombre = txtArticulo.getText();
+        String insumo = txtinsumo.getText();
+        String sucursal= txtSucursal.getText();
+        int existencia = Integer.parseInt(txtExistencia.getText());
+        String marca =txtMarca.getText();
+        
+        Producto producto = new Producto(codigo, nombre, insumo, sucursal, existencia, marca);
+        int entero = productoDAO.insertar(producto);
+        if(entero>0){
+            JOptionPane.showMessageDialog(null, "Se ha registrasdo un producto");
+        }else{
+            JOptionPane.showMessageDialog(null, "No se ha guardado el registro");
+           
+        }
+
+
+
         //Instancia del Dialog para confirmar el guardado de datos en el sistema
         ConfimarGuardado confirmar = new ConfimarGuardado(this, true);
         //Método que permite visualizar la ventana
