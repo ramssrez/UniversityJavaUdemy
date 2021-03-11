@@ -5,6 +5,7 @@
  */
 package main;
 
+import database.ConexionDB;
 import dialogs.ConfimarSalir;
 import interfaces.CalculoNomina;
 import interfaces.ConsultaInsumos;
@@ -13,6 +14,9 @@ import interfaces.EmpleadosAltas;
 import interfaces.EmpleadosBajas;
 import interfaces.InventarioAltas;
 import interfaces.InventarioBajas;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 /**
  *
@@ -43,6 +47,8 @@ public class Principal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         btnSalir = new javax.swing.JButton();
+        btnproductos = new javax.swing.JButton();
+        btntrabajador = new javax.swing.JButton();
         menuBarPrincipal = new javax.swing.JMenuBar();
         menuEmpleado = new javax.swing.JMenu();
         menuAltaEmpleado = new javax.swing.JMenuItem();
@@ -99,7 +105,7 @@ public class Principal extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(152, 152, 152)
                         .addComponent(jLabel2)))
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,8 +118,22 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addGap(29, 29, 29)
                 .addComponent(btnSalir)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
+
+        btnproductos.setText("Productos");
+        btnproductos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnproductosActionPerformed(evt);
+            }
+        });
+
+        btntrabajador.setText("Trabajadores");
+        btntrabajador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btntrabajadorActionPerformed(evt);
+            }
+        });
 
         menuEmpleado.setText("Empleado");
 
@@ -201,11 +221,25 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 93, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(119, 119, 119)
+                .addComponent(btnproductos)
+                .addGap(159, 159, 159)
+                .addComponent(btntrabajador)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnproductos)
+                    .addComponent(btntrabajador))
+                .addGap(0, 82, Short.MAX_VALUE))
         );
 
         pack();
@@ -289,6 +323,60 @@ public class Principal extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_menuItemConsultaInsumosActionPerformed
 
+    private void btnproductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnproductosActionPerformed
+        Connection conn = null;
+        try {
+
+            //Class.forName("com.mysql.jdbc.Driver");
+            conn = ConexionDB.getConnection();
+            PreparedStatement ps;
+            ResultSet res;
+            ps = conn.prepareStatement("SELECT * FROM productos");
+            res = ps.executeQuery();
+            while (res.next()) {
+                System.out.println("idProducto: " + res.getInt("idProducto"));
+                System.out.println("Codigo: " + res.getString("CodigoProducto"));
+                System.out.println("Nombre: " + res.getString("NombreProducto"));
+                System.out.println("Insumo: " + res.getString("InsumoProducto"));
+                System.out.println("Sucursal: " + res.getString("SucursalProducto"));
+                System.out.println("Marca: " + res.getString("MarcaProducto"));
+                System.out.println("");
+            }
+
+            ConexionDB.close(conn);
+
+        } catch (Exception ex) {
+            System.out.println("expeción boton prueba" + ex.getMessage());
+        }
+    }//GEN-LAST:event_btnproductosActionPerformed
+
+    private void btntrabajadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btntrabajadorActionPerformed
+         Connection conn = null;
+        try {
+            //Class.forName("com.mysql.jdbc.Driver");
+            conn = ConexionDB.getConnection();
+            PreparedStatement ps;
+            ResultSet res;
+            ps = conn.prepareStatement("SELECT * FROM empleados");
+            res = ps.executeQuery();
+            while (res.next()) {
+                System.out.println("idEmpleado: " + res.getString("idEmpleado"));
+                System.out.println("Numero empleado: " + res.getString("NumEmpleado"));
+                System.out.println("Nombre: " + res.getString("NombreEmpleado"));
+                System.out.println("Insumo: " + res.getString("ApellidosEmpleado"));
+                System.out.println("Sucursal: " + res.getString("FecNacEmpleado"));
+                System.out.println("Marca: " + res.getString("CURPEmpleado"));
+                System.out.println("");
+            }
+
+            ConexionDB.close(conn);
+
+        } catch (Exception ex) {
+            System.out.println("expeción boton trabajador" + ex.getMessage());
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btntrabajadorActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -328,6 +416,8 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSalir;
+    private javax.swing.JButton btnproductos;
+    private javax.swing.JButton btntrabajador;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
