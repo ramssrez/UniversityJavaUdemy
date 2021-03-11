@@ -1,7 +1,6 @@
 /*
  *Código elaborado por: Raúl Ramírez Pérez
  */
-
 package main;
 
 import database.ConexionDB;
@@ -346,17 +345,20 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnproductosActionPerformed
 
     private void btntrabajadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btntrabajadorActionPerformed
-         Connection conn = null;
+        //ESTE METODO PUEDE UTILZARSE PARA PODER OBTENER EL SOLO UN REGISTRO
+        Connection conn = null;
         try {
             //Class.forName("com.mysql.jdbc.Driver");
             conn = ConexionDB.getConnection();
             PreparedStatement ps;
             ResultSet res;
-            ps = conn.prepareStatement("SELECT * FROM empleados");
+            String sql = "SELECT idEmpleado, NumEmpleado, nombreEmpleado, ApellidosEmpleado, FecNacEmpleado, CURPEmpleado, RFCEmpleado, SueldoEmpleado, PuestoEmpleado, FecIngresoEmpleado FROM empleados where NumEmpleado = 24";
+            //ps = conn.prepareStatement("SELECT * FROM empleados");
+            ps = conn.prepareStatement(sql);
             res = ps.executeQuery();
             System.out.println("res " + res.next());
-            while (res.next()) {
-                System.out.println("idEmpleado: " + res.getString("idEmpleado"));
+            //ESTO ES PARA OBTENER EL REGISTRO DE UNA SOLO EMPLEADO
+            System.out.println("idEmpleado: " + res.getString("idEmpleado"));
                 System.out.println("Numero empleado: " + res.getString("NumEmpleado"));
                 System.out.println("Nombre: " + res.getString("NombreEmpleado"));
                 System.out.println("Apellidos: " + res.getString("ApellidosEmpleado"));
@@ -367,7 +369,20 @@ public class Principal extends javax.swing.JFrame {
                  System.out.println("Puesto Empleado: " + res.getString("PuestoEmpleado"));
                 System.out.println("FEcha ingresoEmpleado: " + res.getString("FecIngresoEmpleado"));
                 System.out.println("");
-            }
+                //ESTO ES PARA OBTENER TODA LA LISTA DE LOS REGISTROS
+//            while (res.next()) {
+//                System.out.println("idEmpleado: " + res.getString("idEmpleado"));
+//                System.out.println("Numero empleado: " + res.getString("NumEmpleado"));
+//                System.out.println("Nombre: " + res.getString("NombreEmpleado"));
+//                System.out.println("Apellidos: " + res.getString("ApellidosEmpleado"));
+//                System.out.println("Fecha NacimienEmpleado: " + res.getString("FecNacEmpleado"));
+//                System.out.println("CURPEmpleado: " + res.getString("CURPEmpleado"));
+//                 System.out.println("RFC NacimienEmpleado: " + res.getString("RFCEmpleado"));
+//                System.out.println("Sueldo Empleado: " + res.getString("SueldoEmpleado"));
+//                 System.out.println("Puesto Empleado: " + res.getString("PuestoEmpleado"));
+//                System.out.println("FEcha ingresoEmpleado: " + res.getString("FecIngresoEmpleado"));
+//                System.out.println("");
+//            }
 
             ConexionDB.close(conn);
 
