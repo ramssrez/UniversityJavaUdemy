@@ -125,6 +125,11 @@ public class Empleado {
     public void setFechaIngresoEmpleado(Date FechaIngresoEmpleado) {
         this.FechaIngresoEmpleado = FechaIngresoEmpleado;
     }
+
+    @Override
+    public String toString() {
+        return "Empleado{" + "idEmpleado=" + idEmpleado + ", numEmpleado=" + numEmpleado + ", nombreEmpleado=" + nombreEmpleado + ", apellidosEmpleado=" + apellidosEmpleado + ", fechaNacimientoEmpleado=" + fechaNacimientoEmpleado + ", curpEmpleado=" + curpEmpleado + ", rfcEmpleado=" + rfcEmpleado + ", sueldoEmpleado=" + sueldoEmpleado + ", puestoEmpleado=" + puestoEmpleado + ", FechaIngresoEmpleado=" + FechaIngresoEmpleado + '}';
+    }
     
     
 }

@@ -5,7 +5,6 @@ package database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -28,4 +27,16 @@ public class ConexionDB {
     public static void close(Connection connection) throws SQLException {
         connection.close();
     }
+
+    //método que cierra la conexión con la base de datos con un ResultSet como entreda
+    public static void close(ResultSet resultSet) throws SQLException {
+        //Método que permite el cierre la conexión
+        resultSet.close();
+    }
+
+    //Método  que permite el cierra con la baae de datos con un tipo de variable Statmnt
+    public static void close(Statement statement) throws SQLException {
+        statement.close();
+    }
+
 }
