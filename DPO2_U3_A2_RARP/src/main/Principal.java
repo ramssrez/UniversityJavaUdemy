@@ -1,8 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ *Código elaborado por: Raúl Ramírez Pérez
  */
+
 package main;
 
 import database.ConexionDB;
@@ -18,10 +17,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-/**
- *
- * @author ramssrez
- */
 public class Principal extends javax.swing.JFrame {
 
     /**
@@ -359,13 +354,18 @@ public class Principal extends javax.swing.JFrame {
             ResultSet res;
             ps = conn.prepareStatement("SELECT * FROM empleados");
             res = ps.executeQuery();
+            System.out.println("res " + res.next());
             while (res.next()) {
                 System.out.println("idEmpleado: " + res.getString("idEmpleado"));
                 System.out.println("Numero empleado: " + res.getString("NumEmpleado"));
                 System.out.println("Nombre: " + res.getString("NombreEmpleado"));
-                System.out.println("Insumo: " + res.getString("ApellidosEmpleado"));
-                System.out.println("Sucursal: " + res.getString("FecNacEmpleado"));
-                System.out.println("Marca: " + res.getString("CURPEmpleado"));
+                System.out.println("Apellidos: " + res.getString("ApellidosEmpleado"));
+                System.out.println("Fecha NacimienEmpleado: " + res.getString("FecNacEmpleado"));
+                System.out.println("CURPEmpleado: " + res.getString("CURPEmpleado"));
+                 System.out.println("RFC NacimienEmpleado: " + res.getString("RFCEmpleado"));
+                System.out.println("Sueldo Empleado: " + res.getString("SueldoEmpleado"));
+                 System.out.println("Puesto Empleado: " + res.getString("PuestoEmpleado"));
+                System.out.println("FEcha ingresoEmpleado: " + res.getString("FecIngresoEmpleado"));
                 System.out.println("");
             }
 

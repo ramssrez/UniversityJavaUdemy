@@ -1,3 +1,6 @@
+/*
+ *Código elaborado por: Raúl Ramírez Pérez
+ */
 package database;
 
 import java.sql.Connection;
@@ -7,10 +10,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-/**
- *
- * @author ramssrez
- */
 public class ConexionDB {
 
     //Variable URL que contienen la dirección de donde se tiene que conectar la base de datos

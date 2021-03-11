@@ -1,3 +1,6 @@
+/*
+ *Código elaborado por: Raúl Ramírez Pérez
+ */
 package interfaces;
 
 import dialogs.ConfirmarLimpieza;
@@ -5,15 +8,8 @@ import dialogs.ConfimarGuardado;
 import dialogs.ConfimarSalir;
 import main.Principal;
 
-/**
- *
- * @author ramssrez
- */
 public class InventarioAltas extends javax.swing.JFrame {
 
-    /**
-     * Creates new form InventarioAltas
-     */
     public InventarioAltas() {
         initComponents();
         //Asignación de titulo a la ventana

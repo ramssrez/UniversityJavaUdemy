@@ -1,3 +1,6 @@
+/*
+ *Código elaborado por: Raúl Ramírez Pérez
+ */
 package interfaces;
 
 import dialogs.ConfimarBusqueda;
@@ -7,15 +10,8 @@ import dialogs.ConfimarGuardado;
 import dialogs.ConfimarSalir;
 import main.Principal;
 
-/**
- *
- * @author ramssrez
- */
 public class CalculoNomina extends javax.swing.JFrame {
 
-    /**
-     * Creates new form InventarioAltas
-     */
     public CalculoNomina() {
         initComponents();
         //Asignación de titulo a la ventana

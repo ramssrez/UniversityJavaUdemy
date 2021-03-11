@@ -1,18 +1,14 @@
+/*
+ *Código elaborado por: Raúl Ramírez Pérez
+ */
 package interfaces;
 
 import dialogs.ConfimarBusqueda;
 import dialogs.ConfimarSalir;
 import main.Principal;
 
-/**
- *
- * @author ramssrez
- */
 public class ConsultaPersonal extends javax.swing.JFrame {
 
-    /**
-     * Creates new form InventarioAltas
-     */
     public ConsultaPersonal() {
         initComponents();
         //Asignación de titulo a la ventana

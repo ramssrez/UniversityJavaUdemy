@@ -1,3 +1,6 @@
+/*
+ *Código elaborado por: Raúl Ramírez Pérez
+ */
 package interfaces;
 
 import dialogs.ConfimarBusqueda;
@@ -5,15 +8,8 @@ import dialogs.ConfimarSalir;
 import dialogs.ConfirmarEliminar;
 import main.Principal;
 
-/**
- *
- * @author ramssrez
- */
 public class InventarioBajas extends javax.swing.JFrame {
 
-    /**
-     * Creates new form InventarioAltas
-     */
     public InventarioBajas() {
         initComponents();
         //Asignación de titulo a la ventana
