@@ -13,9 +13,10 @@ public class ProductoDAO {
 
     //Declaración de la sentencia a realizar para seleccionar cada uno de los campos de un producto
     private static final String SQL_SELECT = "SELECT idProducto, CodigoProducto, NombreProducto, InsumoProducto, SucursalProducto, ExistenciaProducto, MarcaProducto FROM productos WHERE CodigoProducto = ? AND SucursalProducto = ?";
-
+    //Declaración de la sentencia a realizar para insertar un registro a  la base de datos
     private static final String SQL_INSERT = "INSERT INTO productos(CodigoProducto, NombreProducto, InsumoProducto, SucursalProducto, ExistenciaProducto, MarcaProducto) VALUES(?,?,?,?,?,?)";
 
+    //Método que permite ingresar un registro a la base de datos con parametros de entrada un objeto de tipo Producto
     public int insertar(Producto producto) {
         //Declaración de las variables necesrias para poder realizar la conexion a la base de datos.
         //Declaración del objeto del canal de conexión
@@ -30,16 +31,16 @@ public class ProductoDAO {
         try {
             //Declaración del canal de coneción
             conn = ConexionDB.getConnection();
-            //Envio de sentencias SQL para recuperar la información necesaria
+            //Envio de sentencias SQL para insertar datos a la base de datos
             preparedStatement = conn.prepareStatement(SQL_INSERT);
-            //Envio de los parametros como el condigo del producto y el de la sucursal
+            //Envio de los parametros que se han seleccionado para poder realizar la insersión de datos
             preparedStatement.setString(1, String.valueOf(producto.getCodigoProducto()));
             preparedStatement.setString(2, producto.getNombreProducto());
             preparedStatement.setString(3, producto.getInsumoProducto());
             preparedStatement.setString(4, producto.getSucursalProducto());
             preparedStatement.setString(5, String.valueOf(producto.getExistenciaProducto()));
             preparedStatement.setString(6, producto.getMarcaProducto());
-            //Sentencia para que se haga la consulta
+            //Sentencia para que se realice el alza de los datos
             registros = preparedStatement.executeUpdate();
         } catch (SQLException ex) {
             System.out.println("Error: " + ex.getMessage());
@@ -51,6 +52,7 @@ public class ProductoDAO {
                 //Cierre del canal de conexión
                 ConexionDB.close(conn);
             } catch (SQLException ex) {
+                System.out.println("Error: " + ex.getMessage());
                 ex.printStackTrace(System.out);
             }
         }
