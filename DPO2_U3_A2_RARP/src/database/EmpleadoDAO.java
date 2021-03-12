@@ -9,11 +9,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 import objetos.Empleado;
-import objetos.Producto;
 
 public class EmpleadoDAO {
 
-    //Declaración de la sentencia a realizar para seleccionar cada uno de los campos de un producto
+    //Declaración de la sentencia a realizar para seleccionar cada uno de los campos de un empleado
     private static final String SQL_SELECT = "SELECT idEmpleado, NumEmpleado, nombreEmpleado, ApellidosEmpleado, FecNacEmpleado, CURPEmpleado, RFCEmpleado, SueldoEmpleado, PuestoEmpleado, FecIngresoEmpleado FROM empleados WHERE NumEmpleado = ?";
     //Declaración de la sentencia a realizar para insertar un registro a  la base de datos
     //private static final String SQL_INSERT = "INSERT INTO productos(CodigoProducto, NombreProducto, InsumoProducto, SucursalProducto, ExistenciaProducto, MarcaProducto) VALUES(?,?,?,?,?,?)";
@@ -70,16 +69,6 @@ public class EmpleadoDAO {
                 Date ingresoEmpleado = resultSet.getDate("FecIngresoEmpleado");
                 //Creación del objeto empleado;
                 empleado = new Empleado(idEmpleado, numeroEmpleado, nombreEmpleado, apellidoEmpleado, fechaNacimiento, curpEmpleado, rfcEmpleado, sueldoEmpleado, puestoEmpleado, ingresoEmpleado);
-//                int idProducto = resultSet.getInt("idProducto");
-//                int codigoProducto = resultSet.getInt("CodigoProducto");
-//                String nombreProducto = resultSet.getString("NombreProducto");
-//                String insumoProducto = resultSet.getString("InsumoProducto");
-//                String sucursalProducto = resultSet.getString("SucursalProducto");
-//                int existenciaProducto = resultSet.getInt("ExistenciaProducto");
-//                String marcaProducto = resultSet.getString("MarcaProducto");
-                //Creación del objeto producto;
-                //producto = new Producto(idProducto, codigoProducto, nombreProducto, insumoProducto, sucursalProducto, existenciaProducto, marcaProducto);
-
             } //En caso de que no se haya hecho la conexión, se manda un mensaje de que no se han podido recuperar los datos
             else {
                 System.out.println("No se han recuperado los datos");

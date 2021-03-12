@@ -7,6 +7,10 @@ import database.EmpleadoDAO;
 import dialogs.ConfimarBusqueda;
 import dialogs.ConfimarSalir;
 import dialogs.ConfirmarEliminar;
+import dialogs.ErrorIngresarDatos;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import main.Principal;
 import objetos.Empleado;
 
@@ -29,13 +33,28 @@ public class EmpleadosBajas extends javax.swing.JFrame {
         txtPuesto.setEnabled(false);
     }
 
-    public void buscarEmpleado(){
+    public void buscarEmpleado(int numeroEmpleado){
          //Instancia de la clase ProductoDAO
         EmpleadoDAO empleadoDAO = new EmpleadoDAO();
         //Declaración del objeto producto como nul
         Empleado empleado = null;
         
-        empleado =empleadoDAO.seleccionar(24);
+        empleado =empleadoDAO.seleccionar(numeroEmpleado);
+        
+        Date date = empleado.getFechaIngresoEmpleado();
+        DateFormat fechaingreso = new SimpleDateFormat("yyyy-MM-dd");
+        String fechaIngresoEmpleado = fechaingreso.format(date);
+        
+        txtApellidos.setText(empleado.getApellidosEmpleado());
+        txtCurp.setText(empleado.getCurpEmpleado());
+        txtFIngreso.setText(fechaIngresoEmpleado);
+        txtFNacimieto.setText(empleado.getFechaNacimientoEmpleado());
+        txtNombre.setText(empleado.getNombreEmpleado());
+        txtNumeroEmpleado.setText(String.valueOf(empleado.getNumEmpleado()));
+        txtPuesto.setText(empleado.getPuestoEmpleado());
+        txtRfc.setText(empleado.getRfcEmpleado());
+        txtSueldo.setText(String.valueOf(empleado.getSueldoEmpleado()));
+        
         
         System.out.println("empleado " + empleado.toString());
         
@@ -666,7 +685,17 @@ public class EmpleadosBajas extends javax.swing.JFrame {
 
     //Método que permite llamar al Dialog para buscar un registro del sistema o base de datos
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-       
+       if(validacionCamposTexto()){
+           int numeroEmpleado = Integer.parseInt(txtNumeroEmpleado.getText());
+           buscarEmpleado(numeroEmpleado);
+       }else {
+           //En caso de que se retorne false, se manda a crear un Dialog
+            System.out.println("No se han seleccionado datos");
+            //Llamado del Dialog que menciona que no se ha ingresado valores
+            ErrorIngresarDatos ee = new ErrorIngresarDatos(this, true);
+            //Método que permite observar el dialg de error
+            ee.setVisible(true);
+       }
 //        //Instancia del Dialog para confirmar la busqueda del registro en el sistema
 //        ConfimarBusqueda busqueda = new ConfimarBusqueda(this, true);
 //        //Método que permite visualizar la ventana
