@@ -15,7 +15,7 @@ public class EmpleadoDAO {
     //Declaración de la sentencia a realizar para seleccionar cada uno de los campos de un empleado
     private static final String SQL_SELECT = "SELECT idEmpleado, NumEmpleado, nombreEmpleado, ApellidosEmpleado, FecNacEmpleado, CURPEmpleado, RFCEmpleado, SueldoEmpleado, PuestoEmpleado, FecIngresoEmpleado FROM empleados WHERE NumEmpleado = ?";
     //Declaración de la sentencia a realizar para insertar un registro a  la base de datos
-    //private static final String SQL_INSERT = "INSERT INTO productos(CodigoProducto, NombreProducto, InsumoProducto, SucursalProducto, ExistenciaProducto, MarcaProducto) VALUES(?,?,?,?,?,?)";
+    private static final String SQL_INSERT = "INSERT INTO empleados(NumEmpleado, nombreEmpleado, ApellidosEmpleado, FecNacEmpleado, CURPEmpleado, RFCEmpleado, SueldoEmpleado, PuestoEmpleado, FecIngresoEmpleado) VALUES(?,?,?,?,?,?,?,?,?)";
     //Delcaración de la sentencia a realizar para eliminar un registro de la base de datos.
     //private static final String SQL_DELETE = "DELETE FROM productos WHERE idProducto = ?";
 
@@ -92,4 +92,91 @@ public class EmpleadoDAO {
         //Se envia el objeto empleado que se ha generado
         return empleado;
     }
+
+    public int insertar(Empleado empleado) {
+        //Declaración de las variables necesrias para poder realizar la conexion a la base de datos.
+        //Declaración del objeto del canal de conexión
+        Connection conn = null;
+        //Declaración del objetos de sentencias
+        PreparedStatement preparedStatement = null;
+        //Delcaración de la variable que verifica si se ha hecho una modificación al registro
+        int registros = 0;
+        //Bloque try/catch para las conexiones
+        try {
+            //Declaración del canal de coneción
+            conn = ConexionDB.getConnection();
+            //Envio de sentencias SQL para insertar datos a la base de datos
+            preparedStatement = conn.prepareStatement(SQL_INSERT);
+            //Envio de los parametros que se han seleccionado para poder realizar la insersión de datos
+            preparedStatement.setString(1, String.valueOf(empleado.getNumEmpleado()));
+            preparedStatement.setString(2, empleado.getNombreEmpleado());
+            preparedStatement.setString(3, empleado.getApellidosEmpleado());
+            preparedStatement.setString(4, empleado.getFechaNacimientoEmpleado());
+            preparedStatement.setString(5, empleado.getCurpEmpleado());
+            preparedStatement.setString(6, empleado.getRfcEmpleado());
+            preparedStatement.setString(7, String.valueOf(empleado.getSueldoEmpleado()));
+            preparedStatement.setString(8, empleado.getPuestoEmpleado());
+            preparedStatement.setString(9, String.valueOf(empleado.getFechaIngresoEmpleado()));
+            //Sentencia para que se realice el alza de los datos
+            registros = preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println("Error: " + ex.getMessage());
+            ex.printStackTrace(System.out);
+        } finally {
+            try {
+                //Cierre de la sentecia enviada
+                ConexionDB.close(preparedStatement);
+                //Cierre del canal de conexión
+                ConexionDB.close(conn);
+            } catch (SQLException ex) {
+                System.out.println("Error: " + ex.getMessage());
+                ex.printStackTrace(System.out);
+            }
+        }
+        //Retorno de registros afectados
+        return registros;
+    }
 }
+/*
+    //Método que permite ingresar un registro a la base de datos con parametros de entrada un objeto de tipo Producto
+    public int insertar(Producto producto) {
+        //Declaración de las variables necesrias para poder realizar la conexion a la base de datos.
+        //Declaración del objeto del canal de conexión
+        Connection conn = null;
+        //Declaración del objetos de sentencias
+        PreparedStatement preparedStatement = null;
+        //Delcaración de la variable que verifica si se ha hecho una modificación al registro
+        int registros = 0;
+        //Bloque try/catch para las conexiones
+        try {
+            //Declaración del canal de coneción
+            conn = ConexionDB.getConnection();
+            //Envio de sentencias SQL para insertar datos a la base de datos
+            preparedStatement = conn.prepareStatement(SQL_INSERT);
+            //Envio de los parametros que se han seleccionado para poder realizar la insersión de datos
+            preparedStatement.setString(1, String.valueOf(producto.getCodigoProducto()));
+            preparedStatement.setString(2, producto.getNombreProducto());
+            preparedStatement.setString(3, producto.getInsumoProducto());
+            preparedStatement.setString(4, producto.getSucursalProducto());
+            preparedStatement.setString(5, String.valueOf(producto.getExistenciaProducto()));
+            preparedStatement.setString(6, producto.getMarcaProducto());
+            //Sentencia para que se realice el alza de los datos
+            registros = preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println("Error: " + ex.getMessage());
+            ex.printStackTrace(System.out);
+        } finally {
+            try {
+                //Cierre de la sentecia enviada
+                ConexionDB.close(preparedStatement);
+                //Cierre del canal de conexión
+                ConexionDB.close(conn);
+            } catch (SQLException ex) {
+                System.out.println("Error: " + ex.getMessage());
+                ex.printStackTrace(System.out);
+            }
+        }
+        //Retorno de registros afectados
+        return registros;
+    }
+ */

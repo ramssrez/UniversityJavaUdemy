@@ -667,7 +667,7 @@ public class InventarioBajas extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnEliminarActionPerformed
 
-    //Método que permite llamar al Dialog para buscar un registro del sistema o base de datos
+    //Método que permite la busqueda de información en la base de datos
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         //Declaración de variables locales para recuperar el codigo y la sucursal
         String codigo = txtCodigo.getText();
@@ -768,7 +768,7 @@ public class InventarioBajas extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_menuItemConsultaInsumosActionPerformed
 
-    //Método que permite realizar una nueva busqueda en la base de datos
+    //Método que permite realizar una nueva busqueda en la base de datos limpiando los datos
     private void btnuevaBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnuevaBusquedaActionPerformed
         //Método que permite limpiar  los campos depues de ser ingresados
         limpiarCajas();
