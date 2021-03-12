@@ -7,8 +7,8 @@ import database.ProductoDAO;
 import dialogs.ConfirmarLimpieza;
 import dialogs.ConfimarGuardado;
 import dialogs.ConfimarSalir;
-import dialogs.Confirmacion;
-import dialogs.ErrorIngreso;
+import dialogs.ConfirmacionProductos;
+import dialogs.ErrorIngresoProductos;
 import javax.swing.JOptionPane;
 import main.Principal;
 import objetos.Producto;
@@ -21,6 +21,15 @@ public class InventarioAltas extends javax.swing.JFrame {
         this.setTitle("Altas al inventario");
         //Método que permite centrar la pantalla en medio de la pantalla general
         this.setLocationRelativeTo(null);
+    }
+
+    public void limpiarCajasTexto() {
+        txtArticulo.setText("");
+        txtCodigo.setText("");
+        txtExistencia.setText("");
+        txtMarca.setText("");
+        txtSucursal.setText("");
+        txtinsumo.setText("");
     }
 
     /**
@@ -491,23 +500,24 @@ public class InventarioAltas extends javax.swing.JFrame {
         int codigo = Integer.parseInt(txtCodigo.getText());
         String nombre = txtArticulo.getText();
         String insumo = txtinsumo.getText();
-        String sucursal= txtSucursal.getText();
+        String sucursal = txtSucursal.getText();
         int existencia = Integer.parseInt(txtExistencia.getText());
-        String marca =txtMarca.getText();
+        String marca = txtMarca.getText();
         Producto producto = new Producto(codigo, nombre, insumo, sucursal, existencia, marca);
         int entero = productoDAO.insertar(producto);
-        
+
         if (entero > 0) {
-            Confirmacion confirmacion = new Confirmacion(this, true);
+            ConfirmacionProductos confirmacion = new ConfirmacionProductos(this, true);
             confirmacion.setVisible(true);
         } else {
-            ErrorIngreso error = new ErrorIngreso(this, true);
+            ErrorIngresoProductos error = new ErrorIngresoProductos(this, true);
             error.setVisible(true);
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     //Método que permite limpiar los campos de texto
     private void btnlimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlimpiarActionPerformed
+        limpiarCajasTexto();
         //Instancia del Dialog para confirmar la limpieza de los campos de texto del módulo
         ConfirmarLimpieza limpiar = new ConfirmarLimpieza(this, true);
         //Método que permite visualizar la ventana

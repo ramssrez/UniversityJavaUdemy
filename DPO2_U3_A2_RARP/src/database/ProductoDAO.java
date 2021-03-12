@@ -103,6 +103,7 @@ public class ProductoDAO {
                 producto = new Producto(idProducto, codigoProducto, nombreProducto, insumoProducto, sucursalProducto, existenciaProducto, marcaProducto);
             } //En caso de que no se haya hecho la conexión, se manda un mensaje de que no se han podido recuperar los datos
             else {
+                
                 JOptionPane.showMessageDialog(null, "No se han recuperado datos");
                 System.out.println("No se han recuperado los datos");
             }
