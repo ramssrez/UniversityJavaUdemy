@@ -6,13 +6,23 @@ package interfaces;
 import database.ProductoDAO;
 import dialogs.ConfimarSalir;
 import dialogs.ConfirmarBusquedaProducto;
-import dialogs.ConfirmarEliminar;
 import dialogs.ConfirmarLimpieza;
-import dialogs.ErrorNoExiste;
+import dialogs.ConfirmacionElminacionProducto;
+import dialogs.ErrorEiminaciónProduto;
+import dialogs.ErrorIngresarDatos;
+import dialogs.ErrorProductoNoExiste;
+import java.awt.Font;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import main.Principal;
 import objetos.Producto;
 
 public class InventarioBajas extends javax.swing.JFrame {
+
+    //Variable global de tipo producto, esto para ser guardado cuando se encuentre un producto
+    public Producto productoGlobal;
 
     public InventarioBajas() {
         initComponents();
@@ -25,7 +35,8 @@ public class InventarioBajas extends javax.swing.JFrame {
         txtMarca.setEnabled(false);
         txtInsumo.setEnabled(false);
         txtArticulo.setEnabled(false);
-        //txtSucursal.setEnabled(false);
+        //Declaración de la variable globlas
+        productoGlobal = null;
     }
 
     //Método que borra el contenido de las cajas de texto de la interfaz
@@ -37,6 +48,108 @@ public class InventarioBajas extends javax.swing.JFrame {
         txtInsumo.setText("");
         txtMarca.setText("");
         txtSucursal.setText("");
+    }
+
+    //Método que se encarga de la conexión con la base de datos, en función del producto buscado
+    public void eliminar() {
+        //Instancia de la clase ProductoDAO
+        ProductoDAO productodao = new ProductoDAO();
+        //Linea de codigo auximliar
+        System.out.println("produto" + productoGlobal.toString());
+        //Declaración de la entero que es lo que retorna cuando se ha hecho una eliminación
+        int entero = productodao.eliminar(productoGlobal);
+        //Sentencia if/else en caso de que el entero sea mayor a cero
+        if (entero > 0) {
+            //Llamado del Dialog que menciona que se ha eliminado un producto
+            ConfirmacionElminacionProducto cep = new ConfirmacionElminacionProducto(this, true);
+            //Método que permite que se muestre el dialog que se ha creado
+            cep.setVisible(true);
+            System.out.println("Se ha eliminado el elemento");
+        } else {
+            //Llamado del Dialog que menciona que no se ha eliminado un producto
+            ErrorEiminaciónProduto eep = new ErrorEiminaciónProduto(this, true);
+            //Método que permite que se muestre el dialog que se ha creado
+            eep.setVisible(true);
+            System.out.println("No se ha eliminado");
+
+        }
+    }
+
+    //método que genera un JOptin personalizado, por la libertad que nos brinda se ha escogido este tipo de JOption
+    public int optionPersonalizado() {
+        //Delcaración de etiqueta en donde podemos ingresar el tipo y tamaño de ltra
+        JLabel etiqueta = new JLabel("¿Deseas eliminar este producto?");
+        //Fuente de la letra de nuestra etiqueta
+        etiqueta.setFont(new Font("Tahoma", Font.BOLD, 24));
+        //Asignación de lo valores de los botones
+        Object[] options = {"Aceptar", "Cancelar"};
+        //Declaración del icono que se desea mostrar en el JOption
+        Icon icono = new ImageIcon(getClass().getResource("/imagenes/interrogacion.png"));
+        //Instancia y declaración de una variable de tipo entero para que se genere un JOprionPane
+        int valor = JOptionPane.showOptionDialog(null, etiqueta, "Confirmar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icono, options, options[1]);
+        System.out.println("valor = " + valor);
+        //Retorno del valor para el caso que haya seleccionado el usuario
+        return valor;
+    }
+
+    public void buscar(String codigo, String sucursal) {
+        //Instancia de la clase ProductoDAO
+        ProductoDAO productodao = new ProductoDAO();
+        //Declaración del objeto producto como nul
+        Producto producto = null;
+        //Bloque try/catch para asignar en las respectivas cajas de texto
+        try {
+            //Asignación del producto a lo que se recupere de la sentencia SQL
+            producto = productodao.seleccionar(codigo, sucursal);
+
+            //Asignación de la información de lo que se obtuvo de la busquedda
+            txtArticulo.setText(producto.getNombreProducto());
+            txtMarca.setText(producto.getMarcaProducto());
+            txtExistencia.setText(String.valueOf(producto.getExistenciaProducto()));
+            txtInsumo.setText(producto.getInsumoProducto());
+            //Sentencia solo para verificar que se obtenga un objeto
+            System.out.println(producto.toString());
+            if (producto != null) {
+                //Llamado del Dialog que menciona que existe un producto
+                ConfirmarBusquedaProducto busquedaProducto = new ConfirmarBusquedaProducto(this, true);
+                //Método que permite visualizar la ventana anteriormente mencionada
+                busquedaProducto.setVisible(true);
+            } else {
+                //Llamado del Dialog que menciona que no existe un producto
+                ErrorProductoNoExiste error = new ErrorProductoNoExiste(this, true);
+                //Método que permite visualizar la ventana anteriormente mencionada
+                error.setVisible(true);
+                //Método que permite limpiar  los campos depues de ser ingresados
+                limpiarCajas();
+            }
+            //Asignaciónd del producto que se obtuvo de la base de datos a la variable global
+            productoGlobal = producto;
+        } catch (Exception ex) {
+            //Sentencia que muestra un mensaje en caso de que no se cuente con información de los datoa
+            if (producto == null) {
+                //Llamado del Dialog que menciona que no existe un producto
+                ErrorProductoNoExiste error = new ErrorProductoNoExiste(this, true);
+                //Método que permite visualizar la ventana anteriormente mencionada
+                error.setVisible(true);
+                //Método que permite limpiar  los campos depues de ser ingresados
+                limpiarCajas();
+            }
+            System.out.println("es: " + ex.getMessage());
+        }
+
+    }
+
+    //Método que verifica que los campos no se encuentren vacios
+    public boolean validacionCampos() {
+        //Selección para el caso de que los campos se encuentren vacios
+        if ((txtCodigo.getText().equals("") && txtSucursal.getText().equals(""))
+                || (txtCodigo.getText().equals("") || txtSucursal.getText().equals(""))) {
+            //Retorno falso en caso de que sea correcto los campos vacios
+            return false;
+        } else {
+            //Retorno verdadero para el caso de que los campos esten llenos
+            return true;
+        }
     }
 
     /**
@@ -529,47 +642,50 @@ public class InventarioBajas extends javax.swing.JFrame {
         confimarSalir.setVisible(true);
     }//GEN-LAST:event_btnSalirActionPerformed
 
-    //Método que permite llamar al Dialog para eliminar un registro del sistema o base de datos
+//    //Método que observa el evento el seleccinar la eliminación de un producto
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        //Instancia del Dialog para confirmar borrar o eliminar el registro del sistema
-        ConfirmarEliminar eliminar = new ConfirmarEliminar(this, true);
-        //Método que permite visualizar la ventana
-        eliminar.setVisible(true);
+        //Varificación de variable global por si se encuentra nula
+        if (productoGlobal != null) {
+            //Asignación devariable de tipo entero con lo que se obtuvo del JOptionPersonalizado
+            int valor = optionPersonalizado();
+            System.out.println("valor = " + valor);
+            //En caso de que el valor retornado sea 0 se manda a llamar la opción de eliminar
+            if (valor == 0) {
+                //Llamado al método que se encarga de la eliminación de un producto
+                eliminar();
+            }
+            //Llamado a la función que se encarga de limpiar todas las cajas de la interfaz
+            limpiarCajas();
+            //Declaración de variable global para que se vuelva nula de nuevos
+            productoGlobal = null;
+        } else {
+            //Llamado del Dialog que menciona que no se ha ingresado valores
+            ErrorIngresarDatos ee = new ErrorIngresarDatos(this, true);
+            //Método que permite observar el dialg de error
+            ee.setVisible(true);
+            System.out.println("no se ha seleccinado un producto");
+        }
+
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     //Método que permite llamar al Dialog para buscar un registro del sistema o base de datos
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        //Instancia de la clase ProductoDAO
-        ProductoDAO productodao = new ProductoDAO();
-        //Declaración del objeto producto como nul
-        Producto producto = null;
-        //Bloque try/catch para asignar en las respectivas cajas de texto
-        try {
-            //Asignación del producto a lo que se recupere de la sentencia SQL
-            producto = productodao.seleccionar(txtCodigo.getText(), txtSucursal.getText());
-            //Llamado del Dialog que menciona que existe un producto
-            ConfirmarBusquedaProducto busquedaProducto = new ConfirmarBusquedaProducto(this, true);
-            //Método que permite visualizar la ventana anteriormente mencionada
-            busquedaProducto.setVisible(true);
-            //Asignación de la información de lo que se obtuvo de la busquedda
-            txtArticulo.setText(producto.getNombreProducto());
-            txtMarca.setText(producto.getMarcaProducto());
-            txtExistencia.setText(String.valueOf(producto.getExistenciaProducto()));
-            txtInsumo.setText(producto.getInsumoProducto());
-            //Sentencia solo para verificar que se obtenga un objeto
-            System.out.println(producto.toString());
-        } catch (Exception ex) {
-            //Sentencia que muestra un mensaje en caso de que no se cuente con información de los datoa
-            if (producto == null) {
-                //Llamado del Dialog que menciona que no existe un producto
-                ErrorNoExiste error = new ErrorNoExiste(this, true);
-                //Método que permite visualizar la ventana anteriormente mencionada
-                error.setVisible(true);
-                //Método que permite limpiar  los campos depues de ser ingresados
-                limpiarCajas();
-            }
-            System.out.println("es: " + ex.getMessage());
+        //Declaración de variables locales para recuperar el codigo y la sucursal
+        String codigo = txtCodigo.getText();
+        String sucursal = txtSucursal.getText();
+        //Validación para lo que se recupere de la validación de los campos textos
+        if (validacionCampos()) {
+            //Llamado al m´todo que se encarga de la busqueda en la base de datos
+            buscar(codigo, sucursal);
+        } else {
+            //En caso de que se retorne false, se manda a crear un Dialog
+            System.out.println("No se han seleccionado datos");
+            //Llamado del Dialog que menciona que no se ha ingresado valores
+            ErrorIngresarDatos ee = new ErrorIngresarDatos(this, true);
+            //Método que permite observar el dialg de error
+            ee.setVisible(true);
         }
+
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     //Método que permite abrir la ventana para dar de alta un Empleado
@@ -661,6 +777,8 @@ public class InventarioBajas extends javax.swing.JFrame {
         ConfirmarLimpieza limpiar = new ConfirmarLimpieza(this, true);
         //Método que permite visualizar la ventana
         limpiar.setVisible(true);
+        //Asignación para que variable global sea nula
+        productoGlobal = null;
     }//GEN-LAST:event_btnuevaBusquedaActionPerformed
 
     /**

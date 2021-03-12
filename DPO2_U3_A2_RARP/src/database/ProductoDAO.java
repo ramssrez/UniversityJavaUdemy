@@ -6,7 +6,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.swing.JOptionPane;
 import objetos.Producto;
 
 public class ProductoDAO {
@@ -15,6 +14,44 @@ public class ProductoDAO {
     private static final String SQL_SELECT = "SELECT idProducto, CodigoProducto, NombreProducto, InsumoProducto, SucursalProducto, ExistenciaProducto, MarcaProducto FROM productos WHERE CodigoProducto = ? AND SucursalProducto = ?";
     //Declaración de la sentencia a realizar para insertar un registro a  la base de datos
     private static final String SQL_INSERT = "INSERT INTO productos(CodigoProducto, NombreProducto, InsumoProducto, SucursalProducto, ExistenciaProducto, MarcaProducto) VALUES(?,?,?,?,?,?)";
+    //Delcaración de la sentencia a realizar para eliminar un registro de la base de datos.
+    private static final String SQL_DELETE = "DELETE FROM productos WHERE idProducto = ?";
+
+    //Método que permite la eliminación de un registro de la base de datos.
+    public int eliminar(Producto producto) {
+        // Declaración de las variables necesrias para poder realizar la conexion a la base de datos
+        //Declaración del objeto del canal de conexión
+        Connection conn = null;
+        //Declaración del objetos de sentencias
+        PreparedStatement preparedStatement = null;
+        //Delcaración de la variable que verifica si se ha hecho una modificación al registro
+        int registros = 0;
+        try {
+            //Declaración del canal de coneción
+            conn = ConexionDB.getConnection();
+            //Envio de sentencias SQL para eliminar un registro de la base de datos
+            preparedStatement = conn.prepareStatement(SQL_DELETE);
+            //Envio de los parametros que se han seleccionado para poder realiar la eliminación de un regitro
+            preparedStatement.setInt(1, producto.getIdProducto());
+            //Sentencia para la asginación en caso de que se haya hecho la eliminación 
+            registros = preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println("Error: " + ex.getMessage());
+            ex.printStackTrace(System.out);
+        } finally {
+            try {
+                //Cierre de la sentecia enviada
+                ConexionDB.close(preparedStatement);
+                //Cierre del canal de conexión
+                ConexionDB.close(conn);
+            } catch (SQLException ex) {
+                System.out.println("Error: " + ex.getMessage());
+                ex.printStackTrace(System.out);
+            }
+        }
+        //Retorno de regostros afectados
+        return registros;
+    }
 
     //Método que permite ingresar un registro a la base de datos con parametros de entrada un objeto de tipo Producto
     public int insertar(Producto producto) {
@@ -23,8 +60,6 @@ public class ProductoDAO {
         Connection conn = null;
         //Declaración del objetos de sentencias
         PreparedStatement preparedStatement = null;
-        //Declaración de objeto de resultados de las sentencias
-        ResultSet resultSet = null;
         //Delcaración de la variable que verifica si se ha hecho una modificación al registro
         int registros = 0;
         //Bloque try/catch para las conexiones
@@ -56,6 +91,7 @@ public class ProductoDAO {
                 ex.printStackTrace(System.out);
             }
         }
+        //Retorno de registros afectados
         return registros;
     }
 

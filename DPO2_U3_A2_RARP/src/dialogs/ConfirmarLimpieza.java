@@ -3,7 +3,6 @@
  */
 package dialogs;
 
-import interfaces.InventarioAltas;
 
 public class ConfirmarLimpieza extends javax.swing.JDialog {
 
@@ -26,7 +25,7 @@ public class ConfirmarLimpieza extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         btnAceptar = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        lebelConfirmacion = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -51,7 +50,7 @@ public class ConfirmarLimpieza extends javax.swing.JDialog {
             }
         });
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/interrogacion.png"))); // NOI18N
+        lebelConfirmacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/interrogacion.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -65,7 +64,7 @@ public class ConfirmarLimpieza extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(138, 138, 138)
-                        .addComponent(jLabel3))
+                        .addComponent(lebelConfirmacion))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(128, 128, 128)
                         .addComponent(btnAceptar)))
@@ -77,10 +76,10 @@ public class ConfirmarLimpieza extends javax.swing.JDialog {
                 .addGap(6, 6, 6)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3)
+                .addComponent(lebelConfirmacion)
                 .addGap(18, 18, 18)
                 .addComponent(btnAceptar)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -157,7 +156,7 @@ public class ConfirmarLimpieza extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lebelConfirmacion;
     // End of variables declaration//GEN-END:variables
 }
