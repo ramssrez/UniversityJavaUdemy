@@ -4,9 +4,11 @@
 package interfaces;
 
 import database.EmpleadoDAO;
-import dialogs.ConfimarBusqueda;
 import dialogs.ConfimarSalir;
+import dialogs.ConfirmarBusquedaEmpleado;
 import dialogs.ConfirmarEliminar;
+import dialogs.ConfirmarLimpieza;
+import dialogs.ErrorEmpleadoNoExiste;
 import dialogs.ErrorIngresarDatos;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -33,41 +35,70 @@ public class EmpleadosBajas extends javax.swing.JFrame {
         txtPuesto.setEnabled(false);
     }
 
-    public void buscarEmpleado(int numeroEmpleado){
-         //Instancia de la clase ProductoDAO
+    //Método que permite la conexión a la base de datos con el dato de entrada como el número empleado
+    public void buscarEmpleado(int numeroEmpleado) {
+        //Instancia de la clase ProductoDAO
         EmpleadoDAO empleadoDAO = new EmpleadoDAO();
-        //Declaración del objeto producto como nul
+        //Declaración del objeto producto como nulo
         Empleado empleado = null;
-        
-        empleado =empleadoDAO.seleccionar(numeroEmpleado);
-        
-        Date date = empleado.getFechaIngresoEmpleado();
-        DateFormat fechaingreso = new SimpleDateFormat("yyyy-MM-dd");
-        String fechaIngresoEmpleado = fechaingreso.format(date);
-        
-        txtApellidos.setText(empleado.getApellidosEmpleado());
-        txtCurp.setText(empleado.getCurpEmpleado());
-        txtFIngreso.setText(fechaIngresoEmpleado);
-        txtFNacimieto.setText(empleado.getFechaNacimientoEmpleado());
-        txtNombre.setText(empleado.getNombreEmpleado());
-        txtNumeroEmpleado.setText(String.valueOf(empleado.getNumEmpleado()));
-        txtPuesto.setText(empleado.getPuestoEmpleado());
-        txtRfc.setText(empleado.getRfcEmpleado());
-        txtSueldo.setText(String.valueOf(empleado.getSueldoEmpleado()));
-        
-        
-        System.out.println("empleado " + empleado.toString());
-        
-        
+        //Asignación del empleado a lo que se recupere de la sentencia SQL
+        empleado = empleadoDAO.seleccionar(numeroEmpleado);
+        //Sentencia if/else para el caso de que se recupere información
+        if (empleado != null) {
+            //Declaración de objeto tipo Date el cual sirve como auxiliar para presentar un dato de tipo Date
+            Date date = empleado.getFechaIngresoEmpleado();
+            //Asignación de formato a la fecha que se desea obtener
+            DateFormat fechaingreso = new SimpleDateFormat("yyyy-MM-dd");
+            //Transformación a estring el formato de la fecha
+            String fechaIngresoEmpleado = fechaingreso.format(date);
+            //Asignación de la información que se obtuvo de la base de datos
+            txtApellidos.setText(empleado.getApellidosEmpleado());
+            txtCurp.setText(empleado.getCurpEmpleado());
+            txtFIngreso.setText(fechaIngresoEmpleado);
+            txtFNacimieto.setText(empleado.getFechaNacimientoEmpleado());
+            txtNombre.setText(empleado.getNombreEmpleado());
+            txtNumeroEmpleado.setText(String.valueOf(empleado.getNumEmpleado()));
+            txtPuesto.setText(empleado.getPuestoEmpleado());
+            txtRfc.setText(empleado.getRfcEmpleado());
+            txtSueldo.setText(String.valueOf(empleado.getSueldoEmpleado()));
+            //Llamado del Dialog que menciona que existe un empleado
+            ConfirmarBusquedaEmpleado cbe = new ConfirmarBusquedaEmpleado(this, true);
+            //Método que permite visualizar la ventana anteriormente mencionada
+            cbe.setVisible(true);
+        } else {
+            //Llamado del Dialog que menciona que no existe un empleado
+            ErrorEmpleadoNoExiste eene = new ErrorEmpleadoNoExiste(this, true);
+            //Método que permite visualizar la ventana anteriormente mencionada
+            eene.setVisible(true);
+            //Método que permite limpiar  los campos depues de ser ingresados
+            limpiarCamposTexto();
+        }
+
     }
-    
-    public boolean validacionCamposTexto(){
-        if(txtNumeroEmpleado.getText().equals("")){
+
+    //Método que verifica que los campos no se encuentren vacios
+    public boolean validacionCamposTexto() {
+        //Sentencia if/else que verifica si esta vacio el campo, en caso afirmativo retorna un booleano
+        if (txtNumeroEmpleado.getText().equals("")) {
             return false;
-        }else{
+        } else {
             return true;
         }
     }
+
+    //Método que permite la limpieza de los datos que se han asignado
+    public void limpiarCamposTexto() {
+        txtApellidos.setText("");
+        txtCurp.setText("");
+        txtFIngreso.setText("");
+        txtFNacimieto.setText("");
+        txtNombre.setText("");
+        txtNumeroEmpleado.setText("");
+        txtPuesto.setText("");
+        txtRfc.setText("");
+        txtSueldo.setText("");
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -683,31 +714,36 @@ public class EmpleadosBajas extends javax.swing.JFrame {
         eliminar.setVisible(true);
     }//GEN-LAST:event_btnEliminarActionPerformed
 
-    //Método que permite llamar al Dialog para buscar un registro del sistema o base de datos
+    //Método que permite realizar la busqueda de información de la base de datos
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-       if(validacionCamposTexto()){
-           int numeroEmpleado = Integer.parseInt(txtNumeroEmpleado.getText());
-           buscarEmpleado(numeroEmpleado);
-       }else {
-           //En caso de que se retorne false, se manda a crear un Dialog
-            System.out.println("No se han seleccionado datos");
+        //Sentencia if/else para validar que se haya ingresado un datos en la caja de texto
+        if (validacionCamposTexto()) {
+            //Creación de la variable de tipo entero para ser enviado al metodo de busqueda
+            int numeroEmpleado = Integer.parseInt(txtNumeroEmpleado.getText());
+            //Método que se conecta a la base de datos para recuperar la información del Empleado
+            buscarEmpleado(numeroEmpleado);
+        } else {
+            //En caso de que se retorne false, se manda a crear un Dialog
             //Llamado del Dialog que menciona que no se ha ingresado valores
             ErrorIngresarDatos ee = new ErrorIngresarDatos(this, true);
             //Método que permite observar el dialg de error
             ee.setVisible(true);
-       }
+        }
 //        //Instancia del Dialog para confirmar la busqueda del registro en el sistema
 //        ConfimarBusqueda busqueda = new ConfimarBusqueda(this, true);
 //        //Método que permite visualizar la ventana
 //        busqueda.setVisible(true);
     }//GEN-LAST:event_btnBuscarActionPerformed
 
-    //Método que permite llamar al Dialog para realizar una nueva busqueda de un registro del sistema o base de datos
+    //Método que permite la limpieza de las cajas de texto
     private void btnNuevaBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevaBusquedaActionPerformed
-        //Instancia del Dialog para confirmar la nueva busqueda del registro 
-        ConfimarBusqueda busqueda = new ConfimarBusqueda(this, true);
+        //Método que permite limpiar kos campos de texto
+        limpiarCamposTexto();
+        //Instancia del Dialog para confirmar la limpieza de los campos de texto del módulo
+        ConfirmarLimpieza limpiar = new ConfirmarLimpieza(this, true);
         //Método que permite visualizar la ventana
-        busqueda.setVisible(true);
+        limpiar.setVisible(true);
+        //Asignación para que variable global sea nula
     }//GEN-LAST:event_btnNuevaBusquedaActionPerformed
 
     //Método que permite abrir la ventana para dar de alta un Empleado
@@ -816,7 +852,7 @@ public class EmpleadosBajas extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(EmpleadosBajas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-    
+
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

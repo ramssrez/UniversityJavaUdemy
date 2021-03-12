@@ -101,19 +101,18 @@ public class InventarioBajas extends javax.swing.JFrame {
         try {
             //Asignación del producto a lo que se recupere de la sentencia SQL
             producto = productodao.seleccionar(codigo, sucursal);
-
-            //Asignación de la información de lo que se obtuvo de la busquedda
-            txtArticulo.setText(producto.getNombreProducto());
-            txtMarca.setText(producto.getMarcaProducto());
-            txtExistencia.setText(String.valueOf(producto.getExistenciaProducto()));
-            txtInsumo.setText(producto.getInsumoProducto());
-            //Sentencia solo para verificar que se obtenga un objeto
-            System.out.println(producto.toString());
             if (producto != null) {
                 //Llamado del Dialog que menciona que existe un producto
                 ConfirmarBusquedaProducto busquedaProducto = new ConfirmarBusquedaProducto(this, true);
                 //Método que permite visualizar la ventana anteriormente mencionada
                 busquedaProducto.setVisible(true);
+                //Asignación de la información de lo que se obtuvo de la busquedda
+                txtArticulo.setText(producto.getNombreProducto());
+                txtMarca.setText(producto.getMarcaProducto());
+                txtExistencia.setText(String.valueOf(producto.getExistenciaProducto()));
+                txtInsumo.setText(producto.getInsumoProducto());
+                //Sentencia solo para verificar que se obtenga un objeto
+                System.out.println(producto.toString());
             } else {
                 //Llamado del Dialog que menciona que no existe un producto
                 ErrorProductoNoExiste error = new ErrorProductoNoExiste(this, true);

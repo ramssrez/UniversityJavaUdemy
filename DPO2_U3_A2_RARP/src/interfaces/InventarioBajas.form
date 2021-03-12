@@ -211,7 +211,7 @@
                       </Group>
                       <Group type="102" attributes="0">
                           <Component id="paneldatos" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="41" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="27" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
