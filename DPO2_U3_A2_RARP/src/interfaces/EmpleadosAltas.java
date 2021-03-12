@@ -6,6 +6,11 @@ package interfaces;
 import dialogs.ConfirmarLimpieza;
 import dialogs.ConfimarGuardado;
 import dialogs.ConfimarSalir;
+import java.awt.Font;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import main.Principal;
 
 public class EmpleadosAltas extends javax.swing.JFrame {
@@ -40,7 +45,40 @@ public class EmpleadosAltas extends javax.swing.JFrame {
         txtRfc.setText("");
         txtSueldo.setText("");
     }
+    
+    //Método que verifica que los campos no se encuentren vacios
+    public boolean validacionCamposTexto() {
+        if((txtApellidos.getText().equals("") && txtCurp.getText().equals("") && txtFIngreso.getText().equals("")
+                && txtFNacimiento.getText().equals("") && txtNombre.getText().equals("") && txtNumeroEmpleado.getText().equals("")
+                && txtPuesto.getText().equals("") && txtRfc.getText().equals("") && txtSueldo.getText().equals(""))
+                || (txtApellidos.getText().equals("") || txtCurp.getText().equals("") || txtFIngreso.getText().equals("")
+                || txtFNacimiento.getText().equals("") || txtNombre.getText().equals("") || txtNumeroEmpleado.getText().equals("")
+                || txtPuesto.getText().equals("") || txtRfc.getText().equals("") || txtSueldo.getText().equals(""))){
+             //Retorno falso en caso de que sea correcto los campos vacios
+            return false;
+            
+        }else {
+            //Retorno verdadero para el caso de que los campos esten llenos
+            return true;
+        }
+    }
 
+     //Método que genera un JOptin personalizado, por la libertad que nos brinda se ha escogido este tipo de JOption
+    public int optionPersonalizado() {
+        //Delcaración de etiqueta en donde podemos ingresar el tipo y tamaño de ltra
+        JLabel etiqueta = new JLabel("¿Deseas agregar este empleado?");
+        //Fuente de la letra de nuestra etiqueta
+        etiqueta.setFont(new Font("Tahoma", Font.BOLD, 24));
+        //Asignación de lo valores de los botones
+        Object[] options = {"Aceptar", "Cancelar"};
+        //Declaración del icono que se desea mostrar en el JOption
+        Icon icono = new ImageIcon(getClass().getResource("/imagenes/interrogacion.png"));
+        //Instancia y declaración de una variable de tipo entero para que se genere un JOprionPane
+        int valor = JOptionPane.showOptionDialog(null, etiqueta, "Confirmar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icono, options, options[1]);
+        System.out.println("valor = " + valor);
+        //Retorno del valor para el caso que haya seleccionado el usuario
+        return valor;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
