@@ -6,6 +6,7 @@ package interfaces;
 import dialogs.ConfirmarLimpieza;
 import dialogs.ConfimarGuardado;
 import dialogs.ConfimarSalir;
+import dialogs.ErrorIngresarDatos;
 import java.awt.Font;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -32,7 +33,7 @@ public class EmpleadosAltas extends javax.swing.JFrame {
         txtRfc.setText("SDFsDF155");
         txtSueldo.setText("8000");
     }
-    
+
     //Método que permite la limpieza de los datos que se han asignado
     public void limpiarCamposTexto() {
         txtApellidos.setText("");
@@ -45,25 +46,25 @@ public class EmpleadosAltas extends javax.swing.JFrame {
         txtRfc.setText("");
         txtSueldo.setText("");
     }
-    
+
     //Método que verifica que los campos no se encuentren vacios
     public boolean validacionCamposTexto() {
-        if((txtApellidos.getText().equals("") && txtCurp.getText().equals("") && txtFIngreso.getText().equals("")
+        if ((txtApellidos.getText().equals("") && txtCurp.getText().equals("") && txtFIngreso.getText().equals("")
                 && txtFNacimiento.getText().equals("") && txtNombre.getText().equals("") && txtNumeroEmpleado.getText().equals("")
                 && txtPuesto.getText().equals("") && txtRfc.getText().equals("") && txtSueldo.getText().equals(""))
                 || (txtApellidos.getText().equals("") || txtCurp.getText().equals("") || txtFIngreso.getText().equals("")
                 || txtFNacimiento.getText().equals("") || txtNombre.getText().equals("") || txtNumeroEmpleado.getText().equals("")
-                || txtPuesto.getText().equals("") || txtRfc.getText().equals("") || txtSueldo.getText().equals(""))){
-             //Retorno falso en caso de que sea correcto los campos vacios
+                || txtPuesto.getText().equals("") || txtRfc.getText().equals("") || txtSueldo.getText().equals(""))) {
+            //Retorno falso en caso de que sea correcto los campos vacios
             return false;
-            
-        }else {
+
+        } else {
             //Retorno verdadero para el caso de que los campos esten llenos
             return true;
         }
     }
 
-     //Método que genera un JOptin personalizado, por la libertad que nos brinda se ha escogido este tipo de JOption
+    //Método que genera un JOptin personalizado, por la libertad que nos brinda se ha escogido este tipo de JOption
     public int optionPersonalizado() {
         //Delcaración de etiqueta en donde podemos ingresar el tipo y tamaño de ltra
         JLabel etiqueta = new JLabel("¿Deseas agregar este empleado?");
@@ -79,6 +80,7 @@ public class EmpleadosAltas extends javax.swing.JFrame {
         //Retorno del valor para el caso que haya seleccionado el usuario
         return valor;
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -676,10 +678,36 @@ public class EmpleadosAltas extends javax.swing.JFrame {
 
     //Método que permite guardar un registro o datos de un empleado
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        //Instancia del Dialog para confirmar el guardado de datos en el sistema
-        ConfimarGuardado confirmar = new ConfimarGuardado(this, true);
-        //Método que permite visualizar la ventana
-        confirmar.setVisible(true);
+        if (validacionCamposTexto()) {
+            //Asignación de valores para los que se ctenga en los campos de texto
+            int numero = Integer.parseInt(txtNumeroEmpleado.getText());
+            String nombre = txtNombre.getText();
+            String apellidos = txtApellidos.getText();
+            String fechaNac = txtFNacimiento.getText();
+            String curp = txtCurp.getText();
+
+            int sueldo = Integer.parseInt(txtSueldo.getText());
+
+            int valor = optionPersonalizado();
+            //Validación si de desea agregar este producto
+            if (valor == 0) {
+                //Llamado al metodo que se encarga de agregar un regitro al proyecto
+                //insertarProducto(codigo, nombre, insumo, sucursal, existencia, marca);
+            }
+            System.out.println("Estan llenos los campos");
+            //Sentencia else en caso de que los campos de texto no cuenten con información
+        } else {
+            System.out.println("No estan llenos los campos");
+            //Llamado del Dialog que menciona que no se ha ingresado valores
+            ErrorIngresarDatos ee = new ErrorIngresarDatos(this, true);
+            //Método que permite observar el dialg de error
+            ee.setVisible(true);
+        }
+
+////Instancia del Dialog para confirmar el guardado de datos en el sistema
+//        ConfimarGuardado confirmar = new ConfimarGuardado(this, true);
+//        //Método que permite visualizar la ventana
+//        confirmar.setVisible(true);
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     //Método que permite limpiar los campos de texto
