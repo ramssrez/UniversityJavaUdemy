@@ -29,6 +29,85 @@ public class Principal extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
 
+    public void metodoPruebaProducto(){
+//            private void btnproductosActionPerformed(java.awt.event.ActionEvent evt) {                                             
+//        Connection conn = null;
+//        try {
+//
+//            //Class.forName("com.mysql.jdbc.Driver");
+//            conn = ConexionDB.getConnection();
+//            PreparedStatement ps;
+//            ResultSet res;
+//            ps = conn.prepareStatement("SELECT * FROM productos");
+//            res = ps.executeQuery();
+//            while (res.next()) {
+//                System.out.println("idProducto: " + res.getInt("idProducto"));
+//                System.out.println("Codigo: " + res.getString("CodigoProducto"));
+//                System.out.println("Nombre: " + res.getString("NombreProducto"));
+//                System.out.println("Insumo: " + res.getString("InsumoProducto"));
+//                System.out.println("Sucursal: " + res.getString("SucursalProducto"));
+//                System.out.println("Marca: " + res.getString("MarcaProducto"));
+//                System.out.println("");
+//            }
+//
+//            ConexionDB.close(conn);
+//
+//        } catch (Exception ex) {
+//            System.out.println("expeción boton prueba" + ex.getMessage());
+//        }
+//    }
+    }
+    
+    public void metodoPruebaEmpleado(){
+//         private void btntrabajadorActionPerformed(java.awt.event.ActionEvent evt) {                                              
+//        //ESTE METODO PUEDE UTILZARSE PARA PODER OBTENER EL SOLO UN REGISTRO
+//        Connection conn = null;
+//        PreparedStatement preparedStatement = null;
+//        ResultSet resultSet = null;
+//        try {
+//            //Class.forName("com.mysql.jdbc.Driver");
+//            conn = ConexionDB.getConnection();
+//
+//            String sql = "SELECT  NumEmpleado, nombreEmpleado, ApellidosEmpleado, FecNacEmpleado, CURPEmpleado, RFCEmpleado, SueldoEmpleado, PuestoEmpleado, FecIngresoEmpleado FROM empleados where NumEmpleado = 24";
+//            //ps = conn.prepareStatement("SELECT * FROM empleados");
+//            preparedStatement = conn.prepareStatement(sql);
+//            resultSet = preparedStatement.executeQuery();
+//            //System.out.println("res " + res.next());
+//            if (resultSet.next()) {
+//                //ESTO ES PARA OBTENER EL REGISTRO DE UNA SOLO EMPLEADO
+//                //System.out.println("idEmpleado: " + res.getString("idEmpleado"));
+//                System.out.println("Numero empleado: " + resultSet.getString("NumEmpleado"));
+//                System.out.println("Nombre: " + resultSet.getString("NombreEmpleado"));
+//                System.out.println("Apellidos: " + resultSet.getString("ApellidosEmpleado"));
+//                System.out.println("Fecha NacimienEmpleado: " + resultSet.getString("FecNacEmpleado"));
+//                System.out.println("CURPEmpleado: " + resultSet.getString("CURPEmpleado"));
+//                System.out.println("RFC NacimienEmpleado: " + resultSet.getString("RFCEmpleado"));
+//                System.out.println("Sueldo Empleado: " + resultSet.getString("SueldoEmpleado"));
+//                System.out.println("Puesto Empleado: " + resultSet.getString("PuestoEmpleado"));
+//                System.out.println("FEcha ingresoEmpleado: " + resultSet.getString("FecIngresoEmpleado"));
+//                System.out.println("");
+//            } else {
+//                JOptionPane.showMessageDialog(null, "No se han recuperado datos");
+//            }
+//
+//            //ConexionDB.close(conn);
+//
+//        } catch (Exception ex) {
+//            System.out.println("expeción boton trabajador" + ex.getMessage());
+//        } finally {
+//            try {
+//                ConexionDB.close(resultSet);
+//                ConexionDB.close(preparedStatement);
+//                ConexionDB.close(conn);
+//            } catch (SQLException ex) {
+//                ex.printStackTrace(System.out);
+//            }
+//
+//        }
+//
+//        // TODO add your handling code here:
+//    
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -43,8 +122,6 @@ public class Principal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         btnSalir = new javax.swing.JButton();
-        btnproductos = new javax.swing.JButton();
-        btntrabajador = new javax.swing.JButton();
         menuBarPrincipal = new javax.swing.JMenuBar();
         menuEmpleado = new javax.swing.JMenu();
         menuAltaEmpleado = new javax.swing.JMenuItem();
@@ -116,20 +193,6 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(btnSalir)
                 .addContainerGap(57, Short.MAX_VALUE))
         );
-
-        btnproductos.setText("Productos");
-        btnproductos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnproductosActionPerformed(evt);
-            }
-        });
-
-        btntrabajador.setText("Trabajadores");
-        btntrabajador.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btntrabajadorActionPerformed(evt);
-            }
-        });
 
         menuEmpleado.setText("Empleado");
 
@@ -217,25 +280,11 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 93, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(119, 119, 119)
-                .addComponent(btnproductos)
-                .addGap(18, 18, 18)
-                .addComponent(btntrabajador)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnproductos)
-                    .addComponent(btntrabajador))
-                .addGap(0, 82, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -319,82 +368,6 @@ public class Principal extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_menuItemConsultaInsumosActionPerformed
 
-    private void btnproductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnproductosActionPerformed
-        Connection conn = null;
-        try {
-
-            //Class.forName("com.mysql.jdbc.Driver");
-            conn = ConexionDB.getConnection();
-            PreparedStatement ps;
-            ResultSet res;
-            ps = conn.prepareStatement("SELECT * FROM productos");
-            res = ps.executeQuery();
-            while (res.next()) {
-                System.out.println("idProducto: " + res.getInt("idProducto"));
-                System.out.println("Codigo: " + res.getString("CodigoProducto"));
-                System.out.println("Nombre: " + res.getString("NombreProducto"));
-                System.out.println("Insumo: " + res.getString("InsumoProducto"));
-                System.out.println("Sucursal: " + res.getString("SucursalProducto"));
-                System.out.println("Marca: " + res.getString("MarcaProducto"));
-                System.out.println("");
-            }
-
-            ConexionDB.close(conn);
-
-        } catch (Exception ex) {
-            System.out.println("expeción boton prueba" + ex.getMessage());
-        }
-    }//GEN-LAST:event_btnproductosActionPerformed
-
-    private void btntrabajadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btntrabajadorActionPerformed
-        //ESTE METODO PUEDE UTILZARSE PARA PODER OBTENER EL SOLO UN REGISTRO
-        Connection conn = null;
-        PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
-        try {
-            //Class.forName("com.mysql.jdbc.Driver");
-            conn = ConexionDB.getConnection();
-
-            String sql = "SELECT  NumEmpleado, nombreEmpleado, ApellidosEmpleado, FecNacEmpleado, CURPEmpleado, RFCEmpleado, SueldoEmpleado, PuestoEmpleado, FecIngresoEmpleado FROM empleados where NumEmpleado = 24";
-            //ps = conn.prepareStatement("SELECT * FROM empleados");
-            preparedStatement = conn.prepareStatement(sql);
-            resultSet = preparedStatement.executeQuery();
-            //System.out.println("res " + res.next());
-            if (resultSet.next()) {
-                //ESTO ES PARA OBTENER EL REGISTRO DE UNA SOLO EMPLEADO
-                //System.out.println("idEmpleado: " + res.getString("idEmpleado"));
-                System.out.println("Numero empleado: " + resultSet.getString("NumEmpleado"));
-                System.out.println("Nombre: " + resultSet.getString("NombreEmpleado"));
-                System.out.println("Apellidos: " + resultSet.getString("ApellidosEmpleado"));
-                System.out.println("Fecha NacimienEmpleado: " + resultSet.getString("FecNacEmpleado"));
-                System.out.println("CURPEmpleado: " + resultSet.getString("CURPEmpleado"));
-                System.out.println("RFC NacimienEmpleado: " + resultSet.getString("RFCEmpleado"));
-                System.out.println("Sueldo Empleado: " + resultSet.getString("SueldoEmpleado"));
-                System.out.println("Puesto Empleado: " + resultSet.getString("PuestoEmpleado"));
-                System.out.println("FEcha ingresoEmpleado: " + resultSet.getString("FecIngresoEmpleado"));
-                System.out.println("");
-            } else {
-                JOptionPane.showMessageDialog(null, "No se han recuperado datos");
-            }
-
-            //ConexionDB.close(conn);
-
-        } catch (Exception ex) {
-            System.out.println("expeción boton trabajador" + ex.getMessage());
-        } finally {
-            try {
-                ConexionDB.close(resultSet);
-                ConexionDB.close(preparedStatement);
-                ConexionDB.close(conn);
-            } catch (SQLException ex) {
-                ex.printStackTrace(System.out);
-            }
-
-        }
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btntrabajadorActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -434,8 +407,6 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSalir;
-    private javax.swing.JButton btnproductos;
-    private javax.swing.JButton btntrabajador;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -75,7 +75,7 @@ public class InventarioBajas extends javax.swing.JFrame {
         }
     }
 
-    //método que genera un JOptin personalizado, por la libertad que nos brinda se ha escogido este tipo de JOption
+    //Método que genera un JOptin personalizado, por la libertad que nos brinda se ha escogido este tipo de JOption
     public int optionPersonalizado() {
         //Delcaración de etiqueta en donde podemos ingresar el tipo y tamaño de ltra
         JLabel etiqueta = new JLabel("¿Deseas eliminar este producto?");

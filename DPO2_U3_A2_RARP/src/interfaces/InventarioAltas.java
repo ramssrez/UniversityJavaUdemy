@@ -5,10 +5,14 @@ package interfaces;
 
 import database.ProductoDAO;
 import dialogs.ConfirmarLimpieza;
-import dialogs.ConfimarGuardado;
 import dialogs.ConfimarSalir;
 import dialogs.ConfirmacionBusquedaProductos;
+import dialogs.ErrorIngresarDatos;
 import dialogs.ErrorIngresoProductos;
+import java.awt.Font;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import main.Principal;
 import objetos.Producto;
@@ -32,6 +36,63 @@ public class InventarioAltas extends javax.swing.JFrame {
         txtMarca.setText("");
         txtSucursal.setText("");
         txtinsumo.setText("");
+    }
+
+    public void insertarProducto(int codigo, String nombre, String insumo, String sucursal, int existencia, String marca) {
+        //Instancia de la clase ProductoDAO
+        ProductoDAO productoDAO = new ProductoDAO();
+        //Instancias del objeto producto con las varibles que se ingresaron en el cuadro de texto
+        Producto producto = new Producto(codigo, nombre, insumo, sucursal, existencia, marca);
+        //Retorno de entero de la clae ProductoDAO
+        int entero = productoDAO.insertar(producto);
+        //Validación en caso de que se haya hecho correcta la insersión de la información en la base de datos
+        if (entero > 0) {
+            //Llamado al Dialog que manda un mensaje que se ha realizado correctamente el ingreso de información en la base de datos
+            ConfirmacionBusquedaProductos confirmacion = new ConfirmacionBusquedaProductos(this, true);
+            //Método que permite visualizar la ventana
+            confirmacion.setVisible(true);
+            //Método que limpia las cajas de texto de la interface
+            limpiarCajasTexto();
+        } else {
+            //Dialog que manda un mensaje en caso de que no se realizo correctamente el ingreso de la inormación
+            ErrorIngresoProductos error = new ErrorIngresoProductos(this, true);
+            //Método que permite visualizar la ventana
+            error.setVisible(true);
+            //Método que limpia las cajas de texto de la interface
+            limpiarCajasTexto();
+        }
+    }
+
+    //Método que verifica que los campos no se encuentren vacios
+    public boolean validacionCampos() {
+        //Selección para el caso de que los campos se encuentren vacios
+        if ((txtCodigo.getText().equals("") && txtSucursal.getText().equals("") && txtArticulo.getText().equals("")
+                && txtExistencia.getText().equals("") && txtMarca.getText().equals("") && txtinsumo.getText().equals(""))
+                || (txtCodigo.getText().equals("") || txtSucursal.getText().equals("") || txtArticulo.getText().equals("")
+                || txtExistencia.getText().equals("") || txtMarca.getText().equals("") || txtinsumo.getText().equals(""))) {
+            //Retorno falso en caso de que sea correcto los campos vacios
+            return false;
+        } else {
+            //Retorno verdadero para el caso de que los campos esten llenos
+            return true;
+        }
+    }
+
+    //Método que genera un JOptin personalizado, por la libertad que nos brinda se ha escogido este tipo de JOption
+    public int optionPersonalizado() {
+        //Delcaración de etiqueta en donde podemos ingresar el tipo y tamaño de ltra
+        JLabel etiqueta = new JLabel("¿Deseas agregar este producto?");
+        //Fuente de la letra de nuestra etiqueta
+        etiqueta.setFont(new Font("Tahoma", Font.BOLD, 24));
+        //Asignación de lo valores de los botones
+        Object[] options = {"Aceptar", "Cancelar"};
+        //Declaración del icono que se desea mostrar en el JOption
+        Icon icono = new ImageIcon(getClass().getResource("/imagenes/interrogacion.png"));
+        //Instancia y declaración de una variable de tipo entero para que se genere un JOprionPane
+        int valor = JOptionPane.showOptionDialog(null, etiqueta, "Confirmar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icono, options, options[1]);
+        System.out.println("valor = " + valor);
+        //Retorno del valor para el caso que haya seleccionado el usuario
+        return valor;
     }
 
     /**
@@ -497,34 +558,29 @@ public class InventarioAltas extends javax.swing.JFrame {
 
     //Método que permite guardar un registro o datos de un inventario
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        //Instancia de la clase ProductoDAO
-        ProductoDAO productoDAO = new ProductoDAO();
-        //Asignación de cada uno de las cajas de texto para la creación de un ojeto Producto
-        int codigo = Integer.parseInt(txtCodigo.getText());
-        String nombre = txtArticulo.getText();
-        String insumo = txtinsumo.getText();
-        String sucursal = txtSucursal.getText();
-        int existencia = Integer.parseInt(txtExistencia.getText());
-        String marca = txtMarca.getText();
-        //Instancias del objeto producto con las varibles que se ingresaron en el cuadro de texto
-        Producto producto = new Producto(codigo, nombre, insumo, sucursal, existencia, marca);
-        //Retorno de entero de la clae ProductoDAO
-        int entero = productoDAO.insertar(producto);
-        //Validación en caso de que se haya hecho correcta la insersión de la información en la base de datos
-        if (entero > 0) {
-            //Llamado al Dialog que manda un mensaje que se ha realizado correctamente el ingreso de información en la base de datos
-            ConfirmacionBusquedaProductos confirmacion = new ConfirmacionBusquedaProductos(this, true);
-            //Método que permite visualizar la ventana
-            confirmacion.setVisible(true);
-            //Método que limpia las cajas de texto de la interface
-            limpiarCajasTexto();
+        //Sentencia if/else que verifica si se cuentan con valores en los campos de texto
+        if (validacionCampos()) {
+            //Asignación de valores para los que se ctenga en los campos de texto
+            int codigo = Integer.parseInt(txtCodigo.getText());
+            String nombre = txtArticulo.getText();
+            String insumo = txtinsumo.getText();
+            String sucursal = txtSucursal.getText();
+            int existencia = Integer.parseInt(txtExistencia.getText());
+            String marca = txtMarca.getText();
+            int valor = optionPersonalizado();
+            //Validación si de desea agregar este producto
+            if (valor == 0) {
+                //Llamado al metodo que se encarga de agregar un regitro al proyecto
+                insertarProducto(codigo, nombre, insumo, sucursal, existencia, marca);
+            }
+            System.out.println("Estan llenos los campos");
+            //Sentencia else en caso de que los campos de texto no cuenten con información
         } else {
-            //Dialog que manda un mensaje en caso de que no se realizo correctamente el ingreso de la inormación
-            ErrorIngresoProductos error = new ErrorIngresoProductos(this, true);
-            //Método que permite visualizar la ventana
-            error.setVisible(true);
-            //Método que limpia las cajas de texto de la interface
-            limpiarCajasTexto();
+            System.out.println("No estan llenos los campos");
+            //Llamado del Dialog que menciona que no se ha ingresado valores
+            ErrorIngresarDatos ee = new ErrorIngresarDatos(this, true);
+            //Método que permite observar el dialg de error
+            ee.setVisible(true);
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
