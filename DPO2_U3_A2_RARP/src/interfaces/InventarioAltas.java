@@ -23,7 +23,9 @@ public class InventarioAltas extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
 
+    //Método que borra el contenido de las cajas de texto de la interfaz
     public void limpiarCajasTexto() {
+        //Asignación de un caracter vacío a cada una de las cajas de el interfaz
         txtArticulo.setText("");
         txtCodigo.setText("");
         txtExistencia.setText("");
@@ -495,28 +497,40 @@ public class InventarioAltas extends javax.swing.JFrame {
 
     //Método que permite guardar un registro o datos de un inventario
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        //Instancia de la clase ProductoDAO
         ProductoDAO productoDAO = new ProductoDAO();
-
+        //Asignación de cada uno de las cajas de texto para la creación de un ojeto Producto
         int codigo = Integer.parseInt(txtCodigo.getText());
         String nombre = txtArticulo.getText();
         String insumo = txtinsumo.getText();
         String sucursal = txtSucursal.getText();
         int existencia = Integer.parseInt(txtExistencia.getText());
         String marca = txtMarca.getText();
+        //Instancias del objeto producto con las varibles que se ingresaron en el cuadro de texto
         Producto producto = new Producto(codigo, nombre, insumo, sucursal, existencia, marca);
+        //Retorno de entero de la clae ProductoDAO
         int entero = productoDAO.insertar(producto);
-
+        //Validación en caso de que se haya hecho correcta la insersión de la información en la base de datos
         if (entero > 0) {
+            //Llamado al Dialog que manda un mensaje que se ha realizado correctamente el ingreso de información en la base de datos
             ConfirmacionProductos confirmacion = new ConfirmacionProductos(this, true);
+            //Método que permite visualizar la ventana
             confirmacion.setVisible(true);
+            //Método que limpia las cajas de texto de la interface
+            limpiarCajasTexto();
         } else {
+            //Dialog que manda un mensaje en caso de que no se realizo correctamente el ingreso de la inormación
             ErrorIngresoProductos error = new ErrorIngresoProductos(this, true);
+            //Método que permite visualizar la ventana
             error.setVisible(true);
+            //Método que limpia las cajas de texto de la interface
+            limpiarCajasTexto();
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     //Método que permite limpiar los campos de texto
     private void btnlimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlimpiarActionPerformed
+        //Método que permite limpiar  los campos depues de ser ingresados
         limpiarCajasTexto();
         //Instancia del Dialog para confirmar la limpieza de los campos de texto del módulo
         ConfirmarLimpieza limpiar = new ConfirmarLimpieza(this, true);

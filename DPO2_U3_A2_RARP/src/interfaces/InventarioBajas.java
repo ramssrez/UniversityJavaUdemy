@@ -4,10 +4,11 @@
 package interfaces;
 
 import database.ProductoDAO;
-import dialogs.ConfimarBusqueda;
 import dialogs.ConfimarSalir;
+import dialogs.ConfirmarBusquedaProducto;
 import dialogs.ConfirmarEliminar;
 import dialogs.ConfirmarLimpieza;
+import dialogs.ErrorNoExiste;
 import main.Principal;
 import objetos.Producto;
 
@@ -27,7 +28,9 @@ public class InventarioBajas extends javax.swing.JFrame {
         //txtSucursal.setEnabled(false);
     }
 
+    //Método que borra el contenido de las cajas de texto de la interfaz
     public void limpiarCajas() {
+        //Asignación de un caracter vacío a cada una de las cajas de el interfaz
         txtArticulo.setText("");
         txtCodigo.setText("");
         txtExistencia.setText("");
@@ -386,26 +389,27 @@ public class InventarioBajas extends javax.swing.JFrame {
                 .addComponent(paneldatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(82, 82, 82))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(61, 61, 61))))
+                        .addContainerGap(22, Short.MAX_VALUE))))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27))
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(paneldatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 27, Short.MAX_VALUE))
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(34, 34, 34)
+                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(38, 38, 38))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addComponent(paneldatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 27, Short.MAX_VALUE))))
         );
 
         menuEmpleado.setText("Empleado");
@@ -507,15 +511,11 @@ public class InventarioBajas extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 615, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 30, Short.MAX_VALUE))
+            .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 615, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 28, Short.MAX_VALUE))
+            .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -539,22 +539,37 @@ public class InventarioBajas extends javax.swing.JFrame {
 
     //Método que permite llamar al Dialog para buscar un registro del sistema o base de datos
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        //Instancia de la clase ProductoDAO
         ProductoDAO productodao = new ProductoDAO();
+        //Declaración del objeto producto como nul
+        Producto producto = null;
+        //Bloque try/catch para asignar en las respectivas cajas de texto
         try {
-            Producto producto = productodao.seleccionar(txtCodigo.getText(), txtSucursal.getText());
+            //Asignación del producto a lo que se recupere de la sentencia SQL
+            producto = productodao.seleccionar(txtCodigo.getText(), txtSucursal.getText());
+            //Llamado del Dialog que menciona que existe un producto
+            ConfirmarBusquedaProducto busquedaProducto = new ConfirmarBusquedaProducto(this, true);
+            //Método que permite visualizar la ventana anteriormente mencionada
+            busquedaProducto.setVisible(true);
+            //Asignación de la información de lo que se obtuvo de la busquedda
             txtArticulo.setText(producto.getNombreProducto());
             txtMarca.setText(producto.getMarcaProducto());
             txtExistencia.setText(String.valueOf(producto.getExistenciaProducto()));
             txtInsumo.setText(producto.getInsumoProducto());
+            //Sentencia solo para verificar que se obtenga un objeto
             System.out.println(producto.toString());
         } catch (Exception ex) {
+            //Sentencia que muestra un mensaje en caso de que no se cuente con información de los datoa
+            if (producto == null) {
+                //Llamado del Dialog que menciona que no existe un producto
+                ErrorNoExiste error = new ErrorNoExiste(this, true);
+                //Método que permite visualizar la ventana anteriormente mencionada
+                error.setVisible(true);
+                //Método que permite limpiar  los campos depues de ser ingresados
+                limpiarCajas();
+            }
             System.out.println("es: " + ex.getMessage());
         }
-
-        //Instancia del Dialog para confirmar la busqueda del registro en el sistema
-        ConfimarBusqueda busqueda = new ConfimarBusqueda(this, true);
-        //Método que permite visualizar la ventana
-        busqueda.setVisible(true);
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     //Método que permite abrir la ventana para dar de alta un Empleado
@@ -638,7 +653,9 @@ public class InventarioBajas extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_menuItemConsultaInsumosActionPerformed
 
+    //Método que permite realizar una nueva busqueda en la base de datos
     private void btnuevaBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnuevaBusquedaActionPerformed
+        //Método que permite limpiar  los campos depues de ser ingresados
         limpiarCajas();
         //Instancia del Dialog para confirmar la limpieza de los campos de texto del módulo
         ConfirmarLimpieza limpiar = new ConfirmarLimpieza(this, true);
