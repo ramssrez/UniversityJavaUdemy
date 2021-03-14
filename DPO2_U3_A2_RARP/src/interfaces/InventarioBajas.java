@@ -8,7 +8,7 @@ import dialogs.ConfimarSalir;
 import dialogs.ConfirmarBusquedaProducto;
 import dialogs.ConfirmarLimpieza;
 import dialogs.ConfirmacionElminacionProducto;
-import dialogs.ErrorEiminaciónProduto;
+import dialogs.ErrorEiminacionProduto;
 import dialogs.ErrorIngresarDatos;
 import dialogs.ErrorProductoNoExiste;
 import java.awt.Font;
@@ -67,7 +67,7 @@ public class InventarioBajas extends javax.swing.JFrame {
             System.out.println("Se ha eliminado el elemento");
         } else {
             //Llamado del Dialog que menciona que no se ha eliminado un producto
-            ErrorEiminaciónProduto eep = new ErrorEiminaciónProduto(this, true);
+            ErrorEiminacionProduto eep = new ErrorEiminacionProduto(this, true);
             //Método que permite que se muestre el dialog que se ha creado
             eep.setVisible(true);
             System.out.println("No se ha eliminado");

@@ -5,18 +5,27 @@ package interfaces;
 
 import database.EmpleadoDAO;
 import dialogs.ConfimarSalir;
+import dialogs.ConfirmacionElminacionEmpleado;
 import dialogs.ConfirmarBusquedaEmpleado;
-import dialogs.ConfirmarEliminar;
 import dialogs.ConfirmarLimpieza;
+import dialogs.ErrorEiminacionProduto;
 import dialogs.ErrorEmpleadoNoExiste;
 import dialogs.ErrorIngresarDatos;
+import java.awt.Font;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import main.Principal;
 import objetos.Empleado;
 
 public class EmpleadosBajas extends javax.swing.JFrame {
+
+    //Variable global de tipo producto, esto para ser guardado cuando se encuentre un producto
+    public Empleado empleadoGlobal;
 
     public EmpleadosBajas() {
         initComponents();
@@ -33,6 +42,7 @@ public class EmpleadosBajas extends javax.swing.JFrame {
         txtFIngreso.setEnabled(false);
         txtFNacimieto.setEnabled(false);
         txtPuesto.setEnabled(false);
+        empleadoGlobal = null;
     }
 
     //Método que permite la conexión a la base de datos con el dato de entrada como el número empleado
@@ -73,7 +83,50 @@ public class EmpleadosBajas extends javax.swing.JFrame {
             //Método que permite limpiar  los campos depues de ser ingresados
             limpiarCamposTexto();
         }
+        //Asignaciónd del producto que se obtuvo de la base de datos a la variable global
+        empleadoGlobal = empleado;
+    }
 
+    //Método que se encarga de la conexión con la base de datos, en función del empleado buscado
+    public void eliminar() {
+        //Instancia de la clase EmpleadoDAO
+        EmpleadoDAO empleadodao = new EmpleadoDAO();
+        //Linea de codigo auxiliar
+        System.out.println("produto" + empleadoGlobal.toString());
+        //Declaración del entero que es lo que retorna cuando se ha hecho una eliminación
+        int entero = empleadodao.eliminar(empleadoGlobal);
+        //Sentencia if/else en caso de que el entero sea mayor a cero
+        if (entero > 0) {
+            //Llamado del Dialog que menciona que se ha eliminado un producto
+            ConfirmacionElminacionEmpleado cee = new ConfirmacionElminacionEmpleado(this, true);
+            //Método que permite que se muestre el dialog que se ha creado
+            cee.setVisible(true);
+            System.out.println("Se ha eliminado el elemento");
+        } else {
+            //Llamado del Dialog que menciona que no se ha eliminado un producto
+            ErrorEiminacionProduto eep = new ErrorEiminacionProduto(this, true);
+            //Método que permite que se muestre el dialog que se ha creado
+            eep.setVisible(true);
+            System.out.println("No se ha eliminado");
+
+        }
+    }
+    
+    //Método que genera un JOptin personalizado, por la libertad que nos brinda se ha escogido este tipo de JOption
+    public int joptionPersonalizado() {
+        //Delcaración de etiqueta en donde podemos ingresar el tipo y tamaño de ltra
+        JLabel etiqueta = new JLabel("¿Deseas eliminar este empleado?");
+        //Fuente de la letra de nuestra etiqueta
+        etiqueta.setFont(new Font("Tahoma", Font.BOLD, 24));
+        //Asignación de lo valores de los botones
+        Object[] options = {"Aceptar", "Cancelar"};
+        //Declaración del icono que se desea mostrar en el JOption
+        Icon icono = new ImageIcon(getClass().getResource("/imagenes/interrogacion.png"));
+        //Instancia y declaración de una variable de tipo entero para que se genere un JOprionPane
+        int valor = JOptionPane.showOptionDialog(null, etiqueta, "Confirmar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icono, options, options[1]);
+        System.out.println("valor = " + valor);
+        //Retorno del valor para el caso que haya seleccionado el usuario
+        return valor;
     }
 
     //Método que verifica que los campos no se encuentren vacios
@@ -573,7 +626,7 @@ public class EmpleadosBajas extends javax.swing.JFrame {
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addGap(56, 56, 56)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 24, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -708,10 +761,32 @@ public class EmpleadosBajas extends javax.swing.JFrame {
 
     //Método que permite llamar al Dialog para eliminar un registro del sistema o base de datos
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        //Instancia del Dialog para confirmar borrar el registro del sistema
-        ConfirmarEliminar eliminar = new ConfirmarEliminar(this, true);
-        //Método que permite visualizar la ventana
-        eliminar.setVisible(true);
+        //Varificación de variable global por si se encuentra nula
+        if (empleadoGlobal != null) {
+            //Asignación devariable de tipo entero con lo que se obtuvo del JOptionPersonalizado
+            int valor = joptionPersonalizado();
+            System.out.println("valor = " + valor);
+            //En caso de que el valor retornado sea 0 se manda a llamar la opción de eliminar
+            if (valor == 0) {
+                //Llamado al método que se encarga de la eliminación de un producto
+                eliminar();
+            }
+            //Llamado a la función que se encarga de limpiar todas las cajas de la interfaz
+            limpiarCamposTexto();
+            //Declaración de variable global para que se vuelva nula de nuevos
+            empleadoGlobal = null;
+        } else {
+            //Llamado del Dialog que menciona que no se ha ingresado valores
+            ErrorIngresarDatos ee = new ErrorIngresarDatos(this, true);
+            //Método que permite observar el dialg de error
+            ee.setVisible(true);
+            System.out.println("no se ha seleccinado un producto");
+        }
+
+////Instancia del Dialog para confirmar borrar el registro del sistema
+//        ConfirmarEliminar eliminar = new ConfirmarEliminar(this, true);
+//        //Método que permite visualizar la ventana
+//        eliminar.setVisible(true);
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     //Método que permite realizar la busqueda de información de la base de datos
