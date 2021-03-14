@@ -17,8 +17,44 @@ public class EmpleadoDAO {
     //Declaración de la sentencia a realizar para insertar un registro a  la base de datos
     private static final String SQL_INSERT = "INSERT INTO empleados(NumEmpleado, nombreEmpleado, ApellidosEmpleado, FecNacEmpleado, CURPEmpleado, RFCEmpleado, SueldoEmpleado, PuestoEmpleado, FecIngresoEmpleado) VALUES(?,?,?,?,?,?,?,?,?)";
     //Delcaración de la sentencia a realizar para eliminar un registro de la base de datos.
-    //private static final String SQL_DELETE = "DELETE FROM productos WHERE idProducto = ?";
+    private static final String SQL_DELETE = "DELETE FROM empleados WHERE idEmpleado = ?";
 
+       //Método que permite la eliminación de un registro de la base de datos.
+    public int eliminar(Empleado empleado) {
+        // Declaración de las variables necesrias para poder realizar la conexion a la base de datos
+        //Declaración del objeto del canal de conexión
+        Connection conn = null;
+        //Declaración del objetos de sentencias
+        PreparedStatement preparedStatement = null;
+        //Delcaración de la variable que verifica si se ha hecho una modificación al registro
+        int registros = 0;
+        try {
+            //Declaración del canal de conexión
+            conn = ConexionDB.getConnection();
+            //Envio de sentencias SQL para eliminar un registro de la base de datos
+            preparedStatement = conn.prepareStatement(SQL_DELETE);
+            //Envio de los parametros que se han seleccionado para poder realiar la eliminación de un regitro
+            preparedStatement.setInt(1, empleado.getIdEmpleado());
+            //Sentencia para la asginación en caso de que se haya hecho la eliminación 
+            registros = preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println("Error: " + ex.getMessage());
+            ex.printStackTrace(System.out);
+        } finally {
+            try {
+                //Cierre de la sentecia enviada
+                ConexionDB.close(preparedStatement);
+                //Cierre del canal de conexión
+                ConexionDB.close(conn);
+            } catch (SQLException ex) {
+                System.out.println("Error: " + ex.getMessage());
+                ex.printStackTrace(System.out);
+            }
+        }
+        //Retorno de regostros afectados
+        return registros;
+    }
+    
     //Método seleccionar el cual se encarga de buscar un empleado en función del numero del empleado 
     public Empleado seleccionar(int numeroEmpleadoEntrada) {
         //Declaración de las variables necesrias para poder realizar la conexion a la base de datos.

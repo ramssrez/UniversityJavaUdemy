@@ -27,7 +27,7 @@ public class ProductoDAO {
         //Delcaración de la variable que verifica si se ha hecho una modificación al registro
         int registros = 0;
         try {
-            //Declaración del canal de coneción
+            //Declaración del canal de conexión
             conn = ConexionDB.getConnection();
             //Envio de sentencias SQL para eliminar un registro de la base de datos
             preparedStatement = conn.prepareStatement(SQL_DELETE);
