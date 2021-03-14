@@ -24,8 +24,8 @@ import objetos.Empleado;
 
 public class EmpleadosBajas extends javax.swing.JFrame {
 
-    //Variable global de tipo producto, esto para ser guardado cuando se encuentre un producto
-    public Empleado empleadoGlobal;
+    //Variable global de tipo empleado, esto para ser guardado cuando se encuentre un empleado
+    private Empleado empleadoGlobal;
 
     public EmpleadosBajas() {
         initComponents();

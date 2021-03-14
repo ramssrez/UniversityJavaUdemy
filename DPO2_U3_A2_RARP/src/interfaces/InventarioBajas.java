@@ -22,7 +22,7 @@ import objetos.Producto;
 public class InventarioBajas extends javax.swing.JFrame {
 
     //Variable global de tipo producto, esto para ser guardado cuando se encuentre un producto
-    public Producto productoGlobal;
+    private Producto productoGlobal;
 
     public InventarioBajas() {
         initComponents();

@@ -4,22 +4,22 @@
 package interfaces;
 
 import database.EmpleadoDAO;
-import dialogs.ConfimarBusqueda;
 import dialogs.ConfimarCalculo;
 import dialogs.ConfirmarLimpieza;
-import dialogs.ConfimarGuardado;
 import dialogs.ConfimarSalir;
 import dialogs.ConfirmarBusquedaEmpleado;
 import dialogs.ErrorEmpleadoNoExiste;
 import dialogs.ErrorIngresarDatos;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import dialogs.ErrorIngresarPorcentaje;
+
 import main.Principal;
 import objetos.Empleado;
 
 public class CalculoNomina extends javax.swing.JFrame {
-    
+
+    //Variable global para el sueldo.
+    private double sueldoBruto;
+
     public CalculoNomina() {
         initComponents();
         //Asignación de titulo a la ventana
@@ -31,7 +31,7 @@ public class CalculoNomina extends javax.swing.JFrame {
         txtApellidos.setEnabled(false);
         txtRfc.setEnabled(false);
         txtSueldoBruto.setEnabled(false);
-        
+        sueldoBruto = 0.0d;
     }
     //Método que verifica que los campos no se encuentren vacios
 
@@ -59,6 +59,7 @@ public class CalculoNomina extends javax.swing.JFrame {
             txtNombre.setText(empleado.getNombreEmpleado());
             txtRfc.setText(empleado.getRfcEmpleado());
             txtSueldoBruto.setText("$" + String.valueOf(empleado.getSueldoEmpleado()));
+            sueldoBruto = empleado.getSueldoEmpleado();
             //Llamado del Dialog que menciona que existe un empleado
             ConfirmarBusquedaEmpleado cbe = new ConfirmarBusquedaEmpleado(this, true);
             //Método que permite visualizar la ventana anteriormente mencionada
@@ -639,20 +640,44 @@ public class CalculoNomina extends javax.swing.JFrame {
         salir.setVisible(true);
     }//GEN-LAST:event_btnSalirActionPerformed
 
-    //Método que permite un nuevo calculo de la nómina
+    //Método que permite borrar todo lo que contiene los campos de texto
     private void btnCalculoNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalculoNuevoActionPerformed
-        //Instancia del Dialog para confirmar el cálculo de la nomina 
-        ConfimarCalculo confirmar = new ConfimarCalculo(this, true);
+        //Método que permite limpiar los campos de texto
+        limpiarCamposTexto();
+        //Instancia del Dialog para confirmar la limpieza de los campos de texto del módulo
+        ConfirmarLimpieza limpiar = new ConfirmarLimpieza(this, true);
         //Método que permite visualizar la ventana
-        confirmar.setVisible(true);
+        limpiar.setVisible(true);
     }//GEN-LAST:event_btnCalculoNuevoActionPerformed
 
     //Método que permite calcular la nómina de un empleado
     private void btnCalcularNominaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularNominaActionPerformed
-        //Instancia del Dialog para confirmar el cálculo de la nomina 
-        ConfimarCalculo confirmar = new ConfimarCalculo(this, true);
-        //Método que permite visualizar la ventana
-        confirmar.setVisible(true);
+        //Sentencia if/else para validar que se haya ingresado un datos en la caja de texto
+        if (validacionCamposTexto()) {
+            if (txtPorcentaje.getText().equals("")) {
+                System.out.println("No se ha agregado un porcentaje");
+                //Llamado del Dialog que menciona que no se ha ingresado valores
+                ErrorIngresarPorcentaje ee = new ErrorIngresarPorcentaje(this, true);
+                //Método que permite observar el dialg de error
+                ee.setVisible(true);
+            } else {
+                double iva = Double.valueOf(txtPorcentaje.getText());
+                double sueldoNeto = sueldoBruto - (sueldoBruto) * (iva / 100);
+                System.out.println("El sueldo es. " + sueldoNeto);
+                txtSueldoNeto.setText(String.valueOf(sueldoNeto));
+            }
+        } else {
+            //En caso de que se retorne false, se manda a crear un Dialog
+            //Llamado del Dialog que menciona que no se ha ingresado valores
+            ErrorIngresarDatos ee = new ErrorIngresarDatos(this, true);
+            //Método que permite observar el dialg de error
+            ee.setVisible(true);
+        }
+
+//Instancia del Dialog para confirmar el cálculo de la nomina 
+//        ConfimarCalculo confirmar = new ConfimarCalculo(this, true);
+//        Método que permite visualizar la ventana
+//        confirmar.setVisible(true);
     }//GEN-LAST:event_btnCalcularNominaActionPerformed
 
     //Método que permite abrir la ventana para dar de alta un Empleado
@@ -707,7 +732,6 @@ public class CalculoNomina extends javax.swing.JFrame {
 
     //Método que permite realizar la busqueda de un empleado
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-
         //Sentencia if/else para validar que se haya ingresado un datos en la caja de texto
         if (validacionCamposTexto()) {
             //Creación de la variable de tipo entero para ser enviado al metodo de busqueda
@@ -789,7 +813,7 @@ public class CalculoNomina extends javax.swing.JFrame {
                 new CalculoNomina().setVisible(true);
             }
         });
-        
+
     }
 
     //Variables de los diferentes componentes de la ventana
