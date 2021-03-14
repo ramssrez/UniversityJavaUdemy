@@ -80,7 +80,7 @@ public class InventarioAltas extends javax.swing.JFrame {
 
     //Método que genera un JOptin personalizado, por la libertad que nos brinda se ha escogido este tipo de JOption
     public int optionPersonalizado() {
-        //Delcaración de etiqueta en donde podemos ingresar el tipo y tamaño de ltra
+        //Delcaración de etiqueta en donde podemos ingresar el tipo y tamaño de letra
         JLabel etiqueta = new JLabel("¿Deseas agregar este producto?");
         //Fuente de la letra de nuestra etiqueta
         etiqueta.setFont(new Font("Tahoma", Font.BOLD, 24));

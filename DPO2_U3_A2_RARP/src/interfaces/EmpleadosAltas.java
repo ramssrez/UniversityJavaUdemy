@@ -7,7 +7,6 @@ import database.EmpleadoDAO;
 import dialogs.ConfirmarLimpieza;
 import dialogs.ConfimarSalir;
 import dialogs.ConfirmacionRegistroEmpleado;
-import dialogs.ConfirmacionRegistroProducto;
 import dialogs.ErrorIngresarDatos;
 import dialogs.ErrorIngresoEmpleado;
 import java.awt.Font;
@@ -79,7 +78,7 @@ public class EmpleadosAltas extends javax.swing.JFrame {
 
     //Método que genera un JOptin personalizado, por la libertad que nos brinda se ha escogido este tipo de JOption
     public int joptionPersonalizado() {
-        //Delcaración de etiqueta en donde podemos ingresar el tipo y tamaño de ltra
+        //Delcaración de etiqueta en donde podemos ingresar el tipo y tamaño de letra
         JLabel etiqueta = new JLabel("¿Deseas agregar este empleado?");
         //Fuente de la letra de nuestra etiqueta
         etiqueta.setFont(new Font("Tahoma", Font.BOLD, 24));

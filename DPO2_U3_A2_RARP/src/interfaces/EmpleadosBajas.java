@@ -42,14 +42,15 @@ public class EmpleadosBajas extends javax.swing.JFrame {
         txtFIngreso.setEnabled(false);
         txtFNacimieto.setEnabled(false);
         txtPuesto.setEnabled(false);
+        //Declaración del empleadoGlobal como nulo
         empleadoGlobal = null;
     }
 
     //Método que permite la conexión a la base de datos con el dato de entrada como el número empleado
     public void buscarEmpleado(int numeroEmpleado) {
-        //Instancia de la clase ProductoDAO
+        //Instancia de la clase EmpleadoDAO
         EmpleadoDAO empleadoDAO = new EmpleadoDAO();
-        //Declaración del objeto producto como nulo
+        //Declaración del objeto empleado como nulo
         Empleado empleado = null;
         //Asignación del empleado a lo que se recupere de la sentencia SQL
         empleado = empleadoDAO.seleccionar(numeroEmpleado);
@@ -97,13 +98,13 @@ public class EmpleadosBajas extends javax.swing.JFrame {
         int entero = empleadodao.eliminar(empleadoGlobal);
         //Sentencia if/else en caso de que el entero sea mayor a cero
         if (entero > 0) {
-            //Llamado del Dialog que menciona que se ha eliminado un producto
+            //Llamado del Dialog que menciona que se ha eliminado un empleado
             ConfirmacionElminacionEmpleado cee = new ConfirmacionElminacionEmpleado(this, true);
             //Método que permite que se muestre el dialog que se ha creado
             cee.setVisible(true);
             System.out.println("Se ha eliminado el elemento");
         } else {
-            //Llamado del Dialog que menciona que no se ha eliminado un producto
+            //Llamado del Dialog que menciona que no se ha eliminado un eempleado
             ErrorEiminacionProduto eep = new ErrorEiminacionProduto(this, true);
             //Método que permite que se muestre el dialog que se ha creado
             eep.setVisible(true);
@@ -114,7 +115,7 @@ public class EmpleadosBajas extends javax.swing.JFrame {
     
     //Método que genera un JOptin personalizado, por la libertad que nos brinda se ha escogido este tipo de JOption
     public int joptionPersonalizado() {
-        //Delcaración de etiqueta en donde podemos ingresar el tipo y tamaño de ltra
+        //Delcaración de etiqueta en donde podemos ingresar el tipo y tamaño de letra
         JLabel etiqueta = new JLabel("¿Deseas eliminar este empleado?");
         //Fuente de la letra de nuestra etiqueta
         etiqueta.setFont(new Font("Tahoma", Font.BOLD, 24));
@@ -759,7 +760,7 @@ public class EmpleadosBajas extends javax.swing.JFrame {
         confimarSalir.setVisible(true);
     }//GEN-LAST:event_btnSalirActionPerformed
 
-    //Método que permite llamar al Dialog para eliminar un registro del sistema o base de datos
+    //Método que permite eliminarun registro de la base de datos
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         //Varificación de variable global por si se encuentra nula
         if (empleadoGlobal != null) {
@@ -804,10 +805,6 @@ public class EmpleadosBajas extends javax.swing.JFrame {
             //Método que permite observar el dialg de error
             ee.setVisible(true);
         }
-//        //Instancia del Dialog para confirmar la busqueda del registro en el sistema
-//        ConfimarBusqueda busqueda = new ConfimarBusqueda(this, true);
-//        //Método que permite visualizar la ventana
-//        busqueda.setVisible(true);
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     //Método que permite la limpieza de las cajas de texto
