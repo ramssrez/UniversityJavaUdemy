@@ -71,7 +71,7 @@ public class EmpleadosBajas extends javax.swing.JFrame {
             txtNumeroEmpleado.setText(String.valueOf(empleado.getNumEmpleado()));
             txtPuesto.setText(empleado.getPuestoEmpleado());
             txtRfc.setText(empleado.getRfcEmpleado());
-            txtSueldo.setText(String.valueOf(empleado.getSueldoEmpleado()));
+            txtSueldo.setText("$" + String.valueOf(empleado.getSueldoEmpleado()));
             //Llamado del Dialog que menciona que existe un empleado
             ConfirmarBusquedaEmpleado cbe = new ConfirmarBusquedaEmpleado(this, true);
             //Método que permite visualizar la ventana anteriormente mencionada
@@ -112,7 +112,7 @@ public class EmpleadosBajas extends javax.swing.JFrame {
 
         }
     }
-    
+
     //Método que genera un JOptin personalizado, por la libertad que nos brinda se ha escogido este tipo de JOption
     public int joptionPersonalizado() {
         //Delcaración de etiqueta en donde podemos ingresar el tipo y tamaño de letra

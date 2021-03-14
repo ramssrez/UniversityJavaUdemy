@@ -3,15 +3,23 @@
  */
 package interfaces;
 
+import database.EmpleadoDAO;
 import dialogs.ConfimarBusqueda;
 import dialogs.ConfimarCalculo;
 import dialogs.ConfirmarLimpieza;
 import dialogs.ConfimarGuardado;
 import dialogs.ConfimarSalir;
+import dialogs.ConfirmarBusquedaEmpleado;
+import dialogs.ErrorEmpleadoNoExiste;
+import dialogs.ErrorIngresarDatos;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import main.Principal;
+import objetos.Empleado;
 
 public class CalculoNomina extends javax.swing.JFrame {
-
+    
     public CalculoNomina() {
         initComponents();
         //Asignación de titulo a la ventana
@@ -20,11 +28,60 @@ public class CalculoNomina extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         //Implementación de bloqueo de los campos de la pantalla
         txtNombre.setEnabled(false);
-        txtApellidoPaterno.setEnabled(false);
-        txtApellidoMaterno.setEnabled(false);
+        txtApellidos.setEnabled(false);
         txtRfc.setEnabled(false);
         txtSueldoBruto.setEnabled(false);
+        
+    }
+    //Método que verifica que los campos no se encuentren vacios
 
+    public boolean validacionCamposTexto() {
+        //Sentencia if/else que verifica si esta vacio el campo, en caso afirmativo retorna un booleano
+        if (txtNEmpleado.getText().equals("")) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    //Método que permite la conexión a la base de datos con el dato de entrada como el número empleado
+    public void buscarEmpleado(int numeroEmpleado) {
+        //Instancia de la clase EmpleadoDAO
+        EmpleadoDAO empleadoDAO = new EmpleadoDAO();
+        //Declaración del objeto empleado como nulo
+        Empleado empleado = null;
+        //Asignación del empleado a lo que se recupere de la sentencia SQL
+        empleado = empleadoDAO.seleccionar(numeroEmpleado);
+        //Sentencia if/else para el caso de que se recupere información
+        if (empleado != null) {
+            //Asignación de la información que se obtuvo de la base de datos en los campos de texto
+            txtApellidos.setText(empleado.getApellidosEmpleado());
+            txtNombre.setText(empleado.getNombreEmpleado());
+            txtRfc.setText(empleado.getRfcEmpleado());
+            txtSueldoBruto.setText("$" + String.valueOf(empleado.getSueldoEmpleado()));
+            //Llamado del Dialog que menciona que existe un empleado
+            ConfirmarBusquedaEmpleado cbe = new ConfirmarBusquedaEmpleado(this, true);
+            //Método que permite visualizar la ventana anteriormente mencionada
+            cbe.setVisible(true);
+        } else {
+            //Llamado del Dialog que menciona que no existe un empleado
+            ErrorEmpleadoNoExiste eene = new ErrorEmpleadoNoExiste(this, true);
+            //Método que permite visualizar la ventana anteriormente mencionada
+            eene.setVisible(true);
+            //Método que permite limpiar  los campos depues de ser ingresados
+            limpiarCamposTexto();
+        }
+    }
+
+    //Método que permite la limpieza de los datos que se han asignado
+    public void limpiarCamposTexto() {
+        txtNEmpleado.setText("");
+        txtApellidos.setText("");
+        txtNombre.setText("");
+        txtRfc.setText("");
+        txtSueldoBruto.setText("");
+        txtPorcentaje.setText("");
+        txtSueldoNeto.setText("");
     }
 
     /**
@@ -44,13 +101,10 @@ public class CalculoNomina extends javax.swing.JFrame {
         paneldatos = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jleArticulo = new javax.swing.JLabel();
-        txtApellidoPaterno = new javax.swing.JTextField();
+        txtApellidos = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jleCodigo = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
-        jPanel3 = new javax.swing.JPanel();
-        jlesucursal = new javax.swing.JLabel();
-        txtApellidoMaterno = new javax.swing.JTextField();
         jPanel9 = new javax.swing.JPanel();
         jleCodigo1 = new javax.swing.JLabel();
         txtNEmpleado = new javax.swing.JTextField();
@@ -104,9 +158,9 @@ public class CalculoNomina extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         jleArticulo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jleArticulo.setText("Apellido Paterno:");
+        jleArticulo.setText("Apellidos :");
 
-        txtApellidoPaterno.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtApellidos.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -116,8 +170,8 @@ public class CalculoNomina extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jleArticulo)
                 .addGap(40, 40, 40)
-                .addComponent(txtApellidoPaterno, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(txtApellidos)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,7 +179,7 @@ public class CalculoNomina extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jleArticulo)
-                    .addComponent(txtApellidoPaterno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -154,34 +208,6 @@ public class CalculoNomina extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jleCodigo)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-
-        jlesucursal.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jlesucursal.setText("Apellido Materno:");
-
-        txtApellidoMaterno.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jlesucursal)
-                .addGap(37, 37, 37)
-                .addComponent(txtApellidoMaterno, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jlesucursal)
-                    .addComponent(txtApellidoMaterno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -255,7 +281,7 @@ public class CalculoNomina extends javax.swing.JFrame {
             .addGroup(jPanel16Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jleCodigo2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                 .addComponent(txtSueldoBruto, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -289,12 +315,8 @@ public class CalculoNomina extends javax.swing.JFrame {
                     .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, paneldatosLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(paneldatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, paneldatosLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -310,8 +332,6 @@ public class CalculoNomina extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -475,29 +495,30 @@ public class CalculoNomina extends javax.swing.JFrame {
                 .addComponent(paneldatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
+                        .addGap(20, 20, 20)
                         .addComponent(paneldatos1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32)
+                        .addGap(18, 18, 18)
                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(31, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                    .addGroup(jPanel8Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(259, 259, 259))))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(paneldatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(paneldatos1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel8Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(paneldatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel8Layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(paneldatos1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(52, 52, 52))
         );
 
@@ -684,12 +705,23 @@ public class CalculoNomina extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_menuItemPrincipalActionPerformed
 
-    //Método que permite llamar al Dialog para buscar un registro del sistema o base de datos
+    //Método que permite realizar la busqueda de un empleado
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        //Instancia del Dialog para confirmar la busqueda del registro en el sistema
-        ConfimarBusqueda busqueda = new ConfimarBusqueda(this, true);
-        //Método que permite visualizar la ventana
-        busqueda.setVisible(true);
+
+        //Sentencia if/else para validar que se haya ingresado un datos en la caja de texto
+        if (validacionCamposTexto()) {
+            //Creación de la variable de tipo entero para ser enviado al metodo de busqueda
+            int numeroEmpleado = Integer.parseInt(txtNEmpleado.getText());
+            System.out.println("numeroEmpleado = " + numeroEmpleado);
+            //Método que se conecta a la base de datos para recuperar la información del Empleado
+            buscarEmpleado(numeroEmpleado);
+        } else {
+            //En caso de que se retorne false, se manda a crear un Dialog
+            //Llamado del Dialog que menciona que no se ha ingresado valores
+            ErrorIngresarDatos ee = new ErrorIngresarDatos(this, true);
+            //Método que permite observar el dialg de error
+            ee.setVisible(true);
+        }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     //Método que permite abrir la ventana de calculo de nomina
@@ -749,7 +781,7 @@ public class CalculoNomina extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(CalculoNomina.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
- 
+
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -757,7 +789,7 @@ public class CalculoNomina extends javax.swing.JFrame {
                 new CalculoNomina().setVisible(true);
             }
         });
-
+        
     }
 
     //Variables de los diferentes componentes de la ventana
@@ -778,7 +810,6 @@ public class CalculoNomina extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel20;
     private javax.swing.JPanel jPanel21;
     private javax.swing.JPanel jPanel23;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
@@ -789,7 +820,6 @@ public class CalculoNomina extends javax.swing.JFrame {
     private javax.swing.JLabel jleCodigo11;
     private javax.swing.JLabel jleCodigo2;
     private javax.swing.JLabel jleCodigo3;
-    private javax.swing.JLabel jlesucursal;
     private javax.swing.JMenuItem menuAltaEmpleado;
     private javax.swing.JMenuItem menuBajaEmpleado;
     private javax.swing.JMenu menuConsultas;
@@ -804,8 +834,7 @@ public class CalculoNomina extends javax.swing.JFrame {
     private javax.swing.JMenu menuNomina;
     private javax.swing.JPanel paneldatos;
     private javax.swing.JPanel paneldatos1;
-    private javax.swing.JTextField txtApellidoMaterno;
-    private javax.swing.JTextField txtApellidoPaterno;
+    private javax.swing.JTextField txtApellidos;
     private javax.swing.JTextField txtNEmpleado;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtPorcentaje;
