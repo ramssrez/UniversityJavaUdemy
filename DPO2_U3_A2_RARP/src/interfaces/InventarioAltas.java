@@ -6,7 +6,7 @@ package interfaces;
 import database.ProductoDAO;
 import dialogs.ConfirmarLimpieza;
 import dialogs.ConfimarSalir;
-import dialogs.ConfirmacionBusquedaProductos;
+import dialogs.ConfirmacionRegistroProducto;
 import dialogs.ErrorIngresarDatos;
 import dialogs.ErrorIngresoProductos;
 import java.awt.Font;
@@ -48,7 +48,7 @@ public class InventarioAltas extends javax.swing.JFrame {
         //Validación en caso de que se haya hecho correcta la insersión de la información en la base de datos
         if (entero > 0) {
             //Llamado al Dialog que manda un mensaje que se ha realizado correctamente el ingreso de información en la base de datos
-            ConfirmacionBusquedaProductos confirmacion = new ConfirmacionBusquedaProductos(this, true);
+            ConfirmacionRegistroProducto confirmacion = new ConfirmacionRegistroProducto(this, true);
             //Método que permite visualizar la ventana
             confirmacion.setVisible(true);
             //Método que limpia las cajas de texto de la interface

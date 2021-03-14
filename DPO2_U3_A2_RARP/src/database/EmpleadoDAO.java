@@ -7,7 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;
+import java.sql.Date;
 import objetos.Empleado;
 
 public class EmpleadoDAO {
@@ -95,6 +95,8 @@ public class EmpleadoDAO {
 
     public int insertar(Empleado empleado) {
         //Declaración de las variables necesrias para poder realizar la conexion a la base de datos.
+        //Delaración de Date del paquete de SQL para poder realizar el guardado de campos de tipo Date
+        Date dateSql = null;
         //Declaración del objeto del canal de conexión
         Connection conn = null;
         //Declaración del objetos de sentencias
@@ -116,7 +118,12 @@ public class EmpleadoDAO {
             preparedStatement.setString(6, empleado.getRfcEmpleado());
             preparedStatement.setString(7, String.valueOf(empleado.getSueldoEmpleado()));
             preparedStatement.setString(8, empleado.getPuestoEmpleado());
-            preparedStatement.setString(9, String.valueOf(empleado.getFechaIngresoEmpleado()));
+            //Tansformación del tipo Date de Java al Date de SQL
+            dateSql = new Date(empleado.getFechaIngresoEmpleado().getTime());
+            //Impresión de la variable que se ha creado
+            System.out.println("dateSql = " + dateSql);
+            //Insersión de la la variable de tipo DateSql para la base de datos
+            preparedStatement.setDate(9, dateSql);
             //Sentencia para que se realice el alza de los datos
             registros = preparedStatement.executeUpdate();
         } catch (SQLException ex) {

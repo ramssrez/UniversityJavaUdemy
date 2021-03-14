@@ -3,16 +3,27 @@
  */
 package interfaces;
 
+import database.EmpleadoDAO;
 import dialogs.ConfirmarLimpieza;
-import dialogs.ConfimarGuardado;
 import dialogs.ConfimarSalir;
+import dialogs.ConfirmacionRegistroEmpleado;
+import dialogs.ConfirmacionRegistroProducto;
 import dialogs.ErrorIngresarDatos;
+import dialogs.ErrorIngresoEmpleado;
 import java.awt.Font;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import main.Principal;
+import objetos.Empleado;
+
+
+
 
 public class EmpleadosAltas extends javax.swing.JFrame {
 
@@ -65,7 +76,7 @@ public class EmpleadosAltas extends javax.swing.JFrame {
     }
 
     //Método que genera un JOptin personalizado, por la libertad que nos brinda se ha escogido este tipo de JOption
-    public int optionPersonalizado() {
+    public int joptionPersonalizado() {
         //Delcaración de etiqueta en donde podemos ingresar el tipo y tamaño de ltra
         JLabel etiqueta = new JLabel("¿Deseas agregar este empleado?");
         //Fuente de la letra de nuestra etiqueta
@@ -79,6 +90,32 @@ public class EmpleadosAltas extends javax.swing.JFrame {
         System.out.println("valor = " + valor);
         //Retorno del valor para el caso que haya seleccionado el usuario
         return valor;
+    }
+
+    //Método que permite insertar un registro en la base de datos, en función de los datos agregado por el usuario
+    public void insertarEmpleado(int numero, String nombre, String apellidos, String fechaNac, String curp, String rfc, int sueldo,String puesto,Date fechaIngreso) {
+        //Instancia de la clase EmpleadoDAO
+        EmpleadoDAO empleadoDAO = new EmpleadoDAO();
+        //Instancias del objeto empleado con las varibles que se ingresaron en el cuadro de texto
+        Empleado empleado = new Empleado(numero, nombre, apellidos, fechaNac, curp, rfc, sueldo, puesto, fechaIngreso);
+        //Retorno de entero de la clae empleadoDAO
+        int entero = empleadoDAO.insertar(empleado);
+        //Validación en caso de que se haya hecho correcta la insersión de la información en la base de datos
+        if (entero > 0) {
+            //Llamado al Dialog que manda un mensaje que se ha realizado correctamente el ingreso de información en la base de datos
+            ConfirmacionRegistroEmpleado confirmacion = new ConfirmacionRegistroEmpleado(this, true);
+            //Método que permite visualizar la ventana
+            confirmacion.setVisible(true);
+            //Método que limpia las cajas de texto de la interface
+            limpiarCamposTexto();
+        } else {
+            //Dialog que manda un mensaje en caso de que no se realizo correctamente el ingreso de la inormación
+            ErrorIngresoEmpleado error = new ErrorIngresoEmpleado(this, true);
+            //Método que permite visualizar la ventana
+            error.setVisible(true);
+            //Método que limpia las cajas de texto de la interface
+            limpiarCamposTexto();
+        }
     }
 
     /**
@@ -679,23 +716,47 @@ public class EmpleadosAltas extends javax.swing.JFrame {
     //Método que permite guardar un registro o datos de un empleado
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         if (validacionCamposTexto()) {
-            //Asignación de valores para los que se ctenga en los campos de texto
-            int numero = Integer.parseInt(txtNumeroEmpleado.getText());
-            String nombre = txtNombre.getText();
-            String apellidos = txtApellidos.getText();
-            String fechaNac = txtFNacimiento.getText();
-            String curp = txtCurp.getText();
-
-            int sueldo = Integer.parseInt(txtSueldo.getText());
-
-            int valor = optionPersonalizado();
-            //Validación si de desea agregar este producto
-            if (valor == 0) {
-                //Llamado al metodo que se encarga de agregar un regitro al proyecto
-                //insertarProducto(codigo, nombre, insumo, sucursal, existencia, marca);
+            //Sentencia Try/catch para el parseo de la fecha que se obtiene de los campos de texto
+            try {
+                //Asignación de valores para los que se ctenga en los campos de texto
+                int numero = Integer.parseInt(txtNumeroEmpleado.getText());
+                String nombre = txtNombre.getText();
+                String apellidos = txtApellidos.getText();
+                String fechaNac = txtFNacimiento.getText();
+                String curp = txtCurp.getText();
+                String rfc = txtRfc.getText();
+                int sueldo = Integer.parseInt(txtSueldo.getText());
+                String puesto = txtPuesto.getText();
+                String fechaString = txtFIngreso.getText();
+                //Impresión de los valores ingresado para observar el funcionamiento de las variables
+                /*
+                System.out.println("numero = " + numero);
+                System.out.println("nombre = " + nombre);
+                System.out.println("apellidos = " + apellidos);
+                System.out.println("fechaNac = " + fechaNac);
+                System.out.println("curp = " + curp);
+                System.out.println("rfc = " + rfc);
+                System.out.println("sueldo = " + sueldo);
+                System.out.println("puesto = " + puesto);
+                System.out.println("fechaString = " + fechaString);
+                */
+                //Asignación de formato a la fecha que se desea obtener o ingresar a la base de datos
+                DateFormat fechaformat = new SimpleDateFormat("yyyy-MM-dd");
+                //Declaración de objeto tipo DateJava el cual sirve como auxiliar para guardar la información
+                Date fechaIngreso = fechaformat.parse(fechaString);
+                //Impresion de la fecha que se ha ingresado
+                System.out.println("fechaIngreso = " + fechaIngreso);
+                int valor = joptionPersonalizado();
+                //Validación si de desea agregar este empleado
+                if (valor == 0) {
+                    //Llamado al metodo que se encarga de agregar un regitro al proyecto
+                    insertarEmpleado(numero, nombre, apellidos, fechaNac, curp, rfc, sueldo, puesto, fechaIngreso);
+                }
+                System.out.println("Estan llenos los campos");
+                //Sentencia else en caso de que los campos de texto no cuenten con información
+            } catch (ParseException ex) {
+                System.out.println("Error " + ex.getMessage());
             }
-            System.out.println("Estan llenos los campos");
-            //Sentencia else en caso de que los campos de texto no cuenten con información
         } else {
             System.out.println("No estan llenos los campos");
             //Llamado del Dialog que menciona que no se ha ingresado valores
