@@ -4,21 +4,26 @@
 package interfaces;
 
 import database.EmpleadoDAO;
-import dialogs.ConfimarCalculo;
 import dialogs.ConfirmarLimpieza;
 import dialogs.ConfimarSalir;
 import dialogs.ConfirmarBusquedaEmpleado;
 import dialogs.ErrorEmpleadoNoExiste;
 import dialogs.ErrorIngresarDatos;
 import dialogs.ErrorIngresarPorcentaje;
-
 import main.Principal;
 import objetos.Empleado;
 
 public class CalculoNomina extends javax.swing.JFrame {
 
-    //Variable global para el sueldo.
+    //Variables globales para enviar a la ventana de información
     private double sueldoBruto;
+    public String nombre;
+    public String apellidos;
+    public double sueldoNetoCalculado;
+    public double impuesto;
+    public String rfc;
+    public int numeroempleadoVentana;
+    public double descuentoVentana;
 
     public CalculoNomina() {
         initComponents();
@@ -32,9 +37,10 @@ public class CalculoNomina extends javax.swing.JFrame {
         txtRfc.setEnabled(false);
         txtSueldoBruto.setEnabled(false);
         sueldoBruto = 0.0d;
-    }
-    //Método que verifica que los campos no se encuentren vacios
 
+    }
+
+    //Método que verifica que los campos no se encuentren vacios
     public boolean validacionCamposTexto() {
         //Sentencia if/else que verifica si esta vacio el campo, en caso afirmativo retorna un booleano
         if (txtNEmpleado.getText().equals("")) {
@@ -59,11 +65,18 @@ public class CalculoNomina extends javax.swing.JFrame {
             txtNombre.setText(empleado.getNombreEmpleado());
             txtRfc.setText(empleado.getRfcEmpleado());
             txtSueldoBruto.setText("$" + String.valueOf(empleado.getSueldoEmpleado()));
+            //Asignación a las variables globales para su impresión en la ventana de iformación
             sueldoBruto = empleado.getSueldoEmpleado();
+            rfc = empleado.getRfcEmpleado();
+            nombre = empleado.getNombreEmpleado();
+            apellidos = empleado.getApellidosEmpleado();
+            numeroempleadoVentana = empleado.getNumEmpleado();
             //Llamado del Dialog que menciona que existe un empleado
             ConfirmarBusquedaEmpleado cbe = new ConfirmarBusquedaEmpleado(this, true);
             //Método que permite visualizar la ventana anteriormente mencionada
             cbe.setVisible(true);
+            txtPorcentaje.setText("");
+            txtSueldoNeto.setText("");
         } else {
             //Llamado del Dialog que menciona que no existe un empleado
             ErrorEmpleadoNoExiste eene = new ErrorEmpleadoNoExiste(this, true);
@@ -83,6 +96,23 @@ public class CalculoNomina extends javax.swing.JFrame {
         txtSueldoBruto.setText("");
         txtPorcentaje.setText("");
         txtSueldoNeto.setText("");
+    }
+
+    //Método que permite la creación de la ventana de información, 
+    public void ventanaImpresion() {
+        //Creación de la ventana de información
+        Informacion info = new Informacion();
+        //Asignación de las varibles globales a las variables de la ventana de información
+        Informacion.sueldoBru = sueldoBruto;
+        Informacion.iva = impuesto;
+        Informacion.sueldoNeto = sueldoNetoCalculado;
+        Informacion.rfc = rfc;
+        Informacion.nombre = nombre;
+        Informacion.apellidos = apellidos;
+        Informacion.numeroempleado = numeroempleadoVentana;
+        Informacion.descuento = descuentoVentana;
+        //Método que permite la visualización de la ventana
+        info.setVisible(true);
     }
 
     /**
@@ -654,6 +684,7 @@ public class CalculoNomina extends javax.swing.JFrame {
     private void btnCalcularNominaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularNominaActionPerformed
         //Sentencia if/else para validar que se haya ingresado un datos en la caja de texto
         if (validacionCamposTexto()) {
+            //Sentencia if/else que verifica se se ha agregado un porcentaje al campo de texto de porcentaje
             if (txtPorcentaje.getText().equals("")) {
                 System.out.println("No se ha agregado un porcentaje");
                 //Llamado del Dialog que menciona que no se ha ingresado valores
@@ -661,10 +692,21 @@ public class CalculoNomina extends javax.swing.JFrame {
                 //Método que permite observar el dialg de error
                 ee.setVisible(true);
             } else {
+                //Creación de la varibla iva en función de lo que se agregue en la caja de texto
                 double iva = Double.valueOf(txtPorcentaje.getText());
+                //Calculo del sueldo neto en función del sueldo bruto y el iva
                 double sueldoNeto = sueldoBruto - (sueldoBruto) * (iva / 100);
+                //Asignación del sueldo neto global al sueldo neto calculado
+                sueldoNetoCalculado = sueldoNeto;
+                //Asignación del impuesto global al iva que se ingreso en el campo de texto
+                impuesto = iva;
+                //Asignación del descuento para la variable global
+                descuentoVentana = -(sueldoBruto) * (iva / 100);
                 System.out.println("El sueldo es. " + sueldoNeto);
-                txtSueldoNeto.setText(String.valueOf(sueldoNeto));
+                //Impresión del sueldo neto en el campo de texto de la interfaz
+                txtSueldoNeto.setText("$" + String.valueOf(sueldoNeto));
+                //Llamado a la función que se encarga de crear la ventana de información
+                ventanaImpresion();
             }
         } else {
             //En caso de que se retorne false, se manda a crear un Dialog
@@ -673,11 +715,6 @@ public class CalculoNomina extends javax.swing.JFrame {
             //Método que permite observar el dialg de error
             ee.setVisible(true);
         }
-
-//Instancia del Dialog para confirmar el cálculo de la nomina 
-//        ConfimarCalculo confirmar = new ConfimarCalculo(this, true);
-//        Método que permite visualizar la ventana
-//        confirmar.setVisible(true);
     }//GEN-LAST:event_btnCalcularNominaActionPerformed
 
     //Método que permite abrir la ventana para dar de alta un Empleado
