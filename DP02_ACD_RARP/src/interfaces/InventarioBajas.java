@@ -11,7 +11,9 @@ import dialogs.ConfirmacionElminacionProducto;
 import dialogs.ErrorEiminacionProduto;
 import dialogs.ErrorIngresarDatos;
 import dialogs.ErrorProductoNoExiste;
+import dialogs.ErrorSoloNumeros;
 import java.awt.Font;
+import java.awt.event.KeyEvent;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -152,6 +154,22 @@ public class InventarioBajas extends javax.swing.JFrame {
         }
     }
 
+    //Método que permtie observar el tipo de caracter que entra al teclado y diferencia si es letra o número
+    public void esNumero(char validar, KeyEvent evt) {
+        //Valida si es caracter de tipo letra 
+        if (Character.isLetter(validar)) {
+            //Método que emite una alerta de sonido en función del sistema operativo
+            getToolkit().beep();
+            //Método que no permite recibir lo que se teclea en función de lo que ingrese del teclaso
+            evt.consume();
+            System.out.println("Solo se aceptan numeros");
+            //Dialog que manda un mensaje en caso de que no sean numeros en los campos de texto
+            ErrorSoloNumeros esn = new ErrorSoloNumeros(this, true);
+            //Método que permite visualizar la ventana
+            esn.setVisible(true);
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -245,6 +263,11 @@ public class InventarioBajas extends javax.swing.JFrame {
         jleCodigo.setText("Código:");
 
         txtCodigo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCodigoKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -273,6 +296,11 @@ public class InventarioBajas extends javax.swing.JFrame {
         jlesucursal.setText("Sucursal:");
 
         txtSucursal.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtSucursal.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtSucursalKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -522,7 +550,7 @@ public class InventarioBajas extends javax.swing.JFrame {
                         .addGap(38, 38, 38))
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addComponent(paneldatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 27, Short.MAX_VALUE))))
+                        .addGap(0, 41, Short.MAX_VALUE))))
         );
 
         menuEmpleado.setText("Empleado");
@@ -779,6 +807,22 @@ public class InventarioBajas extends javax.swing.JFrame {
         //Asignación para que variable global sea nula
         productoGlobal = null;
     }//GEN-LAST:event_btnuevaBusquedaActionPerformed
+  
+    //Evento del teclado en donde recibe solo números
+    private void txtCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyTyped
+        //Declaración de la variable tipo char de lo que se obtenga del teclaso        
+        char validar = evt.getKeyChar();
+        //Lllamado de la función para realizar su procedimiento
+        esNumero(validar, evt);
+    }//GEN-LAST:event_txtCodigoKeyTyped
+  
+    //Evento del teclado en donde recibe solo números
+    private void txtSucursalKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSucursalKeyTyped
+        //Declaración de la variable tipo char de lo que se obtenga del teclaso        
+        char validar = evt.getKeyChar();
+        //Lllamado de la función para realizar su procedimiento
+        esNumero(validar, evt);
+    }//GEN-LAST:event_txtSucursalKeyTyped
 
     /**
      * @param args the command line arguments
