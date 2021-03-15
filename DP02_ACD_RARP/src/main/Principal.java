@@ -3,7 +3,6 @@
  */
 package main;
 
-import database.ConexionDB;
 import dialogs.ConfimarSalir;
 import interfaces.CalculoNomina;
 import interfaces.ConsultaInsumos;
@@ -12,11 +11,6 @@ import interfaces.EmpleadosAltas;
 import interfaces.EmpleadosBajas;
 import interfaces.InventarioAltas;
 import interfaces.InventarioBajas;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import javax.swing.JOptionPane;
-import java.sql.SQLException;
 
 public class Principal extends javax.swing.JFrame {
 
@@ -27,86 +21,6 @@ public class Principal extends javax.swing.JFrame {
         initComponents();
         this.setTitle("Inicio");
         this.setLocationRelativeTo(null);
-    }
-
-    public void metodoPruebaProducto(){
-//            private void btnproductosActionPerformed(java.awt.event.ActionEvent evt) {                                             
-//        Connection conn = null;
-//        try {
-//
-//            //Class.forName("com.mysql.jdbc.Driver");
-//            conn = ConexionDB.getConnection();
-//            PreparedStatement ps;
-//            ResultSet res;
-//            ps = conn.prepareStatement("SELECT * FROM productos");
-//            res = ps.executeQuery();
-//            while (res.next()) {
-//                System.out.println("idProducto: " + res.getInt("idProducto"));
-//                System.out.println("Codigo: " + res.getString("CodigoProducto"));
-//                System.out.println("Nombre: " + res.getString("NombreProducto"));
-//                System.out.println("Insumo: " + res.getString("InsumoProducto"));
-//                System.out.println("Sucursal: " + res.getString("SucursalProducto"));
-//                System.out.println("Marca: " + res.getString("MarcaProducto"));
-//                System.out.println("");
-//            }
-//
-//            ConexionDB.close(conn);
-//
-//        } catch (Exception ex) {
-//            System.out.println("expeción boton prueba" + ex.getMessage());
-//        }
-//    }
-    }
-    
-    public void metodoPruebaEmpleado(){
-//         private void btntrabajadorActionPerformed(java.awt.event.ActionEvent evt) {                                              
-//        //ESTE METODO PUEDE UTILZARSE PARA PODER OBTENER EL SOLO UN REGISTRO
-//        Connection conn = null;
-//        PreparedStatement preparedStatement = null;
-//        ResultSet resultSet = null;
-//        try {
-//            //Class.forName("com.mysql.jdbc.Driver");
-//            conn = ConexionDB.getConnection();
-//
-//            String sql = "SELECT  NumEmpleado, nombreEmpleado, ApellidosEmpleado, FecNacEmpleado, CURPEmpleado, RFCEmpleado, SueldoEmpleado, PuestoEmpleado, FecIngresoEmpleado FROM empleados where NumEmpleado = 24";
-//            //ps = conn.prepareStatement("SELECT * FROM empleados");
-//            preparedStatement = conn.prepareStatement(sql);
-//            resultSet = preparedStatement.executeQuery();
-//            //System.out.println("res " + res.next());
-//            if (resultSet.next()) {
-//                //ESTO ES PARA OBTENER EL REGISTRO DE UNA SOLO EMPLEADO
-//                //System.out.println("idEmpleado: " + res.getString("idEmpleado"));
-//                System.out.println("Numero empleado: " + resultSet.getString("NumEmpleado"));
-//                System.out.println("Nombre: " + resultSet.getString("NombreEmpleado"));
-//                System.out.println("Apellidos: " + resultSet.getString("ApellidosEmpleado"));
-//                System.out.println("Fecha NacimienEmpleado: " + resultSet.getString("FecNacEmpleado"));
-//                System.out.println("CURPEmpleado: " + resultSet.getString("CURPEmpleado"));
-//                System.out.println("RFC NacimienEmpleado: " + resultSet.getString("RFCEmpleado"));
-//                System.out.println("Sueldo Empleado: " + resultSet.getString("SueldoEmpleado"));
-//                System.out.println("Puesto Empleado: " + resultSet.getString("PuestoEmpleado"));
-//                System.out.println("FEcha ingresoEmpleado: " + resultSet.getString("FecIngresoEmpleado"));
-//                System.out.println("");
-//            } else {
-//                JOptionPane.showMessageDialog(null, "No se han recuperado datos");
-//            }
-//
-//            //ConexionDB.close(conn);
-//
-//        } catch (Exception ex) {
-//            System.out.println("expeción boton trabajador" + ex.getMessage());
-//        } finally {
-//            try {
-//                ConexionDB.close(resultSet);
-//                ConexionDB.close(preparedStatement);
-//                ConexionDB.close(conn);
-//            } catch (SQLException ex) {
-//                ex.printStackTrace(System.out);
-//            }
-//
-//        }
-//
-//        // TODO add your handling code here:
-//    
     }
     /**
      * This method is called from within the constructor to initialize the form.
