@@ -7,9 +7,12 @@ import database.EmpleadoDAO;
 import dialogs.ConfirmarLimpieza;
 import dialogs.ConfimarSalir;
 import dialogs.ConfirmacionRegistroEmpleado;
+import dialogs.ErrorFormatoFecha;
 import dialogs.ErrorIngresarDatos;
 import dialogs.ErrorIngresoEmpleado;
+import dialogs.ErrorSoloNumeros;
 import java.awt.Font;
+import java.awt.event.KeyEvent;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -20,9 +23,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import main.Principal;
 import objetos.Empleado;
-
-
-
 
 public class EmpleadosAltas extends javax.swing.JFrame {
 
@@ -43,7 +43,7 @@ public class EmpleadosAltas extends javax.swing.JFrame {
         txtPuesto.setText("Cocinero");
         txtRfc.setText("SDFsDF155");
         txtSueldo.setText("8000");
-        */
+         */
     }
 
     //Método que permite la limpieza de los datos que se han asignado
@@ -94,7 +94,7 @@ public class EmpleadosAltas extends javax.swing.JFrame {
     }
 
     //Método que permite insertar un registro en la base de datos, en función de los datos agregado por el usuario
-    public void insertarEmpleado(int numero, String nombre, String apellidos, String fechaNac, String curp, String rfc, int sueldo,String puesto,Date fechaIngreso) {
+    public void insertarEmpleado(int numero, String nombre, String apellidos, String fechaNac, String curp, String rfc, int sueldo, String puesto, Date fechaIngreso) {
         //Instancia de la clase EmpleadoDAO
         EmpleadoDAO empleadoDAO = new EmpleadoDAO();
         //Instancias del objeto empleado con las varibles que se ingresaron en el cuadro de texto
@@ -116,6 +116,22 @@ public class EmpleadosAltas extends javax.swing.JFrame {
             error.setVisible(true);
             //Método que limpia las cajas de texto de la interface
             limpiarCamposTexto();
+        }
+    }
+
+    //Método que permtie observar el tipo de caracter que entra al teclado y diferencia si es letra o número
+    public void esNumero(char validar, KeyEvent evt) {
+        //Valida si es caracter de tipo letra 
+        if (Character.isLetter(validar)) {
+            //Método que emite una alerta de sonido en función del sistema operativo
+            getToolkit().beep();
+            //Método que no permite recibir lo que se teclea en función de lo que ingrese del teclaso
+            evt.consume();
+            System.out.println("Solo se aceptan numeros");
+            //Dialog que manda un mensaje en caso de que no sean numeros en los campos de texto
+            ErrorSoloNumeros esn = new ErrorSoloNumeros(this, true);
+            //Método que permite visualizar la ventana
+            esn.setVisible(true);
         }
     }
 
@@ -257,6 +273,11 @@ public class EmpleadosAltas extends javax.swing.JFrame {
         jleInsumo.setText("Fecha de Nacimiento");
 
         txtFNacimiento.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtFNacimiento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtFNacimientoKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -313,6 +334,11 @@ public class EmpleadosAltas extends javax.swing.JFrame {
         jleCodigo1.setText("N. Empleado:");
 
         txtNumeroEmpleado.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtNumeroEmpleado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNumeroEmpleadoKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -494,6 +520,11 @@ public class EmpleadosAltas extends javax.swing.JFrame {
         jleCodigo2.setText("Sueldo Bruto:");
 
         txtSueldo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtSueldo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtSueldoKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
         jPanel16.setLayout(jPanel16Layout);
@@ -522,6 +553,11 @@ public class EmpleadosAltas extends javax.swing.JFrame {
         jleInsumo1.setText("Fecha ingreso");
 
         txtFIngreso.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtFIngreso.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtFIngresoKeyTyped(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 0, 0));
@@ -751,7 +787,7 @@ public class EmpleadosAltas extends javax.swing.JFrame {
                 System.out.println("sueldo = " + sueldo);
                 System.out.println("puesto = " + puesto);
                 System.out.println("fechaString = " + fechaString);
-                */
+                 */
                 //Asignación de formato a la fecha que se desea obtener o ingresar a la base de datos
                 DateFormat fechaformat = new SimpleDateFormat("yyyy-MM-dd");
                 //Declaración de objeto tipo DateJava el cual sirve como auxiliar para guardar la información
@@ -768,6 +804,10 @@ public class EmpleadosAltas extends javax.swing.JFrame {
                 //Sentencia else en caso de que los campos de texto no cuenten con información
             } catch (ParseException ex) {
                 System.out.println("Error " + ex.getMessage());
+                //Llamado del Dialog que menciona que el formato de la fecha no es correcto
+                ErrorFormatoFecha effe = new ErrorFormatoFecha(this, true);
+                //Método que permite observar el dialg de error
+                effe.setVisible(true);
             }
         } else {
             System.out.println("No estan llenos los campos");
@@ -776,11 +816,6 @@ public class EmpleadosAltas extends javax.swing.JFrame {
             //Método que permite observar el dialg de error
             ee.setVisible(true);
         }
-
-////Instancia del Dialog para confirmar el guardado de datos en el sistema
-//        ConfimarGuardado confirmar = new ConfimarGuardado(this, true);
-//        //Método que permite visualizar la ventana
-//        confirmar.setVisible(true);
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     //Método que permite limpiar los campos de texto
@@ -872,6 +907,38 @@ public class EmpleadosAltas extends javax.swing.JFrame {
         //Método que cierra la ventana para abrir otra
         dispose();
     }//GEN-LAST:event_menuItemConsultaInsumosActionPerformed
+
+    //Evento del teclado en donde recibe solo números
+    private void txtNumeroEmpleadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumeroEmpleadoKeyTyped
+        //Declaración de la variable tipo char de lo que se obtenga del teclaso        
+        char validar = evt.getKeyChar();
+        //Lllamado de la función para realizar su procedimiento
+        esNumero(validar, evt);
+    }//GEN-LAST:event_txtNumeroEmpleadoKeyTyped
+
+    //Evento del teclado en donde recibe solo números
+    private void txtSueldoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSueldoKeyTyped
+        //Declaración de la variable tipo char de lo que se obtenga del teclaso        
+        char validar = evt.getKeyChar();
+        //Lllamado de la función para realizar su procedimiento
+        esNumero(validar, evt);
+    }//GEN-LAST:event_txtSueldoKeyTyped
+
+    //Evento del teclado en donde recibe solo números
+    private void txtFNacimientoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFNacimientoKeyTyped
+        //Declaración de la variable tipo char de lo que se obtenga del teclaso        
+        char validar = evt.getKeyChar();
+        //Lllamado de la función para realizar su procedimiento
+        esNumero(validar, evt);
+    }//GEN-LAST:event_txtFNacimientoKeyTyped
+
+    //Evento del teclado en donde recibe solo números
+    private void txtFIngresoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFIngresoKeyTyped
+        //Declaración de la variable tipo char de lo que se obtenga del teclaso        
+        char validar = evt.getKeyChar();
+        //Lllamado de la función para realizar su procedimiento
+        esNumero(validar, evt);
+    }//GEN-LAST:event_txtFIngresoKeyTyped
 
     /**
      * @param args the command line arguments

@@ -164,6 +164,7 @@ public class EmpleadoDAO {
         } catch (SQLException ex) {
             System.out.println("Error: " + ex.getMessage());
             ex.printStackTrace(System.out);
+            registros = 0;
         } finally {
             try {
                 //Cierre de la sentecia enviada
