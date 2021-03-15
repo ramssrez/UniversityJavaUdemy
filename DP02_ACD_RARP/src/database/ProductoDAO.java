@@ -16,6 +16,49 @@ public class ProductoDAO {
     private static final String SQL_INSERT = "INSERT INTO productos(CodigoProducto, NombreProducto, InsumoProducto, SucursalProducto, ExistenciaProducto, MarcaProducto) VALUES(?,?,?,?,?,?)";
     //Delcaración de la sentencia a realizar para eliminar un registro de la base de datos.
     private static final String SQL_DELETE = "DELETE FROM productos WHERE idProducto = ?";
+    //Definicicion de la sentencia SQL para actualizar un registro
+    private static final String SQL_UPDATE = "UPDATE productos SET CodigoProducto = ?, NombreProducto = ?, InsumoProducto = ?, SucursalProducto = ?, ExistenciaProducto = ?, MarcaProducto = ?  WHERE idProducto = ?";
+
+    public int actualizar(Producto producto) {
+        // Declaración de las variables necesrias para poder realizar la conexion a la base de datos
+        //Declaración del objeto del canal de conexión
+        Connection conn = null;
+        //Declaración del objetos de sentencias
+        PreparedStatement preparedStatement = null;
+        //Delcaración de la variable que verifica si se ha hecho una modificación al registro
+        int registros = 0;
+        try {
+            //Declaración del canal de coneción
+            conn = ConexionDB.getConnection();
+            //Envio de sentencias SQL para insertar datos a la base de datos
+            preparedStatement = conn.prepareStatement(SQL_UPDATE);
+            //Envio de los parametros que se han seleccionado para poder realizar la insersión de datos
+            preparedStatement.setString(1, String.valueOf(producto.getCodigoProducto()));
+            preparedStatement.setString(2, producto.getNombreProducto());
+            preparedStatement.setString(3, producto.getInsumoProducto());
+            preparedStatement.setString(4, producto.getSucursalProducto());
+            preparedStatement.setString(5, String.valueOf(producto.getExistenciaProducto()));
+            preparedStatement.setString(6, producto.getMarcaProducto());
+            preparedStatement.setString(7, String.valueOf(producto.getIdProducto()));
+            //Sentencia para que se realice el alza de los datos
+            registros = preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println("Error: " + ex.getMessage());
+            ex.printStackTrace(System.out);
+        } finally {
+            try {
+                //Cierre de la sentecia enviada
+                ConexionDB.close(preparedStatement);
+                //Cierre del canal de conexión
+                ConexionDB.close(conn);
+            } catch (SQLException ex) {
+                System.out.println("Error: " + ex.getMessage());
+                ex.printStackTrace(System.out);
+            }
+        }
+        //Retorno de regostros afectados
+        return registros;
+    }
 
     //Método que permite la eliminación de un registro de la base de datos.
     public int eliminar(Producto producto) {

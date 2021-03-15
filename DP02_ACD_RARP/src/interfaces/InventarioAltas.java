@@ -7,8 +7,10 @@ import database.ProductoDAO;
 import dialogs.ConfirmarLimpieza;
 import dialogs.ConfimarSalir;
 import dialogs.ConfirmacionRegistroProducto;
+import dialogs.ConfirmarBusquedaProducto;
 import dialogs.ErrorIngresarDatos;
 import dialogs.ErrorIngresoProductos;
+import dialogs.ErrorProductoNoExiste;
 import dialogs.ErrorSoloNumeros;
 import java.awt.Font;
 import java.awt.event.KeyEvent;
@@ -21,12 +23,17 @@ import objetos.Producto;
 
 public class InventarioAltas extends javax.swing.JFrame {
 
+    //Variable global de tipo producto, esto para ser guardado cuando se encuentre un producto
+    private Producto productoGlobal;
+
     public InventarioAltas() {
         initComponents();
         //Asignación de titulo a la ventana
         this.setTitle("Altas al inventario");
         //Método que permite centrar la pantalla en medio de la pantalla general
         this.setLocationRelativeTo(null);
+        //Declaración de la variable globlas
+        productoGlobal = null;
     }
 
     //Método que borra el contenido de las cajas de texto de la interfaz
@@ -38,6 +45,15 @@ public class InventarioAltas extends javax.swing.JFrame {
         txtMarca.setText("");
         txtSucursal.setText("");
         txtinsumo.setText("");
+        txtCodigoBusqueda.setText("");
+        txtSucursalBusqueda.setText("");
+    }
+    
+    //Método que borra el contenidode las cajas de texto en la sección de busqueda
+    public void limpiarCajasTextBusquesa(){
+        //Asignación de un caracter vacío a cada una de las cajas de el interfaz
+        txtCodigoBusqueda.setText("");
+        txtSucursalBusqueda.setText("");
     }
 
     public void insertarProducto(int codigo, String nombre, String insumo, String sucursal, int existencia, String marca) {
@@ -80,6 +96,19 @@ public class InventarioAltas extends javax.swing.JFrame {
         }
     }
 
+    //Método que verifica que los campos no se encuentren vacios
+    public boolean validarCamposBusqueda() {
+        //Selección para el caso de que los campos se encuentren vacios
+        if ((txtCodigoBusqueda.getText().equals("") && txtSucursalBusqueda.getText().equals(""))
+                || (txtCodigoBusqueda.getText().equals("") || txtSucursalBusqueda.getText().equals(""))) {
+            //Retorno falso en caso de que sea correcto los campos vacios
+            return false;
+        } else {
+            //Retorno verdadero para el caso de que los campos esten llenos
+            return true;
+        }
+    }
+
     //Método que genera un JOptin personalizado, por la libertad que nos brinda se ha escogido este tipo de JOption
     public int optionPersonalizado() {
         //Delcaración de etiqueta en donde podemos ingresar el tipo y tamaño de letra
@@ -111,6 +140,57 @@ public class InventarioAltas extends javax.swing.JFrame {
             //Método que permite visualizar la ventana
             esn.setVisible(true);
         }
+    }
+
+    //método que permite bucar la información de un producto en la base de datos.  
+    public void buscar(String codigo, String sucursal) {
+        //Instancia de la clase ProductoDAO
+        ProductoDAO productodao = new ProductoDAO();
+        //Declaración del objeto producto como nul
+        Producto producto = null;
+        //Bloque try/catch para asignar en las respectivas cajas de texto
+        try {
+            //Asignación del producto a lo que se recupere de la sentencia SQL
+            producto = productodao.seleccionar(codigo, sucursal);
+            if (producto != null) {
+                //Llamado del Dialog que menciona que existe un producto
+                ConfirmarBusquedaProducto busquedaProducto = new ConfirmarBusquedaProducto(this, true);
+                //Método que permite visualizar la ventana anteriormente mencionada
+                busquedaProducto.setVisible(true);
+                //Asignación de la información de lo que se obtuvo de la busquedda
+                txtArticulo.setText(producto.getNombreProducto());
+                txtMarca.setText(producto.getMarcaProducto());
+                txtExistencia.setText(String.valueOf(producto.getExistenciaProducto()));
+                txtinsumo.setText(producto.getInsumoProducto());
+                txtCodigo.setText(String.valueOf(producto.getCodigoProducto()));
+                txtSucursal.setText(producto.getSucursalProducto());
+                //Sentencia solo para verificar que se obtenga un objeto
+                System.out.println(producto.toString());
+                //Método que limpia las cajas de texto de la interfaz en el area de busqueda
+                limpiarCajasTextBusquesa();
+            } else {
+                //Llamado del Dialog que menciona que no existe un producto
+                ErrorProductoNoExiste error = new ErrorProductoNoExiste(this, true);
+                //Método que permite visualizar la ventana anteriormente mencionada
+                error.setVisible(true);
+                //Método que permite limpiar  los campos depues de ser ingresados
+                limpiarCajasTexto();
+            }
+            //Asignaciónd del producto que se obtuvo de la base de datos a la variable global
+            productoGlobal = producto;
+        } catch (Exception ex) {
+            //Sentencia que muestra un mensaje en caso de que no se cuente con información de los datoa
+            if (producto == null) {
+                //Llamado del Dialog que menciona que no existe un producto
+                ErrorProductoNoExiste error = new ErrorProductoNoExiste(this, true);
+                //Método que permite visualizar la ventana anteriormente mencionada
+                error.setVisible(true);
+                //Método que permite limpiar  los campos depues de ser ingresados
+                limpiarCajasTexto();
+            }
+            System.out.println("es: " + ex.getMessage());
+        }
+
     }
 
     /**
@@ -147,6 +227,15 @@ public class InventarioAltas extends javax.swing.JFrame {
         btnlimpiar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jPanel9 = new javax.swing.JPanel();
+        jPanel10 = new javax.swing.JPanel();
+        jleCodigo1 = new javax.swing.JLabel();
+        txtCodigoBusqueda = new javax.swing.JTextField();
+        jPanel11 = new javax.swing.JPanel();
+        jlesucursal1 = new javax.swing.JLabel();
+        txtSucursalBusqueda = new javax.swing.JTextField();
+        btnBuscar = new javax.swing.JButton();
+        Actualizar = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuEmpleado = new javax.swing.JMenu();
         menuAltaEmpleado = new javax.swing.JMenuItem();
@@ -447,6 +536,129 @@ public class InventarioAltas extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/insumos.png"))); // NOI18N
 
+        jPanel9.setBackground(new java.awt.Color(255, 255, 204));
+        jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Busqueda y actualización  ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18))); // NOI18N
+
+        jPanel10.setBackground(new java.awt.Color(255, 255, 255));
+
+        jleCodigo1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jleCodigo1.setText("Código:");
+
+        txtCodigoBusqueda.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtCodigoBusqueda.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCodigoBusquedaKeyTyped(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jleCodigo1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(txtCodigoBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jleCodigo1)
+                    .addComponent(txtCodigoBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel11.setBackground(new java.awt.Color(255, 255, 255));
+
+        jlesucursal1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jlesucursal1.setText("Sucursal:");
+
+        txtSucursalBusqueda.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtSucursalBusqueda.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtSucursalBusquedaKeyTyped(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+        jPanel11.setLayout(jPanel11Layout);
+        jPanel11Layout.setHorizontalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jlesucursal1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addComponent(txtSucursalBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel11Layout.setVerticalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlesucursal1)
+                    .addComponent(txtSucursalBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        btnBuscar.setBackground(new java.awt.Color(153, 153, 0));
+        btnBuscar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar.png"))); // NOI18N
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
+
+        Actualizar.setBackground(new java.awt.Color(153, 153, 0));
+        Actualizar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        Actualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/escribir.png"))); // NOI18N
+        Actualizar.setText("Actualizar");
+        Actualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ActualizarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel9Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Actualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addComponent(Actualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
@@ -456,21 +668,29 @@ public class InventarioAltas extends javax.swing.JFrame {
                 .addComponent(paneldatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(27, Short.MAX_VALUE))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGap(153, 153, 153)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(43, 43, 43))))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(paneldatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(26, 26, 26)
-                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(paneldatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 27, Short.MAX_VALUE))
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         menuEmpleado.setText("Empleado");
@@ -572,11 +792,15 @@ public class InventarioAltas extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 43, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 53, Short.MAX_VALUE))
         );
 
         pack();
@@ -733,6 +957,45 @@ public class InventarioAltas extends javax.swing.JFrame {
         esNumero(validar, evt);
     }//GEN-LAST:event_txtExistenciaKeyTyped
 
+    private void txtCodigoBusquedaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoBusquedaKeyTyped
+        //Declaración de la variable tipo char de lo que se obtenga del teclaso
+        char validar = evt.getKeyChar();
+        //Lllamado de la función para realizar su procedimiento
+        esNumero(validar, evt);
+    }//GEN-LAST:event_txtCodigoBusquedaKeyTyped
+
+    private void txtSucursalBusquedaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSucursalBusquedaKeyTyped
+        //Declaración de la variable tipo char de lo que se obtenga del teclaso
+        char validar = evt.getKeyChar();
+        //Lllamado de la función para realizar su procedimiento
+        esNumero(validar, evt);
+    }//GEN-LAST:event_txtSucursalBusquedaKeyTyped
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        //Declaración de variables locales para recuperar el codigo y la sucursal
+        String codigo = txtCodigoBusqueda.getText();
+        String sucursal = txtSucursalBusqueda.getText();
+        //Validación para lo que se recupere de la validación de los campos textos
+        if (validarCamposBusqueda()) {
+            //Llamado al m´todo que se encarga de la busqueda en la base de datos
+            buscar(codigo, sucursal);
+        } else {
+            //En caso de que se retorne false, se manda a crear un Dialog
+            System.out.println("No se han seleccionado datos");
+            //Llamado del Dialog que menciona que no se ha ingresado valores
+            ErrorIngresarDatos ee = new ErrorIngresarDatos(this, true);
+            //Método que permite observar el dialg de error
+            ee.setVisible(true);
+            //Método que limpia las cajas de texto
+            limpiarCajasTextBusquesa();
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void ActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarActionPerformed
+        
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ActualizarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -772,6 +1035,8 @@ public class InventarioAltas extends javax.swing.JFrame {
 
     //Variables de los diferentes componentes de la ventana
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Actualizar;
+    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnSalir;
     private javax.swing.JButton btnlimpiar;
@@ -779,6 +1044,8 @@ public class InventarioAltas extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -786,12 +1053,15 @@ public class InventarioAltas extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JLabel jleArticulo;
     private javax.swing.JLabel jleCodigo;
+    private javax.swing.JLabel jleCodigo1;
     private javax.swing.JLabel jleExistencia;
     private javax.swing.JLabel jleInsumo;
     private javax.swing.JLabel jleMarca;
     private javax.swing.JLabel jlesucursal;
+    private javax.swing.JLabel jlesucursal1;
     private javax.swing.JMenuItem menuAltaEmpleado;
     private javax.swing.JMenuItem menuBajaEmpleado;
     private javax.swing.JMenu menuConsultas;
@@ -807,9 +1077,11 @@ public class InventarioAltas extends javax.swing.JFrame {
     private javax.swing.JPanel paneldatos;
     private javax.swing.JTextField txtArticulo;
     private javax.swing.JTextField txtCodigo;
+    private javax.swing.JTextField txtCodigoBusqueda;
     private javax.swing.JTextField txtExistencia;
     private javax.swing.JTextField txtMarca;
     private javax.swing.JTextField txtSucursal;
+    private javax.swing.JTextField txtSucursalBusqueda;
     private javax.swing.JTextField txtinsumo;
     // End of variables declaration//GEN-END:variables
 }
