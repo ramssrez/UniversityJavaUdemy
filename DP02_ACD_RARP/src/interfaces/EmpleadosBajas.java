@@ -11,7 +11,9 @@ import dialogs.ConfirmarLimpieza;
 import dialogs.ErrorEiminacionProduto;
 import dialogs.ErrorEmpleadoNoExiste;
 import dialogs.ErrorIngresarDatos;
+import dialogs.ErrorSoloNumeros;
 import java.awt.Font;
+import java.awt.event.KeyEvent;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -151,6 +153,22 @@ public class EmpleadosBajas extends javax.swing.JFrame {
         txtPuesto.setText("");
         txtRfc.setText("");
         txtSueldo.setText("");
+    }
+
+    //Método que permtie observar el tipo de caracter que entra al teclado y diferencia si es letra o número
+    public void esNumero(char validar, KeyEvent evt) {
+        //Valida si es caracter de tipo letra 
+        if (Character.isLetter(validar)) {
+            //Método que emite una alerta de sonido en función del sistema operativo
+            getToolkit().beep();
+            //Método que no permite recibir lo que se teclea en función de lo que ingrese del teclaso
+            evt.consume();
+            System.out.println("Solo se aceptan numeros");
+            //Dialog que manda un mensaje en caso de que no sean numeros en los campos de texto
+            ErrorSoloNumeros esn = new ErrorSoloNumeros(this, true);
+            //Método que permite visualizar la ventana
+            esn.setVisible(true);
+        }
     }
 
     /**
@@ -341,6 +359,11 @@ public class EmpleadosBajas extends javax.swing.JFrame {
         jleCodigo1.setText("N. Empleado:");
 
         txtNumeroEmpleado.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtNumeroEmpleado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNumeroEmpleadoKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -783,11 +806,6 @@ public class EmpleadosBajas extends javax.swing.JFrame {
             ee.setVisible(true);
             System.out.println("no se ha seleccinado un producto");
         }
-
-////Instancia del Dialog para confirmar borrar el registro del sistema
-//        ConfirmarEliminar eliminar = new ConfirmarEliminar(this, true);
-//        //Método que permite visualizar la ventana
-//        eliminar.setVisible(true);
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     //Método que permite realizar la busqueda de información de la base de datos
@@ -898,6 +916,13 @@ public class EmpleadosBajas extends javax.swing.JFrame {
         //Método que cierra la ventana para abrir otra
         dispose();
     }//GEN-LAST:event_menuItemConsultaInsumosActionPerformed
+
+    //Evento del teclado en donde recibe solo números                                    
+    private void txtNumeroEmpleadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumeroEmpleadoKeyTyped
+        //Declaración de la variable tipo char de lo que se obtenga del teclaso        
+        char validar = evt.getKeyChar();
+        //Lllamado de la función para realizar su procedimiento
+        esNumero(validar, evt);    }//GEN-LAST:event_txtNumeroEmpleadoKeyTyped
 
     /**
      * @param args the command line arguments
