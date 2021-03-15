@@ -4,7 +4,6 @@
 package interfaces;
 
 import database.EmpleadoDAO;
-import dialogs.ConfimarBusqueda;
 import dialogs.ConfimarSalir;
 import dialogs.ConfirmarBusquedaEmpleado;
 import dialogs.ConfirmarLimpieza;
@@ -558,7 +557,7 @@ public class ConsultaPersonal extends javax.swing.JFrame {
 
     //Método que permite borrar el texto de las etiquetas
     private void btnNuevaConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevaConsultaActionPerformed
-    //Método que permite limpiar kos campos de texto
+    //Método que permite limpiar los campos de texto
         limpiarEtiquetas();
         //Instancia del Dialog para confirmar la limpieza de los campos de texto del módulo
         ConfirmarLimpieza limpiar = new ConfirmarLimpieza(this, true);

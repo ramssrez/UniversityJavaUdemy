@@ -92,6 +92,7 @@ public class InventarioBajas extends javax.swing.JFrame {
         return valor;
     }
 
+    //método que permite bucar la información de un producto en la base de datos.  
     public void buscar(String codigo, String sucursal) {
         //Instancia de la clase ProductoDAO
         ProductoDAO productodao = new ProductoDAO();
@@ -684,7 +685,6 @@ public class InventarioBajas extends javax.swing.JFrame {
             //Método que permite observar el dialg de error
             ee.setVisible(true);
         }
-
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     //Método que permite abrir la ventana para dar de alta un Empleado

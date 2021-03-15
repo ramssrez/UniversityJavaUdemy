@@ -3,9 +3,14 @@
  */
 package interfaces;
 
-import dialogs.ConfimarBusqueda;
+import database.ProductoDAO;
 import dialogs.ConfimarSalir;
+import dialogs.ConfirmarBusquedaProducto;
+import dialogs.ConfirmarLimpieza;
+import dialogs.ErrorIngresarDatos;
+import dialogs.ErrorProductoNoExiste;
 import main.Principal;
+import objetos.Producto;
 
 public class ConsultaInsumos extends javax.swing.JFrame {
 
@@ -15,6 +20,75 @@ public class ConsultaInsumos extends javax.swing.JFrame {
         this.setTitle("Consulta de Insumos");
         //Método que permite centrar la pantalla en medio de la pantalla general
         this.setLocationRelativeTo(null);
+    }
+
+    //Método que verifica que los campos no se encuentren vacios
+    public boolean validacionCampos() {
+        //Selección para el caso de que los campos se encuentren vacios
+        if ((txtCodigo.getText().equals("") && txtSucursal.getText().equals(""))
+                || (txtCodigo.getText().equals("") || txtSucursal.getText().equals(""))) {
+            //Retorno falso en caso de que sea correcto los campos vacios
+            return false;
+        } else {
+            //Retorno verdadero para el caso de que los campos esten llenos
+            return true;
+        }
+    }
+
+    //método que permite bucar la información de un producto en la base de datos.  
+    public void buscar(String codigo, String sucursal) {
+        //Instancia de la clase ProductoDAO
+        ProductoDAO productodao = new ProductoDAO();
+        //Declaración del objeto producto como nul
+        Producto producto = null;
+        //Bloque try/catch para asignar en las respectivas cajas de texto
+        try {
+            //Asignación del producto a lo que se recupere de la sentencia SQL
+            producto = productodao.seleccionar(codigo, sucursal);
+            if (producto != null) {
+                //Llamado del Dialog que menciona que existe un producto
+                ConfirmarBusquedaProducto busquedaProducto = new ConfirmarBusquedaProducto(this, true);
+                //Método que permite visualizar la ventana anteriormente mencionada
+                busquedaProducto.setVisible(true);
+                //Asignación de la información de lo que se obtuvo de la busquedda
+                labelArticulo.setText(producto.getNombreProducto());
+                labelMarca.setText(producto.getMarcaProducto());
+                labelExistencia.setText(String.valueOf(producto.getExistenciaProducto()));
+                labelInsumo.setText(producto.getInsumoProducto());
+                //Sentencia solo para verificar que se obtenga un objeto
+                System.out.println(producto.toString());
+            } else {
+                //Llamado del Dialog que menciona que no existe un producto
+                ErrorProductoNoExiste error = new ErrorProductoNoExiste(this, true);
+                //Método que permite visualizar la ventana anteriormente mencionada
+                error.setVisible(true);
+                //Método que permite limpiar  los campos depues de ser ingresados
+                limpiarEtiquetas();
+            }
+            ;
+        } catch (Exception ex) {
+            //Sentencia que muestra un mensaje en caso de que no se cuente con información de los datoa
+            if (producto == null) {
+                //Llamado del Dialog que menciona que no existe un producto
+                ErrorProductoNoExiste error = new ErrorProductoNoExiste(this, true);
+                //Método que permite visualizar la ventana anteriormente mencionada
+                error.setVisible(true);
+                //Método que permite limpiar  los campos depues de ser ingresados
+                limpiarEtiquetas();
+            }
+            System.out.println("es: " + ex.getMessage());
+        }
+    }
+
+    //Método que borra el contenido de las etiquetas 
+    public void limpiarEtiquetas() {
+        //Asignación de un caracter vacío a cada una de las cajas de el interfaz
+        labelArticulo.setText("");
+        txtCodigo.setText("");
+        labelExistencia.setText("");
+        labelInsumo.setText("");
+        labelMarca.setText("");
+        txtSucursal.setText("");
     }
 
     /**
@@ -442,10 +516,12 @@ public class ConsultaInsumos extends javax.swing.JFrame {
 
     //Método que permite una nueva busqueda de información
     private void btnNuevaBusquedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevaBusquedaActionPerformed
-        //Instancia del Dialog para confirmar la busqueda del registro en el sistema
-        ConfimarBusqueda busqueda = new ConfimarBusqueda(this, true);
+        //Método que permite limpiar  las etiquetas de texto
+        limpiarEtiquetas();
+        //Instancia del Dialog para confirmar la limpieza de los campos de texto del módulo
+        ConfirmarLimpieza limpiar = new ConfirmarLimpieza(this, true);
         //Método que permite visualizar la ventana
-        busqueda.setVisible(true);
+        limpiar.setVisible(true);
     }//GEN-LAST:event_btnNuevaBusquedaActionPerformed
 
     //Método que permite abrir la ventana para dar de alta un Empleado
@@ -500,10 +576,21 @@ public class ConsultaInsumos extends javax.swing.JFrame {
 
     //Método que permite llamar al Dialog para buscar un registro del sistema o base de datos
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        //Instancia del Dialog para confirmar la busqueda del registro en el sistema
-        ConfimarBusqueda busqueda = new ConfimarBusqueda(this, true);
-        //Método que permite visualizar la ventana
-        busqueda.setVisible(true);
+        //Declaración de variables locales para recuperar el codigo y la sucursal
+        String codigo = txtCodigo.getText();
+        String sucursal = txtSucursal.getText();
+        //Validación para lo que se recupere de la validación de los campos textos
+        if (validacionCampos()) {
+            //Llamado al m´todo que se encarga de la busqueda en la base de datos
+            buscar(codigo, sucursal);
+        } else {
+            //En caso de que se retorne false, se manda a crear un Dialog
+            System.out.println("No se han seleccionado datos");
+            //Llamado del Dialog que menciona que no se ha ingresado valores
+            ErrorIngresarDatos ee = new ErrorIngresarDatos(this, true);
+            //Método que permite observar el dialg de error
+            ee.setVisible(true);
+        }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     //Método que permite abrir la ventana de calculo de nomina
