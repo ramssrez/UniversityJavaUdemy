@@ -3,9 +3,18 @@
  */
 package interfaces;
 
+import database.EmpleadoDAO;
 import dialogs.ConfimarBusqueda;
 import dialogs.ConfimarSalir;
+import dialogs.ConfirmarBusquedaEmpleado;
+import dialogs.ConfirmarLimpieza;
+import dialogs.ErrorEmpleadoNoExiste;
+import dialogs.ErrorIngresarDatos;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import main.Principal;
+import objetos.Empleado;
 
 public class ConsultaPersonal extends javax.swing.JFrame {
 
@@ -15,15 +24,81 @@ public class ConsultaPersonal extends javax.swing.JFrame {
         this.setTitle("Consulta de Personal");
         //Método que permite centrar la pantalla en medio de la pantalla general
         this.setLocationRelativeTo(null);
-//        labelNombre.setText("Raul");
-//        labelApellidoPaterno.setText("Ramírez");
-//        labelApellidoMaterno.setText("Pérez");
-//        labelRfc.setText("RARP920627SCA");
-//        laberCurp.setText("RAPR920627HMCMRL02");
-//        labelFechaIngreso.setText("27/01/021");
-//        labelFechaNacimiento.setText("27/06/1992");
-//        labelPuesto.setText("Programador");
-//        labelSueldoBruto.setText("$15.000");
+        /*
+        labelNombre.setText("Raul");
+        labelApellido.setText("Ramírez Pérez");
+        labelNumeroEmpleado.setText("25");
+        labelRfc.setText("RARP920627SCA");
+        laberCurp.setText("RAPR920627HMCMRL02");
+        labelFechaIngreso.setText("27/01/2021");
+        labelFechaNacimiento.setText("27/06/1992");
+        labelPuesto.setText("Programador");
+        labelSueldoBruto.setText("$15.000");
+         */
+    }
+
+    //Método que permite limpiar las etiquetas de la interfaz
+    public void limpiarEtiquetas() {
+        labelNombre.setText("");
+        labelApellido.setText("");
+        labelNumeroEmpleado.setText("");
+        labelRfc.setText("");
+        laberCurp.setText("");
+        labelFechaIngreso.setText("");
+        labelFechaNacimiento.setText("");
+        labelPuesto.setText("");
+        labelSueldoBruto.setText("");
+        txtNEmpleado.setText("");
+    }
+
+    //Método que verifica que los campos no se encuentren vacios
+    public boolean validacionCamposTexto() {
+        //Sentencia if/else que verifica si esta vacio el campo, en caso afirmativo retorna un booleano
+        if (txtNEmpleado.getText().equals("")) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    //Método que permite la conexión a la base de datos con el dato de entrada como el número empleado
+    public void buscarEmpleado(int numeroEmpleado) {
+        //Instancia de la clase EmpleadoDAO
+        EmpleadoDAO empleadoDAO = new EmpleadoDAO();
+        //Declaración del objeto empleado como nulo
+        Empleado empleado = null;
+        //Asignación del empleado a lo que se recupere de la sentencia SQL
+        empleado = empleadoDAO.seleccionar(numeroEmpleado);
+        //Sentencia if/else para el caso de que se recupere información
+        if (empleado != null) {
+            //Declaración de objeto tipo Date el cual sirve como auxiliar para presentar un dato de tipo Date
+            Date date = empleado.getFechaIngresoEmpleado();
+            //Asignación de formato a la fecha que se desea obtener
+            DateFormat fechaingreso = new SimpleDateFormat("yyyy-MM-dd");
+            //Transformación a estring el formato de la fecha
+            String fechaIngresoEmpleado = fechaingreso.format(date);
+            //Asignación de la información que se obtuvo de la base de datos
+            labelApellido.setText(empleado.getApellidosEmpleado());
+            laberCurp.setText(empleado.getCurpEmpleado());
+            labelFechaIngreso.setText(fechaIngresoEmpleado);
+            labelFechaNacimiento.setText(empleado.getFechaNacimientoEmpleado());
+            labelNombre.setText(empleado.getNombreEmpleado());
+            labelNumeroEmpleado.setText(String.valueOf(empleado.getNumEmpleado()));
+            labelPuesto.setText(empleado.getPuestoEmpleado());
+            labelRfc.setText(empleado.getRfcEmpleado());
+            labelSueldoBruto.setText("$" + String.valueOf(empleado.getSueldoEmpleado()));
+            //Llamado del Dialog que menciona que existe un empleado
+            ConfirmarBusquedaEmpleado cbe = new ConfirmarBusquedaEmpleado(this, true);
+            //Método que permite visualizar la ventana anteriormente mencionada
+            cbe.setVisible(true);
+        } else {
+            //Llamado del Dialog que menciona que no existe un empleado
+            ErrorEmpleadoNoExiste eene = new ErrorEmpleadoNoExiste(this, true);
+            //Método que permite visualizar la ventana anteriormente mencionada
+            eene.setVisible(true);
+            //Método que permite limpiar  los campos depues de ser ingresados
+            limpiarEtiquetas();
+        }
     }
 
     /**
@@ -56,8 +131,8 @@ public class ConsultaPersonal extends javax.swing.JFrame {
         jleArticulo2 = new javax.swing.JLabel();
         jleInsumo1 = new javax.swing.JLabel();
         labelNombre = new javax.swing.JLabel();
-        labelApellidoPaterno = new javax.swing.JLabel();
-        labelApellidoMaterno = new javax.swing.JLabel();
+        labelApellido = new javax.swing.JLabel();
+        labelNumeroEmpleado = new javax.swing.JLabel();
         labelFechaNacimiento = new javax.swing.JLabel();
         laberCurp = new javax.swing.JLabel();
         labelRfc = new javax.swing.JLabel();
@@ -141,10 +216,10 @@ public class ConsultaPersonal extends javax.swing.JFrame {
         lbNombre1.setText("Nombre:");
 
         lbApellidoPaterno1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lbApellidoPaterno1.setText("Apellido Paterno:");
+        lbApellidoPaterno1.setText("Apellidos: ");
 
         lbApellidoMaterno1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lbApellidoMaterno1.setText("Apellido Materno:");
+        lbApellidoMaterno1.setText("Número empleado");
 
         jleInsumo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jleInsumo.setText("Fecha de Nacimiento:");
@@ -166,10 +241,10 @@ public class ConsultaPersonal extends javax.swing.JFrame {
 
         labelNombre.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
-        labelApellidoPaterno.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        labelApellido.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
-        labelApellidoMaterno.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        labelApellidoMaterno.setToolTipText("");
+        labelNumeroEmpleado.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        labelNumeroEmpleado.setToolTipText("");
 
         labelFechaNacimiento.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
@@ -199,8 +274,8 @@ public class ConsultaPersonal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(labelNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(labelApellidoPaterno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(labelApellidoMaterno, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(labelApellido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(labelNumeroEmpleado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(labelFechaNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(laberCurp, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -228,11 +303,11 @@ public class ConsultaPersonal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbApellidoPaterno1)
-                    .addComponent(labelApellidoPaterno))
+                    .addComponent(labelApellido))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbApellidoMaterno1)
-                    .addComponent(labelApellidoMaterno))
+                    .addComponent(labelNumeroEmpleado))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jleInsumo)
@@ -481,12 +556,14 @@ public class ConsultaPersonal extends javax.swing.JFrame {
         salir.setVisible(true);
     }//GEN-LAST:event_btnSalirActionPerformed
 
-    //Método que permite una nueva busqueda de información
+    //Método que permite borrar el texto de las etiquetas
     private void btnNuevaConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevaConsultaActionPerformed
-        //Instancia del Dialog para confirmar la busqueda del registro en el sistema
-        ConfimarBusqueda busqueda = new ConfimarBusqueda(this, true);
+    //Método que permite limpiar kos campos de texto
+        limpiarEtiquetas();
+        //Instancia del Dialog para confirmar la limpieza de los campos de texto del módulo
+        ConfirmarLimpieza limpiar = new ConfirmarLimpieza(this, true);
         //Método que permite visualizar la ventana
-        busqueda.setVisible(true);
+        limpiar.setVisible(true);
     }//GEN-LAST:event_btnNuevaConsultaActionPerformed
 
     //Método que permite abrir la ventana para dar de alta un Empleado
@@ -541,10 +618,19 @@ public class ConsultaPersonal extends javax.swing.JFrame {
 
     //Método que permite llamar al Dialog para buscar un registro del sistema o base de datos
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        //Instancia del Dialog para confirmar la busqueda del registro en el sistema
-        ConfimarBusqueda busqueda = new ConfimarBusqueda(this, true);
-        //Método que permite visualizar la ventana
-        busqueda.setVisible(true);
+        //Sentencia if/else para validar que se haya ingresado un datos en la caja de texto
+        if (validacionCamposTexto()) {
+            //Creación de la variable de tipo entero para ser enviado al metodo de busqueda
+            int numeroEmpleado = Integer.parseInt(txtNEmpleado.getText());
+            //Método que se conecta a la base de datos para recuperar la información del Empleado
+            buscarEmpleado(numeroEmpleado);
+        } else {
+            //En caso de que se retorne false, se manda a crear un Dialog
+            //Llamado del Dialog que menciona que no se ha ingresado valores
+            ErrorIngresarDatos ee = new ErrorIngresarDatos(this, true);
+            //Método que permite observar el dialg de error
+            ee.setVisible(true);
+        }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     //Método que permite abrir la ventana de calculo de nomina
@@ -603,7 +689,7 @@ public class ConsultaPersonal extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(ConsultaPersonal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-       
+
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -635,11 +721,11 @@ public class ConsultaPersonal extends javax.swing.JFrame {
     private javax.swing.JLabel jleExistencia;
     private javax.swing.JLabel jleInsumo;
     private javax.swing.JLabel jleInsumo1;
-    private javax.swing.JLabel labelApellidoMaterno;
-    private javax.swing.JLabel labelApellidoPaterno;
+    private javax.swing.JLabel labelApellido;
     private javax.swing.JLabel labelFechaIngreso;
     private javax.swing.JLabel labelFechaNacimiento;
     private javax.swing.JLabel labelNombre;
+    private javax.swing.JLabel labelNumeroEmpleado;
     private javax.swing.JLabel labelPuesto;
     private javax.swing.JLabel labelRfc;
     private javax.swing.JLabel labelSueldoBruto;

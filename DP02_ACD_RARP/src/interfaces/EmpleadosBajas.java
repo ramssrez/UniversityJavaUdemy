@@ -816,6 +816,7 @@ public class EmpleadosBajas extends javax.swing.JFrame {
         //Método que permite visualizar la ventana
         limpiar.setVisible(true);
         //Asignación para que variable global sea nula
+        empleadoGlobal = null;
     }//GEN-LAST:event_btnNuevaBusquedaActionPerformed
 
     //Método que permite abrir la ventana para dar de alta un Empleado
