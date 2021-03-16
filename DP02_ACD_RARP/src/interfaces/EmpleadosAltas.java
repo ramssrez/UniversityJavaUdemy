@@ -6,9 +6,12 @@ package interfaces;
 import database.EmpleadoDAO;
 import dialogs.ConfirmarLimpieza;
 import dialogs.ConfimarSalir;
+import dialogs.ConfirmacionActualizarEmpleado;
+import dialogs.ConfirmacionActualizarProducto;
 import dialogs.ConfirmacionRegistroEmpleado;
 import dialogs.ConfirmarBusquedaEmpleado;
 import dialogs.ErrorActualizacionCurso;
+import dialogs.ErrorActualizarProducto;
 import dialogs.ErrorEmpleadoNoExiste;
 import dialogs.ErrorFormatoF;
 import dialogs.ErrorIngresarDatos;
@@ -20,6 +23,8 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -118,6 +123,56 @@ public class EmpleadosAltas extends javax.swing.JFrame {
         return valor;
     }
 
+    //Método que permite actualizar un empleado en la base de datos
+    private void actualizarEmpleado(Empleado empleado) {
+        //Instancia de la clase ProductoDAO
+        EmpleadoDAO empleadoDAO = new EmpleadoDAO();
+        //Recuperación de la información de las cajas de texto que se van a acualizar
+
+        //Bloque try/catch para el formato de la fecha de ingreso
+        try {
+            int numero = Integer.parseInt(txtNumeroEmpleado.getText());
+            String nombre = txtNombre.getText();
+            String apellidos = txtApellidos.getText();
+            String fechaNac = txtFNacimiento.getText();
+            String curp = txtCurp.getText();
+            String rfc = txtRfc.getText();
+            int sueldo = Integer.parseInt(txtSueldo.getText());
+            String puesto = txtPuesto.getText();
+            String fechaString = txtFIngreso.getText();
+            //Asignación de formato a la fecha que se desea obtener o ingresar a la base de datos
+            DateFormat fechaformat = new SimpleDateFormat("yyyy-MM-dd");
+            //Declaración de objeto tipo DateJava el cual sirve como auxiliar para guardar la información
+            Date fechaIngreso = fechaformat.parse(fechaString);
+            //Creación de un nuevo objeto de tipo empleado, con el id del producto global oomo su id, e ingresando los datos que se recuperaron de las cajas de texto
+            Empleado empleadoActualizar = new Empleado(empleado.getIdEmpleado(), numero, nombre, apellidos, fechaNac, curp, rfc, sueldo, puesto, fechaIngreso);
+            //Recuperación del entero en caso de que se haya realizado la actualización
+            int entero = empleadoDAO.actualizar(empleadoActualizar);
+            //Validación en caso de que se haya hecho correcta la insersión de la información en la base de datos
+            if (entero > 0) {
+                //Llamado al Dialog que manda un mensaje que se ha realizado correctamente el ingreso de información en la base de datos
+                ConfirmacionActualizarEmpleado confirmacion = new ConfirmacionActualizarEmpleado(this, true);
+                //Método que permite visualizar la ventana
+                confirmacion.setVisible(true);
+                //Método que limpia las cajas de texto de la interface
+                limpiarCamposTexto();
+            } else {
+                //Dialog que manda un mensaje en caso de que no se realizo correctamente el ingreso de la inormación
+                ErrorActualizarProducto error = new ErrorActualizarProducto(this, true);
+                //Método que permite visualizar la ventana
+                error.setVisible(true);
+                //Método que limpia las cajas de texto de la interface
+                limpiarCamposTexto();
+            }
+        } catch (ParseException ex) {
+            System.out.println("Error " + ex.getMessage());
+            //Llamado del Dialog que menciona que el formato de la fecha no es correcto
+            ErrorFormatoF effe = new ErrorFormatoF(this, true);
+            //Método que permite observar el dialg de error
+            effe.setVisible(true);
+        }
+    }
+
 //Método que permite la conexión a la base de datos con el dato de entrada como el número empleado
     public void buscarEmpleado(int numeroEmpleado) {
         //Instancia de la clase EmpleadoDAO
@@ -143,7 +198,7 @@ public class EmpleadosAltas extends javax.swing.JFrame {
             txtNumeroEmpleado.setText(String.valueOf(empleado.getNumEmpleado()));
             txtPuesto.setText(empleado.getPuestoEmpleado());
             txtRfc.setText(empleado.getRfcEmpleado());
-            txtSueldo.setText("$" + String.valueOf(empleado.getSueldoEmpleado()));
+            txtSueldo.setText(String.valueOf(empleado.getSueldoEmpleado()));
             //Llamado del Dialog que menciona que existe un empleado
             ConfirmarBusquedaEmpleado cbe = new ConfirmarBusquedaEmpleado(this, true);
             //Método que permite visualizar la ventana anteriormente mencionada
@@ -1116,6 +1171,7 @@ public class EmpleadosAltas extends javax.swing.JFrame {
         esNumero(validar, evt);
     }//GEN-LAST:event_txtFIngresoKeyTyped
 
+    //Evento del teclado en donde recibe solo números
     private void txtNEmpleadoBusquedaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNEmpleadoBusquedaKeyTyped
         //Declaración de la variable tipo char de lo que se obtenga del teclaso
         char validar = evt.getKeyChar();
@@ -1123,6 +1179,7 @@ public class EmpleadosAltas extends javax.swing.JFrame {
         esNumero(validar, evt);
     }//GEN-LAST:event_txtNEmpleadoBusquedaKeyTyped
 
+    //Método que nos permite la busqueda de un empleado
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         //Sentencia if/else para validar que se haya ingresado un datos en la caja de texto
         if (validarCamposBusqueda()) {
@@ -1141,25 +1198,22 @@ public class EmpleadosAltas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void ActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarActionPerformed
-
-
-        /*
-//Varificación de variable global por si se encuentra nula
-        if (validacionCampos()) {
-            if (productoGlobal != null) {
+        //Varificación de variable global por si se encuentra nula
+        if (validacionCamposTexto()) {
+            if (empleadoGlobal != null) {
                 //Asignación devariable de tipo entero con lo que se obtuvo del JOptionPersonalizado
-                int valor = optionPersonalizado("¿Deseas actualizar este producto?");
+                int valor = joptionPersonalizado("¿Deseas actualizar este empleado?");
                 System.out.println("valor = " + valor);
                 //En caso de que el valor retornado sea 0 se manda a llamar la opción de eliminar
                 if (valor == 0) {
                     //Llamado al método que se encarga de la eliminación de un producto
                     //eliminar();
-                    actualizarProducto(productoGlobal);
+                    actualizarEmpleado(empleadoGlobal);
                 }
                 //Llamado a la función que se encarga de limpiar todas las cajas de la interfaz
-                limpiarCajasTexto();
+                limpiarCamposTexto();
                 //Declaración de variable global para que se vuelva nula de nuevos
-                productoGlobal = null;
+                empleadoGlobal = null;
             }
         } else {
             //Llamado del Dialog que menciona que no se ha ingresado valores
@@ -1170,7 +1224,6 @@ public class EmpleadosAltas extends javax.swing.JFrame {
         }
         //Cuando se actualice la información se recupera el estado del botón de buscar
         btnGuardar.setEnabled(true);
-         */
     }//GEN-LAST:event_ActualizarActionPerformed
 
     //Método que permite saber si esta desactivado el botón de guardar para actualizar los regitros

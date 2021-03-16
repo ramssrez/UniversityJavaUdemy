@@ -19,7 +19,7 @@ public class EmpleadoDAO {
     //Delcaración de la sentencia a realizar para eliminar un registro de la base de datos.
     private static final String SQL_DELETE = "DELETE FROM empleados WHERE idEmpleado = ?";
     //Definicicion de la sentencia SQL para actualizar un registro
-    private static final String SQL_UPDATE = "UPDATE empleados SET NumEmpleado = ?, nombreEmpleado = ?, ApellidosEmpleado = ?, FecNacEmpleado = ?, CURPEmpleado = ?, RFCEmpleado = ?, SueldoEmpleado = ?, PuestoEmpleado = ?, FecIngresoEmpleado = ? WHERE NumEmpleado = ?";
+    private static final String SQL_UPDATE = "UPDATE empleados SET NumEmpleado = ?, nombreEmpleado = ?, ApellidosEmpleado = ?, FecNacEmpleado = ?, CURPEmpleado = ?, RFCEmpleado = ?, SueldoEmpleado = ?, PuestoEmpleado = ?, FecIngresoEmpleado = ? WHERE idEmpleado = ?";
 
     //Método que permite actualizar un producto de la base de datos, se ingresa un objeto completo
     public int actualizar(Empleado empleado) {
