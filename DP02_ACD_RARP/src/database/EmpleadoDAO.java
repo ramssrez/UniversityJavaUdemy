@@ -18,8 +18,63 @@ public class EmpleadoDAO {
     private static final String SQL_INSERT = "INSERT INTO empleados(NumEmpleado, nombreEmpleado, ApellidosEmpleado, FecNacEmpleado, CURPEmpleado, RFCEmpleado, SueldoEmpleado, PuestoEmpleado, FecIngresoEmpleado) VALUES(?,?,?,?,?,?,?,?,?)";
     //Delcaración de la sentencia a realizar para eliminar un registro de la base de datos.
     private static final String SQL_DELETE = "DELETE FROM empleados WHERE idEmpleado = ?";
+    //Definicicion de la sentencia SQL para actualizar un registro
+    private static final String SQL_UPDATE = "UPDATE empleados SET NumEmpleado = ?, nombreEmpleado = ?, ApellidosEmpleado = ?, FecNacEmpleado = ?, CURPEmpleado = ?, RFCEmpleado = ?, SueldoEmpleado = ?, PuestoEmpleado = ?, FecIngresoEmpleado = ? WHERE NumEmpleado = ?";
 
-       //Método que permite la eliminación de un registro de la base de datos.
+    //Método que permite actualizar un producto de la base de datos, se ingresa un objeto completo
+    public int actualizar(Empleado empleado) {
+        // Declaración de las variables necesrias para poder realizar la conexion a la base de datos
+        //Delaración de Date del paquete de SQL para poder realizar el guardado de campos de tipo Date
+        Date dateSql = null;
+        //Declaración del objeto del canal de conexión
+        Connection conn = null;
+        //Declaración del objetos de sentencias
+        PreparedStatement preparedStatement = null;
+        //Delcaración de la variable que verifica si se ha hecho una modificación al registro
+        int registros = 0;
+        try {
+            //Declaración del canal de coneción
+            conn = ConexionDB.getConnection();
+            //Envio de sentencias SQL para insertar datos a la base de datos
+            preparedStatement = conn.prepareStatement(SQL_UPDATE);
+            //Envio de los parametros que se han seleccionado para poder realizar la insersión de datos
+            //Se insertan todos los datos, por el beneficio de no realizar validación para cada uno de los campos de la base de datos
+            preparedStatement.setString(1, String.valueOf(empleado.getNumEmpleado()));
+            preparedStatement.setString(2, empleado.getNombreEmpleado());
+            preparedStatement.setString(3, empleado.getApellidosEmpleado());
+            preparedStatement.setString(4, empleado.getFechaNacimientoEmpleado());
+            preparedStatement.setString(5, empleado.getCurpEmpleado());
+            preparedStatement.setString(6, empleado.getRfcEmpleado());
+            preparedStatement.setString(7, String.valueOf(empleado.getSueldoEmpleado()));
+            preparedStatement.setString(8, empleado.getPuestoEmpleado());
+            //Tansformación del tipo Date de Java al Date de SQL
+            dateSql = new Date(empleado.getFechaIngresoEmpleado().getTime());
+            //Impresión de la variable que se ha creado
+            System.out.println("dateSql = " + dateSql);
+            //Insersión de la la variable de tipo DateSql para la base de datos
+            preparedStatement.setDate(9, dateSql);
+            preparedStatement.setString(10, String.valueOf(empleado.getIdEmpleado()));
+            //Sentencia para que se realice el alza de los datos
+            registros = preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println("Error: " + ex.getMessage());
+            ex.printStackTrace(System.out);
+        } finally {
+            try {
+                //Cierre de la sentecia enviada
+                ConexionDB.close(preparedStatement);
+                //Cierre del canal de conexión
+                ConexionDB.close(conn);
+            } catch (SQLException ex) {
+                System.out.println("Error: " + ex.getMessage());
+                ex.printStackTrace(System.out);
+            }
+        }
+        //Retorno de regostros afectados
+        return registros;
+    }
+
+    //Método que permite la eliminación de un registro de la base de datos.
     public int eliminar(Empleado empleado) {
         // Declaración de las variables necesrias para poder realizar la conexion a la base de datos
         //Declaración del objeto del canal de conexión
@@ -54,7 +109,7 @@ public class EmpleadoDAO {
         //Retorno de regostros afectados
         return registros;
     }
-    
+
     //Método seleccionar el cual se encarga de buscar un empleado en función del numero del empleado 
     public Empleado seleccionar(int numeroEmpleadoEntrada) {
         //Declaración de las variables necesrias para poder realizar la conexion a la base de datos.
