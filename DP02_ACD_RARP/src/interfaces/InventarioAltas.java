@@ -53,7 +53,7 @@ public class InventarioAltas extends javax.swing.JFrame {
     }
 
     //Método que borra el contenidode las cajas de texto en la sección de busqueda
-    public void limpiarCajasTextBusquesa() {
+    public void limpiarCajasTextBusqueda() {
         //Asignación de un caracter vacío a cada una de las cajas de el interfaz
         txtCodigoBusqueda.setText("");
         txtSucursalBusqueda.setText("");
@@ -205,7 +205,7 @@ public class InventarioAltas extends javax.swing.JFrame {
                 //Sentencia solo para verificar que se obtenga un objeto
                 System.out.println(producto.toString());
                 //Método que limpia las cajas de texto de la interfaz en el area de busqueda
-                limpiarCajasTextBusquesa();
+                limpiarCajasTextBusqueda();
                 //Bloqueo del boton guardar cuando se busque la información y se desea actualizar
                 btnGuardar.setEnabled(false);
             } else {
@@ -837,15 +837,11 @@ public class InventarioAltas extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 43, Short.MAX_VALUE))
+            .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 53, Short.MAX_VALUE))
+            .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -1039,7 +1035,7 @@ public class InventarioAltas extends javax.swing.JFrame {
             //Método que permite observar el dialg de error
             ee.setVisible(true);
             //Método que limpia las cajas de texto
-            limpiarCajasTextBusquesa();
+            limpiarCajasTextBusqueda();
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
