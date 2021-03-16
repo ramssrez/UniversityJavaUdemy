@@ -19,6 +19,7 @@ public class ProductoDAO {
     //Definicicion de la sentencia SQL para actualizar un registro
     private static final String SQL_UPDATE = "UPDATE productos SET CodigoProducto = ?, NombreProducto = ?, InsumoProducto = ?, SucursalProducto = ?, ExistenciaProducto = ?, MarcaProducto = ?  WHERE idProducto = ?";
 
+    //Método que permite actualizar un producto de la base de datos, se ingresa un objeto completo
     public int actualizar(Producto producto) {
         // Declaración de las variables necesrias para poder realizar la conexion a la base de datos
         //Declaración del objeto del canal de conexión
@@ -33,6 +34,7 @@ public class ProductoDAO {
             //Envio de sentencias SQL para insertar datos a la base de datos
             preparedStatement = conn.prepareStatement(SQL_UPDATE);
             //Envio de los parametros que se han seleccionado para poder realizar la insersión de datos
+            //Se insertan todos los datos, por el beneficio de no realizar validación para cada uno de los campos de la base de datos
             preparedStatement.setString(1, String.valueOf(producto.getCodigoProducto()));
             preparedStatement.setString(2, producto.getNombreProducto());
             preparedStatement.setString(3, producto.getInsumoProducto());
@@ -168,6 +170,7 @@ public class ProductoDAO {
                 System.out.println("Nombre: " + resultSet.getString("NombreProducto"));
                 System.out.println("Insumo: " + resultSet.getString("InsumoProducto"));
                 System.out.println("Sucursal: " + resultSet.getString("SucursalProducto"));
+                System.out.println("Existencia: " + resultSet.getString("ExistenciaProducto"));
                 System.out.println("Marca: " + resultSet.getString("MarcaProducto"));
                 System.out.println("");
                 //Se crea un objeto de tipo producto con los resultados obtnidos de la consulta

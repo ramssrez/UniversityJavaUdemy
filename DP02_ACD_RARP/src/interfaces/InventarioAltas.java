@@ -6,8 +6,11 @@ package interfaces;
 import database.ProductoDAO;
 import dialogs.ConfirmarLimpieza;
 import dialogs.ConfimarSalir;
+import dialogs.ConfirmacionActualizarProducto;
 import dialogs.ConfirmacionRegistroProducto;
 import dialogs.ConfirmarBusquedaProducto;
+import dialogs.ErrorActualizacionCurso;
+import dialogs.ErrorActualizarProducto;
 import dialogs.ErrorIngresarDatos;
 import dialogs.ErrorIngresoProductos;
 import dialogs.ErrorProductoNoExiste;
@@ -48,14 +51,15 @@ public class InventarioAltas extends javax.swing.JFrame {
         txtCodigoBusqueda.setText("");
         txtSucursalBusqueda.setText("");
     }
-    
+
     //Método que borra el contenidode las cajas de texto en la sección de busqueda
-    public void limpiarCajasTextBusquesa(){
+    public void limpiarCajasTextBusquesa() {
         //Asignación de un caracter vacío a cada una de las cajas de el interfaz
         txtCodigoBusqueda.setText("");
         txtSucursalBusqueda.setText("");
     }
 
+    //Método que permite insertar un producto en la base de datos
     public void insertarProducto(int codigo, String nombre, String insumo, String sucursal, int existencia, String marca) {
         //Instancia de la clase ProductoDAO
         ProductoDAO productoDAO = new ProductoDAO();
@@ -74,6 +78,40 @@ public class InventarioAltas extends javax.swing.JFrame {
         } else {
             //Dialog que manda un mensaje en caso de que no se realizo correctamente el ingreso de la inormación
             ErrorIngresoProductos error = new ErrorIngresoProductos(this, true);
+            //Método que permite visualizar la ventana
+            error.setVisible(true);
+            //Método que limpia las cajas de texto de la interface
+            limpiarCajasTexto();
+        }
+    }
+
+    //Método que permite actualizar un producto en la base de datos
+    public void actualizarProducto(Producto producto) {
+        //Instancia de la clase ProductoDAO
+        ProductoDAO productoDAO = new ProductoDAO();
+        //Recuperación de la información de las cajas de texto que se van a acualizar
+        int codigo = Integer.parseInt(txtCodigo.getText());
+        String articulo = txtArticulo.getText();
+        String insumo = txtinsumo.getText();
+        String sucursal = txtSucursal.getText();
+        int existencia = Integer.parseInt(txtExistencia.getText());
+        String marca = txtMarca.getText();
+        //Creación de un nuevo objeto de tipo producto, con el id del producto global oomo su id, e ingresando los datos que se recuperaron de las cajas de texto
+        Producto productoActualizar = new Producto(producto.getIdProducto(), codigo, articulo, insumo, sucursal, existencia, marca);
+        System.out.println("productoActualizar = " + productoActualizar);
+        //Recuperación del entero en caso de que se haya realizado la actualización
+        int entero = productoDAO.actualizar(productoActualizar);
+        //Validación en caso de que se haya hecho correcta la insersión de la información en la base de datos
+        if (entero > 0) {
+            //Llamado al Dialog que manda un mensaje que se ha realizado correctamente el ingreso de información en la base de datos
+            ConfirmacionActualizarProducto confirmacion = new ConfirmacionActualizarProducto(this, true);
+            //Método que permite visualizar la ventana
+            confirmacion.setVisible(true);
+            //Método que limpia las cajas de texto de la interface
+            limpiarCajasTexto();
+        } else {
+            //Dialog que manda un mensaje en caso de que no se realizo correctamente el ingreso de la inormación
+            ErrorActualizarProducto error = new ErrorActualizarProducto(this, true);
             //Método que permite visualizar la ventana
             error.setVisible(true);
             //Método que limpia las cajas de texto de la interface
@@ -110,9 +148,9 @@ public class InventarioAltas extends javax.swing.JFrame {
     }
 
     //Método que genera un JOptin personalizado, por la libertad que nos brinda se ha escogido este tipo de JOption
-    public int optionPersonalizado() {
+    public int optionPersonalizado(String frase) {
         //Delcaración de etiqueta en donde podemos ingresar el tipo y tamaño de letra
-        JLabel etiqueta = new JLabel("¿Deseas agregar este producto?");
+        JLabel etiqueta = new JLabel(frase);
         //Fuente de la letra de nuestra etiqueta
         etiqueta.setFont(new Font("Tahoma", Font.BOLD, 24));
         //Asignación de lo valores de los botones
@@ -142,7 +180,7 @@ public class InventarioAltas extends javax.swing.JFrame {
         }
     }
 
-    //método que permite bucar la información de un producto en la base de datos.  
+    //método que permite buscar la información de un producto en la base de datos.  
     public void buscar(String codigo, String sucursal) {
         //Instancia de la clase ProductoDAO
         ProductoDAO productodao = new ProductoDAO();
@@ -168,6 +206,8 @@ public class InventarioAltas extends javax.swing.JFrame {
                 System.out.println(producto.toString());
                 //Método que limpia las cajas de texto de la interfaz en el area de busqueda
                 limpiarCajasTextBusquesa();
+                //Bloqueo del boton guardar cuando se busque la información y se desea actualizar
+                btnGuardar.setEnabled(false);
             } else {
                 //Llamado del Dialog que menciona que no existe un producto
                 ErrorProductoNoExiste error = new ErrorProductoNoExiste(this, true);
@@ -482,6 +522,11 @@ public class InventarioAltas extends javax.swing.JFrame {
         btnGuardar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/guarda.png"))); // NOI18N
         btnGuardar.setText("Guardar");
+        btnGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnGuardarMouseClicked(evt);
+            }
+        });
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarActionPerformed(evt);
@@ -630,12 +675,10 @@ public class InventarioAltas extends javax.swing.JFrame {
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel9Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -664,33 +707,35 @@ public class InventarioAltas extends javax.swing.JFrame {
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(19, 19, 19)
                 .addComponent(paneldatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGap(153, 153, 153)
+                        .addGap(199, 199, 199)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                         .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(43, 43, 43))))
+                        .addGap(36, 36, 36))))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(paneldatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(39, Short.MAX_VALUE))
+                            .addComponent(paneldatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
 
         menuEmpleado.setText("Empleado");
@@ -824,7 +869,7 @@ public class InventarioAltas extends javax.swing.JFrame {
             String sucursal = txtSucursal.getText();
             int existencia = Integer.parseInt(txtExistencia.getText());
             String marca = txtMarca.getText();
-            int valor = optionPersonalizado();
+            int valor = optionPersonalizado("¿Deseas agregar este producto?");
             //Validación si de desea agregar este producto
             if (valor == 0) {
                 //Llamado al metodo que se encarga de agregar un regitro al proyecto
@@ -839,6 +884,8 @@ public class InventarioAltas extends javax.swing.JFrame {
             //Método que permite observar el dialg de error
             ee.setVisible(true);
         }
+        //Declaración de variable global para que se vuelva nula de nuevos
+        productoGlobal = null;
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     //Método que permite limpiar los campos de texto
@@ -849,6 +896,10 @@ public class InventarioAltas extends javax.swing.JFrame {
         ConfirmarLimpieza limpiar = new ConfirmarLimpieza(this, true);
         //Método que permite visualizar la ventana
         limpiar.setVisible(true);
+        //Asignación para que variable global sea nula
+        productoGlobal = null;
+        //Sentencia para desbloquear el boton de buscar
+        btnGuardar.setEnabled(true);
     }//GEN-LAST:event_btnlimpiarActionPerformed
 
     //Método que permite abrir la ventana para dar de alta un Empleado
@@ -971,13 +1022,14 @@ public class InventarioAltas extends javax.swing.JFrame {
         esNumero(validar, evt);
     }//GEN-LAST:event_txtSucursalBusquedaKeyTyped
 
+    //Método que permite buscar un producto en la base de datos
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         //Declaración de variables locales para recuperar el codigo y la sucursal
         String codigo = txtCodigoBusqueda.getText();
         String sucursal = txtSucursalBusqueda.getText();
         //Validación para lo que se recupere de la validación de los campos textos
         if (validarCamposBusqueda()) {
-            //Llamado al m´todo que se encarga de la busqueda en la base de datos
+            //Llamado al método que se encarga de la busqueda en la base de datos
             buscar(codigo, sucursal);
         } else {
             //En caso de que se retorne false, se manda a crear un Dialog
@@ -992,9 +1044,45 @@ public class InventarioAltas extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void ActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarActionPerformed
-        
-        // TODO add your handling code here:
+        //Varificación de variable global por si se encuentra nula
+        if (validacionCampos()) {
+            if (productoGlobal != null) {
+                //Asignación devariable de tipo entero con lo que se obtuvo del JOptionPersonalizado
+                int valor = optionPersonalizado("¿Deseas actualizar este producto?");
+                System.out.println("valor = " + valor);
+                //En caso de que el valor retornado sea 0 se manda a llamar la opción de eliminar
+                if (valor == 0) {
+                    //Llamado al método que se encarga de la eliminación de un producto
+                    //eliminar();
+                    actualizarProducto(productoGlobal);
+                }
+                //Llamado a la función que se encarga de limpiar todas las cajas de la interfaz
+                limpiarCajasTexto();
+                //Declaración de variable global para que se vuelva nula de nuevos
+                productoGlobal = null;
+            }
+        } else {
+            //Llamado del Dialog que menciona que no se ha ingresado valores
+            ErrorIngresarDatos ee = new ErrorIngresarDatos(this, true);
+            //Método que permite observar el dialg de error
+            ee.setVisible(true);
+            System.out.println("no se ha actualizado un producto");
+        }
+        //Cuando se actualice la información se recupera el estado del botón de buscar
+        btnGuardar.setEnabled(true);
     }//GEN-LAST:event_ActualizarActionPerformed
+
+    //Método que permite saber si esta desactivado el botón de guardar para actualizar los regitros
+    private void btnGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarMouseClicked
+        //Verificación para determinar si esta desactivado el botón de buscar
+        if (!btnGuardar.isEnabled()) {
+            System.out.println("esta desactivado");
+            //Método que manda un mensaje en caso de que se esta actualizando un registro
+            ErrorActualizacionCurso eac = new ErrorActualizacionCurso(this, true);
+            //Método que permite observar el dialg de error
+            eac.setVisible(true);
+        }
+    }//GEN-LAST:event_btnGuardarMouseClicked
 
     /**
      * @param args the command line arguments

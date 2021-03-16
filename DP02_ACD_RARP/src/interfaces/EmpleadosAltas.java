@@ -7,7 +7,7 @@ import database.EmpleadoDAO;
 import dialogs.ConfirmarLimpieza;
 import dialogs.ConfimarSalir;
 import dialogs.ConfirmacionRegistroEmpleado;
-import dialogs.ErrorFormatoFecha;
+import dialogs.ErrorFormatoF;
 import dialogs.ErrorIngresarDatos;
 import dialogs.ErrorIngresoEmpleado;
 import dialogs.ErrorSoloNumeros;
@@ -805,7 +805,7 @@ public class EmpleadosAltas extends javax.swing.JFrame {
             } catch (ParseException ex) {
                 System.out.println("Error " + ex.getMessage());
                 //Llamado del Dialog que menciona que el formato de la fecha no es correcto
-                ErrorFormatoFecha effe = new ErrorFormatoFecha(this, true);
+                ErrorFormatoF effe = new ErrorFormatoF(this, true);
                 //Método que permite observar el dialg de error
                 effe.setVisible(true);
             }
