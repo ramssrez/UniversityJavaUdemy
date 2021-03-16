@@ -1072,7 +1072,6 @@ public class InventarioAltas extends javax.swing.JFrame {
     private void btnGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarMouseClicked
         //Verificación para determinar si esta desactivado el botón de buscar
         if (!btnGuardar.isEnabled()) {
-            System.out.println("esta desactivado");
             //Método que manda un mensaje en caso de que se esta actualizando un registro
             ErrorActualizacionCurso eac = new ErrorActualizacionCurso(this, true);
             //Método que permite observar el dialg de error

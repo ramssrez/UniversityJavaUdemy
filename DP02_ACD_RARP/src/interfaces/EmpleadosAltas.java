@@ -7,6 +7,9 @@ import database.EmpleadoDAO;
 import dialogs.ConfirmarLimpieza;
 import dialogs.ConfimarSalir;
 import dialogs.ConfirmacionRegistroEmpleado;
+import dialogs.ConfirmarBusquedaEmpleado;
+import dialogs.ErrorActualizacionCurso;
+import dialogs.ErrorEmpleadoNoExiste;
 import dialogs.ErrorFormatoF;
 import dialogs.ErrorIngresarDatos;
 import dialogs.ErrorIngresoEmpleado;
@@ -26,6 +29,9 @@ import objetos.Empleado;
 
 public class EmpleadosAltas extends javax.swing.JFrame {
 
+    //Variable global de tipo producto, esto para ser guardado cuando se encuentre un producto
+    private Empleado empleadoGlobal;
+
     public EmpleadosAltas() {
         initComponents();
         //Asignación de titulo a la ventana
@@ -44,6 +50,7 @@ public class EmpleadosAltas extends javax.swing.JFrame {
         txtRfc.setText("SDFsDF155");
         txtSueldo.setText("8000");
          */
+        empleadoGlobal = null;
     }
 
     //Método que permite la limpieza de los datos que se han asignado
@@ -59,11 +66,13 @@ public class EmpleadosAltas extends javax.swing.JFrame {
         txtSueldo.setText("");
         txtNEmpleadoBusqueda.setText("");
     }
-        //Método que borra el contenido de las cajas de texto en la sección de busqueda
+    //Método que borra el contenido de las cajas de texto en la sección de busqueda
+
     public void limpiarCajasTextBusqueda() {
         txtNEmpleadoBusqueda.setText("");;
     }
-      //Método que verifica que los campos no se encuentren vacios
+    //Método que verifica que los campos no se encuentren vacios
+
     public boolean validarCamposBusqueda() {
         //Selección para el caso de que los campos se encuentren vacios
         if ((txtNEmpleadoBusqueda.getText().equals(""))) {
@@ -93,9 +102,9 @@ public class EmpleadosAltas extends javax.swing.JFrame {
     }
 
     //Método que genera un JOptin personalizado, por la libertad que nos brinda se ha escogido este tipo de JOption
-    public int joptionPersonalizado() {
+    public int joptionPersonalizado(String frase) {
         //Delcaración de etiqueta en donde podemos ingresar el tipo y tamaño de letra
-        JLabel etiqueta = new JLabel("¿Deseas agregar este empleado?");
+        JLabel etiqueta = new JLabel(frase);
         //Fuente de la letra de nuestra etiqueta
         etiqueta.setFont(new Font("Tahoma", Font.BOLD, 24));
         //Asignación de lo valores de los botones
@@ -107,6 +116,52 @@ public class EmpleadosAltas extends javax.swing.JFrame {
         System.out.println("valor = " + valor);
         //Retorno del valor para el caso que haya seleccionado el usuario
         return valor;
+    }
+
+//Método que permite la conexión a la base de datos con el dato de entrada como el número empleado
+    public void buscarEmpleado(int numeroEmpleado) {
+        //Instancia de la clase EmpleadoDAO
+        EmpleadoDAO empleadoDAO = new EmpleadoDAO();
+        //Declaración del objeto empleado como nulo
+        Empleado empleado = null;
+        //Asignación del empleado a lo que se recupere de la sentencia SQL
+        empleado = empleadoDAO.seleccionar(numeroEmpleado);
+        //Sentencia if/else para el caso de que se recupere información
+        if (empleado != null) {
+            //Declaración de objeto tipo Date el cual sirve como auxiliar para presentar un dato de tipo Date
+            Date date = empleado.getFechaIngresoEmpleado();
+            //Asignación de formato a la fecha que se desea obtener
+            DateFormat fechaingreso = new SimpleDateFormat("yyyy-MM-dd");
+            //Transformación a estring el formato de la fecha
+            String fechaIngresoEmpleado = fechaingreso.format(date);
+            //Asignación de la información que se obtuvo de la base de datos
+            txtApellidos.setText(empleado.getApellidosEmpleado());
+            txtCurp.setText(empleado.getCurpEmpleado());
+            txtFIngreso.setText(fechaIngresoEmpleado);
+            txtFNacimiento.setText(empleado.getFechaNacimientoEmpleado());
+            txtNombre.setText(empleado.getNombreEmpleado());
+            txtNumeroEmpleado.setText(String.valueOf(empleado.getNumEmpleado()));
+            txtPuesto.setText(empleado.getPuestoEmpleado());
+            txtRfc.setText(empleado.getRfcEmpleado());
+            txtSueldo.setText("$" + String.valueOf(empleado.getSueldoEmpleado()));
+            //Llamado del Dialog que menciona que existe un empleado
+            ConfirmarBusquedaEmpleado cbe = new ConfirmarBusquedaEmpleado(this, true);
+            //Método que permite visualizar la ventana anteriormente mencionada
+            cbe.setVisible(true);
+            //Método que limpia las cajas de texto del la busqueda
+            limpiarCajasTextBusqueda();
+            //Bloqueo del boton guardar cuando se busque la información y se desea actualizar
+            btnGuardar.setEnabled(false);
+        } else {
+            //Llamado del Dialog que menciona que no existe un empleado
+            ErrorEmpleadoNoExiste eene = new ErrorEmpleadoNoExiste(this, true);
+            //Método que permite visualizar la ventana anteriormente mencionada
+            eene.setVisible(true);
+            //Método que permite limpiar  los campos depues de ser ingresados
+            limpiarCamposTexto();
+        }
+        //Asignaciónd del empleado que se obtuvo de la base de datos a la variable global
+        empleadoGlobal = empleado;
     }
 
     //Método que permite insertar un registro en la base de datos, en función de los datos agregado por el usuario
@@ -520,6 +575,11 @@ public class EmpleadosAltas extends javax.swing.JFrame {
         btnGuardar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/guarda.png"))); // NOI18N
         btnGuardar.setText("Guardar");
+        btnGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnGuardarMouseClicked(evt);
+            }
+        });
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarActionPerformed(evt);
@@ -906,7 +966,7 @@ public class EmpleadosAltas extends javax.swing.JFrame {
                 Date fechaIngreso = fechaformat.parse(fechaString);
                 //Impresion de la fecha que se ha ingresado
                 System.out.println("fechaIngreso = " + fechaIngreso);
-                int valor = joptionPersonalizado();
+                int valor = joptionPersonalizado("¿Deseas agregar este empleado?");
                 //Validación si de desea agregar este empleado
                 if (valor == 0) {
                     //Llamado al metodo que se encarga de agregar un regitro al proyecto
@@ -938,6 +998,10 @@ public class EmpleadosAltas extends javax.swing.JFrame {
         limpiar.setVisible(true);
         //método que permite limpiar todos los datos
         limpiarCamposTexto();
+        //Asignación para que variable global sea nula
+        empleadoGlobal = null;
+        //Sentencia para desbloquear el boton de buscar
+        btnGuardar.setEnabled(true);
     }//GEN-LAST:event_btnlimpiarActionPerformed
 
     //Método que permite abrir la ventana para dar de alta un Empleado
@@ -1060,33 +1124,26 @@ public class EmpleadosAltas extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNEmpleadoBusquedaKeyTyped
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-
-
-/*        
-//Declaración de variables locales para recuperar el codigo y la sucursal
-        String codigo = txtCodigoBusqueda.getText();
-        String sucursal = txtSucursalBusqueda.getText();
-        //Validación para lo que se recupere de la validación de los campos textos
+        //Sentencia if/else para validar que se haya ingresado un datos en la caja de texto
         if (validarCamposBusqueda()) {
-            //Llamado al método que se encarga de la busqueda en la base de datos
-            buscar(codigo, sucursal);
+            //Creación de la variable de tipo entero para ser enviado al metodo de busqueda
+            int numeroEmpleado = Integer.parseInt(txtNEmpleadoBusqueda.getText());
+            //Método que se conecta a la base de datos para recuperar la información del Empleado
+            buscarEmpleado(numeroEmpleado);
         } else {
             //En caso de que se retorne false, se manda a crear un Dialog
-            System.out.println("No se han seleccionado datos");
             //Llamado del Dialog que menciona que no se ha ingresado valores
             ErrorIngresarDatos ee = new ErrorIngresarDatos(this, true);
             //Método que permite observar el dialg de error
             ee.setVisible(true);
-            //Método que limpia las cajas de texto
-            limpiarCajasTextBusquesa();
         }
-        */
+
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void ActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarActionPerformed
-        
 
-/*
+
+        /*
 //Varificación de variable global por si se encuentra nula
         if (validacionCampos()) {
             if (productoGlobal != null) {
@@ -1113,8 +1170,20 @@ public class EmpleadosAltas extends javax.swing.JFrame {
         }
         //Cuando se actualice la información se recupera el estado del botón de buscar
         btnGuardar.setEnabled(true);
-        */
+         */
     }//GEN-LAST:event_ActualizarActionPerformed
+
+    //Método que permite saber si esta desactivado el botón de guardar para actualizar los regitros
+    private void btnGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarMouseClicked
+        //Verificación para determinar si esta desactivado el botón de buscar
+        if (!btnGuardar.isEnabled()) {
+            //Método que manda un mensaje en caso de que se esta actualizando un registro
+            ErrorActualizacionCurso eac = new ErrorActualizacionCurso(this, true);
+            //Método que permite observar el dialg de error
+            eac.setVisible(true);
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGuardarMouseClicked
 
     /**
      * @param args the command line arguments
