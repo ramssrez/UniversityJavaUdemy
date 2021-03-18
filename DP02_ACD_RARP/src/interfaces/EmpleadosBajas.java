@@ -46,6 +46,8 @@ public class EmpleadosBajas extends javax.swing.JFrame {
         txtPuesto.setEnabled(false);
         //Declaración del empleadoGlobal como nulo
         empleadoGlobal = null;
+        //Sentencia que desactiva el minimizar y maximizar de las ventanas principales
+        this.setResizable(false);
     }
 
     //Método que permite la conexión a la base de datos con el dato de entrada como el número empleado

@@ -21,6 +21,8 @@ public class Informacion extends javax.swing.JFrame {
         this.setTitle("Recibo de nómina");
         //Método que permite centrar la pantalla en medio de la pantalla general
         this.setLocationRelativeTo(null);
+        //Sentencia que desactiva el minimizar y maximizar de las ventanas principales
+        this.setResizable(false);
     }
 
     /**

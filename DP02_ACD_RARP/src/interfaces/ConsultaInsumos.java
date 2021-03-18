@@ -20,6 +20,8 @@ public class ConsultaInsumos extends javax.swing.JFrame {
         this.setTitle("Consulta de Insumos");
         //Método que permite centrar la pantalla en medio de la pantalla general
         this.setLocationRelativeTo(null);
+        //Sentencia que desactiva el minimizar y maximizar de las ventanas principales
+        this.setResizable(false);
     }
 
     //Método que verifica que los campos no se encuentren vacios

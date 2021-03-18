@@ -34,6 +34,8 @@ public class ConsultaPersonal extends javax.swing.JFrame {
         labelPuesto.setText("Programador");
         labelSueldoBruto.setText("$15.000");
          */
+        //Sentencia que desactiva el minimizar y maximizar de las ventanas principales
+        this.setResizable(false);
     }
 
     //Método que permite limpiar las etiquetas de la interfaz

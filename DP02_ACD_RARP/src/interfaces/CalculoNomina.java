@@ -37,6 +37,8 @@ public class CalculoNomina extends javax.swing.JFrame {
         txtRfc.setEnabled(false);
         txtSueldoBruto.setEnabled(false);
         sueldoBruto = 0.0d;
+        //Sentencia que desactiva el minimizar y maximizar de las ventanas principales
+        this.setResizable(false);
 
     }
 

@@ -56,6 +56,8 @@ public class EmpleadosAltas extends javax.swing.JFrame {
         txtSueldo.setText("8000");
          */
         empleadoGlobal = null;
+        //Sentencia que desactiva el minimizar y maximizar de las ventanas principales
+        this.setResizable(false);
     }
 
     //Método que permite la limpieza de los datos que se han asignado

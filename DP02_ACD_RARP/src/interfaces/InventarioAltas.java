@@ -37,6 +37,8 @@ public class InventarioAltas extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         //Declaración de la variable globlas
         productoGlobal = null;
+        //Sentencia que desactiva el minimizar y maximizar de las ventanas principales
+        this.setResizable(false);
     }
 
     //Método que borra el contenido de las cajas de texto de la interfaz
