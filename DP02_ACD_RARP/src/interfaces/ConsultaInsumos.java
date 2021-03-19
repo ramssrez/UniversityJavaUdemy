@@ -9,6 +9,8 @@ import dialogs.ConfirmarBusquedaProducto;
 import dialogs.ConfirmarLimpieza;
 import dialogs.ErrorIngresarDatos;
 import dialogs.ErrorProductoNoExiste;
+import dialogs.ErrorSoloNumeros;
+import java.awt.event.KeyEvent;
 import main.Principal;
 import objetos.Producto;
 
@@ -34,6 +36,22 @@ public class ConsultaInsumos extends javax.swing.JFrame {
         } else {
             //Retorno verdadero para el caso de que los campos esten llenos
             return true;
+        }
+    }
+
+    //Método que permtie observar el tipo de caracter que entra al teclado y diferencia si es letra o número
+    public void esNumero(char validar, KeyEvent evt) {
+        //Valida si es caracter de tipo letra 
+        if (Character.isLetter(validar)) {
+            //Método que emite una alerta de sonido en función del sistema operativo
+            getToolkit().beep();
+            //Método que no permite recibir lo que se teclea en función de lo que ingrese del teclaso
+            evt.consume();
+            System.out.println("Solo se aceptan numeros");
+            //Dialog que manda un mensaje en caso de que no sean numeros en los campos de texto
+            ErrorSoloNumeros esn = new ErrorSoloNumeros(this, true);
+            //Método que permite visualizar la ventana
+            esn.setVisible(true);
         }
     }
 
@@ -161,6 +179,11 @@ public class ConsultaInsumos extends javax.swing.JFrame {
         jleCodigo1.setText("Código");
 
         txtCodigo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCodigoKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -266,6 +289,11 @@ public class ConsultaInsumos extends javax.swing.JFrame {
         jleCodigo2.setText("Sucursal");
 
         txtSucursal.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtSucursal.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtSucursalKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -624,6 +652,22 @@ public class ConsultaInsumos extends javax.swing.JFrame {
         //Método que cierra la ventana para abrir otra
         dispose();
     }//GEN-LAST:event_menuItemConsultaInsumosActionPerformed
+
+    //Evento del teclado en donde recibe solo números
+    private void txtCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCodigoKeyTyped
+        //Declaración de la variable tipo char de lo que se obtenga del teclaso
+        char validar = evt.getKeyChar();
+        //Lllamado de la función para realizar su procedimiento
+        esNumero(validar, evt);
+    }//GEN-LAST:event_txtCodigoKeyTyped
+
+    //Evento del teclado en donde recibe solo números
+    private void txtSucursalKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSucursalKeyTyped
+        //Declaración de la variable tipo char de lo que se obtenga del teclaso
+        char validar = evt.getKeyChar();
+        //Lllamado de la función para realizar su procedimiento
+        esNumero(validar, evt);
+    }//GEN-LAST:event_txtSucursalKeyTyped
 
     /**
      * @param args the command line arguments

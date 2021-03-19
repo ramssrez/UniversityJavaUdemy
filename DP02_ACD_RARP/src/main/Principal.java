@@ -21,7 +21,10 @@ public class Principal extends javax.swing.JFrame {
         initComponents();
         this.setTitle("Inicio");
         this.setLocationRelativeTo(null);
+        //Sentencia que desactiva el minimizar y maximizar de las ventanas principales
+        this.setResizable(false);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

@@ -9,6 +9,8 @@ import dialogs.ConfirmarBusquedaEmpleado;
 import dialogs.ConfirmarLimpieza;
 import dialogs.ErrorEmpleadoNoExiste;
 import dialogs.ErrorIngresarDatos;
+import dialogs.ErrorSoloNumeros;
+import java.awt.event.KeyEvent;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -37,7 +39,23 @@ public class ConsultaPersonal extends javax.swing.JFrame {
         //Sentencia que desactiva el minimizar y maximizar de las ventanas principales
         this.setResizable(false);
     }
-
+    
+   //Método que permtie observar el tipo de caracter que entra al teclado y diferencia si es letra o número
+    public void esNumero(char validar, KeyEvent evt) {
+        //Valida si es caracter de tipo letra 
+        if (Character.isLetter(validar)) {
+            //Método que emite una alerta de sonido en función del sistema operativo
+            getToolkit().beep();
+            //Método que no permite recibir lo que se teclea en función de lo que ingrese del teclaso
+            evt.consume();
+            System.out.println("Solo se aceptan numeros");
+            //Dialog que manda un mensaje en caso de que no sean numeros en los campos de texto
+            ErrorSoloNumeros esn = new ErrorSoloNumeros(this, true);
+            //Método que permite visualizar la ventana
+            esn.setVisible(true);
+        }
+    }
+    
     //Método que permite limpiar las etiquetas de la interfaz
     public void limpiarEtiquetas() {
         labelNombre.setText("");
@@ -177,6 +195,11 @@ public class ConsultaPersonal extends javax.swing.JFrame {
         jleCodigo1.setText("N. Empleado:");
 
         txtNEmpleado.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        txtNEmpleado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNEmpleadoKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -558,7 +581,7 @@ public class ConsultaPersonal extends javax.swing.JFrame {
 
     //Método que permite borrar el texto de las etiquetas
     private void btnNuevaConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevaConsultaActionPerformed
-    //Método que permite limpiar los campos de texto
+        //Método que permite limpiar los campos de texto
         limpiarEtiquetas();
         //Instancia del Dialog para confirmar la limpieza de los campos de texto del módulo
         ConfirmarLimpieza limpiar = new ConfirmarLimpieza(this, true);
@@ -662,6 +685,15 @@ public class ConsultaPersonal extends javax.swing.JFrame {
         //Método que cierra la ventana para abrir otra
         dispose();
     }//GEN-LAST:event_menuItemConsultaInsumosActionPerformed
+
+    //Evento del teclado en donde recibe solo números
+
+    private void txtNEmpleadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNEmpleadoKeyTyped
+    //Declaración de la variable tipo char de lo que se obtenga del teclaso
+        char validar = evt.getKeyChar();
+        //Lllamado de la función para realizar su procedimiento
+        esNumero(validar, evt);
+    }//GEN-LAST:event_txtNEmpleadoKeyTyped
 
     /**
      * @param args the command line arguments
