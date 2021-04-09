@@ -8,8 +8,16 @@ p {
   padding: 15px;
   /*Borde que sigue del padding*/
   border: 25px solid powderblue;
-  /*Margen que rodea al margino*/
-  margin: 50px;
+  /*Margen para cada uno de los lados del elemento*/
+  /*
+  margin-top: 40px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 20px;
+  */
+  /*Otra forma de espresarlo es*/
+  margin: auto 50px;
+  text-align: center;
 }
 a {
   background-color: black;
