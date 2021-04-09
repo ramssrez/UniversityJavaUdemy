@@ -1,0 +1,13 @@
+h1 {
+  color: darkblue;
+}
+p {
+  color: white;
+  background-color: crimson;
+}
+a{
+    background-color:black;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: yellow;
+    font-size: 25px;
+}
