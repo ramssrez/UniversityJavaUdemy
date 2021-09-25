@@ -1,0 +1,40 @@
+h1 {
+  color: #e63946;
+  text-align: center;
+}
+p {
+  color: #457b9d;
+  background-color: #f1faee;
+  /*Padding el margen que rodea al elemento*/
+  padding: 10px;
+  /*Borde que sigue del padding*/
+  border: 15px solid #1d3557;
+  /*Margen para cada uno de los lados del elemento*/
+  /*
+  margin-top: 40px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 20px;
+  */
+  /*Otra forma de espresarlo esasignarlos a cada uno
+    margin: 40px 10px 10px 20px;
+  */
+  /*Solo presentando tres elementos para arriba, lados y abajo
+    margin: 40px 10px 20px;
+  */
+  /*Solo presentando dos elementos el primero arriba y abajo y el segundo para los lados
+  margin: 40px 20px;
+  */
+
+  /*Presentando el margen horizontal automatico, solo se veria en los lados el margen*/
+  margin: auto 30px;
+
+  /*ponemos al texto en el centro de los elementos*/
+  text-align: center;
+}
+a {
+  background-color: black;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  color: yellow;
+  font-size: 25px;
+}
