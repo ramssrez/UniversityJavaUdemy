@@ -2,6 +2,7 @@
 /HolaMundo/build/
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /ArgumentosVariables/target/
 /enumeraciones/target/
 /BloquesInicializacion/nbproject/private/
@@ -103,3 +104,10 @@
 =======
 /HolaMundoHTML/nbproject/private/
 >>>>>>> usoHTMLCSSJavaScript
+=======
+/IntroduccionJDBC/target/
+/ManejoJDBC/target/
+/Harlingy/nbproject/private/
+/HarlingyDocumentation/nbproject/private/
+/HarlingyDocumentation/build/
+>>>>>>> JavaConJDBC
