@@ -45,6 +45,7 @@ public class AltasPersonal extends javax.swing.JFrame {
         btnGuardar = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
+        labMensaje = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -178,6 +179,8 @@ public class AltasPersonal extends javax.swing.JFrame {
             }
         });
 
+        labMensaje.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -187,27 +190,34 @@ public class AltasPersonal extends javax.swing.JFrame {
                 .addComponent(btnSalir)
                 .addGap(211, 211, 211))
             .addGroup(layout.createSequentialGroup()
-                .addGap(87, 87, 87)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnGuardar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnBuscar))
-                    .addComponent(paneldatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(87, 87, 87)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnGuardar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnBuscar))
+                            .addComponent(paneldatos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(labMensaje)))
                 .addContainerGap(79, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addComponent(paneldatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(7, 7, 7)
+                .addComponent(labMensaje)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(paneldatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGuardar)
                     .addComponent(btnBuscar))
                 .addGap(40, 40, 40)
                 .addComponent(btnSalir)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
 
         paneldatos.getAccessibleContext().setAccessibleName("Registro de inventario ");
@@ -215,8 +225,36 @@ public class AltasPersonal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //Método para limpiar los campos
+    public void limpiarDatos(){
+        txtNombre.setText("");
+        txtEdad.setText("");
+        txtTel.setText("");
+    }
+    
+    //Método que verifica que los campos no se encuentren vacios
+    public boolean validacionCamposTexto() {
+        if(txtEdad.getText().equals("")&&txtNombre.getText().equals("")&&txtTel.getText().equals("")){
+            return false;
+        }else{
+            return true;
+        }
+    }
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
+         if(validacionCamposTexto()){
+            labMensaje.setText("Se han guardado los datos");
+//            crearArchivo("Inventario.txt");
+//            String producto = "Producto: " + txtProducto.getText() + ", ";
+//            String precio = "Precio: $" + txtPrecio.getText();
+//            String marca = "Marca: " + txtMarca.getText() + ", ";
+//            String contenido = marca + producto + precio;
+//            escribirArchivo("Inventario.txt", contenido);
+//            anexarArchivo("Inventario.txt", "Marca: Petalo, Producto: Servilletas, Precio: $59");
+            limpiarDatos();
+        }else{          
+            labMensaje.setText("Los campos estan vacios");
+        }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
@@ -275,6 +313,7 @@ public class AltasPersonal extends javax.swing.JFrame {
     private javax.swing.JLabel jleArticulo;
     private javax.swing.JLabel jleCodigo;
     private javax.swing.JLabel jlesucursal;
+    private javax.swing.JLabel labMensaje;
     private javax.swing.JPanel paneldatos;
     private javax.swing.JTextField txtEdad;
     private javax.swing.JTextField txtNombre;

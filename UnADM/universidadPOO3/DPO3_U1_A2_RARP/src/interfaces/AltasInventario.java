@@ -175,6 +175,11 @@ public class AltasInventario extends javax.swing.JFrame {
 
         btnBuscar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         btnSalir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnSalir.setText("Salir");
@@ -282,7 +287,6 @@ public class AltasInventario extends javax.swing.JFrame {
         }
     }
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        // TODO add your handling code here:
         if(validacionCamposTexto()){
             labMensaje.setText("Se han guardado los datos");
             crearArchivo("Inventario.txt");
@@ -301,6 +305,10 @@ public class AltasInventario extends javax.swing.JFrame {
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         System.exit(0);
     }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
     /**
      * @param args the command line arguments
