@@ -248,19 +248,33 @@ public class AltasInventario extends javax.swing.JFrame {
         try {
             PrintWriter salida = new PrintWriter(archivo);
             salida.close();
+            System.out.println("Se ha creado al archivo");
         } catch (FileNotFoundException ex) {
             ex.printStackTrace(System.out);
         } 
     }
-    //Método donde se le agrega el nombre al archivo
-    public void crearArchivo(){
-        crearArchivo("prueba.txt");
+    //Mtodo para escribir en el archivo
+    public void escribirArchivo(String nombreArchivo, String contenido){
+        File archivo = new File(nombreArchivo);
+        try {
+            PrintWriter salida = new PrintWriter(archivo);
+            salida.println(contenido);
+            salida.close();
+            System.out.println("Se ha escrito en el archivo");
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace(System.out);
+        }
     }
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
         if(validacionCamposTexto()){
             labMensaje.setText("Se han guardado los datos");
-            crearArchivo("Inventario");
+            crearArchivo("Inventario.txt");
+            String producto = "Producto: " + txtProducto.getText();
+            String precio = "Precio: $" + txtPrecio.getText() + ", ";
+            String marca = "Marca: " + txtMarca.getText() + ", ";
+            String contenido = marca + producto + precio;
+            escribirArchivo("Inventario.txt", contenido);
             limpiarDatos();
         }else{          
             labMensaje.setText("Los campos estan vacios");
