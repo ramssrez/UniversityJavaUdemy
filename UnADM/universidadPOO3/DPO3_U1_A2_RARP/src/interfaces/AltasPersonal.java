@@ -17,7 +17,7 @@ public class AltasPersonal extends javax.swing.JFrame {
      */
     public AltasPersonal() {
         initComponents();
-        this.setTitle("Altas inventantario");
+        this.setTitle("Altas Personal");
         this.setLocationRelativeTo(null);
         //Sentencia que desactiva el minimizar y maximizar de las ventanas principales
         this.setResizable(false);
@@ -186,7 +186,7 @@ public class AltasPersonal extends javax.swing.JFrame {
                         .addGap(168, 168, 168)
                         .addComponent(btnBuscar))
                     .addComponent(paneldatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addContainerGap(79, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
