@@ -5,6 +5,8 @@
  */
 package main;
 
+import interfaces.AltasProducto;
+
 /**
  *
  * @author ramssrez
@@ -42,6 +44,11 @@ public class Inicio extends javax.swing.JFrame {
         jMenu1.setText("Principal");
 
         jMenuItem1.setText("Altas");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem1);
 
         jMenuBar1.add(jMenu1);
@@ -68,6 +75,14 @@ public class Inicio extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        AltasProducto altas = new AltasProducto();
+        //Método que permite visualizar la ventana
+        altas.setVisible(true);
+        //Método que cierra la ventana para abrir otra
+        dispose();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
