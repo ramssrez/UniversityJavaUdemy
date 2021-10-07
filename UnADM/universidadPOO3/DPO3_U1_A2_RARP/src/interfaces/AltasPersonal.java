@@ -5,6 +5,12 @@
  */
 package interfaces;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+
 
 /**
  *
@@ -240,17 +246,54 @@ public class AltasPersonal extends javax.swing.JFrame {
             return true;
         }
     }
+    //Método para crear un archivo en Java
+    public void crearArchivo(String nombreArchivo){
+        File archivo = new File(nombreArchivo);
+        try {
+            PrintWriter salida = new PrintWriter(archivo);
+            salida.close();
+            System.out.println("Se ha creado al archivo");
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace(System.out);
+        } 
+    }
+    //Método para escribir en el archivo
+    public void escribirArchivo(String nombreArchivo, String contenido){
+        File archivo = new File(nombreArchivo);
+        try {
+            PrintWriter salida = new PrintWriter(archivo);
+            salida.println(contenido);
+            salida.close();
+            System.out.println("Se ha escrito en el archivo");
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace(System.out);
+        }
+    }
+    //Método para anexar informaión al txt
+    public void anexarArchivo(String nombreArchivo, String contenido){
+        File archivo = new File(nombreArchivo);
+        try {
+            PrintWriter salida = new PrintWriter(new FileWriter(archivo, true));
+            salida.println(contenido);
+            salida.close();
+            System.out.println("Se ha agregado en el archivo");
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace(System.out);
+        } catch (IOException ex) {
+            ex.printStackTrace(System.out);
+        }
+    }
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
          if(validacionCamposTexto()){
             labMensaje.setText("Se han guardado los datos");
-//            crearArchivo("Inventario.txt");
-//            String producto = "Producto: " + txtProducto.getText() + ", ";
-//            String precio = "Precio: $" + txtPrecio.getText();
-//            String marca = "Marca: " + txtMarca.getText() + ", ";
-//            String contenido = marca + producto + precio;
-//            escribirArchivo("Inventario.txt", contenido);
-//            anexarArchivo("Inventario.txt", "Marca: Petalo, Producto: Servilletas, Precio: $59");
+            crearArchivo("personal.txt");
+            String nombre = "Nombre: " + txtNombre.getText() + ", ";
+            String edad = "Edad: " + txtEdad.getText();
+            String tel = "Telefono: " + txtTel.getText() + ", ";
+            String contenido = nombre + tel + edad;
+            escribirArchivo("personal.txt", contenido);
+            anexarArchivo("personal.txt", "Nombre: Raúl, Tel: 5514130475, Edad: 29");
             limpiarDatos();
         }else{          
             labMensaje.setText("Los campos estan vacios");
