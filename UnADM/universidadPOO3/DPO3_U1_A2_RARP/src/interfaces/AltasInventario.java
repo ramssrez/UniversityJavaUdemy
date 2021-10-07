@@ -5,10 +5,13 @@
  */
 package interfaces;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 
 /**
  *
- * @author ramssrez
+ * @author Raúl Ramírez Pérez
  */
 public class AltasInventario extends javax.swing.JFrame {
 
@@ -239,14 +242,27 @@ public class AltasInventario extends javax.swing.JFrame {
             return true;
         }
     }
+    //Método para crear un archivo en Java
+    public void crearArchivo(String nombreArchivo){
+        File archivo = new File(nombreArchivo);
+        try {
+            PrintWriter salida = new PrintWriter(archivo);
+            salida.close();
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace(System.out);
+        } 
+    }
+    //Método donde se le agrega el nombre al archivo
+    public void crearArchivo(){
+        crearArchivo("prueba.txt");
+    }
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
         if(validacionCamposTexto()){
-            System.out.println("Es falso");
             labMensaje.setText("Se han guardado los datos");
+            crearArchivo("Inventario");
             limpiarDatos();
         }else{          
-            System.out.println("Es verdadero");
             labMensaje.setText("Los campos estan vacios");
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
