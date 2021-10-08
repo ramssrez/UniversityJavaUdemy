@@ -15,6 +15,11 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFileChooser;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 
 /**
@@ -319,8 +324,6 @@ public class AltasPersonal extends javax.swing.JFrame {
         }else{
              ErrorDatosVacios error = new ErrorDatosVacios(this,true);
              error.setVisible(true);
-         
-             //labMensaje.setText("Los campos estan vacios");
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
@@ -331,7 +334,12 @@ public class AltasPersonal extends javax.swing.JFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
-        leerArchivo("personal.txt");
+
+        JFileChooser jf = new JFileChooser();
+        jf.showOpenDialog(this);
+        File file = jf.getSelectedFile();
+        leerArchivo(file.toString());
+        System.out.println("fule" + file);
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     /**
@@ -371,6 +379,17 @@ public class AltasPersonal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                try {
+                    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(AltasPersonal.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (InstantiationException ex) {
+                    Logger.getLogger(AltasPersonal.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IllegalAccessException ex) {
+                    Logger.getLogger(AltasPersonal.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (UnsupportedLookAndFeelException ex) {
+                    Logger.getLogger(AltasPersonal.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 new AltasPersonal().setVisible(true);
             }
         });

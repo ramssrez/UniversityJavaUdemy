@@ -28,10 +28,12 @@ public class ConfimarSalir extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 51));
+
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("¿Estás seguro de salir?");
 
-        btnAceptar.setBackground(new java.awt.Color(0, 153, 0));
+        btnAceptar.setBackground(new java.awt.Color(255, 0, 102));
         btnAceptar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnAceptar.setForeground(new java.awt.Color(255, 255, 255));
         btnAceptar.setText("Aceptar");
