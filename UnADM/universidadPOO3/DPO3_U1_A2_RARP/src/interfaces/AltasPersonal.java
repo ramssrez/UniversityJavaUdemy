@@ -5,6 +5,7 @@
  */
 package interfaces;
 
+import dialog.ConfimarSalir;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -266,18 +267,6 @@ public class AltasPersonal extends javax.swing.JFrame {
             ex.printStackTrace(System.out);
         } 
     }
-    //Método para escribir en el archivo
-    public void escribirArchivo(String nombreArchivo, String contenido){
-        File archivo = new File(nombreArchivo);
-        try {
-            PrintWriter salida = new PrintWriter(archivo);
-            salida.println(contenido);
-            salida.close();
-            System.out.println("Se ha escrito en el archivo");
-        } catch (FileNotFoundException ex) {
-            ex.printStackTrace(System.out);
-        }
-    }
     //Método para anexar informaión al txt
     public void anexarArchivo(String nombreArchivo, String contenido){
         File archivo = new File(nombreArchivo);
@@ -329,7 +318,8 @@ public class AltasPersonal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        System.exit(0);
+        ConfimarSalir salir = new ConfimarSalir(this,true);
+        salir.setVisible(true);
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
