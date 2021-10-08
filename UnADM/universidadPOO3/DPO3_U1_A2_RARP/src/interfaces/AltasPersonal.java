@@ -6,6 +6,8 @@
 package interfaces;
 
 import dialog.ConfimarSalir;
+import dialog.Confirmacion;
+import dialog.ErrorDatosVacios;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -305,15 +307,20 @@ public class AltasPersonal extends javax.swing.JFrame {
             crearArchivo("personal.txt");
         }
          if(validacionCamposTexto()){
-            labMensaje.setText("Se han guardado los datos");
+            //labMensaje.setText("Se han guardado los datos");
             String nombre = "Nombre: " + txtNombre.getText() + ", ";
             String edad = "Edad: " + txtEdad.getText();
             String tel = "Telefono: " + txtTel.getText() + ", ";
             String contenido = nombre + tel + edad;
             anexarArchivo("personal.txt", contenido);
+            Confirmacion confirmacion = new Confirmacion(this,true);
+            confirmacion.setVisible(true);
             limpiarDatos();
-        }else{          
-            labMensaje.setText("Los campos estan vacios");
+        }else{
+             ErrorDatosVacios error = new ErrorDatosVacios(this,true);
+             error.setVisible(true);
+         
+             //labMensaje.setText("Los campos estan vacios");
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
