@@ -5,8 +5,10 @@
  */
 package interfaces;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -176,6 +178,11 @@ public class AltasPersonal extends javax.swing.JFrame {
 
         btnBuscar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         btnSalir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnSalir.setText("Salir");
@@ -249,6 +256,8 @@ public class AltasPersonal extends javax.swing.JFrame {
     //Método para crear un archivo en Java
     public void crearArchivo(String nombreArchivo){
         File archivo = new File(nombreArchivo);
+        String rutaAbsoluta = new File(nombreArchivo).getAbsolutePath();
+        System.out.println("rutaAbsoluta = " + rutaAbsoluta);
         try {
             PrintWriter salida = new PrintWriter(archivo);
             salida.close();
@@ -283,17 +292,36 @@ public class AltasPersonal extends javax.swing.JFrame {
             ex.printStackTrace(System.out);
         }
     }
+        //Método para leer un archivo 
+    public void leerArchivo(String nombreArchivo){
+        File archivo = new File(nombreArchivo);
+        try {
+            BufferedReader entrada = new BufferedReader(new FileReader(archivo));
+            String lectura = entrada.readLine();
+            while (lectura != null) {                
+                System.out.println("lectura: " + lectura);
+                lectura= entrada.readLine();
+            }
+            entrada.close();
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace(System.out);
+        } catch (IOException ex) {
+            ex.printStackTrace(System.out);
+        }
+    }
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
+        String rutaAbsoluta = new File("personal.txt").getAbsolutePath();
+        if(rutaAbsoluta.equals("")){
+            crearArchivo("personal.txt");
+        }
          if(validacionCamposTexto()){
             labMensaje.setText("Se han guardado los datos");
-            crearArchivo("personal.txt");
             String nombre = "Nombre: " + txtNombre.getText() + ", ";
             String edad = "Edad: " + txtEdad.getText();
             String tel = "Telefono: " + txtTel.getText() + ", ";
             String contenido = nombre + tel + edad;
-            escribirArchivo("personal.txt", contenido);
-            anexarArchivo("personal.txt", "Nombre: Raúl, Tel: 5514130475, Edad: 29");
+            anexarArchivo("personal.txt", contenido);
             limpiarDatos();
         }else{          
             labMensaje.setText("Los campos estan vacios");
@@ -303,6 +331,11 @@ public class AltasPersonal extends javax.swing.JFrame {
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         System.exit(0);
     }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        // TODO add your handling code here:
+        leerArchivo("personal.txt");
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
     /**
      * @param args the command line arguments

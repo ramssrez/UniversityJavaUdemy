@@ -5,8 +5,10 @@
  */
 package interfaces;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -252,6 +254,8 @@ public class AltasInventario extends javax.swing.JFrame {
     //Método para crear un archivo en Java
     public void crearArchivo(String nombreArchivo){
         File archivo = new File(nombreArchivo);
+        String rutaAbsoluta = new File(nombreArchivo).getAbsolutePath();
+        System.out.println("rutaAbsoluta = " + rutaAbsoluta);
         try {
             PrintWriter salida = new PrintWriter(archivo);
             salida.close();
@@ -286,16 +290,33 @@ public class AltasInventario extends javax.swing.JFrame {
             ex.printStackTrace(System.out);
         }
     }
+    //Método para leer un archivo 
+    public void leerArchivo(String nombreArchivo){
+        File archivo = new File(nombreArchivo);
+        try {
+            BufferedReader entrada = new BufferedReader(new FileReader(archivo));
+            String lectura = entrada.readLine();
+            while (lectura != null) {                
+                System.out.println("lectura: " + lectura);
+                lectura= entrada.readLine();
+            }
+            entrada.close();
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace(System.out);
+        } catch (IOException ex) {
+            ex.printStackTrace(System.out);
+        }
+    }
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         if(validacionCamposTexto()){
             labMensaje.setText("Se han guardado los datos");
-            crearArchivo("Inventario.txt");
+            crearArchivo("inventario.txt");
             String producto = "Producto: " + txtProducto.getText() + ", ";
             String precio = "Precio: $" + txtPrecio.getText();
             String marca = "Marca: " + txtMarca.getText() + ", ";
             String contenido = marca + producto + precio;
-            escribirArchivo("Inventario.txt", contenido);
-            anexarArchivo("Inventario.txt", "Marca: Petalo, Producto: Servilletas, Precio: $59");
+            escribirArchivo("inventario.txt", contenido);
+            anexarArchivo("inventario.txt", "Marca: Petalo, Producto: Servilletas, Precio: $59");
             limpiarDatos();
         }else{          
             labMensaje.setText("Los campos estan vacios");
@@ -308,6 +329,7 @@ public class AltasInventario extends javax.swing.JFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
+        leerArchivo("inventario.txt");
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     /**
