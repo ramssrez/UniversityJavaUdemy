@@ -46,7 +46,7 @@ public class Inicio extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("Selecciona una opción del menú");
 
-        jMenu1.setText("Principal");
+        jMenu1.setText("Personal");
 
         jMenuItem1.setText("Altas");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
