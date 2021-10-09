@@ -33,7 +33,7 @@ public class ConfimarSalir extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("¿Estás seguro de salir?");
 
-        btnAceptar.setBackground(new java.awt.Color(255, 0, 102));
+        btnAceptar.setBackground(new java.awt.Color(0, 153, 51));
         btnAceptar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnAceptar.setText("Aceptar");
         btnAceptar.setToolTipText("");
