@@ -15,8 +15,11 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -33,7 +36,9 @@ public class AltasPersonal extends javax.swing.JFrame {
      */
     public AltasPersonal() {
         initComponents();
+        //Método que permite asignarle un titulo a la ventana
         this.setTitle("Altas Personal");
+        //Método que permite mostrarlo en el centro de la pantalla
         this.setLocationRelativeTo(null);
         //Sentencia que desactiva el minimizar y maximizar de las ventanas principales
         this.setResizable(false);
@@ -61,7 +66,8 @@ public class AltasPersonal extends javax.swing.JFrame {
         btnGuardar = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
-        labMensaje = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jListText = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -200,45 +206,38 @@ public class AltasPersonal extends javax.swing.JFrame {
             }
         });
 
-        labMensaje.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jScrollPane1.setViewportView(jListText);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnSalir)
-                .addGap(211, 211, 211))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(66, 66, 66)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(87, 87, 87)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnGuardar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnBuscar))
-                            .addComponent(paneldatos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(labMensaje)))
-                .addContainerGap(79, Short.MAX_VALUE))
+                        .addComponent(btnGuardar)
+                        .addGap(33, 33, 33)
+                        .addComponent(btnBuscar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnSalir))
+                    .addComponent(paneldatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1))
+                .addContainerGap(71, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(7, 7, 7)
-                .addComponent(labMensaje)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(14, 14, 14)
                 .addComponent(paneldatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGuardar)
-                    .addComponent(btnBuscar))
-                .addGap(40, 40, 40)
-                .addComponent(btnSalir)
-                .addContainerGap(59, Short.MAX_VALUE))
+                    .addComponent(btnBuscar)
+                    .addComponent(btnSalir))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         paneldatos.getAccessibleContext().setAccessibleName("Registro de inventario ");
@@ -246,7 +245,7 @@ public class AltasPersonal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    //Método para limpiar los campos
+    //Método para limpiar los campos de texto
     public void limpiarDatos(){
         txtNombre.setText("");
         txtEdad.setText("");
@@ -255,55 +254,76 @@ public class AltasPersonal extends javax.swing.JFrame {
     
     //Método que verifica que los campos no se encuentren vacios
     public boolean validacionCamposTexto() {
-        if(txtEdad.getText().equals("")&&txtNombre.getText().equals("")&&txtTel.getText().equals("")){
+        //Validación de los campos de texto que retorna un booleano para un cierto caso
+        if(txtEdad.getText().equals("")&&txtNombre.getText().equals("")&&txtTel.getText().equals("")
+                ||txtEdad.getText().equals("") || txtNombre.getText().equals("") || txtTel.getText().equals("")){
             return false;
         }else{
             return true;
         }
     }
+    
     //Método para crear un archivo en Java
     public void crearArchivo(String nombreArchivo){
+        //Inicialización del archivo con file
         File archivo = new File(nombreArchivo);
-        String rutaAbsoluta = new File(nombreArchivo).getAbsolutePath();
-        System.out.println("rutaAbsoluta = " + rutaAbsoluta);
         try {
+            //Clase que permite crear al archivo con un nombre especifico
             PrintWriter salida = new PrintWriter(archivo);
+            //Método que permite cerra el archivo creado
             salida.close();
-            System.out.println("Se ha creado al archivo");
+            //Catch que recupera la información en caso de que no se recuperé un archivo
         } catch (FileNotFoundException ex) {
             ex.printStackTrace(System.out);
         } 
     }
-    //Método para anexar informaión al txt
+    
+    //Método para anexar informaión al archivo desde Java
     public void anexarArchivo(String nombreArchivo, String contenido){
+        //Inicialización del archivo con file
         File archivo = new File(nombreArchivo);
         try {
+            //Clase que permite escribir en el archivo
             PrintWriter salida = new PrintWriter(new FileWriter(archivo, true));
+            //Metodo que ingresa informción al archivo
             salida.println(contenido);
+            //Método que cierra el documento abierto
             salida.close();
-            System.out.println("Se ha agregado en el archivo");
+            //Catch que recupera el error en caso de que no se pueda abrir un archivo
         } catch (FileNotFoundException ex) {
             ex.printStackTrace(System.out);
+           //Catch que recupera el error en caso de que no se modifique el texto
         } catch (IOException ex) {
             ex.printStackTrace(System.out);
         }
     }
+    
         //Método para leer un archivo 
-    public void leerArchivo(String nombreArchivo){
+    public List<String> leerArchivo(String nombreArchivo){
+        //Inicialización del archivo con file
         File archivo = new File(nombreArchivo);
+        //Lista que guarda una lista de textos recuperados del archivo
+        List<String> listaTextos = new ArrayList<>();
         try {
+            //Clase que permite leer en el archivo
             BufferedReader entrada = new BufferedReader(new FileReader(archivo));
+            //Recuperación del texto por lineas
             String lectura = entrada.readLine();
-            while (lectura != null) {                
-                System.out.println("lectura: " + lectura);
+            //Ciclo while que recuperad los texto si son varias filas
+            while (lectura != null) {    
+                listaTextos.add(lectura);
                 lectura= entrada.readLine();
             }
             entrada.close();
+            //Catch que recupera el error en caso de que no se pueda abrir un archivo
         } catch (FileNotFoundException ex) {
             ex.printStackTrace(System.out);
+           //Catch que recupera el error en caso de que no se modifique el texto
         } catch (IOException ex) {
             ex.printStackTrace(System.out);
         }
+        //retorno de la lista
+        return listaTextos;
     }
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
@@ -334,12 +354,16 @@ public class AltasPersonal extends javax.swing.JFrame {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
-
         JFileChooser jf = new JFileChooser();
         jf.showOpenDialog(this);
         File file = jf.getSelectedFile();
-        leerArchivo(file.toString());
-        System.out.println("fule" + file);
+        List<String> listaTextoBuscar = new ArrayList<>();
+        listaTextoBuscar =  leerArchivo(file.toString());
+        DefaultListModel modelo = new DefaultListModel();
+        listaTextoBuscar.forEach(texto ->{
+            modelo.addElement(texto);
+        });
+        jListText.setModel(modelo);
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     /**
@@ -399,13 +423,14 @@ public class AltasPersonal extends javax.swing.JFrame {
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnSalir;
+    private javax.swing.JList<String> jListText;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel jleArticulo;
     private javax.swing.JLabel jleCodigo;
     private javax.swing.JLabel jlesucursal;
-    private javax.swing.JLabel labMensaje;
     private javax.swing.JPanel paneldatos;
     private javax.swing.JTextField txtEdad;
     private javax.swing.JTextField txtNombre;
