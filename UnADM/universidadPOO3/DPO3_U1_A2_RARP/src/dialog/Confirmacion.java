@@ -39,7 +39,6 @@ public class Confirmacion extends javax.swing.JDialog {
 
         btnAceptar.setBackground(new java.awt.Color(0, 153, 0));
         btnAceptar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnAceptar.setForeground(new java.awt.Color(255, 255, 255));
         btnAceptar.setText("Aceptar");
         btnAceptar.setToolTipText("");
         btnAceptar.addActionListener(new java.awt.event.ActionListener() {

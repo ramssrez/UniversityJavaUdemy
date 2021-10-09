@@ -24,7 +24,9 @@ public class AltasInventario extends javax.swing.JFrame {
      */
     public AltasInventario() {
         initComponents();
+        //Método que permite asignarle un titulo a la ventana
         this.setTitle("Altas Inventario");
+        //Método que permite mostrarlo en el centro de la pantalla
         this.setLocationRelativeTo(null);
         //Sentencia que desactiva el minimizar y maximizar de las ventanas principales
         this.setResizable(false);
