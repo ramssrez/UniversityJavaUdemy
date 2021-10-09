@@ -37,7 +37,6 @@ public class ErrorDatosVacios extends javax.swing.JDialog {
 
         btnAceptar.setBackground(new java.awt.Color(153, 0, 0));
         btnAceptar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnAceptar.setForeground(new java.awt.Color(255, 255, 255));
         btnAceptar.setText("Aceptar");
         btnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

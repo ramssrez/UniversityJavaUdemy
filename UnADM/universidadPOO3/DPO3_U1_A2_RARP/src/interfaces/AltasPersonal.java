@@ -327,42 +327,61 @@ public class AltasPersonal extends javax.swing.JFrame {
     }
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
+        //Cuando se corra el programa se crear por primera vez el archivo
         String rutaAbsoluta = new File("personal.txt").getAbsolutePath();
+        //En caso de que no exista el archivo se crear el arcivo
         if(rutaAbsoluta.equals("")){
             crearArchivo("personal.txt");
         }
+        //Verifica que los camposs esten llenos
          if(validacionCamposTexto()){
-            //labMensaje.setText("Se han guardado los datos");
+             //Recuperación de la información de los campos de texto
             String nombre = "Nombre: " + txtNombre.getText() + ", ";
             String edad = "Edad: " + txtEdad.getText();
             String tel = "Telefono: " + txtTel.getText() + ", ";
             String contenido = nombre + tel + edad;
+            //Lllamado al metodo para ingresar la información
             anexarArchivo("personal.txt", contenido);
+            //Lllamado al dialog para avisar de los campos de texto recuperados
             Confirmacion confirmacion = new Confirmacion(this,true);
+            //Muestra el dialog
             confirmacion.setVisible(true);
+            //Llamado al metodo para limpiar los datos
             limpiarDatos();
+        //En caso de que los campos de texto esten vacios se manda un dialog de error
         }else{
+             //Llalmado al dialog del error al no tener los datos vacios
              ErrorDatosVacios error = new ErrorDatosVacios(this,true);
              error.setVisible(true);
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        //Lllamadao al dialog para confirmación de salida del programa
         ConfimarSalir salir = new ConfimarSalir(this,true);
         salir.setVisible(true);
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
+        //Clase que abre un dialog para escoger el archivo a leer
         JFileChooser jf = new JFileChooser();
+        //Adignación del lugar para abrir el dialog
         jf.showOpenDialog(this);
+        //Recuperación del URL de archivo
         File file = jf.getSelectedFile();
+        //Creación de la lista para recupear los textos
         List<String> listaTextoBuscar = new ArrayList<>();
+        //Asignación del metodo que recupera la informaicón al leer el archivo
         listaTextoBuscar =  leerArchivo(file.toString());
+        //Creción del modelos para agrgarlos en la lista de texto
         DefaultListModel modelo = new DefaultListModel();
+        //recorrido de la lista del texto
         listaTextoBuscar.forEach(texto ->{
+            //Asignación de texto en los modelos creados
             modelo.addElement(texto);
         });
+        //Asignación del texto recuperado en la lissta para ser mostrada
         jListText.setModel(modelo);
     }//GEN-LAST:event_btnBuscarActionPerformed
 
