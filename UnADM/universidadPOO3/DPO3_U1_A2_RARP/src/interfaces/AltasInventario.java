@@ -5,6 +5,9 @@
  */
 package interfaces;
 
+import dialog.ConfimarSalir;
+import dialog.Confirmacion;
+import dialog.ErrorDatosVacios;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -12,6 +15,14 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
+import javax.swing.JFileChooser;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
@@ -55,6 +66,8 @@ public class AltasInventario extends javax.swing.JFrame {
         btnBuscar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
         labMensaje = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jListText = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -195,27 +208,28 @@ public class AltasInventario extends javax.swing.JFrame {
 
         labMensaje.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
 
+        jScrollPane1.setViewportView(jListText);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnSalir)
-                .addGap(211, 211, 211))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(labMensaje))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(86, 86, 86)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnGuardar)
+                                .addGap(41, 41, 41)
+                                .addComponent(btnSalir)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnBuscar))
-                            .addComponent(paneldatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(labMensaje)))
+                            .addComponent(paneldatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1))))
                 .addContainerGap(79, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -228,10 +242,11 @@ public class AltasInventario extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGuardar)
-                    .addComponent(btnBuscar))
-                .addGap(40, 40, 40)
-                .addComponent(btnSalir)
-                .addContainerGap(39, Short.MAX_VALUE))
+                    .addComponent(btnBuscar)
+                    .addComponent(btnSalir))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         paneldatos.getAccessibleContext().setAccessibleName("Registro de inventario ");
@@ -247,91 +262,132 @@ public class AltasInventario extends javax.swing.JFrame {
     }
     //Método que verifica que los campos no se encuentren vacios
     public boolean validacionCamposTexto() {
-        if(txtMarca.getText().equals("")&&txtPrecio.getText().equals("")&&txtProducto.getText().equals("")){
+        //Validación de los campos de texto que retorna un booleano para un cierto caso
+        if(txtMarca.getText().equals("")&&txtPrecio.getText().equals("")&&txtProducto.getText().equals("")
+                ||txtMarca.getText().equals("") || txtPrecio.getText().equals("") || txtProducto.getText().equals("")){
             return false;
         }else{
             return true;
         }
     }
-    //Método para crear un archivo en Java
+     //Método para crear un archivo en Java
     public void crearArchivo(String nombreArchivo){
+        //Inicialización del archivo con file
         File archivo = new File(nombreArchivo);
-        String rutaAbsoluta = new File(nombreArchivo).getAbsolutePath();
-        System.out.println("rutaAbsoluta = " + rutaAbsoluta);
         try {
+            //Clase que permite crear al archivo con un nombre especifico
             PrintWriter salida = new PrintWriter(archivo);
+            //Método que permite cerra el archivo creado
             salida.close();
-            System.out.println("Se ha creado al archivo");
+            //Catch que recupera la información en caso de que no se recuperé un archivo
         } catch (FileNotFoundException ex) {
             ex.printStackTrace(System.out);
         } 
     }
-    //Mtodo para escribir en el archivo
-    public void escribirArchivo(String nombreArchivo, String contenido){
-        File archivo = new File(nombreArchivo);
-        try {
-            PrintWriter salida = new PrintWriter(archivo);
-            salida.println(contenido);
-            salida.close();
-            System.out.println("Se ha escrito en el archivo");
-        } catch (FileNotFoundException ex) {
-            ex.printStackTrace(System.out);
-        }
-    }
-    //Método para anexar informaión al txt
+    
+    //Método para anexar informaión al archivo desde Java
     public void anexarArchivo(String nombreArchivo, String contenido){
+        //Inicialización del archivo con file
         File archivo = new File(nombreArchivo);
         try {
+            //Clase que permite escribir en el archivo
             PrintWriter salida = new PrintWriter(new FileWriter(archivo, true));
+            //Metodo que ingresa informción al archivo
             salida.println(contenido);
+            //Método que cierra el documento abierto
             salida.close();
-            System.out.println("Se ha agregado en el archivo");
+            //Catch que recupera el error en caso de que no se pueda abrir un archivo
         } catch (FileNotFoundException ex) {
             ex.printStackTrace(System.out);
+           //Catch que recupera el error en caso de que no se modifique el texto
         } catch (IOException ex) {
             ex.printStackTrace(System.out);
         }
     }
-    //Método para leer un archivo 
-    public void leerArchivo(String nombreArchivo){
+    
+        //Método para leer un archivo 
+    public List<String> leerArchivo(String nombreArchivo){
+        //Inicialización del archivo con file
         File archivo = new File(nombreArchivo);
+        //Lista que guarda una lista de textos recuperados del archivo
+        List<String> listaTextos = new ArrayList<>();
         try {
+            //Clase que permite leer en el archivo
             BufferedReader entrada = new BufferedReader(new FileReader(archivo));
+            //Recuperación del texto por lineas
             String lectura = entrada.readLine();
-            while (lectura != null) {                
-                System.out.println("lectura: " + lectura);
+            //Ciclo while que recuperad los texto si son varias filas
+            while (lectura != null) {    
+                listaTextos.add(lectura);
                 lectura= entrada.readLine();
             }
             entrada.close();
+            //Catch que recupera el error en caso de que no se pueda abrir un archivo
         } catch (FileNotFoundException ex) {
             ex.printStackTrace(System.out);
+           //Catch que recupera el error en caso de que no se modifique el texto
         } catch (IOException ex) {
             ex.printStackTrace(System.out);
         }
+        //retorno de la lista
+        return listaTextos;
     }
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        if(validacionCamposTexto()){
-            labMensaje.setText("Se han guardado los datos");
+        //Cuando se corra el programa recupera el nombre del archivo
+        String rutaAbsoluta = new File("inventario.txt").getAbsolutePath();
+        //En caso de que no exista el archivo se crear el arcivo
+        if(rutaAbsoluta.equals("")){
             crearArchivo("inventario.txt");
+        }
+        //Verifica que los camposs esten llenos
+         if(validacionCamposTexto()){
+             //Recuperación de la información de los campos de texto
             String producto = "Producto: " + txtProducto.getText() + ", ";
             String precio = "Precio: $" + txtPrecio.getText();
             String marca = "Marca: " + txtMarca.getText() + ", ";
             String contenido = marca + producto + precio;
-            escribirArchivo("inventario.txt", contenido);
-            anexarArchivo("inventario.txt", "Marca: Petalo, Producto: Servilletas, Precio: $59");
+            //Lllamado al metodo para ingresar la información
+            anexarArchivo("inventario.txt", contenido);
+            //Lllamado al dialog para avisar de los campos de texto recuperados
+            Confirmacion confirmacion = new Confirmacion(this,true);
+            //Muestra el dialog
+            confirmacion.setVisible(true);
+            //Llamado al metodo para limpiar los datos
             limpiarDatos();
-        }else{          
-            labMensaje.setText("Los campos estan vacios");
+        //En caso de que los campos de texto esten vacios se manda un dialog de error
+        }else{
+             //Llalmado al dialog del error al no tener los datos vacios
+             ErrorDatosVacios error = new ErrorDatosVacios(this,true);
+             error.setVisible(true);
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_btnSalirActionPerformed
+        //Lllamadao al dialog para confirmación de salida del programa
+        ConfimarSalir salir = new ConfimarSalir(this,true);
+        salir.setVisible(true);    }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        // TODO add your handling code here:
-        leerArchivo("inventario.txt");
+        //Clase que abre un dialog para escoger el archivo a leer
+        JFileChooser jf = new JFileChooser();
+        //Adignación del lugar para abrir el dialog
+        jf.showOpenDialog(this);
+        //Recuperación del URL de archivo
+        File file = jf.getSelectedFile();
+        //Creación de la lista para recupear los textos
+        List<String> listaTextoBuscar = new ArrayList<>();
+        //Asignación del metodo que recupera la informaicón al leer el archivo
+        listaTextoBuscar =  leerArchivo(file.toString());
+        //Creción del modelos para agrgarlos en la lista de texto
+        DefaultListModel modelo = new DefaultListModel();
+        //recorrido de la lista del texto
+        listaTextoBuscar.forEach(texto ->{
+            //Asignación de texto en los modelos creados
+            modelo.addElement(texto);
+        });
+        //Asignación del texto recuperado en la lissta para ser mostrada
+        jListText.setModel(modelo);
+
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     /**
@@ -367,6 +423,17 @@ public class AltasInventario extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                try {
+                    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(AltasInventario.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (InstantiationException ex) {
+                    Logger.getLogger(AltasInventario.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IllegalAccessException ex) {
+                    Logger.getLogger(AltasInventario.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (UnsupportedLookAndFeelException ex) {
+                    Logger.getLogger(AltasInventario.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 new AltasInventario().setVisible(true);
             }
         });
@@ -376,9 +443,11 @@ public class AltasInventario extends javax.swing.JFrame {
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnSalir;
+    private javax.swing.JList<String> jListText;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel jleArticulo;
     private javax.swing.JLabel jleCodigo;
     private javax.swing.JLabel jlesucursal;

@@ -326,8 +326,7 @@ public class AltasPersonal extends javax.swing.JFrame {
         return listaTextos;
     }
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        // TODO add your handling code here:
-        //Cuando se corra el programa se crear por primera vez el archivo
+        //Cuando se corra el programa recupera el nombre del archivo
         String rutaAbsoluta = new File("personal.txt").getAbsolutePath();
         //En caso de que no exista el archivo se crear el arcivo
         if(rutaAbsoluta.equals("")){
@@ -363,7 +362,6 @@ public class AltasPersonal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        // TODO add your handling code here:
         //Clase que abre un dialog para escoger el archivo a leer
         JFileChooser jf = new JFileChooser();
         //Adignación del lugar para abrir el dialog
