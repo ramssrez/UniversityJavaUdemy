@@ -10,7 +10,7 @@ public class ConfimacionInicio extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
-        this.setTitle("¿Salir?");
+        this.setTitle("Volviendo al inicio");
     }
 
     /**

@@ -10,7 +10,7 @@ public class Confirmacion extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
-        setTitle("Limpieza");
+        setTitle("Guardado de datos");
     }
 
     /**
