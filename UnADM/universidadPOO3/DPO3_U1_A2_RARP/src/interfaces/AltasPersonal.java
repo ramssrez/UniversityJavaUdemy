@@ -5,7 +5,7 @@
  */
 package interfaces;
 
-import dialog.ConfimarSalir;
+import dialog.ConfimacionInicio;
 import dialog.Confirmacion;
 import dialog.ErrorDatosVacios;
 import java.io.BufferedReader;
@@ -69,9 +69,6 @@ public class AltasPersonal extends javax.swing.JFrame {
         btnSalir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jListText = new javax.swing.JList<>();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -212,20 +209,6 @@ public class AltasPersonal extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(jListText);
 
-        jMenu1.setText("Inicio");
-
-        jMenuItem1.setText("Regresar");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem1);
-
-        jMenuBar1.add(jMenu1);
-
-        setJMenuBar(jMenuBar1);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -255,7 +238,7 @@ public class AltasPersonal extends javax.swing.JFrame {
                     .addComponent(btnSalir))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
 
         paneldatos.getAccessibleContext().setAccessibleName("Registro de inventario ");
@@ -373,10 +356,13 @@ public class AltasPersonal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
+    //Método que retorna al menú principal
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        //Lllamadao al dialog para confirmación de salida del programa
-        ConfimarSalir salir = new ConfimarSalir(this,true);
-        salir.setVisible(true);
+        ConfimacionInicio ci = new ConfimacionInicio(this, true);
+        ci.setVisible(true);
+        Inicio inicio = new Inicio();
+        inicio.setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
@@ -400,12 +386,6 @@ public class AltasPersonal extends javax.swing.JFrame {
         //Asignación del texto recuperado en la lissta para ser mostrada
         jListText.setModel(modelo);
     }//GEN-LAST:event_btnBuscarActionPerformed
-
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        Inicio inicio = new Inicio();
-        inicio.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -454,9 +434,6 @@ public class AltasPersonal extends javax.swing.JFrame {
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnSalir;
     private javax.swing.JList<String> jListText;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
