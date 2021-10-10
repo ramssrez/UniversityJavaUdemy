@@ -27,6 +27,7 @@ import main.Inicio;
  * @author Raúl Ramírez Pérez
  */
 public class AltasInventario extends javax.swing.JFrame {
+    private File nombreArchivo;
 
     /**
      * Creates new form AltasProduto
@@ -39,6 +40,8 @@ public class AltasInventario extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         //Sentencia que desactiva el minimizar y maximizar de las ventanas principales
         this.setResizable(false);
+        txtnewName.setVisible(false);
+        btnAceptRename.setVisible(false);
     }
 
     /**
@@ -67,6 +70,8 @@ public class AltasInventario extends javax.swing.JFrame {
         jListText = new javax.swing.JList<>();
         btnRename = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
+        txtnewName = new javax.swing.JTextField();
+        btnAceptRename = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -223,6 +228,16 @@ public class AltasInventario extends javax.swing.JFrame {
             }
         });
 
+        txtnewName.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+
+        btnAceptRename.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnAceptRename.setText("Aceptar");
+        btnAceptRename.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAceptRenameActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -230,18 +245,29 @@ public class AltasInventario extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(86, 86, 86)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(paneldatos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnRename)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(85, 85, 85)
                         .addComponent(btnDelete))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnGuardar)
-                        .addGap(32, 32, 32)
-                        .addComponent(btnBuscar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnSalir))
-                    .addComponent(paneldatos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnGuardar)
+                            .addComponent(btnRename))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtnewName, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(14, 14, 14)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnAceptRename)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnBuscar)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btnSalir)))))))
                 .addContainerGap(60, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -257,10 +283,14 @@ public class AltasInventario extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRename)
-                    .addComponent(btnDelete))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                    .addComponent(txtnewName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnAceptRename)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
+                .addComponent(btnDelete)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28))
+                .addContainerGap())
         );
 
         paneldatos.getAccessibleContext().setAccessibleName("Registro de inventario ");
@@ -352,9 +382,9 @@ public class AltasInventario extends javax.swing.JFrame {
         //En caso de que no exista el archivo se crear el arcivo
         if(rutaAbsoluta.equals("")){
             crearArchivo("inventario.txt");
-        }
+        }      
         //Verifica que los camposs esten llenos
-         if(validacionCamposTexto()){
+        if(validacionCamposTexto()){
              //Recuperación de la información de los campos de texto
             String producto = "Producto: " + txtProducto.getText() + ", ";
             String precio = "Precio: $" + txtPrecio.getText();
@@ -415,12 +445,47 @@ public class AltasInventario extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_btnDeleteActionPerformed
-
+//Método que permite abrir un dialog para escoger el archivo que se desea cambiar el nombre
     private void btnRenameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRenameActionPerformed
-        // TODO add your handling code here:
-//        RenombrarArchivo archivo = new RenombrarArchivo(this,true);
-//        archivo.setVisible(true);                
+        JOptionPane.showMessageDialog(null, "Selecciona el archivo a renombrar");
+        //Clase que abre un dialog para escoger el archivo a leer
+        JFileChooser jf = new JFileChooser();
+        //Adignación del lugar para abrir el dialog
+        jf.showOpenDialog(null);
+        //Recuperación del URL de archivo
+        nombreArchivo = jf.getSelectedFile();
+        //Verificación que el archivo tenga valores
+        if(nombreArchivo != null){
+            //Impresión de un dialog para confirmar que se puede cambiar el nombre
+            JOptionPane.showMessageDialog(null, "Ingresa el nuevo nombre");
+            //Muestra de elementos que estaban ocultos
+            txtnewName.setVisible(true);
+            btnAceptRename.setVisible(true);
+        }else{
+            //Ipresión de dialog para confimar que no se ha seleccionado un archivo
+            JOptionPane.showMessageDialog(null, "No se ha seleccionado un archivo"); 
+        }
     }//GEN-LAST:event_btnRenameActionPerformed
+//Método que permite realizar el cambio de nombre del archivo
+    private void btnAceptRenameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptRenameActionPerformed
+        // TODO add your handling code here:
+        if(!txtnewName.getText().equals("")){
+            String nuevoNombre = txtnewName.getText() + ".txt";
+            File f2 = new File(nuevoNombre);
+            boolean cambioCorrecto = nombreArchivo.renameTo(f2);
+            if (cambioCorrecto) {
+                JOptionPane.showMessageDialog(null, "Se ha cambiado el nombre");
+                txtnewName.setVisible(false);
+                btnAceptRename.setVisible(false);
+            }else{
+                JOptionPane.showMessageDialog(null, "No se ha cambiado el nombre");
+            }
+        }else{
+            ErrorDatosVacios edv = new ErrorDatosVacios(this, true);
+            edv.setVisible(true);
+        }
+
+    }//GEN-LAST:event_btnAceptRenameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -461,6 +526,7 @@ public class AltasInventario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAceptRename;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnGuardar;
@@ -478,5 +544,6 @@ public class AltasInventario extends javax.swing.JFrame {
     private javax.swing.JTextField txtMarca;
     private javax.swing.JTextField txtPrecio;
     private javax.swing.JTextField txtProducto;
+    private javax.swing.JTextField txtnewName;
     // End of variables declaration//GEN-END:variables
 }
