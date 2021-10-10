@@ -7,6 +7,7 @@ package interfaces;
 
 import dialog.ConfimacionInicio;
 import dialog.Confirmacion;
+import dialog.ConfirmacionNombre;
 import dialog.ErrorDatosVacios;
 import java.io.BufferedReader;
 import java.io.File;
@@ -28,11 +29,13 @@ import main.Inicio;
  */
 public class AltasInventario extends javax.swing.JFrame {
     private File nombreArchivo;
+    private File nuevoArchivo;
 
     /**
      * Creates new form AltasProduto
      */
     public AltasInventario() {
+        this.nuevoArchivo = null;
         initComponents();
         //Método que permite asignarle un titulo a la ventana
         this.setTitle("Altas Inventario");
@@ -72,6 +75,7 @@ public class AltasInventario extends javax.swing.JFrame {
         btnDelete = new javax.swing.JButton();
         txtnewName = new javax.swing.JTextField();
         btnAceptRename = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -238,6 +242,13 @@ public class AltasInventario extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -262,7 +273,11 @@ public class AltasInventario extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtnewName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnAceptRename, javax.swing.GroupLayout.Alignment.TRAILING))))))
+                                    .addComponent(btnAceptRename, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(23, 23, 23)
+                                .addComponent(jButton1)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap(60, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -285,7 +300,9 @@ public class AltasInventario extends javax.swing.JFrame {
                         .addComponent(btnAceptRename))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(27, 27, 27)
-                        .addComponent(btnDelete)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnDelete)
+                            .addComponent(jButton1))))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(41, Short.MAX_VALUE))
@@ -386,6 +403,7 @@ public class AltasInventario extends javax.swing.JFrame {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         //Cuando se corra el programa recupera el nombre del archivo
         String rutaAbsoluta = new File("inventario.txt").getAbsolutePath();
+        System.out.println("rutaAbsoluta = " + rutaAbsoluta);
         //En caso de que no exista el archivo se crear el arcivo
         if(rutaAbsoluta.equals("")){
             crearArchivo("inventario.txt");
@@ -482,7 +500,6 @@ public class AltasInventario extends javax.swing.JFrame {
             //Muestra de elementos que estaban ocultos al usuario
             txtnewName.setVisible(true);
             btnAceptRename.setVisible(true);
-            nombreArchivo = null;
         }else{
             //Ipresión de dialog para confimar que no se ha seleccionado un archivo
             JOptionPane.showMessageDialog(null, "No se ha seleccionado un archivo"); 
@@ -499,6 +516,7 @@ public class AltasInventario extends javax.swing.JFrame {
                 //Ocultamiento de los elementos 
                 txtnewName.setVisible(false);
                 btnAceptRename.setVisible(false);
+                nombreArchivo = null;
             }else{
                 //Impresión de dialog que mencina que no se ha cambiado el nombre
                 JOptionPane.showMessageDialog(null, "No se ha cambiado el nombre");
@@ -510,6 +528,40 @@ public class AltasInventario extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btnAceptRenameActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        if(nuevoArchivo == null){
+            JOptionPane.showMessageDialog(null, "Seleccina el lugar para guardar el archivo");
+            JFileChooser guardar = new JFileChooser();
+            guardar.showSaveDialog(null);
+            guardar.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+            nuevoArchivo = guardar.getSelectedFile();
+        }else{
+             if(validacionCamposTexto()){
+             //Recuperación de la información de los campos de texto
+            String producto = "Producto: " + txtProducto.getText() + ", ";
+            String precio = "Precio: $" + txtPrecio.getText();
+            String marca = "Marca: " + txtMarca.getText() + ", ";
+            String contenido = marca + producto + precio;
+            //Lllamado al metodo para ingresar la información
+            anexarArchivo("inventario.txt", contenido);
+            //Lllamado al dialog para avisar de los campos de texto recuperados
+            Confirmacion confirmacion = new Confirmacion(this,true);
+            //Muestra el dialog
+            confirmacion.setVisible(true);
+            //Llamado al metodo para limpiar los datos
+            limpiarDatos();
+        //En caso de que los campos de texto esten vacios se manda un dialog de error
+            }else{
+             //Llalmado al dialog del error al no tener los datos vacios
+             ErrorDatosVacios error = new ErrorDatosVacios(this,true);
+             error.setVisible(true);
+            }
+        }
+
+       
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -556,6 +608,7 @@ public class AltasInventario extends javax.swing.JFrame {
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnRename;
     private javax.swing.JButton btnSalir;
+    private javax.swing.JButton jButton1;
     private javax.swing.JList<String> jListText;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
