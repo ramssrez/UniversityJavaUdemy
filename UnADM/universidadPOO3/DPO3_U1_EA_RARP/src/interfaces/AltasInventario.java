@@ -446,7 +446,7 @@ public class AltasInventario extends javax.swing.JFrame {
         inicio.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
-
+//Método que permite eliminar un archivo
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         JOptionPane.showMessageDialog(null, "Selecciona el archivo a eliminar");
         //Clase que abre un dialog para escoger el archivo a leer
@@ -457,7 +457,7 @@ public class AltasInventario extends javax.swing.JFrame {
         File file = jf.getSelectedFile();
         if(file != null){
             if(file.delete()){
-            JOptionPane.showMessageDialog(null, "Se ha eliminado el archivo"); 
+                JOptionPane.showMessageDialog(null, "Se ha eliminado el archivo"); 
             }else{
                 JOptionPane.showMessageDialog(null, "No ha eliminado el archivo");
             } 
