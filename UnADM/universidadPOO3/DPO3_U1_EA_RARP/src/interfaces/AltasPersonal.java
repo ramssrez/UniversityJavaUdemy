@@ -430,17 +430,23 @@ public class AltasPersonal extends javax.swing.JFrame {
         File file = jf.getSelectedFile();
         //Creación de la lista para recupear los textos
         List<String> listaTextoBuscar = new ArrayList<>();
-        //Asignación del metodo que recupera la informaicón al leer el archivo
-        listaTextoBuscar =  leerArchivo(file.toString());
-        //Creción del modelos para agrgarlos en la lista de texto
-        DefaultListModel modelo = new DefaultListModel();
-        //recorrido de la lista del texto
-        listaTextoBuscar.forEach(texto ->{
-            //Asignación de texto en los modelos creados
-            modelo.addElement(texto);
-        });
-        //Asignación del texto recuperado en la lissta para ser mostrada
-        jListText.setModel(modelo);
+        //Condicional para el caso de que el archivo sea nulo
+        if(file != null){
+            //Asignación del metodo que recupera la informaicón al leer el archivo
+            listaTextoBuscar =  leerArchivo(file.toString());            
+            //Creción del modelos para agregarlos en la lista de texto
+            DefaultListModel modelo = new DefaultListModel();
+            //recorrido de la lista del texto
+            listaTextoBuscar.forEach(texto ->{
+                //Asignación de texto en los modelos creados
+                modelo.addElement(texto);
+            });
+            //Asignación del texto recuperado en la lissta para ser mostrada
+            jListText.setModel(modelo);
+        }else{
+            //Dialog en caso de que no se seleccino un archivo para extraer su información
+            JOptionPane.showMessageDialog(null, "No se ha seleccionado un archivo");
+        }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnRenameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRenameActionPerformed

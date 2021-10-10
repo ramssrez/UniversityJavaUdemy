@@ -440,7 +440,8 @@ public class AltasInventario extends javax.swing.JFrame {
         //Condicional para el caso de que el archivo sea nulo
         if(file != null){
             //Asignación del metodo que recupera la informaicón al leer el archivo
-            listaTextoBuscar =  leerArchivo(file.toString());            //Creción del modelos para agrgarlos en la lista de texto
+            listaTextoBuscar =  leerArchivo(file.toString());            
+            //Creción del modelos para agregarlos en la lista de texto
             DefaultListModel modelo = new DefaultListModel();
             //recorrido de la lista del texto
             listaTextoBuscar.forEach(texto ->{
@@ -450,6 +451,7 @@ public class AltasInventario extends javax.swing.JFrame {
             //Asignación del texto recuperado en la lissta para ser mostrada
             jListText.setModel(modelo);
         }else{
+            //Dialog en caso de que no se seleccino un archivo para extraer su información
             JOptionPane.showMessageDialog(null, "No se ha seleccionado un archivo");
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
