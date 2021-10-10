@@ -413,12 +413,13 @@ public class AltasInventario extends javax.swing.JFrame {
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
         
+        
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnRenameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRenameActionPerformed
         // TODO add your handling code here:
-        
-        
+//        RenombrarArchivo archivo = new RenombrarArchivo(this,true);
+//        archivo.setVisible(true);                
     }//GEN-LAST:event_btnRenameActionPerformed
 
     /**
