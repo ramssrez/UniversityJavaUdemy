@@ -17,12 +17,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.JOptionPane;
 import main.Inicio;
 
 /**
@@ -68,6 +66,8 @@ public class AltasInventario extends javax.swing.JFrame {
         btnSalir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jListText = new javax.swing.JList<>();
+        btnRename = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -208,22 +208,42 @@ public class AltasInventario extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(jListText);
 
+        btnRename.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnRename.setText("Renombrar");
+        btnRename.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRenameActionPerformed(evt);
+            }
+        });
+
+        btnDelete.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnDelete.setText("Eliminar");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(86, 86, 86)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnRename)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnDelete))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnGuardar)
-                        .addGap(41, 41, 41)
-                        .addComponent(btnSalir)
+                        .addGap(32, 32, 32)
+                        .addComponent(btnBuscar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnBuscar))
-                    .addComponent(paneldatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
-                .addContainerGap(58, Short.MAX_VALUE))
+                        .addComponent(btnSalir))
+                    .addComponent(paneldatos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -235,9 +255,13 @@ public class AltasInventario extends javax.swing.JFrame {
                     .addComponent(btnGuardar)
                     .addComponent(btnBuscar)
                     .addComponent(btnSalir))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnRename)
+                    .addComponent(btnDelete))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addGap(28, 28, 28))
         );
 
         paneldatos.getAccessibleContext().setAccessibleName("Registro de inventario ");
@@ -357,14 +381,17 @@ public class AltasInventario extends javax.swing.JFrame {
         //Clase que abre un dialog para escoger el archivo a leer
         JFileChooser jf = new JFileChooser();
         //Adignación del lugar para abrir el dialog
-        jf.showOpenDialog(this);
+        jf.showOpenDialog(null);
         //Recuperación del URL de archivo
         File file = jf.getSelectedFile();
         //Creación de la lista para recupear los textos
         List<String> listaTextoBuscar = new ArrayList<>();
+        //
+        if(file == null){
+            JOptionPane.showMessageDialog(null, "No se ha seleccionado un archivo");
+        }else{
         //Asignación del metodo que recupera la informaicón al leer el archivo
-        listaTextoBuscar =  leerArchivo(file.toString());
-        //Creción del modelos para agrgarlos en la lista de texto
+        listaTextoBuscar =  leerArchivo(file.toString());            //Creción del modelos para agrgarlos en la lista de texto
         DefaultListModel modelo = new DefaultListModel();
         //recorrido de la lista del texto
         listaTextoBuscar.forEach(texto ->{
@@ -373,6 +400,8 @@ public class AltasInventario extends javax.swing.JFrame {
         });
         //Asignación del texto recuperado en la lissta para ser mostrada
         jListText.setModel(modelo);
+        }
+        
 
     }//GEN-LAST:event_btnBuscarActionPerformed
     //Método que retorna al menú principal
@@ -383,6 +412,14 @@ public class AltasInventario extends javax.swing.JFrame {
         inicio.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnRenameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRenameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRenameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -424,7 +461,9 @@ public class AltasInventario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnRename;
     private javax.swing.JButton btnSalir;
     private javax.swing.JList<String> jListText;
     private javax.swing.JPanel jPanel1;
