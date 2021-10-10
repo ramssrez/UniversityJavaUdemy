@@ -376,6 +376,15 @@ public class AltasInventario extends javax.swing.JFrame {
         //retorno de la lista
         return listaTextos;
     }
+    //Método que cambia el nombre del archivo
+    public boolean cambiarNombre(String nombreNuevo){
+        //Asignnación del nuevo nombre del archivo
+        String nuevoNombre = nombreNuevo + ".txt";
+        //Creación de un nuevo archivo con el nuevo nombre
+        File f2 = new File(nuevoNombre);
+        //Retorno si se ha cambiado el nombre
+        return nombreArchivo.renameTo(f2);
+    }
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         //Cuando se corra el programa recupera el nombre del archivo
         String rutaAbsoluta = new File("inventario.txt").getAbsolutePath();
@@ -468,19 +477,21 @@ public class AltasInventario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRenameActionPerformed
 //Método que permite realizar el cambio de nombre del archivo
     private void btnAceptRenameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptRenameActionPerformed
-        // TODO add your handling code here:
+        //Validación para verificar que el campo de texto no este vacio
         if(!txtnewName.getText().equals("")){
-            String nuevoNombre = txtnewName.getText() + ".txt";
-            File f2 = new File(nuevoNombre);
-            boolean cambioCorrecto = nombreArchivo.renameTo(f2);
-            if (cambioCorrecto) {
+            //Validación para el cambio de nombre
+            if (cambiarNombre(txtnewName.getText())) {
+                //Impresión de dialog que confirma el cambio de nombre
                 JOptionPane.showMessageDialog(null, "Se ha cambiado el nombre");
+                //Ocultamiento de los elementos 
                 txtnewName.setVisible(false);
                 btnAceptRename.setVisible(false);
             }else{
+                //Impresión de dialog que mencina que no se ha cambiado el nombre
                 JOptionPane.showMessageDialog(null, "No se ha cambiado el nombre");
             }
         }else{
+            //En caso de que el campo de texto este vacio se 
             ErrorDatosVacios edv = new ErrorDatosVacios(this, true);
             edv.setVisible(true);
         }
