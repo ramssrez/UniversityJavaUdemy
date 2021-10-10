@@ -7,7 +7,6 @@ package interfaces;
 
 import dialog.ConfimacionInicio;
 import dialog.Confirmacion;
-import dialog.ConfirmacionNombre;
 import dialog.ErrorDatosVacios;
 import java.io.BufferedReader;
 import java.io.File;
@@ -29,13 +28,11 @@ import main.Inicio;
  */
 public class AltasInventario extends javax.swing.JFrame {
     private File nombreArchivo;
-    private File nuevoArchivo;
 
     /**
      * Creates new form AltasProduto
      */
     public AltasInventario() {
-        this.nuevoArchivo = null;
         initComponents();
         //Método que permite asignarle un titulo a la ventana
         this.setTitle("Altas Inventario");
@@ -530,35 +527,35 @@ public class AltasInventario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAceptRenameActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        if(nuevoArchivo == null){
-            JOptionPane.showMessageDialog(null, "Seleccina el lugar para guardar el archivo");
-            JFileChooser guardar = new JFileChooser();
-            guardar.showSaveDialog(null);
-            guardar.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-            nuevoArchivo = guardar.getSelectedFile();
-        }else{
-             if(validacionCamposTexto()){
-             //Recuperación de la información de los campos de texto
-            String producto = "Producto: " + txtProducto.getText() + ", ";
-            String precio = "Precio: $" + txtPrecio.getText();
-            String marca = "Marca: " + txtMarca.getText() + ", ";
-            String contenido = marca + producto + precio;
-            //Lllamado al metodo para ingresar la información
-            anexarArchivo("inventario.txt", contenido);
-            //Lllamado al dialog para avisar de los campos de texto recuperados
-            Confirmacion confirmacion = new Confirmacion(this,true);
-            //Muestra el dialog
-            confirmacion.setVisible(true);
-            //Llamado al metodo para limpiar los datos
-            limpiarDatos();
-        //En caso de que los campos de texto esten vacios se manda un dialog de error
-            }else{
-             //Llalmado al dialog del error al no tener los datos vacios
-             ErrorDatosVacios error = new ErrorDatosVacios(this,true);
-             error.setVisible(true);
-            }
-        }
+//        // TODO add your handling code here:
+//        if(nuevoArchivo == null){
+//            JOptionPane.showMessageDialog(null, "Seleccina el lugar para guardar el archivo");
+//            JFileChooser guardar = new JFileChooser();
+//            guardar.showSaveDialog(null);
+//            guardar.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+//            nuevoArchivo = guardar.getSelectedFile();
+//        }else{
+//             if(validacionCamposTexto()){
+//             //Recuperación de la información de los campos de texto
+//            String producto = "Producto: " + txtProducto.getText() + ", ";
+//            String precio = "Precio: $" + txtPrecio.getText();
+//            String marca = "Marca: " + txtMarca.getText() + ", ";
+//            String contenido = marca + producto + precio;
+//            //Lllamado al metodo para ingresar la información
+//            anexarArchivo("inventario.txt", contenido);
+//            //Lllamado al dialog para avisar de los campos de texto recuperados
+//            Confirmacion confirmacion = new Confirmacion(this,true);
+//            //Muestra el dialog
+//            confirmacion.setVisible(true);
+//            //Llamado al metodo para limpiar los datos
+//            limpiarDatos();
+//        //En caso de que los campos de texto esten vacios se manda un dialog de error
+//            }else{
+//             //Llalmado al dialog del error al no tener los datos vacios
+//             ErrorDatosVacios error = new ErrorDatosVacios(this,true);
+//             error.setVisible(true);
+//        }
+//        }
 
        
     }//GEN-LAST:event_jButton1ActionPerformed
