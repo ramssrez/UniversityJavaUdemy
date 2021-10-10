@@ -17,7 +17,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -386,23 +385,21 @@ public class AltasInventario extends javax.swing.JFrame {
         File file = jf.getSelectedFile();
         //Creación de la lista para recupear los textos
         List<String> listaTextoBuscar = new ArrayList<>();
-        //
-        if(file == null){
-            JOptionPane.showMessageDialog(null, "No se ha seleccionado un archivo");
+        //Condicional para el caso de que el archivo sea nulo
+        if(file != null){
+            //Asignación del metodo que recupera la informaicón al leer el archivo
+            listaTextoBuscar =  leerArchivo(file.toString());            //Creción del modelos para agrgarlos en la lista de texto
+            DefaultListModel modelo = new DefaultListModel();
+            //recorrido de la lista del texto
+            listaTextoBuscar.forEach(texto ->{
+                //Asignación de texto en los modelos creados
+                modelo.addElement(texto);
+            });
+            //Asignación del texto recuperado en la lissta para ser mostrada
+            jListText.setModel(modelo);
         }else{
-        //Asignación del metodo que recupera la informaicón al leer el archivo
-        listaTextoBuscar =  leerArchivo(file.toString());            //Creción del modelos para agrgarlos en la lista de texto
-        DefaultListModel modelo = new DefaultListModel();
-        //recorrido de la lista del texto
-        listaTextoBuscar.forEach(texto ->{
-            //Asignación de texto en los modelos creados
-            modelo.addElement(texto);
-        });
-        //Asignación del texto recuperado en la lissta para ser mostrada
-        jListText.setModel(modelo);
+            JOptionPane.showMessageDialog(null, "No se ha seleccionado un archivo");
         }
-        
-
     }//GEN-LAST:event_btnBuscarActionPerformed
     //Método que retorna al menú principal
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
@@ -415,10 +412,13 @@ public class AltasInventario extends javax.swing.JFrame {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnRenameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRenameActionPerformed
         // TODO add your handling code here:
+        
+        
     }//GEN-LAST:event_btnRenameActionPerformed
 
     /**
