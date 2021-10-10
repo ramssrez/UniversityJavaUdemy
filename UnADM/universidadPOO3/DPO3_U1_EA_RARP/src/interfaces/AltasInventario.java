@@ -248,26 +248,21 @@ public class AltasInventario extends javax.swing.JFrame {
                     .addComponent(paneldatos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(85, 85, 85)
-                        .addComponent(btnDelete))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnGuardar)
-                            .addComponent(btnRename))
+                            .addComponent(btnRename)
+                            .addComponent(btnDelete))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtnewName, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(14, 14, 14)
+                                .addComponent(btnBuscar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnSalir))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(btnAceptRename)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(btnBuscar)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(btnSalir)))))))
+                                    .addComponent(txtnewName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnAceptRename, javax.swing.GroupLayout.Alignment.TRAILING))))))
                 .addContainerGap(60, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -284,13 +279,16 @@ public class AltasInventario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRename)
                     .addComponent(txtnewName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnAceptRename)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
-                .addComponent(btnDelete)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnAceptRename))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(btnDelete)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         paneldatos.getAccessibleContext().setAccessibleName("Registro de inventario ");
@@ -450,12 +448,26 @@ public class AltasInventario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // TODO add your handling code here:
-        
-        
+        JOptionPane.showMessageDialog(null, "Selecciona el archivo a eliminar");
+        //Clase que abre un dialog para escoger el archivo a leer
+        JFileChooser jf = new JFileChooser();
+        //Adignación del lugar para abrir el dialog
+        jf.showOpenDialog(null);
+        //Recuperación del URL de archivo
+        File file = jf.getSelectedFile();
+        if(file != null){
+            if(file.delete()){
+            JOptionPane.showMessageDialog(null, "Se ha eliminado el archivo"); 
+            }else{
+                JOptionPane.showMessageDialog(null, "No ha eliminado el archivo");
+            } 
+        }else{
+             JOptionPane.showMessageDialog(null, "No se ha seleccionado un archivo");
+        }     
     }//GEN-LAST:event_btnDeleteActionPerformed
 //Método que permite abrir un dialog para escoger el archivo que se desea cambiar el nombre
     private void btnRenameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRenameActionPerformed
+        //Dialog que confirma el cambio de nombre de un archivo
         JOptionPane.showMessageDialog(null, "Selecciona el archivo a renombrar");
         //Clase que abre un dialog para escoger el archivo a leer
         JFileChooser jf = new JFileChooser();
@@ -467,9 +479,10 @@ public class AltasInventario extends javax.swing.JFrame {
         if(nombreArchivo != null){
             //Impresión de un dialog para confirmar que se puede cambiar el nombre
             JOptionPane.showMessageDialog(null, "Ingresa el nuevo nombre");
-            //Muestra de elementos que estaban ocultos
+            //Muestra de elementos que estaban ocultos al usuario
             txtnewName.setVisible(true);
             btnAceptRename.setVisible(true);
+            nombreArchivo = null;
         }else{
             //Ipresión de dialog para confimar que no se ha seleccionado un archivo
             JOptionPane.showMessageDialog(null, "No se ha seleccionado un archivo"); 
