@@ -27,6 +27,7 @@ import main.Inicio;
  * @author Raúl Ramírez Pérez
  */
 public class AltasInventario extends javax.swing.JFrame {
+
     private File nombreArchivo;
 
     /**
@@ -311,23 +312,25 @@ public class AltasInventario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     //Método para limpiar los campos
-    public void limpiarDatos(){
+    public void limpiarDatos() {
         txtMarca.setText("");
         txtPrecio.setText("");
         txtProducto.setText("");
     }
+
     //Método que verifica que los campos no se encuentren vacios
     public boolean validacionCamposTexto() {
         //Validación de los campos de texto que retorna un booleano para un cierto caso
-        if(txtMarca.getText().equals("")&&txtPrecio.getText().equals("")&&txtProducto.getText().equals("")
-                ||txtMarca.getText().equals("") || txtPrecio.getText().equals("") || txtProducto.getText().equals("")){
+        if (txtMarca.getText().equals("") && txtPrecio.getText().equals("") && txtProducto.getText().equals("")
+                || txtMarca.getText().equals("") || txtPrecio.getText().equals("") || txtProducto.getText().equals("")) {
             return false;
-        }else{
+        } else {
             return true;
         }
     }
-     //Método para crear un archivo en Java
-    public void crearArchivo(String nombreArchivo){
+    //Método para crear un archivo en Java
+
+    public void crearArchivo(String nombreArchivo) {
         //Inicialización del archivo con file
         File archivo = new File(nombreArchivo);
         try {
@@ -338,11 +341,27 @@ public class AltasInventario extends javax.swing.JFrame {
             //Catch que recupera la información en caso de que no se recuperé un archivo
         } catch (FileNotFoundException ex) {
             ex.printStackTrace(System.out);
-        } 
+        }
     }
-    
+
+    //Método para crear un archivo en Java con parametros de entrada como un archivo y una cadena de texto
+    public void crearArchivo(File archivo, String cadena) {
+        //Inicialización del printwiter
+        PrintWriter salida;
+        try {
+            //Clase que permite crear al archivo con un nombre especifico
+            salida = new PrintWriter(archivo);
+            salida.write(cadena);
+            //Método que permite cerra el archivo creado
+            salida.close();
+            //Catch que recupera la información en caso de que no se recuperé un archivo
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace(System.out);
+        }
+    }
+
     //Método para anexar informaión al archivo desde Java
-    public void anexarArchivo(String nombreArchivo, String contenido){
+    public void anexarArchivo(String nombreArchivo, String contenido) {
         //Inicialización del archivo con file
         File archivo = new File(nombreArchivo);
         try {
@@ -355,14 +374,33 @@ public class AltasInventario extends javax.swing.JFrame {
             //Catch que recupera el error en caso de que no se pueda abrir un archivo
         } catch (FileNotFoundException ex) {
             ex.printStackTrace(System.out);
-           //Catch que recupera el error en caso de que no se modifique el texto
+            //Catch que recupera el error en caso de que no se modifique el texto
         } catch (IOException ex) {
             ex.printStackTrace(System.out);
         }
     }
-    
-        //Método para leer un archivo 
-    public List<String> leerArchivo(String nombreArchivo){
+        //Método para anexar informaión al archivo desde Java
+    public void anexarArchivo(File archivo, String contenido) {
+         //Inicialización del printwiter
+        PrintWriter salida;
+        try {
+            //Clase que permite escribir en el archivo
+             salida = new PrintWriter(new FileWriter(archivo, true));
+            //Metodo que ingresa informción al archivo
+            salida.println(contenido);
+            //Método que cierra el documento abierto
+            salida.close();
+            //Catch que recupera el error en caso de que no se pueda abrir un archivo
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace(System.out);
+            //Catch que recupera el error en caso de que no se modifique el texto
+        } catch (IOException ex) {
+            ex.printStackTrace(System.out);
+        }
+    }
+
+    //Método para leer un archivo 
+    public List<String> leerArchivo(String nombreArchivo) {
         //Inicialización del archivo con file
         File archivo = new File(nombreArchivo);
         //Lista que guarda una lista de textos recuperados del archivo
@@ -373,23 +411,24 @@ public class AltasInventario extends javax.swing.JFrame {
             //Recuperación del texto por lineas
             String lectura = entrada.readLine();
             //Ciclo while que recuperad los texto si son varias filas
-            while (lectura != null) {    
+            while (lectura != null) {
                 listaTextos.add(lectura);
-                lectura= entrada.readLine();
+                lectura = entrada.readLine();
             }
             entrada.close();
             //Catch que recupera el error en caso de que no se pueda abrir un archivo
         } catch (FileNotFoundException ex) {
             ex.printStackTrace(System.out);
-           //Catch que recupera el error en caso de que no se modifique el texto
+            //Catch que recupera el error en caso de que no se modifique el texto
         } catch (IOException ex) {
             ex.printStackTrace(System.out);
         }
         //retorno de la lista
         return listaTextos;
     }
+
     //Método que cambia el nombre del archivo
-    public boolean cambiarNombre(String nombreNuevo){
+    public boolean cambiarNombre(String nombreNuevo) {
         //Asignnación del nuevo nombre del archivo
         String nuevoNombre = nombreNuevo + ".txt";
         //Creación de un nuevo archivo con el nuevo nombre
@@ -402,29 +441,31 @@ public class AltasInventario extends javax.swing.JFrame {
         String rutaAbsoluta = new File("inventario.txt").getAbsolutePath();
         System.out.println("rutaAbsoluta = " + rutaAbsoluta);
         //En caso de que no exista el archivo se crear el arcivo
-        if(rutaAbsoluta.equals("")){
+        if (rutaAbsoluta.equals("")) {
             crearArchivo("inventario.txt");
-        }      
+        }
         //Verifica que los camposs esten llenos
-        if(validacionCamposTexto()){
-             //Recuperación de la información de los campos de texto
+        if (validacionCamposTexto()) {
+            //Recuperación de la información de los campos de texto
             String producto = "Producto: " + txtProducto.getText() + ", ";
             String precio = "Precio: $" + txtPrecio.getText();
             String marca = "Marca: " + txtMarca.getText() + ", ";
             String contenido = marca + producto + precio;
+            File archivo = retornoArchivo();
+            anexarArchivo(archivo, contenido);
             //Lllamado al metodo para ingresar la información
             anexarArchivo("inventario.txt", contenido);
             //Lllamado al dialog para avisar de los campos de texto recuperados
-            Confirmacion confirmacion = new Confirmacion(this,true);
+            Confirmacion confirmacion = new Confirmacion(this, true);
             //Muestra el dialog
             confirmacion.setVisible(true);
             //Llamado al metodo para limpiar los datos
             limpiarDatos();
-        //En caso de que los campos de texto esten vacios se manda un dialog de error
-        }else{
-             //Llalmado al dialog del error al no tener los datos vacios
-             ErrorDatosVacios error = new ErrorDatosVacios(this,true);
-             error.setVisible(true);
+            //En caso de que los campos de texto esten vacios se manda un dialog de error
+        } else {
+            //Llalmado al dialog del error al no tener los datos vacios
+            ErrorDatosVacios error = new ErrorDatosVacios(this, true);
+            error.setVisible(true);
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
@@ -438,19 +479,19 @@ public class AltasInventario extends javax.swing.JFrame {
         //Creación de la lista para recupear los textos
         List<String> listaTextoBuscar = new ArrayList<>();
         //Condicional para el caso de que el archivo sea nulo
-        if(file != null){
+        if (file != null) {
             //Asignación del metodo que recupera la informaicón al leer el archivo
-            listaTextoBuscar =  leerArchivo(file.toString());            
+            listaTextoBuscar = leerArchivo(file.toString());
             //Creción del modelos para agregarlos en la lista de texto
             DefaultListModel modelo = new DefaultListModel();
             //recorrido de la lista del texto
-            listaTextoBuscar.forEach(texto ->{
+            listaTextoBuscar.forEach(texto -> {
                 //Asignación de texto en los modelos creados
                 modelo.addElement(texto);
             });
             //Asignación del texto recuperado en la lissta para ser mostrada
             jListText.setModel(modelo);
-        }else{
+        } else {
             //Dialog en caso de que no se seleccino un archivo para extraer su información
             JOptionPane.showMessageDialog(null, "No se ha seleccionado un archivo");
         }
@@ -472,15 +513,15 @@ public class AltasInventario extends javax.swing.JFrame {
         jf.showOpenDialog(null);
         //Recuperación del URL de archivo
         File file = jf.getSelectedFile();
-        if(file != null){
-            if(file.delete()){
-                JOptionPane.showMessageDialog(null, "Se ha eliminado el archivo"); 
-            }else{
+        if (file != null) {
+            if (file.delete()) {
+                JOptionPane.showMessageDialog(null, "Se ha eliminado el archivo");
+            } else {
                 JOptionPane.showMessageDialog(null, "No ha eliminado el archivo");
-            } 
-        }else{
-             JOptionPane.showMessageDialog(null, "No se ha seleccionado un archivo");
-        }     
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "No se ha seleccionado un archivo");
+        }
     }//GEN-LAST:event_btnDeleteActionPerformed
 //Método que permite abrir un dialog para escoger el archivo que se desea cambiar el nombre
     private void btnRenameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRenameActionPerformed
@@ -493,21 +534,21 @@ public class AltasInventario extends javax.swing.JFrame {
         //Recuperación del URL de archivo
         nombreArchivo = jf.getSelectedFile();
         //Verificación que el archivo tenga valores
-        if(nombreArchivo != null){
+        if (nombreArchivo != null) {
             //Impresión de un dialog para confirmar que se puede cambiar el nombre
             JOptionPane.showMessageDialog(null, "Ingresa el nuevo nombre");
             //Muestra de elementos que estaban ocultos al usuario
             txtnewName.setVisible(true);
             btnAceptRename.setVisible(true);
-        }else{
+        } else {
             //Ipresión de dialog para confimar que no se ha seleccionado un archivo
-            JOptionPane.showMessageDialog(null, "No se ha seleccionado un archivo"); 
+            JOptionPane.showMessageDialog(null, "No se ha seleccionado un archivo");
         }
     }//GEN-LAST:event_btnRenameActionPerformed
 //Método que permite realizar el cambio de nombre del archivo
     private void btnAceptRenameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptRenameActionPerformed
         //Validación para verificar que el campo de texto no este vacio
-        if(!txtnewName.getText().equals("")){
+        if (!txtnewName.getText().equals("")) {
             //Validación para el cambio de nombre
             if (cambiarNombre(txtnewName.getText())) {
                 //Impresión de dialog que confirma el cambio de nombre
@@ -516,11 +557,11 @@ public class AltasInventario extends javax.swing.JFrame {
                 txtnewName.setVisible(false);
                 btnAceptRename.setVisible(false);
                 nombreArchivo = null;
-            }else{
+            } else {
                 //Impresión de dialog que mencina que no se ha cambiado el nombre
                 JOptionPane.showMessageDialog(null, "No se ha cambiado el nombre");
             }
-        }else{
+        } else {
             //En caso de que el campo de texto este vacio se 
             ErrorDatosVacios edv = new ErrorDatosVacios(this, true);
             edv.setVisible(true);
@@ -528,14 +569,27 @@ public class AltasInventario extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnAceptRenameActionPerformed
 
+    public File retornoArchivo() {
+        JOptionPane.showMessageDialog(null, "Seleccina el lugar para guardar el archivo");
+        JFileChooser guardar = new JFileChooser();
+        guardar.showSaveDialog(null);
+        guardar.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+        File file = guardar.getSelectedFile();
+        System.out.println(guardar.getSelectedFile());
+        return file;
+    }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 //        // TODO add your handling code here:
-//        if(nuevoArchivo == null){
-//            JOptionPane.showMessageDialog(null, "Seleccina el lugar para guardar el archivo");
-//            JFileChooser guardar = new JFileChooser();
-//            guardar.showSaveDialog(null);
-//            guardar.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-//            nuevoArchivo = guardar.getSelectedFile();
+        //if(nuevoArchivo == null){
+        JOptionPane.showMessageDialog(null, "Seleccina el lugar para guardar el archivo");
+        JFileChooser guardar = new JFileChooser();
+        guardar.showSaveDialog(null);
+        guardar.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+        File file = guardar.getSelectedFile();
+        System.out.println(guardar.getSelectedFile());
+        String cadena = "Esto es una prueba de modificación";
+        crearArchivo(file, cadena);
+        //nuevoArchivo = guardar.getSelectedFile();
 //        }else{
 //             if(validacionCamposTexto()){
 //             //Recuperación de la información de los campos de texto
@@ -559,7 +613,7 @@ public class AltasInventario extends javax.swing.JFrame {
 //        }
 //        }
 
-       
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
