@@ -479,7 +479,7 @@ public class AltasPersonal extends javax.swing.JFrame {
         //Validación para verificar que el campo de texto no este vacio
         if (!txtnewName.getText().equals("")) {
             //Validación para el cambio de nombre
-            if (cambiarNombre(txtnewName.getText())) {
+            if (cambiarNombre(txtnewName.getText(),nombreArchivo)) {
                 //Impresión de dialog que confirma el cambio de nombre
                 JOptionPane.showMessageDialog(null, "Se ha cambiado el nombre");
                 //Ocultamiento de los elementos
@@ -495,6 +495,7 @@ public class AltasPersonal extends javax.swing.JFrame {
             ErrorDatosVacios edv = new ErrorDatosVacios(this, true);
             edv.setVisible(true);
         }
+        limpiarDatos();
     }//GEN-LAST:event_btnAceptRenameActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
