@@ -383,13 +383,13 @@ public class AltasPersonal extends javax.swing.JFrame {
     }
 
     //Método que cambia el nombre del archivo
-    public boolean cambiarNombre(String nombreNuevo) {
+    public boolean cambiarNombre(String nombreNuevo, File archivo) {
         //Asignnación del nuevo nombre del archivo
         String nuevoNombre = nombreNuevo + ".txt";
         //Creación de un nuevo archivo con el nuevo nombre
         File f2 = new File(nuevoNombre);
         //Retorno si se ha cambiado el nombre
-        return nombreArchivo.renameTo(f2);
+        return archivo.renameTo(f2);
     }
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
