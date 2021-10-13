@@ -299,7 +299,7 @@ public class AltasPersonal extends javax.swing.JFrame {
         txtNombre.setText("");
         txtEdad.setText("");
         txtTel.setText("");
-        
+        txtnewName.setText("");
     }
     
     //Método que verifica que los campos no se encuentren vacios
@@ -311,21 +311,6 @@ public class AltasPersonal extends javax.swing.JFrame {
         }else{
             return true;
         }
-    }
-    
-    //Método para crear un archivo en Java
-    public void crearArchivo(String nombreArchivo){
-        //Inicialización del archivo con file
-        File archivo = new File(nombreArchivo);
-        try {
-            //Clase que permite crear al archivo con un nombre especifico
-            PrintWriter salida = new PrintWriter(archivo);
-            //Método que permite cerra el archivo creado
-            salida.close();
-            //Catch que recupera la información en caso de que no se recuperé un archivo
-        } catch (FileNotFoundException ex) {
-            ex.printStackTrace(System.out);
-        } 
     }
     
     //Método para anexar informaión al archivo desde Java
@@ -386,12 +371,6 @@ public class AltasPersonal extends javax.swing.JFrame {
     }
     
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        //Cuando se corra el programa recupera el nombre del archivo
-        String rutaAbsoluta = new File("personal.txt").getAbsolutePath();
-        //En caso de que no exista el archivo se crear el arcivo
-        if(rutaAbsoluta.equals("")){
-            crearArchivo("personal.txt");
-        }
         //Verifica que los camposs esten llenos
          if(validacionCamposTexto()){
              //Recuperación de la información de los campos de texto
