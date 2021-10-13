@@ -437,13 +437,16 @@ public class AltasInventario extends javax.swing.JFrame {
         return guardar.getSelectedFile();
     }
 
+    //Método que verifica si se ha creado un archivo
     public boolean isFile(File file) {
         boolean retorno;
+        //Validacio´n para el caso de que el archivo sea nulo
         if (file == null) {
             retorno = false;
         } else {
             retorno = true;
         }
+        //Retorno segun sea el caso especifico
         return retorno;
     }
 
