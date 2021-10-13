@@ -246,25 +246,25 @@ public class AltasPersonal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(66, 66, 66)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(btnGuardar)
-                            .addGap(33, 33, 33)
-                            .addComponent(btnBuscar)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnSalir))
-                        .addComponent(paneldatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnGuardar)
+                        .addGap(33, 33, 33)
+                        .addComponent(btnBuscar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnSalir))
+                    .addComponent(paneldatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(btnRename)
-                            .addGap(18, 18, 18)
-                            .addComponent(txtnewName, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(txtnewName, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(12, 12, 12))
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(btnDelete)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnAceptRename))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)))
+                            .addComponent(btnAceptRename)))
+                    .addComponent(jScrollPane1))
                 .addContainerGap(69, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -392,6 +392,47 @@ public class AltasPersonal extends javax.swing.JFrame {
         return archivo.renameTo(f2);
     }
 
+    //Método que permite escoger la dirección en donde se realice el guardado del archivo
+    public File retornoDireccionArchivo() {
+        //Mostrado del dialog que permite la apertura del dialog al usuario para escoger eel lugar donde se gurdara los archivos
+        JOptionPane.showMessageDialog(null, "Selecciona el lugar para guardar el archivo");
+        //Inicialización de la clase que abre el dialog
+        JFileChooser guardar = new JFileChooser();
+        //Metodo que hace que aparezca el dialog para escoger la ruta de guardado
+        guardar.showSaveDialog(null);
+        //Selección de la ruta especificada
+        guardar.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+        //Retorno del la ruta del archivo
+        return guardar.getSelectedFile();
+    }
+
+    //Método que verifica si se ha creado un archivo
+    public boolean isFile(File file) {
+        boolean retorno;
+        //Validacio´n para el caso de que el archivo sea nulo
+        if (file == null) {
+            retorno = false;
+        } else {
+            retorno = true;
+        }
+        //Retorno segun sea el caso especifico
+        return retorno;
+    }
+
+    //Método que permite escoger la dirección en donde se realice el guardado del archivo
+    public File retornoDireccionArchivoRenombrar() {
+        //Mostrado del dialog que permite la apertura del dialog al usuario para escoger eel lugar donde se gurdara los archivos
+        JOptionPane.showMessageDialog(null, "Selecciona el archivo a renombrar");
+        //Inicialización de la clase que abre el dialog
+        JFileChooser guardar = new JFileChooser();
+        //Metodo que hace que aparezca el dialog para escoger la ruta de guardado
+        guardar.showSaveDialog(null);
+        //Selección de la ruta especificada
+        guardar.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+        //Retorno del la ruta del archivo
+        return guardar.getSelectedFile();
+    }
+
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         //Verifica que los camposs esten llenos
         if (validacionCamposTexto()) {
@@ -400,20 +441,53 @@ public class AltasPersonal extends javax.swing.JFrame {
             String edad = "Edad: " + txtEdad.getText();
             String tel = "Telefono: " + txtTel.getText() + ", ";
             String contenido = nombre + tel + edad;
-            //Lllamado al metodo para ingresar la información
-            anexarArchivo("personal.txt", contenido);
-            //Lllamado al dialog para avisar de los campos de texto recuperados
-            Confirmacion confirmacion = new Confirmacion(this, true);
-            //Muestra el dialog
-            confirmacion.setVisible(true);
-            //Llamado al metodo para limpiar los datos
-            limpiarDatos();
-            //En caso de que los campos de texto esten vacios se manda un dialog de error
+            File archivo = retornoDireccionArchivo();
+            if (isFile(archivo)) {
+                //Lllamado al metodo para ingresar la información
+                anexarArchivo(archivo, contenido);
+                //Lllamado al dialog para avisar de los campos de texto recuperados
+                Confirmacion confirmacion = new Confirmacion(this, true);
+                //Muestra el dialog
+                confirmacion.setVisible(true);
+                //Llamado al metodo para limpiar los datos
+                limpiarDatos();
+                //En caso de que los campos de texto esten vacios se manda un dialog de error
+            } else {
+                JOptionPane.showMessageDialog(null, "No se ha seleccionado el archivo para guardar");
+            }
         } else {
             //Llalmado al dialog del error al no tener los datos vacios
             ErrorDatosVacios error = new ErrorDatosVacios(this, true);
             error.setVisible(true);
         }
+        /*
+        //Verifica que los camposs esten llenos
+        if (validacionCamposTexto()) {
+            //Recuperación de la información de los campos de texto
+            String producto = "Producto: " + txtProducto.getText() + ", ";
+            String precio = "Precio: $" + txtPrecio.getText();
+            String marca = "Marca: " + txtMarca.getText() + ", ";
+            String contenido = marca + producto + precio;
+            File archivo = retornoDireccionArchivo();
+            if (isFile(archivo)) {
+                anexarArchivo(archivo, contenido);
+                //Lllamado al dialog para avisar de los campos de texto recuperados
+                Confirmacion confirmacion = new Confirmacion(this, true);
+                //Muestra el dialog
+                confirmacion.setVisible(true);
+                //Llamado al metodo para limpiar los datos
+                limpiarDatos();
+                //En caso de que los campos de texto esten vacios se manda un dialog de error
+            }else{
+                JOptionPane.showMessageDialog(null, "No se ha seleccionado el archivo para guardar");
+            }
+
+        } else {
+            //Llalmado al dialog del error al no tener los datos vacios
+            ErrorDatosVacios error = new ErrorDatosVacios(this, true);
+            error.setVisible(true);
+        }
+         */
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     //Método que retorna al menú principal
@@ -479,7 +553,7 @@ public class AltasPersonal extends javax.swing.JFrame {
         //Validación para verificar que el campo de texto no este vacio
         if (!txtnewName.getText().equals("")) {
             //Validación para el cambio de nombre
-            if (cambiarNombre(txtnewName.getText(),nombreArchivo)) {
+            if (cambiarNombre(txtnewName.getText(), nombreArchivo)) {
                 //Impresión de dialog que confirma el cambio de nombre
                 JOptionPane.showMessageDialog(null, "Se ha cambiado el nombre");
                 //Ocultamiento de los elementos
