@@ -73,7 +73,6 @@ public class AltasInventario extends javax.swing.JFrame {
         btnDelete = new javax.swing.JButton();
         txtnewName = new javax.swing.JTextField();
         btnAceptRename = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -240,13 +239,6 @@ public class AltasInventario extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -271,11 +263,7 @@ public class AltasInventario extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtnewName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnAceptRename, javax.swing.GroupLayout.Alignment.TRAILING)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(23, 23, 23)
-                                .addComponent(jButton1)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                    .addComponent(btnAceptRename, javax.swing.GroupLayout.Alignment.TRAILING))))))
                 .addContainerGap(60, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -292,16 +280,11 @@ public class AltasInventario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRename)
                     .addComponent(txtnewName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnAceptRename))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnDelete)
-                            .addComponent(jButton1))))
                 .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnAceptRename)
+                    .addComponent(btnDelete))
+                .addGap(27, 27, 27)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(41, Short.MAX_VALUE))
         );
@@ -316,6 +299,8 @@ public class AltasInventario extends javax.swing.JFrame {
         txtMarca.setText("");
         txtPrecio.setText("");
         txtProducto.setText("");
+        txtnewName.setText("");
+
     }
 
     //Método que verifica que los campos no se encuentren vacios
@@ -379,13 +364,14 @@ public class AltasInventario extends javax.swing.JFrame {
             ex.printStackTrace(System.out);
         }
     }
-        //Método para anexar informaión al archivo desde Java
+
+    //Método para anexar informaión al archivo desde Java
     public void anexarArchivo(File archivo, String contenido) {
-         //Inicialización del printwiter
+        //Inicialización del printwiter
         PrintWriter salida;
         try {
             //Clase que permite escribir en el archivo
-             salida = new PrintWriter(new FileWriter(archivo, true));
+            salida = new PrintWriter(new FileWriter(archivo, true));
             //Metodo que ingresa informción al archivo
             salida.println(contenido);
             //Método que cierra el documento abierto
@@ -428,22 +414,53 @@ public class AltasInventario extends javax.swing.JFrame {
     }
 
     //Método que cambia el nombre del archivo
-    public boolean cambiarNombre(String nombreNuevo) {
+    public boolean cambiarNombre(String nombreNuevo, File archivo) {
         //Asignnación del nuevo nombre del archivo
         String nuevoNombre = nombreNuevo + ".txt";
         //Creación de un nuevo archivo con el nuevo nombre
         File f2 = new File(nuevoNombre);
         //Retorno si se ha cambiado el nombre
-        return nombreArchivo.renameTo(f2);
+        return archivo.renameTo(f2);
+    }
+
+    //Método que permite escoger la dirección en donde se realice el guardado del archivo
+    public File retornoDireccionArchivo() {
+        //Mostrado del dialog que permite la apertura del dialog al usuario para escoger eel lugar donde se gurdara los archivos
+        JOptionPane.showMessageDialog(null, "Selecciona el lugar para guardar el archivo");
+        //Inicialización de la clase que abre el dialog
+        JFileChooser guardar = new JFileChooser();
+        //Metodo que hace que aparezca el dialog para escoger la ruta de guardado
+        guardar.showSaveDialog(null);
+        //Selección de la ruta especificada
+        guardar.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+        //Retorno del la ruta del archivo
+        return guardar.getSelectedFile();
+    }
+
+    public boolean isFile(File file) {
+        boolean retorno;
+        if (file == null) {
+            retorno = false;
+        } else {
+            retorno = true;
+        }
+        return retorno;
+    }
+
+    //Método que permite escoger la dirección en donde se realice el guardado del archivo
+    public File retornoDireccionArchivoRenombrar() {
+        //Mostrado del dialog que permite la apertura del dialog al usuario para escoger eel lugar donde se gurdara los archivos
+        JOptionPane.showMessageDialog(null, "Selecciona el archivo a renombrar");
+        //Inicialización de la clase que abre el dialog
+        JFileChooser guardar = new JFileChooser();
+        //Metodo que hace que aparezca el dialog para escoger la ruta de guardado
+        guardar.showSaveDialog(null);
+        //Selección de la ruta especificada
+        guardar.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+        //Retorno del la ruta del archivo
+        return guardar.getSelectedFile();
     }
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        //Cuando se corra el programa recupera el nombre del archivo
-        String rutaAbsoluta = new File("inventario.txt").getAbsolutePath();
-        System.out.println("rutaAbsoluta = " + rutaAbsoluta);
-        //En caso de que no exista el archivo se crear el arcivo
-        if (rutaAbsoluta.equals("")) {
-            crearArchivo("inventario.txt");
-        }
         //Verifica que los camposs esten llenos
         if (validacionCamposTexto()) {
             //Recuperación de la información de los campos de texto
@@ -451,17 +468,20 @@ public class AltasInventario extends javax.swing.JFrame {
             String precio = "Precio: $" + txtPrecio.getText();
             String marca = "Marca: " + txtMarca.getText() + ", ";
             String contenido = marca + producto + precio;
-            File archivo = retornoArchivo();
-            anexarArchivo(archivo, contenido);
-            //Lllamado al metodo para ingresar la información
-            anexarArchivo("inventario.txt", contenido);
-            //Lllamado al dialog para avisar de los campos de texto recuperados
-            Confirmacion confirmacion = new Confirmacion(this, true);
-            //Muestra el dialog
-            confirmacion.setVisible(true);
-            //Llamado al metodo para limpiar los datos
-            limpiarDatos();
-            //En caso de que los campos de texto esten vacios se manda un dialog de error
+            File archivo = retornoDireccionArchivo();
+            if (isFile(archivo)) {
+                anexarArchivo(archivo, contenido);
+                //Lllamado al dialog para avisar de los campos de texto recuperados
+                Confirmacion confirmacion = new Confirmacion(this, true);
+                //Muestra el dialog
+                confirmacion.setVisible(true);
+                //Llamado al metodo para limpiar los datos
+                limpiarDatos();
+                //En caso de que los campos de texto esten vacios se manda un dialog de error
+            }else{
+                JOptionPane.showMessageDialog(null, "No se ha seleccionado el archivo para guardar");
+            }
+
         } else {
             //Llalmado al dialog del error al no tener los datos vacios
             ErrorDatosVacios error = new ErrorDatosVacios(this, true);
@@ -525,20 +545,15 @@ public class AltasInventario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDeleteActionPerformed
 //Método que permite abrir un dialog para escoger el archivo que se desea cambiar el nombre
     private void btnRenameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRenameActionPerformed
-        //Dialog que confirma el cambio de nombre de un archivo
-        JOptionPane.showMessageDialog(null, "Selecciona el archivo a renombrar");
-        //Clase que abre un dialog para escoger el archivo a leer
-        JFileChooser jf = new JFileChooser();
-        //Adignación del lugar para abrir el dialog
-        jf.showOpenDialog(null);
         //Recuperación del URL de archivo
-        nombreArchivo = jf.getSelectedFile();
+        nombreArchivo = retornoDireccionArchivoRenombrar();
         //Verificación que el archivo tenga valores
         if (nombreArchivo != null) {
             //Impresión de un dialog para confirmar que se puede cambiar el nombre
             JOptionPane.showMessageDialog(null, "Ingresa el nuevo nombre");
             //Muestra de elementos que estaban ocultos al usuario
             txtnewName.setVisible(true);
+
             btnAceptRename.setVisible(true);
         } else {
             //Ipresión de dialog para confimar que no se ha seleccionado un archivo
@@ -550,7 +565,7 @@ public class AltasInventario extends javax.swing.JFrame {
         //Validación para verificar que el campo de texto no este vacio
         if (!txtnewName.getText().equals("")) {
             //Validación para el cambio de nombre
-            if (cambiarNombre(txtnewName.getText())) {
+            if (cambiarNombre(txtnewName.getText(), nombreArchivo)) {
                 //Impresión de dialog que confirma el cambio de nombre
                 JOptionPane.showMessageDialog(null, "Se ha cambiado el nombre");
                 //Ocultamiento de los elementos 
@@ -566,55 +581,8 @@ public class AltasInventario extends javax.swing.JFrame {
             ErrorDatosVacios edv = new ErrorDatosVacios(this, true);
             edv.setVisible(true);
         }
-
+        limpiarDatos();
     }//GEN-LAST:event_btnAceptRenameActionPerformed
-
-    public File retornoArchivo() {
-        JOptionPane.showMessageDialog(null, "Seleccina el lugar para guardar el archivo");
-        JFileChooser guardar = new JFileChooser();
-        guardar.showSaveDialog(null);
-        guardar.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-        File file = guardar.getSelectedFile();
-        System.out.println(guardar.getSelectedFile());
-        return file;
-    }
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-//        // TODO add your handling code here:
-        //if(nuevoArchivo == null){
-        JOptionPane.showMessageDialog(null, "Seleccina el lugar para guardar el archivo");
-        JFileChooser guardar = new JFileChooser();
-        guardar.showSaveDialog(null);
-        guardar.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-        File file = guardar.getSelectedFile();
-        System.out.println(guardar.getSelectedFile());
-        String cadena = "Esto es una prueba de modificación";
-        crearArchivo(file, cadena);
-        //nuevoArchivo = guardar.getSelectedFile();
-//        }else{
-//             if(validacionCamposTexto()){
-//             //Recuperación de la información de los campos de texto
-//            String producto = "Producto: " + txtProducto.getText() + ", ";
-//            String precio = "Precio: $" + txtPrecio.getText();
-//            String marca = "Marca: " + txtMarca.getText() + ", ";
-//            String contenido = marca + producto + precio;
-//            //Lllamado al metodo para ingresar la información
-//            anexarArchivo("inventario.txt", contenido);
-//            //Lllamado al dialog para avisar de los campos de texto recuperados
-//            Confirmacion confirmacion = new Confirmacion(this,true);
-//            //Muestra el dialog
-//            confirmacion.setVisible(true);
-//            //Llamado al metodo para limpiar los datos
-//            limpiarDatos();
-//        //En caso de que los campos de texto esten vacios se manda un dialog de error
-//            }else{
-//             //Llalmado al dialog del error al no tener los datos vacios
-//             ErrorDatosVacios error = new ErrorDatosVacios(this,true);
-//             error.setVisible(true);
-//        }
-//        }
-
-
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -661,7 +629,6 @@ public class AltasInventario extends javax.swing.JFrame {
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnRename;
     private javax.swing.JButton btnSalir;
-    private javax.swing.JButton jButton1;
     private javax.swing.JList<String> jListText;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
