@@ -574,6 +574,7 @@ public class AltasInventario extends javax.swing.JFrame {
                 //Ocultamiento de los elementos 
                 txtnewName.setVisible(false);
                 btnAceptRename.setVisible(false);
+                //Asignación nula a la ruta del archivo
                 nombreArchivo = null;
             } else {
                 //Impresión de dialog que mencina que no se ha cambiado el nombre
