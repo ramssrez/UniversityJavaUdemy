@@ -313,37 +313,6 @@ public class AltasInventario extends javax.swing.JFrame {
             return true;
         }
     }
-    //Método para crear un archivo en Java
-
-    public void crearArchivo(String nombreArchivo) {
-        //Inicialización del archivo con file
-        File archivo = new File(nombreArchivo);
-        try {
-            //Clase que permite crear al archivo con un nombre especifico
-            PrintWriter salida = new PrintWriter(archivo);
-            //Método que permite cerra el archivo creado
-            salida.close();
-            //Catch que recupera la información en caso de que no se recuperé un archivo
-        } catch (FileNotFoundException ex) {
-            ex.printStackTrace(System.out);
-        }
-    }
-
-    //Método para crear un archivo en Java con parametros de entrada como un archivo y una cadena de texto
-    public void crearArchivo(File archivo, String cadena) {
-        //Inicialización del printwiter
-        PrintWriter salida;
-        try {
-            //Clase que permite crear al archivo con un nombre especifico
-            salida = new PrintWriter(archivo);
-            salida.write(cadena);
-            //Método que permite cerra el archivo creado
-            salida.close();
-            //Catch que recupera la información en caso de que no se recuperé un archivo
-        } catch (FileNotFoundException ex) {
-            ex.printStackTrace(System.out);
-        }
-    }
 
     //Método para anexar informaión al archivo desde Java
     public void anexarArchivo(String nombreArchivo, String contenido) {
