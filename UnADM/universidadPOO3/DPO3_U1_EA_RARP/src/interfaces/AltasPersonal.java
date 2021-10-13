@@ -460,34 +460,6 @@ public class AltasPersonal extends javax.swing.JFrame {
             ErrorDatosVacios error = new ErrorDatosVacios(this, true);
             error.setVisible(true);
         }
-        /*
-        //Verifica que los camposs esten llenos
-        if (validacionCamposTexto()) {
-            //Recuperación de la información de los campos de texto
-            String producto = "Producto: " + txtProducto.getText() + ", ";
-            String precio = "Precio: $" + txtPrecio.getText();
-            String marca = "Marca: " + txtMarca.getText() + ", ";
-            String contenido = marca + producto + precio;
-            File archivo = retornoDireccionArchivo();
-            if (isFile(archivo)) {
-                anexarArchivo(archivo, contenido);
-                //Lllamado al dialog para avisar de los campos de texto recuperados
-                Confirmacion confirmacion = new Confirmacion(this, true);
-                //Muestra el dialog
-                confirmacion.setVisible(true);
-                //Llamado al metodo para limpiar los datos
-                limpiarDatos();
-                //En caso de que los campos de texto esten vacios se manda un dialog de error
-            }else{
-                JOptionPane.showMessageDialog(null, "No se ha seleccionado el archivo para guardar");
-            }
-
-        } else {
-            //Llalmado al dialog del error al no tener los datos vacios
-            ErrorDatosVacios error = new ErrorDatosVacios(this, true);
-            error.setVisible(true);
-        }
-         */
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     //Método que retorna al menú principal
@@ -528,14 +500,7 @@ public class AltasPersonal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnRenameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRenameActionPerformed
-        //Dialog que confirma el cambio de nombre de un archivo
-        JOptionPane.showMessageDialog(null, "Selecciona el archivo a renombrar");
-        //Clase que abre un dialog para escoger el archivo a leer
-        JFileChooser jf = new JFileChooser();
-        //Adignación del lugar para abrir el dialog
-        jf.showOpenDialog(null);
-        //Recuperación del URL de archivo
-        nombreArchivo = jf.getSelectedFile();
+        nombreArchivo = retornoDireccionArchivoRenombrar();
         //Verificación que el archivo tenga valores
         if (nombreArchivo != null) {
             //Impresión de un dialog para confirmar que se puede cambiar el nombre
@@ -544,7 +509,7 @@ public class AltasPersonal extends javax.swing.JFrame {
             txtnewName.setVisible(true);
             btnAceptRename.setVisible(true);
         } else {
-            //Ipresión de dialog para confimar que no se ha seleccionado un archivo
+            //Impresión de dialog para confimar que no se ha seleccionado un archivo
             JOptionPane.showMessageDialog(null, "No se ha seleccionado un archivo");
         }
     }//GEN-LAST:event_btnRenameActionPerformed
