@@ -1,6 +1,16 @@
 /* Creacion y uso de la base de datos */
 CREATE DATABASE es1921023412;
 USE es1921023412;
+/* Creción de la tabla usuario */
+CREATE TABLE IF NOT EXISTS es1921023412.usuario (
+  idusuario INT NOT NULL AUTO_INCREMENT,
+  nombre VARCHAR(20) NOT NULL,
+  apellido1 VARCHAR(15) NOT NULL,
+  apellido2 VARCHAR(15) NOT NULL,
+  edad INT NOT NULL,
+  correo VARCHAR(25) NOT NULL,
+  PRIMARY KEY (idusuario))
+ENGINE = InnoDB;
 
 /* Creación de la tabla Servicio */
 CREATE TABLE IF NOT EXISTS es1921023412.servicio (
