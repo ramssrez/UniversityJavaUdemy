@@ -19,3 +19,10 @@ REPAIR TABLE cajero;
 REPAIR TABLE facturacion;
 REPAIR TABLE kilometros;
 REPAIR TABLE servicio;
+
+/* Descripción de las tablas */
+SHOW COLUMNS FROM usuario;
+SHOW COLUMNS FROM cajero;
+SHOW COLUMNS FROM facturacion;
+SHOW COLUMNS FROM kilometros;
+SHOW COLUMNS FROM servicio;
