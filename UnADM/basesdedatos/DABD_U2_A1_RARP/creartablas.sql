@@ -55,3 +55,24 @@ CREATE TABLE IF NOT EXISTS es1921023412.facturacion (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
+/* Creación de la tabla millas*/
+CREATE TABLE es1921023412.millas (
+  idusuario INT NOT NULL,
+  idservicio INT NOT NULL,
+  kmrecorridos INT NOT NULL,
+  descuento INT NOT NULL,
+  INDEX fk_millas_servicio_index (idservicio ASC) VISIBLE,
+  INDEX fk_millas_usuario_index (idusuario ASC) INVISIBLE,
+  PRIMARY KEY (idusuario, idservicio),
+  CONSTRAINT fk_millas_usuario
+    FOREIGN KEY (idusuario)
+    REFERENCES es1921023412.Usuario (idusuario)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT fk_millas_servicio
+    FOREIGN KEY (idservicio)
+    REFERENCES es1921023412.servicio (idservicio)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
