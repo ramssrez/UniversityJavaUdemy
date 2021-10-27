@@ -12,3 +12,10 @@ CHECK TABLE cajero;
 CHECK TABLE facturacion;
 CHECK TABLE kilometros;
 CHECK TABLE servicio;
+
+/* Reparación de tablas */
+REPAIR TABLE usuario;
+REPAIR TABLE cajero;
+REPAIR TABLE facturacion;
+REPAIR TABLE kilometros;
+REPAIR TABLE servicio;
