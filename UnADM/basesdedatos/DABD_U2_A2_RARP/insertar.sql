@@ -1,0 +1,1 @@
+INSERT INTO usuario (nombre, apellido1, apellido2, fechanacimiento, correo, sexo) VALUES ('Jose', 'Martinez', 'Sanchez', '1969-12-01', 'jms@gmail.com', 'Masculino');
