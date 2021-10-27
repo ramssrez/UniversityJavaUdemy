@@ -12,6 +12,16 @@ CREATE TABLE IF NOT EXISTS es1921023412.usuario (
   PRIMARY KEY (idusuario))
 ENGINE = InnoDB;
 
+/* Creación de la tabla cajero */
+CREATE TABLE IF NOT EXISTS es1921023412.vendedor (
+  idcajero INT NOT NULL AUTO_INCREMENT,
+  nombre VARCHAR(20) NOT NULL,
+  apellido1 VARCHAR(15) NOT NULL,
+  apellido2 VARCHAR(15) NOT NULL,
+  turno VARCHAR(15) NOT NULL,
+  PRIMARY KEY (idcajero))
+ENGINE = InnoDB;
+
 /* Creación de la tabla Servicio */
 CREATE TABLE IF NOT EXISTS es1921023412.servicio (
   idservicio INT NOT NULL AUTO_INCREMENT,
