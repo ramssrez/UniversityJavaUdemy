@@ -32,4 +32,26 @@ CREATE TABLE IF NOT EXISTS es1921023412.servicio (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-
+/* Creación de la tabla facturación */
+CREATE TABLE IF NOT EXISTS es1921023412.facturacion (
+  idfaturacion INT NOT NULL AUTO_INCREMENT,
+  razonsocial VARCHAR(20) NOT NULL,
+  direccion VARCHAR(150) NOT NULL,
+  autorizacion VARCHAR(45) NOT NULL,
+  fecha DATE NOT NULL,
+  idservicio INT NOT NULL,
+  idusuario INT NOT NULL,
+  PRIMARY KEY (idfaturacion),
+  INDEX fk_facturacion_servicio_index (idservicio ASC) VISIBLE,
+  INDEX fk_facturacion_usuario_index (idusuario ASC) VISIBLE,
+  CONSTRAINT fk_facturacion_servicio
+    FOREIGN KEY (idservicio)
+    REFERENCES es1921023412.servicio (idservicio)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT fk_facturacion_usuario
+    FOREIGN KEY (idusuario)
+    REFERENCES es1921023412.usuario (idusuario)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
