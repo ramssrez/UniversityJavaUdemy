@@ -19,7 +19,11 @@ SELECT * FROM usuario ORDER BY sexo;
 
 
 /*  Muestra los Usuarios que recibirán descuentos por los kilómetros acumulados.*/
+ SELECT nombre, apellido1, apellido2, descuento, kmrecorridos  FROM usuario
+ INNER JOIN kilometros WHERE usuario.idusuario = kilometros.idusuario;
 
+ SELECT nombre, apellido1, apellido2, descuento AS "descuento %", kmrecorridos AS "Km recorridos"  FROM usuario
+ INNER JOIN kilometros WHERE usuario.idusuario = kilometros.idusuario;
 
 /* Selecciona al último usuario registrado en la base de datos. */
 
