@@ -25,8 +25,11 @@ SELECT * FROM usuario ORDER BY sexo;
  SELECT nombre, apellido1, apellido2, descuento AS "descuento %", kmrecorridos AS "Km recorridos"  FROM usuario
  INNER JOIN kilometros WHERE usuario.idusuario = kilometros.idusuario;
 
-/* Selecciona al último usuario registrado en la base de datos. */
+SELECT nombre, apellido1, apellido2, descuento AS "descuento %", kmrecorridos AS "Km recorridos", TIMESTAMPDIFF(YEAR,fechanacimiento,CURDATE()) AS edad  FROM usuario
+ INNER JOIN kilometros WHERE usuario.idusuario = kilometros.idusuario;
 
+/* Selecciona al último usuario registrado en la base de datos. */
+SELECT * FROM usuario ORDER BY idusuario DESC LIMIT 1;
 
 /* Actualiza la fecha de nacimiento de un usuario registrado a 03/06/1976. */
 UPDATE usuario SET fechanacimiento = '1976-06-03' WHERE (idusuario = 3);
@@ -38,8 +41,23 @@ FROM clientes;
 
 SELECT nombre, apellido1, apellido2, TIMESTAMPDIFF(YEAR,fechanacimiento,CURDATE()) AS edad
 FROM usuario;
-/* Selecciona los usuarios que tengan un descuento cuyo sexo sea femenino y sean mayores de 35 años y menores a 50 años. */
 
+/* Selecciona los usuarios que tengan un descuento cuyo sexo sea femenino y sean mayores de 35 años y menores a 50 años. */
+SELECT nombre, apellido1, apellido2, descuento AS "descuento %", kmrecorridos AS "Km recorridos" FROM usuario 
+INNER JOIN kilometros WHERE usuario.idusuario = kilometros.idusuario AND sexo = "Femenino";
+
+SELECT nombre, apellido1, apellido2, descuento AS "descuento %", kmrecorridos AS "Km recorridos", TIMESTAMPDIFF(YEAR,fechanacimiento,CURDATE()) AS edad 
+FROM usuario INNER JOIN kilometros WHERE usuario.idusuario = kilometros.idusuario;
+
+SELECT nombre, apellido1, apellido2, descuento AS "descuento %", kmrecorridos AS "Km recorridos", TIMESTAMPDIFF(YEAR,fechanacimiento,CURDATE()) AS edad 
+FROM usuario INNER JOIN kilometros WHERE usuario.idusuario = kilometros.idusuario AND sexo = "Femenino";
+
+SELECT nombre, apellido1, apellido2, descuento AS "descuento %", kmrecorridos AS "Km recorridos", TIMESTAMPDIFF(YEAR,fechanacimiento,CURDATE()) AS edad 
+FROM usuario INNER JOIN kilometros WHERE usuario.idusuario = kilometros.idusuario AND sexo = "Femenino" AND TIMESTAMPDIFF(YEAR,fechanacimiento,CURDATE()) >35;
+
+SELECT nombre, apellido1, apellido2, descuento AS "descuento %", kmrecorridos AS "Km recorridos", TIMESTAMPDIFF(YEAR,fechanacimiento,CURDATE()) AS edad 
+FROM usuario INNER JOIN kilometros WHERE usuario.idusuario = kilometros.idusuario AND sexo = "Femenino" AND TIMESTAMPDIFF(YEAR,fechanacimiento,CURDATE()) >35
+AND TIMESTAMPDIFF(YEAR,fechanacimiento,CURDATE()) >50;
 
 /* Ordena los usuarios de manera ascendente respecto de su Apellido1. */
 SELECT * FROM usuario ORDER BY apellido1 asc;
