@@ -32,14 +32,14 @@ SELECT nombre, apellido1, apellido2, descuento AS "descuento %", kmrecorridos AS
 SELECT * FROM usuario ORDER BY idusuario DESC LIMIT 1;
 
 /* Actualiza la fecha de nacimiento de un usuario registrado a 03/06/1976. */
-UPDATE usuario SET fechanacimiento = '1976-06-03' WHERE (idusuario = 3);
+UPDATE usuario SET fechanacimiento = '1976-06-03' WHERE (idusuario = 5);
 
 
 /* Selecciona los usuarios registrados con su edad (calcular a partir de la fecha de nacimiento almacenada). */
 SELECT TIMESTAMPDIFF(YEAR,fechanacimiento,CURDATE()) AS edad
 FROM clientes;
 
-SELECT nombre, apellido1, apellido2, TIMESTAMPDIFF(YEAR,fechanacimiento,CURDATE()) AS edad
+SELECT nombre, apellido1, apellido2,correo, TIMESTAMPDIFF(YEAR,fechanacimiento,CURDATE()) AS edad
 FROM usuario;
 
 /* Selecciona los usuarios que tengan un descuento cuyo sexo sea femenino y sean mayores de 35 años y menores a 50 años. */
@@ -57,10 +57,10 @@ FROM usuario INNER JOIN kilometros WHERE usuario.idusuario = kilometros.idusuari
 
 SELECT nombre, apellido1, apellido2, descuento AS "descuento %", kmrecorridos AS "Km recorridos", TIMESTAMPDIFF(YEAR,fechanacimiento,CURDATE()) AS edad 
 FROM usuario INNER JOIN kilometros WHERE usuario.idusuario = kilometros.idusuario AND sexo = "Femenino" AND TIMESTAMPDIFF(YEAR,fechanacimiento,CURDATE()) >35
-AND TIMESTAMPDIFF(YEAR,fechanacimiento,CURDATE()) >50;
+AND TIMESTAMPDIFF(YEAR,fechanacimiento,CURDATE()) <50;
 
 /* Ordena los usuarios de manera ascendente respecto de su Apellido1. */
-SELECT * FROM usuario ORDER BY apellido1 asc;
+SELECT * FROM usuario ORDER BY apellido1 ASC;
 SELECT * FROM usuario WHERE idusuario > 2 ORDER BY apellido1 asc;
 
 /* Selecciona el nombre y apellido1 de los usuarios, así como el asiento, fecha,origen, destino, hora y clase del servicio. */
