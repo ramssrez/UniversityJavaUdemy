@@ -46,4 +46,5 @@ SELECT * FROM usuario ORDER BY apellido1 asc;
 SELECT * FROM usuario WHERE idusuario > 2 ORDER BY apellido1 asc;
 
 /* Selecciona el nombre y apellido1 de los usuarios, así como el asiento, fecha,origen, destino, hora y clase del servicio. */
-
+ SELECT nombre, apellido1, fecha, origen, destino, hora, clase FROM usuario
+ INNER JOIN servicio WHERE usuario.idusuario = servicio.idusuario;
