@@ -60,7 +60,3 @@ SHOW TABLES;
 
 
 
-/* Consultas */
-select no_habitacion, estatus from habitaciones
-inner join estatus where 
-habitaciones.id_estatus = estatus.id_estatus;
