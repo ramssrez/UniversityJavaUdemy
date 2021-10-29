@@ -4,7 +4,7 @@ CREATE DATABASE la_estancia;
 USE la_estancia;
 
 /* Creación de la tabla tipo_habitaciones */
-CREATE TABLE IF NOT EXISTS la_estancia.tipo_habitaciones (
+CREATE TABLE la_estancia.tipo_habitaciones (
   id_tipo_habitacion INT NOT NULL AUTO_INCREMENT,
   tipo VARCHAR(15) NOT NULL,
   costo INT NOT NULL,
@@ -12,9 +12,9 @@ CREATE TABLE IF NOT EXISTS la_estancia.tipo_habitaciones (
 );
 
 /* Creación de la tabla de status */
-CREATE TABLE IF NOT EXISTS la_estancia.estatus (
+CREATE TABLE la_estancia.estatus (
   id_estatus INT NOT NULL AUTO_INCREMENT,
-  estatus DATE NOT NULL,
+  estatus VARCHAR(15) NOT NULL,
   PRIMARY KEY (id_estatus)
 );
 
@@ -56,3 +56,11 @@ CREATE TABLE reservaciones(
 
 /* Muestra de la tablas creadas */
 SHOW TABLES;
+
+
+
+
+/* Consultas */
+select no_habitacion, estatus from habitaciones
+inner join estatus where 
+habitaciones.id_estatus = estatus.id_estatus;
