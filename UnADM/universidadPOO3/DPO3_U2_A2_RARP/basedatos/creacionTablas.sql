@@ -9,6 +9,16 @@ CREATE TABLE habitaciones(
     PRIMARY KEY(id_habitacion) 
 );
 
+CREATE TABLE reservaciones(
+    id_reservacion INT NOT NULL AUTO_INCREMENT,
+    fecha_entrada DATE NOT NULL,
+    fecha_salida DATE NOT NULL,
+    dias VARCHAR(15) NOT NULL,
+    id_habitacion INT NOT NULL,
+    PRIMARY KEY(id_reservacion)
+);
+
+
 
 
 Tabla RESERVACIONES
@@ -21,7 +31,6 @@ id_habitacion
 
 Tabla HABITACIONES
 id_habitacion
-
 tipo_habitación (sencilla, doble, triple y cuádruple)
 no_habitacion
 estatus (ocupado, disponible)
