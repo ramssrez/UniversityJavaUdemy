@@ -1,0 +1,1 @@
+ INSERT INTO habitaciones (tipo_habitacion, no_habitacion,estatus, costo) VALUES("sencilla","1" ,"disponible","150");
