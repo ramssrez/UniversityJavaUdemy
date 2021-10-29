@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ *Código elaborado por: Raúl Ramírez Pérez
  */
 package objetos;
 
@@ -10,5 +8,9 @@ package objetos;
  * @author ramssrez
  */
 public class Habitacion {
-    
+    private int idHabitacion;
+    private String tipoHabitacion;
+    private int numeroHabitacion;
+    private String status;
+    private int costoHabitacion;
 }
