@@ -24,7 +24,7 @@ public class Estamcia {
         //Declaración del objeto empleado como nulo
         //Empleado empleado = null;
         //Asignación del empleado a lo que se recupere de la sentencia SQL
-        empleadoDAO.seleccionar(1);
+        empleadoDAO.seleccionar();
         //Sentencia if/else para el caso de que se recupere información
     }
     
