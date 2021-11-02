@@ -3,7 +3,14 @@
  */
 package interfaces;
 
+import database.HabitacionDAO;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import objetos.Habitacion;
+
 public class Principal extends javax.swing.JFrame {
+    private DefaultTableModel dtm;
+    private List<Habitacion> listaHabitacionGlobal;
 
     /**
      * Creates new form Principal
@@ -14,8 +21,38 @@ public class Principal extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         //Sentencia que desactiva el minimizar y maximizar de las ventanas principales
         this.setResizable(false);
+        listaHabitacionGlobal = obtenerDatosSQL();
+        System.out.println(obtenerDatosSQL().toString());
+        obtenerDatos();
+        
+    }
+    
+    private DefaultTableModel setTitulos(){
+        dtm = new DefaultTableModel();
+        dtm.addColumn("Número Habitacion");
+        dtm.addColumn("Estatus");
+        dtm.addColumn("Tipo");
+        dtm.addColumn("Costo");
+        return dtm;
     }
 
+    private List<Habitacion> obtenerDatosSQL(){
+        HabitacionDAO habitacionDAO = new HabitacionDAO();
+        return habitacionDAO.seleccionarLista();
+    }
+    
+    private void obtenerDatos(){
+        setTitulos();
+        Object [] fila = new Object[4];
+        listaHabitacionGlobal.forEach(habitacion -> {
+            fila[0] = habitacion.getNumeroHabitacion();
+            fila[1] = habitacion.getTipoHabitacion();
+            fila[2] = habitacion.getCostoHabitacion();
+            fila[3] = habitacion.getStatus();
+            dtm.addRow(fila);
+        });
+        tableData.setModel(dtm);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -25,28 +62,64 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        listTable = new javax.swing.JList<>();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tableData = new javax.swing.JTable();
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(listTable);
+
+        tableData.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane3.setViewportView(tableData);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(46, 46, 46)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 780, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addGap(59, 59, 59))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(47, 47, 47)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 802, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(50, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(85, 85, 85)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addGap(37, 37, 37)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(63, 63, 63)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(226, Short.MAX_VALUE))
         );
 
         pack();
@@ -91,7 +164,11 @@ public class Principal extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JList<String> listTable;
+    private javax.swing.JTable tableData;
     // End of variables declaration//GEN-END:variables
 }
