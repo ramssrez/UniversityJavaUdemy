@@ -24,8 +24,8 @@ public class Principal extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         //Sentencia que desactiva el minimizar y maximizar de las ventanas principales
         this.setResizable(false);
-        listaHabitacionGlobal = obtenerDatosSQL();
-        System.out.println(obtenerDatosSQL().toString());
+        listaHabitacionGlobal = obtenerHabitacionesSQL();
+        System.out.println(obtenerHabitacionesSQL().toString());
         obtenerDatos();
 
     }
@@ -40,7 +40,7 @@ public class Principal extends javax.swing.JFrame {
         return dtm;
     }
 
-    private List<Habitacion> obtenerDatosSQL() {
+    private List<Habitacion> obtenerHabitacionesSQL() {
         HabitacionDAO habitacionDAO = new HabitacionDAO();
         return habitacionDAO.seleccionarLista();
     }
@@ -58,18 +58,18 @@ public class Principal extends javax.swing.JFrame {
         });
         tableData.setModel(dtm);
     }
-    
-    private void limpiarCampos(){
+
+    private void limpiarCampos() {
         jdtStart.setDate(null);
         jdtFinish.setDate(null);
         jtfIdentificador.setText("");
     }
-    
+
     //Método que verifica que los campos no se encuentren vacios
     public boolean validacionCamposTexto() {
-        
-        if ((jdtStart.getDate() == null && jdtFinish.getDate()==null && jtfIdentificador.getText().equals(""))
-                || jdtStart.getDate()== null || jdtStart.getDate()== null || jtfIdentificador.getText().equals("")) {
+
+        if ((jdtStart.getDate() == null && jdtFinish.getDate() == null && jtfIdentificador.getText().equals(""))
+                || jdtStart.getDate() == null || jdtStart.getDate() == null || jtfIdentificador.getText().equals("")) {
             //Retorno falso en caso de que sea correcto los campos vacios
             return false;
 
@@ -77,6 +77,14 @@ public class Principal extends javax.swing.JFrame {
             //Retorno verdadero para el caso de que los campos esten llenos
             return true;
         }
+    }
+    
+    public int diasEntreFechas(){
+        Date fechaEntrada = jdtStart.getDate();
+        Date fechaSalida = jdtFinish.getDate();
+        int milisecondsByDay = 86400000;
+        int dias = (int) ((fechaSalida.getTime()-fechaEntrada.getTime()) / milisecondsByDay);
+        return dias;
     }
 
     /**
@@ -265,18 +273,9 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnCrearReservacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearReservacionActionPerformed
-        // TODO add your handling code here:
-//        try{
-//            Date date = jdtStart.getDate();
-//            System.out.println(date.toString());
-//        }catch(Exception ex){
-//            System.out.println(ex.getMessage());
-//            System.out.println("Error fecha: " + ex.getMessage());
-//            ex.printStackTrace(System.out);
-//        }
-        if(validacionCamposTexto()){
+        if (validacionCamposTexto()) {
             JOptionPane.showMessageDialog(null, "Los campos se encuentran llenos");
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Los campos se encuentran vacios");
         }
     }//GEN-LAST:event_btnCrearReservacionActionPerformed
