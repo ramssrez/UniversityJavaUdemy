@@ -20,7 +20,7 @@ public class HabitacionDAO {
     //Declaración de la sentencia a realizar para seleccionar cada uno de los campos de la habitación
     private static final String SQL_SELECT = "SELECT id_habitacion, no_habitacion, estatus,tipo, costo FROM habitaciones\n" +
         "INNER JOIN estatus ON habitaciones.id_estatus = estatus.id_estatus\n" +
-        "INNER JOIN tipo_habitaciones ON habitaciones.id_tipo_habitacion = tipo_habitaciones.id_tipo_habitacion AND estatus = Disponible ORDER BY no_habitacion";
+        "INNER JOIN tipo_habitaciones ON habitaciones.id_tipo_habitacion = tipo_habitaciones.id_tipo_habitacion ORDER BY no_habitacion";
     
 //     //Método seleccionar el cual se encarga de btener toda la lista de habitaciones
 //    public void seleccionar() {
