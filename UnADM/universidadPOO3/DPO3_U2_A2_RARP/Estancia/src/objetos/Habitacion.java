@@ -9,10 +9,21 @@ package objetos;
  */
 public class Habitacion {
     private int idHabitacion;
-    private String tipoHabitacion;
     private int numeroHabitacion;
     private String status;
+    private String tipoHabitacion;
     private int costoHabitacion;
+
+    public Habitacion() {
+    }
+
+    public Habitacion(int idHabitacion, int numeroHabitacion, String status, String tipoHabitacion, int costoHabitacion) {
+        this.idHabitacion = idHabitacion;
+        this.numeroHabitacion = numeroHabitacion;
+        this.status = status;
+        this.tipoHabitacion = tipoHabitacion;
+        this.costoHabitacion = costoHabitacion;
+    }
 
     public int getIdHabitacion() {
         return idHabitacion;
