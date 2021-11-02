@@ -56,6 +56,12 @@ public class Principal extends javax.swing.JFrame {
         });
         tableData.setModel(dtm);
     }
+    
+    private void limpiarCampos(){
+        jdtStart.setDateFormatString("");
+        jdtFinish.setDateFormatString("");
+        jtfIdentificador.setText("");
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -126,7 +132,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel4.setText("Selecciona la fecha de salida (yyyy-MM-dd)");
 
-        jdtFinish.setDateFormatString("dd/MM/yyyy");
+        jdtFinish.setDateFormatString("yyyy-MM-dd");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel5.setText("Ingresa el Id de la habitación");
@@ -138,6 +144,11 @@ public class Principal extends javax.swing.JFrame {
 
         btnLimpiar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnLimpiar.setText("LimpiarCampos");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
 
         btnCrearReservacion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnCrearReservacion.setText("Crear Reservación");
@@ -209,8 +220,8 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jtfIdentificador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -226,6 +237,11 @@ public class Principal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        // TODO add your handling code here:
+        limpiarCampos();
+    }//GEN-LAST:event_btnLimpiarActionPerformed
 
     /**
      * @param args the command line arguments
