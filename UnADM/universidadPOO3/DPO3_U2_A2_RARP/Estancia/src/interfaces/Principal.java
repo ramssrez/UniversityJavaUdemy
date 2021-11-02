@@ -4,7 +4,9 @@
 package interfaces;
 
 import database.HabitacionDAO;
+import java.util.Date;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import objetos.Habitacion;
 
@@ -58,9 +60,23 @@ public class Principal extends javax.swing.JFrame {
     }
     
     private void limpiarCampos(){
-        jdtStart.setDateFormatString("");
-        jdtFinish.setDateFormatString("");
+        jdtStart.setDate(null);
+        jdtFinish.setDate(null);
         jtfIdentificador.setText("");
+    }
+    
+    //Método que verifica que los campos no se encuentren vacios
+    public boolean validacionCamposTexto() {
+        
+        if ((jdtStart.getDate() == null && jdtFinish.getDate()==null && jtfIdentificador.getText().equals(""))
+                || jdtStart.getDate()== null || jdtStart.getDate()== null || jtfIdentificador.getText().equals("")) {
+            //Retorno falso en caso de que sea correcto los campos vacios
+            return false;
+
+        } else {
+            //Retorno verdadero para el caso de que los campos esten llenos
+            return true;
+        }
     }
 
     /**
@@ -152,6 +168,11 @@ public class Principal extends javax.swing.JFrame {
 
         btnCrearReservacion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnCrearReservacion.setText("Crear Reservación");
+        btnCrearReservacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearReservacionActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -242,6 +263,23 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         limpiarCampos();
     }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void btnCrearReservacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearReservacionActionPerformed
+        // TODO add your handling code here:
+//        try{
+//            Date date = jdtStart.getDate();
+//            System.out.println(date.toString());
+//        }catch(Exception ex){
+//            System.out.println(ex.getMessage());
+//            System.out.println("Error fecha: " + ex.getMessage());
+//            ex.printStackTrace(System.out);
+//        }
+        if(validacionCamposTexto()){
+            JOptionPane.showMessageDialog(null, "Los campos se encuentran llenos");
+        }else{
+            JOptionPane.showMessageDialog(null, "Los campos se encuentran vacios");
+        }
+    }//GEN-LAST:event_btnCrearReservacionActionPerformed
 
     /**
      * @param args the command line arguments
