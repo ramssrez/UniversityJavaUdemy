@@ -17,11 +17,13 @@ import objetos.Habitacion;
  * @author ramssrez
  */
 public class HabitacionDAO {
+
     //Declaración de la sentencia a realizar para seleccionar cada uno de los campos de la habitación
-    private static final String SQL_SELECT = "SELECT id_habitacion, no_habitacion, estatus,tipo, costo FROM habitaciones\n" +
-        "INNER JOIN estatus ON habitaciones.id_estatus = estatus.id_estatus\n" +
-        "INNER JOIN tipo_habitaciones ON habitaciones.id_tipo_habitacion = tipo_habitaciones.id_tipo_habitacion ORDER BY no_habitacion";
-    
+    private static final String SQL_SELECT = "SELECT id_habitacion, no_habitacion, estatus,tipo, costo FROM habitaciones\n"
+            + "INNER JOIN estatus ON habitaciones.id_estatus = estatus.id_estatus\n"
+            + "INNER JOIN tipo_habitaciones ON habitaciones.id_tipo_habitacion = tipo_habitaciones.id_tipo_habitacion \n"
+            + "AND estatus = 'Disponible' ORDER BY no_habitacion";
+
 //     //Método seleccionar el cual se encarga de btener toda la lista de habitaciones
 //    public void seleccionar() {
 //        //Declaración del objeto del canal de conexión
@@ -69,11 +71,10 @@ public class HabitacionDAO {
 //        //Se envia el objeto empleado que se ha generado
 //        //return empleado;
 //    }
-    
     //Método que obtiene la lista de las habitaciones que hay en la base de datos
     public List<Habitacion> seleccionarLista() {
         //Declaración de variables necesarias
-        List <Habitacion> listaHabitacion = new ArrayList<>();
+        List<Habitacion> listaHabitacion = new ArrayList<>();
         Habitacion habitacion = null;
         //Declaración del objeto del canal de conexión
         Connection conn = null;
@@ -90,7 +91,7 @@ public class HabitacionDAO {
             //Sentencia para que se haga la consulta
             resultSet = preparedStatement.executeQuery();
             //ciclo while que retorno los datos de la base de datos
-            while(resultSet.next()){
+            while (resultSet.next()) {
                 //Impresiones de pantalla de los datos que se estan obteniendo
 //                System.out.println("");
 //                System.out.println("Id habitacion: " + resultSet.getInt("id_habitacion"));
@@ -100,16 +101,16 @@ public class HabitacionDAO {
 //                System.out.println("Costo: " + resultSet.getInt("costo"));
                 //Declaración de variables para crear los objetos
                 int id = resultSet.getInt("id_habitacion");
-                int numHabi =  resultSet.getInt("no_habitacion");
-                String status =  resultSet.getString("estatus");
-                String type =  resultSet.getString("tipo");
-                int cost =  resultSet.getInt("costo");
+                int numHabi = resultSet.getInt("no_habitacion");
+                String status = resultSet.getString("estatus");
+                String type = resultSet.getString("tipo");
+                int cost = resultSet.getInt("costo");
                 //Creación del objeto habitación
-                habitacion = new Habitacion(id,numHabi,status,type,cost);
+                habitacion = new Habitacion(id, numHabi, status, type, cost);
                 //Agregación del objeto habitación a la lista
                 listaHabitacion.add(habitacion);
             }
-            
+
         } catch (SQLException ex) {
             System.out.println("Error Selección: " + ex.getMessage());
             ex.printStackTrace(System.out);
@@ -126,7 +127,7 @@ public class HabitacionDAO {
             }
         }
         //Se envia el objeto empleado que se ha generado
-       return listaHabitacion;
+        return listaHabitacion;
     }
-    
+
 }

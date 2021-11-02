@@ -9,6 +9,7 @@ import javax.swing.table.DefaultTableModel;
 import objetos.Habitacion;
 
 public class Principal extends javax.swing.JFrame {
+
     private DefaultTableModel dtm;
     private List<Habitacion> listaHabitacionGlobal;
 
@@ -24,12 +25,12 @@ public class Principal extends javax.swing.JFrame {
         listaHabitacionGlobal = obtenerDatosSQL();
         System.out.println(obtenerDatosSQL().toString());
         obtenerDatos();
-        
+
     }
-    
-    private DefaultTableModel setTitulos(){
+
+    private DefaultTableModel setTitulos() {
         dtm = new DefaultTableModel();
-        dtm.addColumn("Id");  
+        dtm.addColumn("Id");
         dtm.addColumn("Número Habitación");
         dtm.addColumn("Estatus");
         dtm.addColumn("Tipo");
@@ -37,14 +38,14 @@ public class Principal extends javax.swing.JFrame {
         return dtm;
     }
 
-    private List<Habitacion> obtenerDatosSQL(){
+    private List<Habitacion> obtenerDatosSQL() {
         HabitacionDAO habitacionDAO = new HabitacionDAO();
         return habitacionDAO.seleccionarLista();
     }
-    
-    private void obtenerDatos(){
+
+    private void obtenerDatos() {
         setTitulos();
-        Object [] fila = new Object[5];
+        Object[] fila = new Object[5];
         listaHabitacionGlobal.forEach(habitacion -> {
             fila[0] = habitacion.getIdHabitacion();
             fila[1] = habitacion.getNumeroHabitacion();
@@ -55,6 +56,7 @@ public class Principal extends javax.swing.JFrame {
         });
         tableData.setModel(dtm);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
