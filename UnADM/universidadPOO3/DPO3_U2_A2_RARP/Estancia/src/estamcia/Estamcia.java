@@ -6,6 +6,9 @@
 package estamcia;
 
 import database.HabitacionDAO;
+import java.util.ArrayList;
+import java.util.List;
+import objetos.Habitacion;
 
 /**
  *
@@ -20,12 +23,22 @@ public class Estamcia {
         // TODO code application logic here
         
         //Instancia de la clase EmpleadoDAO
-        HabitacionDAO empleadoDAO = new HabitacionDAO();
+        HabitacionDAO habitacionDAO = new HabitacionDAO();
         //Declaración del objeto empleado como nulo
-        //Empleado empleado = null;
         //Asignación del empleado a lo que se recupere de la sentencia SQL
-        empleadoDAO.seleccionar();
+        //empleadoDAO.seleccionar();
         //Sentencia if/else para el caso de que se recupere información
+        //Retorno de la lista}
+        
+        //habitacionDAO.seleccionar();
+        System.out.println("Lista de objetos");
+        List<Habitacion> listaHabitacion = new ArrayList<>();
+        listaHabitacion = habitacionDAO.seleccionarLista();
+        listaHabitacion.forEach(habitacion -> {
+            System.out.println(habitacion.toString());
+        });
+        
+        
     }
     
 }

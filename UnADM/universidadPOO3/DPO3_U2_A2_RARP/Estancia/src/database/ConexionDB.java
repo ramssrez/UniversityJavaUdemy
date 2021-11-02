@@ -10,12 +10,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class ConexionDB {
-
-    private static final String JDBC_URL = "jdbc:mysql://localhost:3306/la_estancia";
-    
     //Variable URL que contienen la dirección de donde se tiene que conectar la base de datos
-    //En mi el puesrto de mi base de datos es 3307 por lo que se deja arriba la sentencia para el caso en donde el puerto sea 3306
-    //private static final String JDBC_URL = "jdbc:mysql://localhost:3307/restaurantepv";
+    private static final String JDBC_URL = "jdbc:mysql://localhost:3306/la_estancia";
     //Variable que contiene el usuario para la base de datos
     private static final String JDBC_USER = "root";
     //Variable que contiene la contraseña para conectarse a la base de dartos
