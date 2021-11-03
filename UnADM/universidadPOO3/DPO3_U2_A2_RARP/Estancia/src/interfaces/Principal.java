@@ -3,7 +3,6 @@
  */
 package interfaces;
 
-import database.EmpleadoDAO;
 import database.HabitacionDAO;
 import java.util.Date;
 import java.sql.*;
@@ -26,7 +25,6 @@ public class Principal extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         //Sentencia que desactiva el minimizar y maximizar de las ventanas principales
         this.setResizable(false);
-        //listaHabitacionGlobal = obtenerHabitacionesSQL();
         obtenerDatos();
     }
 
@@ -39,11 +37,6 @@ public class Principal extends javax.swing.JFrame {
         dtm.addColumn("Costo");
         return dtm;
     }
-
-//    private List<Habitacion> obtenerHabitacionesSQL() {
-//        HabitacionDAO habitacionDAO = new HabitacionDAO();
-//        return habitacionDAO.seleccionarLista();
-//    }
 
     private void obtenerDatos() {
         HabitacionDAO habitacionDAO = new HabitacionDAO();
@@ -59,6 +52,24 @@ public class Principal extends javax.swing.JFrame {
             dtm.addRow(fila);
         });
         tableData.setModel(dtm);
+    }
+
+    public void modificarEstatusHabitacion() {
+        //Instancia de la clase ProductoDAO
+        HabitacionDAO habitacionDAO = new HabitacionDAO();
+        int numero = Integer.parseInt(jtfIdentificador.getText());
+        int entero = habitacionDAO.actualizar(numero);
+        if (entero > 0) {
+            //Llamado al Dialog que manda un mensaje que se ha realizado correctamente el ingreso de información en la base de datos
+            JOptionPane.showMessageDialog(null, "Se han modificado el status de la habitación");
+            //Método que limpia las cajas de texto de la interface
+            limpiarCampos();
+        } else {
+            //Llamado al Dialog que manda un mensaje que se ha realizado correctamente el ingreso de información en la base de datos
+            JOptionPane.showMessageDialog(null, "No se ha modificado el estatus de la habitación la habitación");
+            //Método que limpia las cajas de texto de la interface
+            limpiarCampos();
+        }
     }
 
     private void limpiarCampos() {
@@ -295,21 +306,7 @@ public class Principal extends javax.swing.JFrame {
     private void btnCrearReservacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearReservacionActionPerformed
         if (validacionCamposTexto()) {
             JOptionPane.showMessageDialog(null, "Los campos se encuentran llenos");
-            //Instancia de la clase ProductoDAO
-            HabitacionDAO habitacionDAO = new HabitacionDAO();
-            int numero = Integer.parseInt(jtfIdentificador.getText());
-            int entero = habitacionDAO.actualizar(numero);
-            if (entero > 0) {
-                //Llamado al Dialog que manda un mensaje que se ha realizado correctamente el ingreso de información en la base de datos
-                JOptionPane.showMessageDialog(null, "Se han modificado la habitación");
-                //Método que limpia las cajas de texto de la interface
-                limpiarCampos();
-            } else {
-                //Llamado al Dialog que manda un mensaje que se ha realizado correctamente el ingreso de información en la base de datos
-                JOptionPane.showMessageDialog(null, "No se ha modificado la habitación");
-                //Método que limpia las cajas de texto de la interface
-                limpiarCampos();
-            }
+
         } else {
             JOptionPane.showMessageDialog(null, "Los campos se encuentran vacios");
         }

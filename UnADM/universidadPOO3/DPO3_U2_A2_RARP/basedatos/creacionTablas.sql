@@ -45,6 +45,8 @@ CREATE TABLE reservaciones(
     fecha_entrada DATE NOT NULL,
     fecha_salida DATE NOT NULL,
     id_habitacion INT NOT NULL,
+    dias INT NOT NULL,
+    costo_total INT NOT NULL,
     PRIMARY KEY(id_reservacion),
     INDEX fk_reservacion_habitacion_idx (id_habitacion ASC) VISIBLE,
     CONSTRAINT fk_reservacion_habitacion
