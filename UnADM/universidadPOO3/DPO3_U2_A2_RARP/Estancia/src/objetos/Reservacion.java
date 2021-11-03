@@ -14,14 +14,34 @@ public class Reservacion {
     private Date fechaEntrada;
     private Date fechaSalida;
     private int idHabitacion;
+    private int dias;
+    private int costo_total;
 
     public Reservacion() {
     }
 
-    public Reservacion(Date fechaEntrada, Date fechaSalida, int idHabitacion) {
+    public Reservacion(Date fechaEntrada, Date fechaSalida, int idHabitacion, int dias, int costo_total) {
         this.fechaEntrada = fechaEntrada;
         this.fechaSalida = fechaSalida;
         this.idHabitacion = idHabitacion;
+        this.dias = dias;
+        this.costo_total = costo_total;
+    }
+
+    public int getDias() {
+        return dias;
+    }
+
+    public void setDias(int dias) {
+        this.dias = dias;
+    }
+
+    public int getCosto_total() {
+        return costo_total;
+    }
+
+    public void setCosto_total(int costo_total) {
+        this.costo_total = costo_total;
     }
 
     public Date getFechaEntrada() {
