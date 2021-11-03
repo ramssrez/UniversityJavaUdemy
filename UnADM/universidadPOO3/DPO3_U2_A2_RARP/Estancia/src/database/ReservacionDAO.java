@@ -15,7 +15,7 @@ import java.sql.SQLException;
 public class ReservacionDAO {
 
     //Declaración de la sentencia a realizar para insertar un registro a  la base de datos
-    private static final String SQL_INSERT = "INSERT INTO reservacion(fecha_entrada, fecha_salida, id_habitacion, dias, costo_total) VALUES(?,?,?,?,?)";
+    private static final String SQL_INSERT = "INSERT INTO reservaciones(fecha_entrada, fecha_salida, id_habitacion, dias, costo_total) VALUES(?,?,?,?,?)";
 
     public int insertar(Reservacion reservacion) {
         //Declaración de las variables necesrias para poder realizar la conexion a la base de datos.

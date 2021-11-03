@@ -4,6 +4,7 @@
 package interfaces;
 
 import database.HabitacionDAO;
+import database.ReservacionDAO;
 import java.util.Date;
 import java.sql.*;
 import java.util.List;
@@ -40,6 +41,16 @@ public class Principal extends javax.swing.JFrame {
         return dtm;
     }
 
+    private DefaultTableModel setTitulosReserva() {
+        dtm = new DefaultTableModel();
+        dtm.addColumn("Id");
+        dtm.addColumn("Fecha Entrada");
+        dtm.addColumn("Fecha Salida");
+        dtm.addColumn("Dias");
+        dtm.addColumn("Costo Total");
+        return dtm;
+    }
+
     private void obtenerDatos() {
         HabitacionDAO habitacionDAO = new HabitacionDAO();
         listaHabitacionGlobal = habitacionDAO.seleccionarLista();
@@ -56,10 +67,9 @@ public class Principal extends javax.swing.JFrame {
         tableData.setModel(dtm);
     }
 
-    public void modificarEstatusHabitacion() {
+    public void modificarEstatusHabitacion(int numero) {
         //Instancia de la clase ProductoDAO
         HabitacionDAO habitacionDAO = new HabitacionDAO();
-        int numero = Integer.parseInt(jtfIdentificador.getText());
         int entero = habitacionDAO.actualizar(numero);
         if (entero > 0) {
             //Llamado al Dialog que manda un mensaje que se ha realizado correctamente el ingreso de información en la base de datos
@@ -117,14 +127,14 @@ public class Principal extends javax.swing.JFrame {
         java.sql.Date dateSQL = new java.sql.Date(dateLong);
         return dateSQL;
     }
-    
-    public int costoTotal(int numero, int dias){
+
+    public int costoTotal(int numero, int dias) {
         listaHabitacionGlobal.forEach(hab -> {
-            if(hab.getIdHabitacion() == numero){
+            if (hab.getIdHabitacion() == numero) {
                 costoHabitacion = hab.getCostoHabitacion();
             }
         });
-        int costoTotal = costoHabitacion*dias;
+        int costoTotal = costoHabitacion * dias;
         return costoTotal;
     }
 
@@ -132,11 +142,24 @@ public class Principal extends javax.swing.JFrame {
         Date fechaEntrada = jdtStart.getDate();
         Date fechaSalida = jdtFinish.getDate();
         int numero = Integer.parseInt(jtfIdentificador.getText());
+        modificarEstatusHabitacion(numero);
         int dias = diasEntreFechas(fechaSalida, fechaEntrada);
         int costo = costoTotal(numero, dias);
-        Reservacion reservacion = new Reservacion(formatoFechaSql(fechaEntrada), formatoFechaSql(fechaSalida),numero,dias,costo);
+        Reservacion reservacion = new Reservacion(formatoFechaSql(fechaEntrada), formatoFechaSql(fechaSalida), numero, dias, costo);
         System.out.println("reservacion = " + reservacion.toString());
-       
+        ReservacionDAO rdao = new ReservacionDAO();
+        int entero = rdao.insertar(reservacion);
+        if (entero > 0) {
+            //Llamado al Dialog que manda un mensaje que se ha realizado correctamente el ingreso de información en la base de datos
+            JOptionPane.showMessageDialog(null, "Se han creado la reservación");
+            //Método que limpia las cajas de texto de la interface
+            limpiarCampos();
+        } else {
+            //Llamado al Dialog que manda un mensaje que se ha realizado correctamente el ingreso de información en la base de datos
+            JOptionPane.showMessageDialog(null, "No se ha res3ervado la habitación");
+            //Método que limpia las cajas de texto de la interface
+            limpiarCampos();
+        }
     }
 
     /**
@@ -164,6 +187,8 @@ public class Principal extends javax.swing.JFrame {
         jtfIdentificador = new javax.swing.JTextField();
         btnLimpiar = new javax.swing.JButton();
         btnCrearReservacion = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tableReser = new javax.swing.JTable();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -234,6 +259,20 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        tableReser.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        tableReser.setFocusable(false);
+        jScrollPane4.setViewportView(tableReser);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -273,14 +312,15 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(jtfIdentificador, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(113, 113, 113))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(26, 26, 26)
+                .addComponent(btnCrearReservacion)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnLimpiar)
-                .addGap(83, 83, 83))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(45, 45, 45)
-                    .addComponent(btnCrearReservacion)
-                    .addContainerGap(505, Short.MAX_VALUE)))
+                .addGap(77, 77, 77))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 675, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -306,14 +346,13 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jtfIdentificador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
-                .addComponent(btnLimpiar)
-                .addGap(44, 44, 44))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(430, Short.MAX_VALUE)
-                    .addComponent(btnCrearReservacion)
-                    .addGap(42, 42, 42)))
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnLimpiar)
+                    .addComponent(btnCrearReservacion))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
         pack();
@@ -385,10 +424,12 @@ public class Principal extends javax.swing.JFrame {
     private com.toedter.components.JLocaleChooser jLocaleChooser1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTable1;
     private com.toedter.calendar.JDateChooser jdtFinish;
     private com.toedter.calendar.JDateChooser jdtStart;
     private javax.swing.JTextField jtfIdentificador;
     private javax.swing.JTable tableData;
+    private javax.swing.JTable tableReser;
     // End of variables declaration//GEN-END:variables
 }
