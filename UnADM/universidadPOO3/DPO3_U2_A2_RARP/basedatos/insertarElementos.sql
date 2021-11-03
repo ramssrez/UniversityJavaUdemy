@@ -23,3 +23,5 @@ INSERT INTO habitaciones (no_habitacion, id_estatus, id_tipo_habitacion) VALUES(
 INSERT INTO habitaciones (no_habitacion, id_estatus, id_tipo_habitacion) VALUES("16","1","4"); 
 INSERT INTO habitaciones (no_habitacion, id_estatus, id_tipo_habitacion) VALUES("18","1","4");
 INSERT INTO habitaciones (no_habitacion, id_estatus, id_tipo_habitacion) VALUES("20","1","4");   
+
+INSERT INTO reservaciones (fecha_entrada, fecha_salida, id_habitacion) VALUES ('2021-01-08', '2021-11-07', '1');

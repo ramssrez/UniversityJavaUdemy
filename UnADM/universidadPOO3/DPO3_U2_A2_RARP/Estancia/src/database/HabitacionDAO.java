@@ -23,54 +23,62 @@ public class HabitacionDAO {
             + "INNER JOIN estatus ON habitaciones.id_estatus = estatus.id_estatus\n"
             + "INNER JOIN tipo_habitaciones ON habitaciones.id_tipo_habitacion = tipo_habitaciones.id_tipo_habitacion \n"
             + "AND estatus = 'Disponible' ORDER BY no_habitacion";
-
-//     //Método seleccionar el cual se encarga de btener toda la lista de habitaciones
-//    public void seleccionar() {
+    //Declaración de la sentencia a realizar para insertar un registro a  la base de datos
+    private static final String SQL_UPDATE = "INSERT INTO reservacion(fecha_entrada, fecha_salida, id_habitacion) VALUES(?,?,?)";
+    //private static final String SQL_INSERT = "";
+    
+//    public int insertar(Empleado empleado) {
+//        //Declaración de las variables necesrias para poder realizar la conexion a la base de datos.
+//        //Delaración de Date del paquete de SQL para poder realizar el guardado de campos de tipo Date
+//        Date dateSql = null;
 //        //Declaración del objeto del canal de conexión
 //        Connection conn = null;
 //        //Declaración del objetos de sentencias
 //        PreparedStatement preparedStatement = null;
-//        //Declaración de objeto de resultados de las sentencias
-//        ResultSet resultSet = null;
+//        //Delcaración de la variable que verifica si se ha hecho una modificación al registro
+//        int registros = 0;
 //        //Bloque try/catch para las conexiones
 //        try {
-//            //Declaración del canal de conexión
+//            //Declaración del canal de coneción
 //            conn = ConexionDB.getConnection();
-//            //Envio de sentencias SQL para recuperar la información necesaria
-//            preparedStatement = conn.prepareStatement(SQL_SELECT);
-//            //Envio de los parametros como el numero de empeado para recuperar la información
-//           // preparedStatement.setInt(1, numeroEmpleadoEntrada);
-//            //Sentencia para que se haga la consulta
-//            resultSet = preparedStatement.executeQuery();
-//            //Si es efectiva la consulta
-//            while(resultSet.next()){
-//                System.out.println("Esto es desde el while");
-//                System.out.println("");
-//                System.out.println("Id habitacion: " + resultSet.getInt("id_habitacion"));
-//                System.out.println("Numero habitación: " + resultSet.getInt("no_habitacion"));
-//                System.out.println("Status: " + resultSet.getString("estatus"));
-//                System.out.println("Tipo: " + resultSet.getString("tipo"));
-//                System.out.println("Costo: " + resultSet.getInt("costo")); 
-//            }
-//
+//            //Envio de sentencias SQL para insertar datos a la base de datos
+//            preparedStatement = conn.prepareStatement(SQL_INSERT);
+//            //Envio de los parametros que se han seleccionado para poder realizar la insersión de datos
+//            preparedStatement.setString(1, String.valueOf(empleado.getNumEmpleado()));
+//            preparedStatement.setString(2, empleado.getNombreEmpleado());
+//            preparedStatement.setString(3, empleado.getApellidosEmpleado());
+//            preparedStatement.setString(4, empleado.getFechaNacimientoEmpleado());
+//            preparedStatement.setString(5, empleado.getCurpEmpleado());
+//            preparedStatement.setString(6, empleado.getRfcEmpleado());
+//            preparedStatement.setString(7, String.valueOf(empleado.getSueldoEmpleado()));
+//            preparedStatement.setString(8, empleado.getPuestoEmpleado());
+//            //Tansformación del tipo Date de Java al Date de SQL
+//            dateSql = new Date(empleado.getFechaIngresoEmpleado().getTime());
+//            //Impresión de la variable que se ha creado
+//            System.out.println("dateSql = " + dateSql);
+//            //Insersión de la la variable de tipo DateSql para la base de datos
+//            preparedStatement.setDate(9, dateSql);
+//            //Sentencia para que se realice el alza de los datos
+//            registros = preparedStatement.executeUpdate();
 //        } catch (SQLException ex) {
-//            System.out.println("Error Selección: " + ex.getMessage());
+//            System.out.println("Error: " + ex.getMessage());
 //            ex.printStackTrace(System.out);
+//            registros = 0;
 //        } finally {
 //            try {
-//                //Cierre del resultado de la sentencia
-//                ConexionDB.close(resultSet);
 //                //Cierre de la sentecia enviada
 //                ConexionDB.close(preparedStatement);
 //                //Cierre del canal de conexión
 //                ConexionDB.close(conn);
 //            } catch (SQLException ex) {
+//                System.out.println("Error: " + ex.getMessage());
 //                ex.printStackTrace(System.out);
 //            }
 //        }
-//        //Se envia el objeto empleado que se ha generado
-//        //return empleado;
+//        //Retorno de registros afectados
+//        return registros;
 //    }
+
     //Método que obtiene la lista de las habitaciones que hay en la base de datos
     public List<Habitacion> seleccionarLista() {
         //Declaración de variables necesarias
