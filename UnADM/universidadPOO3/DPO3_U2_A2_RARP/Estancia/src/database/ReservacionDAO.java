@@ -3,6 +3,11 @@
  */
 package database;
 
+import java.sql.Connection;
+import objetos.Reservacion;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 /**
  *
  * @author ramssrez
@@ -14,8 +19,6 @@ public class ReservacionDAO {
 
     public int insertar(Reservacion reservacion) {
         //Declaración de las variables necesrias para poder realizar la conexion a la base de datos.
-        //Delaración de Date del paquete de SQL para poder realizar el guardado de campos de tipo Date
-        Date dateSql = null;
         //Declaración del objeto del canal de conexión
         Connection conn = null;
         //Declaración del objetos de sentencias
@@ -29,20 +32,12 @@ public class ReservacionDAO {
             //Envio de sentencias SQL para insertar datos a la base de datos
             preparedStatement = conn.prepareStatement(SQL_INSERT);
             //Envio de los parametros que se han seleccionado para poder realizar la insersión de datos
-            preparedStatement.setString(1, String.valueOf(empleado.getNumEmpleado()));
-            preparedStatement.setString(2, empleado.getNombreEmpleado());
-            preparedStatement.setString(3, empleado.getApellidosEmpleado());
-            preparedStatement.setString(4, empleado.getFechaNacimientoEmpleado());
-            preparedStatement.setString(5, empleado.getCurpEmpleado());
-            preparedStatement.setString(6, empleado.getRfcEmpleado());
-            preparedStatement.setString(7, String.valueOf(empleado.getSueldoEmpleado()));
-            preparedStatement.setString(8, empleado.getPuestoEmpleado());
-            //Tansformación del tipo Date de Java al Date de SQL
-            dateSql = new Date(empleado.getFechaIngresoEmpleado().getTime());
-            //Impresión de la variable que se ha creado
-            System.out.println("dateSql = " + dateSql);
             //Insersión de la la variable de tipo DateSql para la base de datos
-            preparedStatement.setDate(9, dateSql);
+            preparedStatement.setDate(1, reservacion.getFechaEntrada());
+            preparedStatement.setDate(2, reservacion.getFechaSalida());
+            preparedStatement.setString(3, String.valueOf(reservacion.getIdHabitacion()));
+            preparedStatement.setString(4, String.valueOf(reservacion.getDias()));
+            preparedStatement.setString(5, String.valueOf(reservacion.getCostoTotal()));
             //Sentencia para que se realice el alza de los datos
             registros = preparedStatement.executeUpdate();
         } catch (SQLException ex) {
