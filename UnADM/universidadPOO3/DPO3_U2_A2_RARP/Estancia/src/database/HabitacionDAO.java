@@ -26,7 +26,7 @@ public class HabitacionDAO {
     //Declaración de la sentencia a realizar para insertar un registro a  la base de datos
     private static final String SQL_UPDATE = "INSERT INTO reservacion(fecha_entrada, fecha_salida, id_habitacion) VALUES(?,?,?)";
     //private static final String SQL_INSERT = "";
-    
+
 //    public int insertar(Empleado empleado) {
 //        //Declaración de las variables necesrias para poder realizar la conexion a la base de datos.
 //        //Delaración de Date del paquete de SQL para poder realizar el guardado de campos de tipo Date
@@ -78,7 +78,6 @@ public class HabitacionDAO {
 //        //Retorno de registros afectados
 //        return registros;
 //    }
-
     //Método que obtiene la lista de las habitaciones que hay en la base de datos
     public List<Habitacion> seleccionarLista() {
         //Declaración de variables necesarias

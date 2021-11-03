@@ -5,6 +5,7 @@ package interfaces;
 
 import database.HabitacionDAO;
 import java.util.Date;
+import java.sql.*;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -78,13 +79,25 @@ public class Principal extends javax.swing.JFrame {
             return true;
         }
     }
-    
-    public int diasEntreFechas(){
+
+    //Calculo de los dias entre dos fechas
+    public int diasEntreFechas() {
         Date fechaEntrada = jdtStart.getDate();
         Date fechaSalida = jdtFinish.getDate();
         int milisecondsByDay = 86400000;
-        int dias = (int) ((fechaSalida.getTime()-fechaEntrada.getTime()) / milisecondsByDay);
+        int dias = (int) ((fechaSalida.getTime() - fechaEntrada.getTime()) / milisecondsByDay);
         return dias;
+    }
+
+    public void cambioFechas() {
+        Date fechaEntrada = jdtStart.getDate();
+        long dE = fechaEntrada.getTime();
+        Date fechaSalida = jdtFinish.getDate();
+        long dS = fechaSalida.getTime();
+        java.sql.Date entrada = new java.sql.Date(dE);
+        JOptionPane.showMessageDialog(null, "Fecha entrada" + entrada);
+        java.sql.Date salida = new java.sql.Date(dS);
+        JOptionPane.showMessageDialog(null, "fecha Salida: " + salida);
     }
 
     /**
@@ -273,6 +286,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnCrearReservacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearReservacionActionPerformed
+        cambioFechas();
         if (validacionCamposTexto()) {
             JOptionPane.showMessageDialog(null, "Los campos se encuentran llenos");
         } else {

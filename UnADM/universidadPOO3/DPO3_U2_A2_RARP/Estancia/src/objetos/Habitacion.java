@@ -8,6 +8,7 @@ package objetos;
  * @author ramssrez
  */
 public class Habitacion {
+
     private int idHabitacion;
     private int numeroHabitacion;
     private String status;
@@ -65,5 +66,5 @@ public class Habitacion {
     public String toString() {
         return "Habitacion{" + "idHabitacion=" + idHabitacion + ", tipoHabitacion=" + tipoHabitacion + ", numeroHabitacion=" + numeroHabitacion + ", status=" + status + ", costoHabitacion=" + costoHabitacion + '}';
     }
-    
+
 }
