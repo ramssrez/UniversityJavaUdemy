@@ -99,6 +99,12 @@ public class Principal extends javax.swing.JFrame {
         java.sql.Date salida = new java.sql.Date(dS);
         JOptionPane.showMessageDialog(null, "fecha Salida: " + salida);
     }
+    
+    public java.sql.Date formatoFechaSql(Date date){
+        long dateLong = date.getTime();
+        java.sql.Date dateSQL = new java.sql.Date(dateLong);
+        return dateSQL;
+    } 
 
     /**
      * This method is called from within the constructor to initialize the form.
