@@ -3,6 +3,7 @@
  */
 package interfaces;
 
+import database.EmpleadoDAO;
 import database.HabitacionDAO;
 import java.util.Date;
 import java.sql.*;
@@ -25,10 +26,8 @@ public class Principal extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         //Sentencia que desactiva el minimizar y maximizar de las ventanas principales
         this.setResizable(false);
-        listaHabitacionGlobal = obtenerHabitacionesSQL();
-        System.out.println(obtenerHabitacionesSQL().toString());
+        //listaHabitacionGlobal = obtenerHabitacionesSQL();
         obtenerDatos();
-
     }
 
     private DefaultTableModel setTitulos() {
@@ -41,12 +40,14 @@ public class Principal extends javax.swing.JFrame {
         return dtm;
     }
 
-    private List<Habitacion> obtenerHabitacionesSQL() {
-        HabitacionDAO habitacionDAO = new HabitacionDAO();
-        return habitacionDAO.seleccionarLista();
-    }
+//    private List<Habitacion> obtenerHabitacionesSQL() {
+//        HabitacionDAO habitacionDAO = new HabitacionDAO();
+//        return habitacionDAO.seleccionarLista();
+//    }
 
     private void obtenerDatos() {
+        HabitacionDAO habitacionDAO = new HabitacionDAO();
+        listaHabitacionGlobal = habitacionDAO.seleccionarLista();
         setTitulos();
         Object[] fila = new Object[5];
         listaHabitacionGlobal.forEach(habitacion -> {
@@ -99,12 +100,12 @@ public class Principal extends javax.swing.JFrame {
         java.sql.Date salida = new java.sql.Date(dS);
         JOptionPane.showMessageDialog(null, "fecha Salida: " + salida);
     }
-    
-    public java.sql.Date formatoFechaSql(Date date){
+
+    public java.sql.Date formatoFechaSql(Date date) {
         long dateLong = date.getTime();
         java.sql.Date dateSQL = new java.sql.Date(dateLong);
         return dateSQL;
-    } 
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -292,12 +293,28 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnCrearReservacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearReservacionActionPerformed
-        cambioFechas();
         if (validacionCamposTexto()) {
             JOptionPane.showMessageDialog(null, "Los campos se encuentran llenos");
+            //Instancia de la clase ProductoDAO
+            HabitacionDAO habitacionDAO = new HabitacionDAO();
+            int numero = Integer.parseInt(jtfIdentificador.getText());
+            int entero = habitacionDAO.actualizar(numero);
+            if (entero > 0) {
+                //Llamado al Dialog que manda un mensaje que se ha realizado correctamente el ingreso de información en la base de datos
+                JOptionPane.showMessageDialog(null, "Se han modificado la habitación");
+                //Método que limpia las cajas de texto de la interface
+                limpiarCampos();
+            } else {
+                //Llamado al Dialog que manda un mensaje que se ha realizado correctamente el ingreso de información en la base de datos
+                JOptionPane.showMessageDialog(null, "No se ha modificado la habitación");
+                //Método que limpia las cajas de texto de la interface
+                limpiarCampos();
+            }
         } else {
             JOptionPane.showMessageDialog(null, "Los campos se encuentran vacios");
         }
+        listaHabitacionGlobal = null;
+        obtenerDatos();
     }//GEN-LAST:event_btnCrearReservacionActionPerformed
 
     /**

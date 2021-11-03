@@ -24,8 +24,46 @@ public class HabitacionDAO {
             + "INNER JOIN tipo_habitaciones ON habitaciones.id_tipo_habitacion = tipo_habitaciones.id_tipo_habitacion \n"
             + "AND estatus = 'Disponible' ORDER BY no_habitacion";
     //Declaración de la sentencia a realizar para insertar un registro a  la base de datos
-    private static final String SQL_UPDATE = "INSERT INTO reservacion(fecha_entrada, fecha_salida, id_habitacion) VALUES(?,?,?)";
-    //private static final String SQL_INSERT = "";
+    private static final String SQL_INSERT = "INSERT INTO reservacion(fecha_entrada, fecha_salida, id_habitacion) VALUES(?,?,?)";
+
+    //Definicicion de la sentencia SQL para actualizar un registro
+    private static final String SQL_UPDATE = "UPDATE habitaciones SET id_estatus = 2 WHERE (id_habitacion = ?)";
+
+    //Método que permite actualizar un producto de la base de datos, se ingresa un objeto completo
+    public int actualizar(int idHabitacion) {
+        //Declaración del objeto del canal de conexión
+        Connection conn = null;
+        //Declaración del objetos de sentencias
+        PreparedStatement preparedStatement = null;
+        //Delcaración de la variable que verifica si se ha hecho una modificación al registro
+        int registros = 0;
+        try {
+            //Declaración del canal de coneción
+            conn = ConexionDB.getConnection();
+            //Envio de sentencias SQL para insertar datos a la base de datos
+            preparedStatement = conn.prepareStatement(SQL_UPDATE);
+            //Envio de los parametros que se han seleccionado para poder realizar la insersión de datos
+            //Se insertan todos los datos, por el beneficio de no realizar validación para cada uno de los campos de la base de datos
+            preparedStatement.setString(1, String.valueOf(idHabitacion));
+            //Sentencia para que se realice el alza de los datos
+            registros = preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println("Error: " + ex.getMessage());
+            ex.printStackTrace(System.out);
+        } finally {
+            try {
+                //Cierre de la sentecia enviada
+                ConexionDB.close(preparedStatement);
+                //Cierre del canal de conexión
+                ConexionDB.close(conn);
+            } catch (SQLException ex) {
+                System.out.println("Error: " + ex.getMessage());
+                ex.printStackTrace(System.out);
+            }
+        }
+        //Retorno de regostros afectados
+        return registros;
+    }
 
 //    public int insertar(Empleado empleado) {
 //        //Declaración de las variables necesrias para poder realizar la conexion a la base de datos.
