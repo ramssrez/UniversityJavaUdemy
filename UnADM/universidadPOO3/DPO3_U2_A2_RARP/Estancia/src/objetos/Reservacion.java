@@ -2,6 +2,7 @@
  *Código elaborado por: Raúl Ramírez Pérez
  */
 package objetos;
+
 import java.sql.Date;
 
 /**
@@ -9,9 +10,19 @@ import java.sql.Date;
  * @author ramssrez
  */
 public class Reservacion {
+
     private Date fechaEntrada;
     private Date fechaSalida;
     private int idHabitacion;
+
+    public Reservacion() {
+    }
+
+    public Reservacion(Date fechaEntrada, Date fechaSalida, int idHabitacion) {
+        this.fechaEntrada = fechaEntrada;
+        this.fechaSalida = fechaSalida;
+        this.idHabitacion = idHabitacion;
+    }
 
     public Date getFechaEntrada() {
         return fechaEntrada;
@@ -36,6 +47,10 @@ public class Reservacion {
     public void setIdHabitacion(int idHabitacion) {
         this.idHabitacion = idHabitacion;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "Reservacion{" + "fechaEntrada=" + fechaEntrada + ", fechaSalida=" + fechaSalida + ", idHabitacion=" + idHabitacion + '}';
+    }
+
 }
