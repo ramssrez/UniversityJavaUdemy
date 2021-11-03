@@ -70,7 +70,9 @@ public class Reservacion {
 
     @Override
     public String toString() {
-        return "Reservacion{" + "fechaEntrada=" + fechaEntrada + ", fechaSalida=" + fechaSalida + ", idHabitacion=" + idHabitacion + '}';
+        return "Reservacion{" + "fechaEntrada=" + fechaEntrada + ", fechaSalida=" + fechaSalida + ", idHabitacion=" + idHabitacion + ", dias=" + dias + ", costoTotal=" + costoTotal + '}';
     }
+
+
 
 }

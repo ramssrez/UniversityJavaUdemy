@@ -10,11 +10,13 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import objetos.Habitacion;
+import objetos.Reservacion;
 
 public class Principal extends javax.swing.JFrame {
 
     private DefaultTableModel dtm;
     private List<Habitacion> listaHabitacionGlobal;
+    private int costoHabitacion;
 
     /**
      * Creates new form Principal
@@ -93,9 +95,7 @@ public class Principal extends javax.swing.JFrame {
     }
 
     //Calculo de los dias entre dos fechas
-    public int diasEntreFechas() {
-        Date fechaEntrada = jdtStart.getDate();
-        Date fechaSalida = jdtFinish.getDate();
+    public int diasEntreFechas(Date fechaSalida, Date fechaEntrada) {
         int milisecondsByDay = 86400000;
         int dias = (int) ((fechaSalida.getTime() - fechaEntrada.getTime()) / milisecondsByDay);
         return dias;
@@ -116,6 +116,27 @@ public class Principal extends javax.swing.JFrame {
         long dateLong = date.getTime();
         java.sql.Date dateSQL = new java.sql.Date(dateLong);
         return dateSQL;
+    }
+    
+    public int costoTotal(int numero, int dias){
+        listaHabitacionGlobal.forEach(hab -> {
+            if(hab.getIdHabitacion() == numero){
+                costoHabitacion = hab.getCostoHabitacion();
+            }
+        });
+        int costoTotal = costoHabitacion*dias;
+        return costoTotal;
+    }
+
+    public void crearReservacion() {
+        Date fechaEntrada = jdtStart.getDate();
+        Date fechaSalida = jdtFinish.getDate();
+        int numero = Integer.parseInt(jtfIdentificador.getText());
+        int dias = diasEntreFechas(fechaSalida, fechaEntrada);
+        int costo = costoTotal(numero, dias);
+        Reservacion reservacion = new Reservacion(formatoFechaSql(fechaEntrada), formatoFechaSql(fechaSalida),numero,dias,costo);
+        System.out.println("reservacion = " + reservacion.toString());
+       
     }
 
     /**
@@ -306,7 +327,7 @@ public class Principal extends javax.swing.JFrame {
     private void btnCrearReservacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearReservacionActionPerformed
         if (validacionCamposTexto()) {
             JOptionPane.showMessageDialog(null, "Los campos se encuentran llenos");
-
+            crearReservacion();
         } else {
             JOptionPane.showMessageDialog(null, "Los campos se encuentran vacios");
         }
