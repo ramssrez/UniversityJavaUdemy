@@ -118,7 +118,6 @@ public class Principal extends javax.swing.JFrame {
                 || jdtStart.getDate() == null || jdtStart.getDate() == null || jtfIdentificador.getText().equals("")) {
             //Retorno falso en caso de que sea correcto los campos vacios
             return false;
-
         } else {
             //Retorno verdadero para el caso de que los campos esten llenos
             return true;
@@ -394,15 +393,14 @@ public class Principal extends javax.swing.JFrame {
 
     private void btnCrearReservacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearReservacionActionPerformed
         if (validacionCamposTexto()) {
-            JOptionPane.showMessageDialog(null, "Los campos se encuentran llenos");
             crearReservacion();
+            listaHabitacionGlobal = null;
+            obtenerDatos();
+            listaReservacionGlobal = null;
+            obtenerDatosReservacion();
         } else {
             JOptionPane.showMessageDialog(null, "Los campos se encuentran vacios");
         }
-        listaHabitacionGlobal = null;
-        obtenerDatos();
-        listaReservacionGlobal = null;
-        obtenerDatosReservacion();
     }//GEN-LAST:event_btnCrearReservacionActionPerformed
 
     /**
