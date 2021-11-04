@@ -11,11 +11,13 @@ import java.sql.Date;
  */
 public class Reservacion {
 
+    private int idReservacion;
     private Date fechaEntrada;
     private Date fechaSalida;
     private int idHabitacion;
     private int dias;
     private int costoTotal;
+    private int numeroHabitacion;
 
     public Reservacion() {
     }
@@ -26,6 +28,27 @@ public class Reservacion {
         this.idHabitacion = idHabitacion;
         this.dias = dias;
         this.costoTotal = costo_total;
+    }
+
+    public Reservacion(int id_reservacion, Date fechaEntrada, Date fechaSalida, int dias, int costoTotal, int numero_habitacion) {
+        this.idReservacion = id_reservacion;
+        this.fechaEntrada = fechaEntrada;
+        this.fechaSalida = fechaSalida;
+        this.dias = dias;
+        this.costoTotal = costoTotal;
+        this.numeroHabitacion = numero_habitacion;
+    }
+    
+    public int getIdReservacion() {
+        return idReservacion;
+    }
+
+    public int getNumeroHabitacion() {
+        return numeroHabitacion;
+    }
+
+    public void setNumeroHabitacion(int numeroHabitacion) {
+        this.numeroHabitacion = numeroHabitacion;
     }
 
     public int getDias() {
@@ -70,9 +93,7 @@ public class Reservacion {
 
     @Override
     public String toString() {
-        return "Reservacion{" + "fechaEntrada=" + fechaEntrada + ", fechaSalida=" + fechaSalida + ", idHabitacion=" + idHabitacion + ", dias=" + dias + ", costoTotal=" + costoTotal + '}';
+        return "Reservacion{" + "id_reservacion=" + idReservacion + ", fechaEntrada=" + fechaEntrada + ", fechaSalida=" + fechaSalida + ", idHabitacion=" + idHabitacion + ", dias=" + dias + ", costoTotal=" + costoTotal + ", numero_habitacion=" + numeroHabitacion + '}';
     }
-
-
 
 }
