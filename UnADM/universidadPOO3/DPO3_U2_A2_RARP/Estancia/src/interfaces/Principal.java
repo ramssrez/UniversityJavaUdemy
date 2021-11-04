@@ -36,7 +36,7 @@ public class Principal extends javax.swing.JFrame {
 
     private DefaultTableModel setTitulos() {
         dtm = new DefaultTableModel();
-        dtm.addColumn("Id");
+        dtm.addColumn("Id Habitacioón");
         dtm.addColumn("Número Habitación");
         dtm.addColumn("Estatus");
         dtm.addColumn("Tipo");
@@ -46,7 +46,7 @@ public class Principal extends javax.swing.JFrame {
 
     private DefaultTableModel setTitulosReserva() {
         dtmReservaiones = new DefaultTableModel();
-        dtmReservaiones.addColumn("Id");
+        dtmReservaiones.addColumn("Id Reservación");
         dtmReservaiones.addColumn("Fecha Entrada");
         dtmReservaiones.addColumn("Fecha Salida");
         dtmReservaiones.addColumn("Dias");
@@ -163,16 +163,16 @@ public class Principal extends javax.swing.JFrame {
         Date fechaEntrada = jdtStart.getDate();
         Date fechaSalida = jdtFinish.getDate();
         int numero = Integer.parseInt(jtfIdentificador.getText());
-        modificarEstatusHabitacion(numero);
+
         int dias = diasEntreFechas(fechaSalida, fechaEntrada);
         int costo = costoTotal(numero, dias);
         Reservacion reservacion = new Reservacion(formatoFechaSql(fechaEntrada), formatoFechaSql(fechaSalida), numero, dias, costo);
-        System.out.println("reservacion = " + reservacion.toString());
         ReservacionDAO rdao = new ReservacionDAO();
         int entero = rdao.insertar(reservacion);
         if (entero > 0) {
             //Llamado al Dialog que manda un mensaje que se ha realizado correctamente el ingreso de información en la base de datos
             JOptionPane.showMessageDialog(null, "Se han creado la reservación");
+            modificarEstatusHabitacion(numero);
             //Método que limpia las cajas de texto de la interface
             limpiarCampos();
         } else {
