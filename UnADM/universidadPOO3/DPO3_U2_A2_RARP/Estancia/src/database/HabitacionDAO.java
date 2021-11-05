@@ -25,6 +25,9 @@ public class HabitacionDAO {
 
     //Definicicion de la sentencia SQL para actualizar un registro
     private static final String SQL_UPDATE = "UPDATE habitaciones SET id_estatus = 2 WHERE (id_habitacion = ?)";
+    
+     //Definicicion de la sentencia SQL para actualizar un registro
+    private static final String SQL_UPDATE_DOS = "UPDATE habitaciones SET id_estatus = 1 WHERE (id_habitacion = ?)";
 
     //Método que permite actualizar un producto de la base de datos, se ingresa un objeto completo
     public int actualizar(int idHabitacion) {
