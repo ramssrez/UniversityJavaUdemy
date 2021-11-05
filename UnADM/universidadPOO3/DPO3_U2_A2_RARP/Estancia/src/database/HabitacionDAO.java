@@ -25,9 +25,9 @@ public class HabitacionDAO {
 
     //Definicicion de la sentencia SQL para actualizar un registro
     private static final String SQL_UPDATE = "UPDATE habitaciones SET id_estatus = 2 WHERE (id_habitacion = ?)";
-    
-     //Definicicion de la sentencia SQL para actualizar un registro
-    private static final String SQL_UPDATE_DOS = "UPDATE habitaciones SET id_estatus = 1 WHERE (id_habitacion = ?)";
+
+    //Definicicion de la sentencia SQL para actualizar un registro
+    private static final String SQL_UPDATE_DOS = "UPDATE habitaciones SET id_estatus = ? WHERE (id_habitacion = ?)";
 
     //Método que permite actualizar un producto de la base de datos, se ingresa un objeto completo
     public int actualizar(int idHabitacion) {
@@ -44,6 +44,42 @@ public class HabitacionDAO {
             preparedStatement = conn.prepareStatement(SQL_UPDATE);
             //Envio de los parametros que se han seleccionado para poder realizar la insersión de datos
             preparedStatement.setString(1, String.valueOf(idHabitacion));
+            //Sentencia para que se realice el alza de los datos
+            registros = preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println("Error: " + ex.getMessage());
+            ex.printStackTrace(System.out);
+        } finally {
+            try {
+                //Cierre de la sentecia enviada
+                ConexionDB.close(preparedStatement);
+                //Cierre del canal de conexión
+                ConexionDB.close(conn);
+            } catch (SQLException ex) {
+                System.out.println("Error: " + ex.getMessage());
+                ex.printStackTrace(System.out);
+            }
+        }
+        //Retorno de regostros afectados
+        return registros;
+    }
+
+    //Método que permite actualizar un producto de la base de datos, se ingresa un objeto completo
+    public int actualizarDos(int idHabitacion, int tipoHabitacion) {
+        //Declaración del objeto del canal de conexión
+        Connection conn = null;
+        //Declaración del objetos de sentencias
+        PreparedStatement preparedStatement = null;
+        //Delcaración de la variable que verifica si se ha hecho una modificación al registro
+        int registros = 0;
+        try {
+            //Declaración del canal de coneción
+            conn = ConexionDB.getConnection();
+            //Envio de sentencias SQL para insertar datos a la base de datos
+            preparedStatement = conn.prepareStatement(SQL_UPDATE_DOS);
+            //Envio de los parametros que se han seleccionado para poder realizar la insersión de datos
+            preparedStatement.setString(1, String.valueOf(tipoHabitacion));
+            preparedStatement.setString(2, String.valueOf(idHabitacion));
             //Sentencia para que se realice el alza de los datos
             registros = preparedStatement.executeUpdate();
         } catch (SQLException ex) {
