@@ -22,3 +22,10 @@ SELECT CURRENT_USER();
 
 /* Muestra los permisos del usuario */
 SHOW GRANTS;
+
+/* Modificacion de la tabla usuario */
+UPDATE es1921023412.usuario SET fechanacimiento = '1970-12-01' WHERE (idusuario = '1');
+
+
+ SELECT nombre, apellido1, apellido2,fechanacimiento,razonsocial, direccion,fecha, autorizacion FROM usuario
+ INNER JOIN facturacion WHERE usuario.idusuario = facturacion.idusuario;
