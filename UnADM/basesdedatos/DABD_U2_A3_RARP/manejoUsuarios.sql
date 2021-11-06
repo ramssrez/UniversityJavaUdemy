@@ -11,4 +11,8 @@ FLUSH PRIVILEGES;
 /* Creación de mi usuario */
 CREATE USER 'RaulRamirez'@'localhost' IDENTIFIED BY 'passRR';
 
-GRANT INSERT SELECT ON *.* to 'RaulRamirez'@'localhost':
+/* Eliminación del usuario creado */
+DROP USER 'RaulRamirez'@'localhost' IDENTIFIED BY 'passRR';
+
+/* Asignación de permisos a la base de datos */
+GRANT INSERT, SELECT ON es1921023412.* to 'RaulRamirez'@'localhost';
