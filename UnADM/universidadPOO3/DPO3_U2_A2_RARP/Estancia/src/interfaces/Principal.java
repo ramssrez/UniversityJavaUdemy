@@ -5,10 +5,8 @@ package interfaces;
 
 import database.HabitacionDAO;
 import database.ReservacionDAO;
-import estamcia.Hilo;
 import java.util.Date;
 import java.sql.*;
-import java.util.Calendar;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -35,7 +33,6 @@ public class Principal extends javax.swing.JFrame {
         this.setResizable(false);
         obtenerDatos();
         obtenerDatosReservacion();
-        actualizarHora();
     }
 
     private DefaultTableModel setTitulos() {
@@ -162,12 +159,36 @@ public class Principal extends javax.swing.JFrame {
         return costoTotal;
     }
 
-    public void actualizarHora() {
+    public void contadorHoras(int dias) {
         hilo = new Thread(new Runnable() {
             @Override
             public void run() {
-                while (true) {
-                    jLabelTime.setText(Calendar.getInstance().getTime() + "");
+                int horas = dias * 24;
+                int minutos = 0, segundos = 0;
+                while (!(horas == 0 && minutos == 0 && segundos == 0)) {
+                    try {
+                        if (segundos == 0) {
+
+                            if (minutos == 0) {
+                                horas--;
+                                minutos = 59;
+                                segundos = 59;
+                            } else if (minutos != 0) {
+                                minutos--;
+                                segundos = 59;
+                            }
+                        } else {
+                            segundos--;
+                        }
+                        String seg = String.valueOf(segundos);
+                        String min = String.valueOf(minutos);
+                        String hour = String.valueOf(horas);
+                        jLabelTimeCont.setText("H:" + horas + " M: " +minutos + " S: " + segundos);
+                        Thread.sleep(1000);
+                    } catch (InterruptedException ex) {
+                        System.out.println("Error: " + ex.getMessage());
+                    }
+
                 }
             }
         });
@@ -178,7 +199,6 @@ public class Principal extends javax.swing.JFrame {
         Date fechaEntrada = jdtStart.getDate();
         Date fechaSalida = jdtFinish.getDate();
         int numero = Integer.parseInt(jtfIdentificador.getText());
-
         int dias = diasEntreFechas(fechaSalida, fechaEntrada);
         int costo = costoTotal(numero, dias);
         Reservacion reservacion = new Reservacion(formatoFechaSql(fechaEntrada), formatoFechaSql(fechaSalida), numero, dias, costo);
@@ -188,6 +208,7 @@ public class Principal extends javax.swing.JFrame {
             //Llamado al Dialog que manda un mensaje que se ha realizado correctamente el ingreso de información en la base de datos
             JOptionPane.showMessageDialog(null, "Se han creado la reservación");
             modificarEstatusHabitacion(numero);
+            contadorHoras(dias);
             //Método que limpia las cajas de texto de la interface
             limpiarCampos();
         } else {
@@ -228,7 +249,7 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         tableReser = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
-        jLabelTime = new javax.swing.JLabel();
+        jLabelTimeCont = new javax.swing.JLabel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -327,16 +348,12 @@ public class Principal extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel7.setText("Lista de reservaciones actuales");
 
-        jLabelTime.setText("jLabel8");
+        jLabelTimeCont.setText("jLabel8");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(153, 153, 153))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
@@ -351,32 +368,27 @@ public class Principal extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jdtFinish, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(198, 198, 198)
-                                .addComponent(jLabel3))
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 675, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel3)
+                                .addGap(174, 174, 174))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(207, 207, 207)
-                                .addComponent(jLabel6)))
-                        .addGap(14, 14, 14)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel6)
+                                .addGap(220, 220, 220)))))
+                .addContainerGap(420, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addComponent(btnCrearReservacion)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(313, 313, 313)
                         .addComponent(btnLimpiar))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(35, 35, 35)
                         .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jtfIdentificador, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(113, 113, 113))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(261, 261, 261)
+                        .addComponent(jtfIdentificador, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(197, 197, 197)
                         .addComponent(jLabel7))
@@ -385,15 +397,21 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 675, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(254, 254, 254)
-                        .addComponent(jLabelTime, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabelTimeCont, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(237, 237, 237)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 675, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(161, 288, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(14, 14, 14)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -406,23 +424,23 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jdtStart, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(2, 2, 2)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jtfIdentificador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnLimpiar)
-                    .addComponent(btnCrearReservacion))
+                    .addComponent(btnCrearReservacion)
+                    .addComponent(btnLimpiar))
                 .addGap(26, 26, 26)
                 .addComponent(jLabel7)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                .addComponent(jLabelTime)
-                .addGap(19, 19, 19))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addComponent(jLabelTimeCont)
+                .addGap(42, 42, 42))
         );
 
         pack();
@@ -495,7 +513,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JLabel jLabelTime;
+    private javax.swing.JLabel jLabelTimeCont;
     private com.toedter.components.JLocaleChooser jLocaleChooser1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

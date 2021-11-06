@@ -19,7 +19,7 @@ public class Estamcia {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         // TODO code application logic here
         
         //Instancia de la clase EmpleadoDAO
@@ -80,8 +80,11 @@ public class Estamcia {
             } else {
                 segundos--;
             }
+            System.out.println("segundos" + segundos);
+            System.out.println("minutos" + minutos);
+            System.out.println("horas:" + horas);
 
-            // Thread.sleep(1000);
+             Thread.sleep(1000);
             
         }
 
