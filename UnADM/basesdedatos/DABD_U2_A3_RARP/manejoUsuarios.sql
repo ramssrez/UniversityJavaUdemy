@@ -16,3 +16,9 @@ DROP USER 'RaulRamirez'@'localhost' IDENTIFIED BY 'passRR';
 
 /* Asignación de permisos a la base de datos */
 GRANT INSERT, SELECT ON es1921023412.* to 'RaulRamirez'@'localhost';
+
+/* Muestra el usuario  en donde nos ubicamos */
+SELECT CURRENT_USER();
+
+/* Muestra los permisos del usuario */
+SHOW GRANTS;
