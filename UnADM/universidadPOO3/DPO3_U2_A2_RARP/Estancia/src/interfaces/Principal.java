@@ -8,7 +8,9 @@ import database.ReservacionDAO;
 import java.util.Date;
 import java.sql.*;
 import java.util.List;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import objetos.Habitacion;
 import objetos.Reservacion;
@@ -21,6 +23,7 @@ public class Principal extends javax.swing.JFrame {
     private List<Reservacion> listaReservacionGlobal;
     private int costoHabitacion;
     private Thread hilo;
+    private int contador = 1;
 
     /**
      * Creates new form Principal
@@ -159,7 +162,7 @@ public class Principal extends javax.swing.JFrame {
         return costoTotal;
     }
 
-    public void contadorHoras(int dias) {
+    public void contadorHoras(int dias, int i) {
         hilo = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -180,15 +183,12 @@ public class Principal extends javax.swing.JFrame {
                         } else {
                             segundos--;
                         }
-                        String seg = String.valueOf(segundos);
-                        String min = String.valueOf(minutos);
-                        String hour = String.valueOf(horas);
-                        jLabelTimeCont.setText("H:" + horas + " M: " +minutos + " S: " + segundos);
+                        //jLabelTimeCont.setText("H:" + horas + " M: " +minutos + " S: " + segundos);
+                        System.out.println("Habitacion: " + i + " H:" + horas + " M: " +minutos + " S: " + segundos);
                         Thread.sleep(1000);
                     } catch (InterruptedException ex) {
                         System.out.println("Error: " + ex.getMessage());
                     }
-
                 }
             }
         });
@@ -205,10 +205,11 @@ public class Principal extends javax.swing.JFrame {
         ReservacionDAO rdao = new ReservacionDAO();
         int entero = rdao.insertar(reservacion);
         if (entero > 0) {
+            System.out.println("i: " + contador);
             //Llamado al Dialog que manda un mensaje que se ha realizado correctamente el ingreso de información en la base de datos
             JOptionPane.showMessageDialog(null, "Se han creado la reservación");
             modificarEstatusHabitacion(numero);
-            contadorHoras(dias);
+            contadorHoras(dias,contador);
             //Método que limpia las cajas de texto de la interface
             limpiarCampos();
         } else {
@@ -217,6 +218,7 @@ public class Principal extends javax.swing.JFrame {
             //Método que limpia las cajas de texto de la interface
             limpiarCampos();
         }
+        contador++;
     }
 
     /**
@@ -249,7 +251,17 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         tableReser = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
+        jPanelTimes = new javax.swing.JPanel();
         jLabelTimeCont = new javax.swing.JLabel();
+        jLabelTimeCont1 = new javax.swing.JLabel();
+        jLabelTimeCont2 = new javax.swing.JLabel();
+        jLabelTimeCont3 = new javax.swing.JLabel();
+        jLabelTimeCont4 = new javax.swing.JLabel();
+        jLabelTimeCont5 = new javax.swing.JLabel();
+        jLabelTimeCont6 = new javax.swing.JLabel();
+        jLabelTimeCont7 = new javax.swing.JLabel();
+        jLabelTimeCont8 = new javax.swing.JLabel();
+        jLabelTimeCont9 = new javax.swing.JLabel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -327,19 +339,19 @@ public class Principal extends javax.swing.JFrame {
         tableReser.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         tableReser.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {},
-                {},
-                {},
-                {},
-                {},
-                {},
-                {},
-                {},
-                {},
-                {}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6"
             }
         ));
         tableReser.setFocusable(false);
@@ -349,6 +361,68 @@ public class Principal extends javax.swing.JFrame {
         jLabel7.setText("Lista de reservaciones actuales");
 
         jLabelTimeCont.setText("jLabel8");
+
+        jLabelTimeCont1.setText("jLabel8");
+
+        jLabelTimeCont2.setText("jLabel8");
+
+        jLabelTimeCont3.setText("jLabel8");
+
+        jLabelTimeCont4.setText("jLabel8");
+
+        jLabelTimeCont5.setText("jLabel8");
+
+        jLabelTimeCont6.setText("jLabel8");
+
+        jLabelTimeCont7.setText("jLabel8");
+
+        jLabelTimeCont8.setText("jLabel8");
+
+        jLabelTimeCont9.setText("jLabel8");
+
+        javax.swing.GroupLayout jPanelTimesLayout = new javax.swing.GroupLayout(jPanelTimes);
+        jPanelTimes.setLayout(jPanelTimesLayout);
+        jPanelTimesLayout.setHorizontalGroup(
+            jPanelTimesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelTimesLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanelTimesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelTimeCont9, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelTimeCont8, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelTimeCont7, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelTimeCont6, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelTimeCont5, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelTimeCont4, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelTimeCont3, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelTimeCont2, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelTimeCont1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelTimeCont, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(214, 214, 214))
+        );
+        jPanelTimesLayout.setVerticalGroup(
+            jPanelTimesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelTimesLayout.createSequentialGroup()
+                .addComponent(jLabelTimeCont)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelTimeCont1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelTimeCont2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelTimeCont3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelTimeCont4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelTimeCont5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelTimeCont6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelTimeCont7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelTimeCont8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelTimeCont9)
+                .addGap(0, 2, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -376,7 +450,7 @@ public class Principal extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel6)
                                 .addGap(220, 220, 220)))))
-                .addContainerGap(420, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -388,23 +462,25 @@ public class Principal extends javax.swing.JFrame {
                         .addGap(35, 35, 35)
                         .addComponent(jLabel5)
                         .addGap(261, 261, 261)
-                        .addComponent(jtfIdentificador, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(197, 197, 197)
-                        .addComponent(jLabel7))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 675, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(254, 254, 254)
-                        .addComponent(jLabelTimeCont, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jtfIdentificador, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(237, 237, 237)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 675, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(161, 288, Short.MAX_VALUE))
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 675, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(197, 197, 197)
+                        .addComponent(jLabel7))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 675, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanelTimes, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(226, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -424,7 +500,7 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jdtStart, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -437,10 +513,10 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addComponent(jLabel7)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
-                .addComponent(jLabelTimeCont)
-                .addGap(42, 42, 42))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanelTimes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(56, 56, 56))
         );
 
         pack();
@@ -514,7 +590,17 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabelTimeCont;
+    private javax.swing.JLabel jLabelTimeCont1;
+    private javax.swing.JLabel jLabelTimeCont2;
+    private javax.swing.JLabel jLabelTimeCont3;
+    private javax.swing.JLabel jLabelTimeCont4;
+    private javax.swing.JLabel jLabelTimeCont5;
+    private javax.swing.JLabel jLabelTimeCont6;
+    private javax.swing.JLabel jLabelTimeCont7;
+    private javax.swing.JLabel jLabelTimeCont8;
+    private javax.swing.JLabel jLabelTimeCont9;
     private com.toedter.components.JLocaleChooser jLocaleChooser1;
+    private javax.swing.JPanel jPanelTimes;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
