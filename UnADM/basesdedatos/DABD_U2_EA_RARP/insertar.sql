@@ -11,3 +11,7 @@ INSERT INTO lomitos.size (descripcion) VALUES ('Chico');
 INSERT INTO lomitos.size (descripcion) VALUES ('Mediano');
 INSERT INTO lomitos.size (descripcion) VALUES ('Grande');
 INSERT INTO lomitos.size (descripcion) VALUES ('Extra Grande');
+
+/* Insertar datos en la tabla sexo */
+INSERT INTO lomitos.sexo (descripcion) VALUES ('Macho');
+INSERT INTO lomitos.sexo (descripcion) VALUES ('Hembra');
