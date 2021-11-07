@@ -2,13 +2,40 @@
 CREATE DATABASE lomitos ;
 USE lomitos ;
 
-
+/* Tabla de estado */
 CREATE TABLE lomitos.estado (
   id INT NOT NULL AUTO_INCREMENT,
   nombre VARCHAR(45) NULL,
   PRIMARY KEY (id)
 );
 
+/* Tabla de raza */
+CREATE TABLE lomitos.raza (
+  id INT NOT NULL AUTO_INCREMENT,
+  descripcion VARCHAR(45) NULL,
+  PRIMARY KEY (id)
+);
+
+/* Tabla de sexo */
+CREATE TABLE lomitos.sexo (
+  id INT NOT NULL AUTO_INCREMENT,
+  descripcion VARCHAR(45) NULL,
+  PRIMARY KEY (id)
+);
+
+/* Tabla de tamaño */
+CREATE TABLE lomitos.size (
+  id INT NOT NULL AUTO_INCREMENT,
+  descripcion VARCHAR(45) NULL,
+  PRIMARY KEY (id)
+);
+
+/* Tabla de color */
+CREATE TABLE lomitos.color (
+  id INT NOT NULL AUTO_INCREMENT,
+  descripcion VARCHAR(45) NULL,
+  PRIMARY KEY (id))
+ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- Table lomitos.direcciones
@@ -54,52 +81,6 @@ CREATE TABLE IF NOT EXISTS lomitos.adoptantes (
 ENGINE = InnoDB;
 
 
--- -----------------------------------------------------
--- Table lomitos.raza
--- -----------------------------------------------------
-DROP TABLE IF EXISTS lomitos.raza ;
-
-CREATE TABLE IF NOT EXISTS lomitos.raza (
-  id INT NOT NULL AUTO_INCREMENT,
-  descripcion VARCHAR(45) NULL,
-  PRIMARY KEY (id))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table lomitos.sexo
--- -----------------------------------------------------
-DROP TABLE IF EXISTS lomitos.sexo ;
-
-CREATE TABLE IF NOT EXISTS lomitos.sexo (
-  id INT NOT NULL AUTO_INCREMENT,
-  descripcion VARCHAR(45) NULL,
-  PRIMARY KEY (id))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table lomitos.size
--- -----------------------------------------------------
-DROP TABLE IF EXISTS lomitos.size ;
-
-CREATE TABLE IF NOT EXISTS lomitos.size (
-  id INT NOT NULL AUTO_INCREMENT,
-  descripcion VARCHAR(45) NULL,
-  PRIMARY KEY (id))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table lomitos.color
--- -----------------------------------------------------
-DROP TABLE IF EXISTS lomitos.color ;
-
-CREATE TABLE IF NOT EXISTS lomitos.color (
-  id INT NOT NULL AUTO_INCREMENT,
-  descripcion VARCHAR(45) NULL,
-  PRIMARY KEY (id))
-ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
