@@ -37,12 +37,8 @@ CREATE TABLE lomitos.color (
   PRIMARY KEY (id))
 ENGINE = InnoDB;
 
--- -----------------------------------------------------
--- Table lomitos.direcciones
--- -----------------------------------------------------
-DROP TABLE IF EXISTS lomitos.direcciones ;
-
-CREATE TABLE IF NOT EXISTS lomitos.direcciones (
+/* Tabla direcciones */
+CREATE TABLE lomitos.direcciones (
   id INT NOT NULL AUTO_INCREMENT,
   calle VARCHAR(45) NULL,
   colonia VARCHAR(45) NULL,
@@ -54,16 +50,11 @@ CREATE TABLE IF NOT EXISTS lomitos.direcciones (
     FOREIGN KEY (id_estado)
     REFERENCES lomitos.estado (id)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+    ON UPDATE NO ACTION
+);
 
-
--- -----------------------------------------------------
--- Table lomitos.adoptantes
--- -----------------------------------------------------
-DROP TABLE IF EXISTS lomitos.adoptantes ;
-
-CREATE TABLE IF NOT EXISTS lomitos.adoptantes (
+/* Tabla adoptantes */
+CREATE TABLE lomitos.adoptantes (
   id INT NOT NULL AUTO_INCREMENT,
   nombre VARCHAR(45) NULL,
   apellido_paterno VARCHAR(45) NULL,
@@ -77,18 +68,11 @@ CREATE TABLE IF NOT EXISTS lomitos.adoptantes (
     FOREIGN KEY (id_direccion)
     REFERENCES lomitos.direcciones (id)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+    ON UPDATE NO ACTION
+);
 
-
-
-
--- -----------------------------------------------------
--- Table lomitos.refugios
--- -----------------------------------------------------
-DROP TABLE IF EXISTS lomitos.refugios ;
-
-CREATE TABLE IF NOT EXISTS lomitos.refugios (
+/* Tabla refugios */
+CREATE TABLE lomitos.refugios (
   id INT NOT NULL AUTO_INCREMENT,
   nombre VARCHAR(45) NULL,
   id_direccion INT NOT NULL,
@@ -98,16 +82,11 @@ CREATE TABLE IF NOT EXISTS lomitos.refugios (
     FOREIGN KEY (id_direccion)
     REFERENCES lomitos.direcciones (id)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+    ON UPDATE NO ACTION
+);
 
-
--- -----------------------------------------------------
--- Table lomitos.perros
--- -----------------------------------------------------
-DROP TABLE IF EXISTS lomitos.perros ;
-
-CREATE TABLE IF NOT EXISTS lomitos.perros (
+/* Tabla perros */
+CREATE TABLE lomitos.perros (
   id INT NOT NULL AUTO_INCREMENT,
   nombre VARCHAR(45) NULL,
   id_raza INT NOT NULL,
@@ -152,15 +131,10 @@ CREATE TABLE IF NOT EXISTS lomitos.perros (
     FOREIGN KEY (id_refugio)
     REFERENCES lomitos.refugios (id)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+    ON UPDATE NO ACTION
+);
 
-
--- -----------------------------------------------------
--- Table lomitos.solicitudes
--- -----------------------------------------------------
-DROP TABLE IF EXISTS lomitos.solicitudes ;
-
+/* Tabla solicitudes */
 CREATE TABLE IF NOT EXISTS lomitos.solicitudes (
   id INT NOT NULL AUTO_INCREMENT,
   fecha_solicitud VARCHAR(45) NULL,
@@ -178,10 +152,5 @@ CREATE TABLE IF NOT EXISTS lomitos.solicitudes (
     FOREIGN KEY (id_adoptante)
     REFERENCES lomitos.adoptantes (id)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
-SET SQL_MODE=@OLD_SQL_MODE;
-SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
-SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+    ON UPDATE NO ACTION
+);
