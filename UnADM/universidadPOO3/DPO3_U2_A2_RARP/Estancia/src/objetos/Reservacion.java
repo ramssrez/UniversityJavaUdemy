@@ -11,6 +11,7 @@ import java.sql.Date;
  */
 public class Reservacion {
 
+    //Declaración de atributos de la clase Reservación
     private int idReservacion;
     private Date fechaEntrada;
     private Date fechaSalida;
@@ -19,9 +20,11 @@ public class Reservacion {
     private int costoTotal;
     private int numeroHabitacion;
 
+    //Constructor vacio
     public Reservacion() {
     }
 
+    //Contructor con atributos de la clase
     public Reservacion(Date fechaEntrada, Date fechaSalida, int idHabitacion, int dias, int costo_total) {
         this.fechaEntrada = fechaEntrada;
         this.fechaSalida = fechaSalida;
@@ -38,7 +41,8 @@ public class Reservacion {
         this.costoTotal = costoTotal;
         this.numeroHabitacion = numero_habitacion;
     }
-    
+
+    //Métodos getters y setter de la clase
     public int getIdReservacion() {
         return idReservacion;
     }
@@ -91,6 +95,7 @@ public class Reservacion {
         this.idHabitacion = idHabitacion;
     }
 
+    //Método ToString que imprime los datos de la clase
     @Override
     public String toString() {
         return "Reservacion{" + "id_reservacion=" + idReservacion + ", fechaEntrada=" + fechaEntrada + ", fechaSalida=" + fechaSalida + ", idHabitacion=" + idHabitacion + ", dias=" + dias + ", costoTotal=" + costoTotal + ", numero_habitacion=" + numeroHabitacion + '}';

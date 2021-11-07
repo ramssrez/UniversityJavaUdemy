@@ -9,15 +9,18 @@ package objetos;
  */
 public class Habitacion {
 
+    //Declaración de atributos de la clase Habitación
     private int idHabitacion;
     private int numeroHabitacion;
     private String status;
     private String tipoHabitacion;
     private int costoHabitacion;
 
+    //Constructor vacio
     public Habitacion() {
     }
 
+    //Contructor con atributos de la clase
     public Habitacion(int idHabitacion, int numeroHabitacion, String status, String tipoHabitacion, int costoHabitacion) {
         this.idHabitacion = idHabitacion;
         this.numeroHabitacion = numeroHabitacion;
@@ -26,6 +29,7 @@ public class Habitacion {
         this.costoHabitacion = costoHabitacion;
     }
 
+    //Métodos getters y setter de la clase
     public int getIdHabitacion() {
         return idHabitacion;
     }
@@ -62,6 +66,7 @@ public class Habitacion {
         this.costoHabitacion = costoHabitacion;
     }
 
+    //Método ToString que imprime los datos de la clase
     @Override
     public String toString() {
         return "Habitacion{" + "idHabitacion=" + idHabitacion + ", tipoHabitacion=" + tipoHabitacion + ", numeroHabitacion=" + numeroHabitacion + ", status=" + status + ", costoHabitacion=" + costoHabitacion + '}';
