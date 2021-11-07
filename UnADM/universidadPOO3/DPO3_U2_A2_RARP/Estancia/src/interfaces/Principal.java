@@ -15,6 +15,7 @@ import objetos.Reservacion;
 
 public class Principal extends javax.swing.JFrame {
 
+    //Declaración de variables necesarias
     private DefaultTableModel dtm;
     private DefaultTableModel dtmReservaiones;
     private List<Habitacion> listaHabitacionGlobal;
@@ -32,10 +33,12 @@ public class Principal extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         //Sentencia que desactiva el minimizar y maximizar de las ventanas principales
         this.setResizable(false);
+        //Llamado a los metodos que retornan la información de la base de datos
         obtenerDatos();
         obtenerDatosReservacion();
     }
 
+    //Creación de 
     private DefaultTableModel setTitulos() {
         dtm = new DefaultTableModel();
         dtm.addColumn("Id Habitacioón");
