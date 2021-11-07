@@ -38,7 +38,7 @@ public class Principal extends javax.swing.JFrame {
         obtenerDatosReservacion();
     }
 
-    //Creación de 
+    //Creación de los titulos de la tabla de habitaciones
     private DefaultTableModel setTitulos() {
         dtm = new DefaultTableModel();
         dtm.addColumn("Id Habitacioón");
@@ -49,6 +49,7 @@ public class Principal extends javax.swing.JFrame {
         return dtm;
     }
 
+    //Creación de los titulos de la tabla de reservaciones
     private DefaultTableModel setTitulosReserva() {
         dtmReservaiones = new DefaultTableModel();
         dtmReservaiones.addColumn("Id Reservación");
@@ -60,11 +61,15 @@ public class Principal extends javax.swing.JFrame {
         return dtmReservaiones;
     }
 
+    //Método que retorna la información de la base de datos de las habitaciones
     private void obtenerDatos() {
+        //Implementacion de las sentencias de MySQL 
         HabitacionDAO habitacionDAO = new HabitacionDAO();
         listaHabitacionGlobal = habitacionDAO.seleccionarLista();
+        //Implementacion de los titulos
         setTitulos();
         Object[] fila = new Object[5];
+        //Recorrido de los objetos habitación e impresión de los datos en la tabla
         listaHabitacionGlobal.forEach(habitacion -> {
             fila[0] = habitacion.getIdHabitacion();
             fila[1] = habitacion.getNumeroHabitacion();
@@ -73,14 +78,19 @@ public class Principal extends javax.swing.JFrame {
             fila[4] = habitacion.getCostoHabitacion();
             dtm.addRow(fila);
         });
+        //Muestra de la información de la tabla
         tableData.setModel(dtm);
     }
 
+    //Método que retorna la información de la base de datos de las reservaciones
     private void obtenerDatosReservacion() {
+        //Implementacion de las sentencias de MySQL 
         ReservacionDAO rdao = new ReservacionDAO();
         listaReservacionGlobal = rdao.seleccionarLista();
+        //Implementacion de los titulos
         setTitulosReserva();
         Object[] fila = new Object[6];
+        //Recorrido de los objetos reservación e impresión de los datos en la tabla
         listaReservacionGlobal.forEach(reservacion -> {
             fila[0] = reservacion.getIdReservacion();
             fila[1] = reservacion.getFechaEntrada();
@@ -90,13 +100,17 @@ public class Principal extends javax.swing.JFrame {
             fila[5] = reservacion.getNumeroHabitacion();
             dtmReservaiones.addRow(fila);
         });
+        //Muestra de la información de la tabla
         tableReser.setModel(dtmReservaiones);
     }
 
+    //Método que modifica el estatus de la habitación con el ingreso del id
     public void modificarEstatusHabitacion(int numero) {
-        //Instancia de la clase ProductoDAO
+        //Instancia de la clase HabitacionDAO
         HabitacionDAO habitacionDAO = new HabitacionDAO();
+        //Retorno de la implemetación del metodo actualizar para el caso de no disponible
         int entero = habitacionDAO.actualizar(numero);
+        //Musetra de dialogs en caso de que se agreguen correctamente los datos a la base de datos
         if (entero > 0) {
             //Llamado al Dialog que manda un mensaje que se ha realizado correctamente el ingreso de información en la base de datos
             JOptionPane.showMessageDialog(null, "Se han modificado el status de la habitación");
@@ -110,10 +124,13 @@ public class Principal extends javax.swing.JFrame {
         }
     }
 
+    //Método que modifica el estatus de la habitación con el ingreso del id
     public void modificarEstatusHabitacionDos(int id) {
-        //Instancia de la clase ProductoDAO
+        //Instancia de la clase HabitacionDAO
         HabitacionDAO habitacionDAO = new HabitacionDAO();
+        //Retorno de la implemetación del metodo actualizar para el caso disponible
         int entero = habitacionDAO.actualizarDos(id);
+        //Musetra de dialogs en caso de que se agreguen correctamente los datos a la base de datos
         if (entero > 0) {
             //Llamado al Dialog que manda un mensaje que se ha realizado correctamente el ingreso de información en la base de datos
             JOptionPane.showMessageDialog(null, "Se han terminado una reservación");
@@ -127,6 +144,7 @@ public class Principal extends javax.swing.JFrame {
         }
     }
 
+    //Método que limpia las cajas de tecto que se estan utilizando
     private void limpiarCampos() {
         jdtStart.setDate(null);
         jdtFinish.setDate(null);
@@ -146,22 +164,14 @@ public class Principal extends javax.swing.JFrame {
         }
     }
 
-    //Calculo de los dias entre dos fechas
+    //Calculo de los dias entre dos fechas retornando la diferencia entre fechas
     public int diasEntreFechas(Date fechaSalida, Date fechaEntrada) {
+        //Implementación de milisegundos al dia
         int milisecondsByDay = 86400000;
+        //Determinación de los dias
         int dias = (int) ((fechaSalida.getTime() - fechaEntrada.getTime()) / milisecondsByDay);
+        //Retorno de los dias
         return dias;
-    }
-
-    public void cambioFechas() {
-        Date fechaEntrada = jdtStart.getDate();
-        long dE = fechaEntrada.getTime();
-        Date fechaSalida = jdtFinish.getDate();
-        long dS = fechaSalida.getTime();
-        java.sql.Date entrada = new java.sql.Date(dE);
-        JOptionPane.showMessageDialog(null, "Fecha entrada" + entrada);
-        java.sql.Date salida = new java.sql.Date(dS);
-        JOptionPane.showMessageDialog(null, "fecha Salida: " + salida);
     }
 
     public java.sql.Date formatoFechaSql(Date date) {
@@ -202,7 +212,7 @@ public class Principal extends javax.swing.JFrame {
                     } else {
                         segundos--;
                     }
-                    System.out.println("Habitacion " + i +": " + " H:" + horas + " M: " + minutos + " S: " + segundos);
+                    System.out.println("Habitacion " + i + ": " + " H:" + horas + " M: " + minutos + " S: " + segundos);
                 }
                 modificarEstatusHabitacionDos(i);
                 listaHabitacionGlobal = null;
