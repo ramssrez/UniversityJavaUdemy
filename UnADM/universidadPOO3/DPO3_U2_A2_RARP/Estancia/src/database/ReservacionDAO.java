@@ -22,7 +22,7 @@ public class ReservacionDAO {
     private static final String SQL_INSERT = "INSERT INTO reservaciones(fecha_entrada, fecha_salida, id_habitacion, dias, costo_total) VALUES(?,?,?,?,?)";
     
     private static final String SQL_SELECT = "SELECT id_reservacion, fecha_entrada, fecha_salida,dias, costo_total, no_habitacion FROM reservaciones\n"
-            + "INNER JOIN habitaciones ON habitaciones.id_habitacion = reservaciones.id_habitacion";
+            + "INNER JOIN habitaciones ON habitaciones.id_habitacion = reservaciones.id_habitacion WHERE id_estatus = 2";
 
     //Método que obtiene la lista de las habitaciones que hay en la base de datos
     public List<Reservacion> seleccionarLista() {

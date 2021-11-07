@@ -27,7 +27,7 @@ public class HabitacionDAO {
     private static final String SQL_UPDATE = "UPDATE habitaciones SET id_estatus = 2 WHERE (id_habitacion = ?)";
 
     //Definicicion de la sentencia SQL para actualizar un registro
-    private static final String SQL_UPDATE_DOS = "UPDATE habitaciones SET id_estatus = ? WHERE (id_habitacion = ?)";
+    private static final String SQL_UPDATE_DOS = "UPDATE habitaciones SET id_estatus = 1 WHERE (id_habitacion = ?)";
 
     //Método que permite actualizar un producto de la base de datos, se ingresa un objeto completo
     public int actualizar(int idHabitacion) {
@@ -65,7 +65,7 @@ public class HabitacionDAO {
     }
 
     //Método que permite actualizar un producto de la base de datos, se ingresa un objeto completo
-    public int actualizarDos(int idHabitacion, int tipoHabitacion) {
+    public int actualizarDos(int idHabitacion) {
         //Declaración del objeto del canal de conexión
         Connection conn = null;
         //Declaración del objetos de sentencias
@@ -78,8 +78,7 @@ public class HabitacionDAO {
             //Envio de sentencias SQL para insertar datos a la base de datos
             preparedStatement = conn.prepareStatement(SQL_UPDATE_DOS);
             //Envio de los parametros que se han seleccionado para poder realizar la insersión de datos
-            preparedStatement.setString(1, String.valueOf(tipoHabitacion));
-            preparedStatement.setString(2, String.valueOf(idHabitacion));
+            preparedStatement.setString(1, String.valueOf(idHabitacion));
             //Sentencia para que se realice el alza de los datos
             registros = preparedStatement.executeUpdate();
         } catch (SQLException ex) {
