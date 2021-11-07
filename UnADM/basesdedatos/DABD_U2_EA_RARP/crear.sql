@@ -42,6 +42,7 @@ CREATE TABLE lomitos.direcciones (
   id INT NOT NULL AUTO_INCREMENT,
   calle VARCHAR(45) NULL,
   colonia VARCHAR(45) NULL,
+  municipio VARCHAR(45) NULL,
   numero INT NULL,
   id_estado INT NOT NULL,
   PRIMARY KEY (id),
