@@ -135,7 +135,7 @@ CREATE TABLE lomitos.perros (
 );
 
 /* Tabla solicitudes */
-CREATE TABLE IF NOT EXISTS lomitos.solicitudes (
+CREATE TABLE lomitos.solicitudes (
   id INT NOT NULL AUTO_INCREMENT,
   fecha_solicitud VARCHAR(45) NULL,
   id_refugio INT NOT NULL,
