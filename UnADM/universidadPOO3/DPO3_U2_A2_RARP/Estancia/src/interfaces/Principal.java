@@ -174,12 +174,14 @@ public class Principal extends javax.swing.JFrame {
         return dias;
     }
 
+    //Implementación del formato en SQL
     public java.sql.Date formatoFechaSql(Date date) {
         long dateLong = date.getTime();
         java.sql.Date dateSQL = new java.sql.Date(dateLong);
         return dateSQL;
     }
 
+    //Calculo del costo total de la reservación por dias y costo de la habitación
     public int costoTotal(int numero, int dias) {
         listaHabitacionGlobal.forEach(hab -> {
             if (hab.getIdHabitacion() == numero) {
@@ -190,17 +192,20 @@ public class Principal extends javax.swing.JFrame {
         return costoTotal;
     }
 
+    //Método que realiza el calculo del contador de horas
     public void contadorHoras(int dias) {
+        //Impleentación del uso de holos
         hilo = new Thread(new Runnable() {
+            //Sobrescritura del método run del la implemnacion del hilo
             @Override
             public void run() {
+                //Multiplicacion de los dias por horas
                 int horas = dias * 24;
                 int minutos = 0, segundos = 0, i;
                 i = contador;
+                //Implementación del while para realizar el contador de horas, minutos y segundos
                 while (!(horas == 0 && minutos == 0 && segundos == 0)) {
-                    // try {
                     if (segundos == 0) {
-
                         if (minutos == 0) {
                             horas--;
                             minutos = 59;
@@ -212,33 +217,44 @@ public class Principal extends javax.swing.JFrame {
                     } else {
                         segundos--;
                     }
+                    //Impresión de las horas, minutos y segundos restantes de la reserva
                     System.out.println("Habitacion " + i + ": " + " H:" + horas + " M: " + minutos + " S: " + segundos);
                 }
+                //Modificación del estatus en la habitación en la base de datos
                 modificarEstatusHabitacionDos(i);
+                //Implementación para mostrar la información en las tablas.
                 listaHabitacionGlobal = null;
                 obtenerDatos();
                 listaReservacionGlobal = null;
                 obtenerDatosReservacion();
             }
         });
+        //Inicio del hilo
         hilo.start();
 
     }
 
+    //Método que crea las reservación y la inserta en la base de datos
     public void crearReservacion() {
+        //Retorno de la informaicón dentro de las cajas de tecto
         Date fechaEntrada = jdtStart.getDate();
         Date fechaSalida = jdtFinish.getDate();
         int numero = Integer.parseInt(jtfIdentificador.getText());
+        //Inicialización del contador en base al id de la habitación
         contador = numero;
-        System.out.println("numero = " + numero);
+        //Calculo de los dias entre dos fechas
         int dias = diasEntreFechas(fechaSalida, fechaEntrada);
         int costo = costoTotal(numero, dias);
+        //Creación del objeto reservación
         Reservacion reservacion = new Reservacion(formatoFechaSql(fechaEntrada), formatoFechaSql(fechaSalida), numero, dias, costo);
         ReservacionDAO rdao = new ReservacionDAO();
+        //Llamado del metodo para insertar datos a la base de datos
         int entero = rdao.insertar(reservacion);
+        //Musetra de dialogs en caso de que se agreguen correctamente los datos a la base de datos
         if (entero > 0) {
             //Llamado al Dialog que manda un mensaje que se ha realizado correctamente el ingreso de información en la base de datos
             JOptionPane.showMessageDialog(null, "Se han creado la reservación");
+            //Modificación del estatus de la habitación disponibles
             modificarEstatusHabitacion(numero);
             //Método que limpia las cajas de texto de la interface
             limpiarCampos();
@@ -248,6 +264,7 @@ public class Principal extends javax.swing.JFrame {
             //Método que limpia las cajas de texto de la interface
             limpiarCampos();
         }
+        //Comienzo del contador de las horas por medio de hilos
         contadorHoras(dias);
     }
 
@@ -469,18 +486,25 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-        // TODO add your handling code here:
+        //Método para limpiar los datos de los campos de texto
         limpiarCampos();
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnCrearReservacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearReservacionActionPerformed
+        //Validacion de campos cuando esten vacios
         if (validacionCamposTexto()) {
+            //Llamado al metodo para crear la reservación
             crearReservacion();
+            //Lista de habbitaciones que se obtuvieron de la base de datos como nulo
             listaHabitacionGlobal = null;
+            //Llamado al metodo para obtener los datos de la habitación
             obtenerDatos();
+            //Lista de reservaciones que se obtuvieron de la base de datos como nulo
             listaReservacionGlobal = null;
+            //Llamado al método para obtener las reservaciones de la base de datos
             obtenerDatosReservacion();
         } else {
+            //Impresión del dialog en caso de que los campos se encuentrn vacios
             JOptionPane.showMessageDialog(null, "Los campos se encuentran vacios");
         }
     }//GEN-LAST:event_btnCrearReservacionActionPerformed
