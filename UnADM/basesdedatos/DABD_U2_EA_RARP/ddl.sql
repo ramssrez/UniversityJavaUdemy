@@ -16,4 +16,12 @@ DROP FOREIGN KEY fk_perros_sexo;
 
 ALTER TABLE lomitos.perros 
 DROP INDEX fk_perros_sexo_idx ;
-;
+
+/* Creación del un rol */
+ CREATE ROLE 'analista';
+ GRANT SELECT ON lomitos.* TO analista; 
+
+ GRANT analista TO 'RaulRamirez'@'localhost';
+
+ INSERT INTO lomitos.estado (nombre) VALUES ('Aguascalientes');
+ DELETE FROM lomitos.estado WHERE (id = '5');
