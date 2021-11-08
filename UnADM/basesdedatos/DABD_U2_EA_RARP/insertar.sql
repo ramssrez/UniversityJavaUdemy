@@ -31,7 +31,7 @@ INSERT INTO lomitos.raza (descripcion) VALUES ('Hunteraway');
 INSERT INTO lomitos.raza (descripcion) VALUES ('Mixto');
 
 /* insertar datos en la tabla direcciones */
-INSERT INTO lomitos.direcciones (calle, colonia, municipio, numero, id_estado) VALUES ('Reforma', 'Centro', '222', 'Cuautemoc',  '1');
+INSERT INTO lomitos.direcciones (calle, colonia, municipio, numero, id_estado) VALUES ('Reforma', 'Centro','Cuautemoc', '222',   '1');
 INSERT INTO lomitos.direcciones (calle, colonia, municipio, numero, id_estado) VALUES ('Allende', 'La Conchita', 'Texcoco', '205', '2');
 INSERT INTO lomitos.direcciones (calle, colonia, municipio, numero, id_estado) VALUES ('Revolución', 'Sanctorum', 'Cuautlacingo', '12', '3');
 INSERT INTO lomitos.direcciones (calle, colonia, municipio, numero, id_estado) VALUES ('Lazaron Cardenas', 'Buenos Aires', 'Benito Juarez', '205', '1');
@@ -52,3 +52,16 @@ INSERT INTO lomitos.refugios (nombre, id_direccion) VALUES ('La esperanza Puebla
 INSERT INTO lomitos.perros (nombre, id_raza, id_sexo, id_size, id_color, id_adoptante, id_refugio) VALUES ('Kira', '5', '2', '2', '4', '1', '1');
 INSERT INTO lomitos.perros (nombre, id_raza, id_sexo, id_size, id_color, id_adoptante, id_refugio) VALUES ('Morena', '3', '2', '1', '1', '2', '2');
 INSERT INTO lomitos.perros (nombre, id_raza, id_sexo, id_size, id_color, id_adoptante, id_refugio) VALUES ('Sam', '2', '1', '3', '6', '3', '3');
+
+/* Insertar datos en la tabla solicitudes */
+INSERT INTO lomitos.solicitudes (fecha_solicitud, id_refugio, id_adoptante) VALUES ('2021-11-02', '1', '1');
+INSERT INTO lomitos.solicitudes (fecha_solicitud, id_refugio, id_adoptante) VALUES ('2021-11-03', '2', '2');
+INSERT INTO lomitos.solicitudes (fecha_solicitud, id_refugio, id_adoptante) VALUES ('2021-11-04', '3', '3');
+
+
+ALTER TABLE `lomitos`.`direcciones` 
+DROP FOREIGN KEY `fk_direccion_estado`;
+ALTER TABLE `lomitos`.`direcciones` 
+DROP COLUMN `id_estado`,
+DROP INDEX `fk_direccion_estado_idx` ;
+;

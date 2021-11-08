@@ -34,8 +34,8 @@ CREATE TABLE lomitos.size (
 CREATE TABLE lomitos.color (
   id INT NOT NULL AUTO_INCREMENT,
   descripcion VARCHAR(45) NULL,
-  PRIMARY KEY (id))
-ENGINE = InnoDB;
+  PRIMARY KEY (id)
+);
 
 /* Tabla direcciones */
 CREATE TABLE lomitos.direcciones (
