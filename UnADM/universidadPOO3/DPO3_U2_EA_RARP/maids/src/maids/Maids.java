@@ -5,6 +5,11 @@
  */
 package maids;
 
+import database.EmpleadoDAO;
+import java.util.ArrayList;
+import java.util.List;
+import objetos.Empleado;
+
 /**
  *
  * @author ramssrez
@@ -16,6 +21,12 @@ public class Maids {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        List<Empleado> listaEmpleados = new ArrayList<>();
+        EmpleadoDAO empleadoDAO = new EmpleadoDAO();
+        listaEmpleados = empleadoDAO.seleccionarLista();
+        listaEmpleados.forEach((empleado) -> {
+            System.out.println(empleado.toString());
+        });
     }
     
 }
