@@ -3,6 +3,7 @@
  */
 package interfaces;
 
+import database.EmpleadoDAO;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -13,7 +14,7 @@ public class RecordsObtenidos extends javax.swing.JFrame {
 
     //Declaración de variables necesarias
     private DefaultTableModel dtmRecords;
-    private List<Empleado> listaEmpleados;
+    private List<Empleado> listaEmpleadosGlobal;
     private Thread hilo;
     private int contador;
 
@@ -42,26 +43,27 @@ public class RecordsObtenidos extends javax.swing.JFrame {
         return dtmRecords;
     }
 
-//    //Método que retorna la información de la base de datos de las habitaciones
-//    private void obtenerDatos() {
-//        //Implementacion de las sentencias de MySQL 
-//        HabitacionDAO habitacionDAO = new HabitacionDAO();
-//        listaHabitacionGlobal = habitacionDAO.seleccionarLista();
-//        //Implementacion de los titulos
-//        setTitulos();
-//        Object[] fila = new Object[5];
-//        //Recorrido de los objetos habitación e impresión de los datos en la tabla
-//        listaHabitacionGlobal.forEach(habitacion -> {
-//            fila[0] = habitacion.getIdHabitacion();
-//            fila[1] = habitacion.getNumeroHabitacion();
-//            fila[2] = habitacion.getStatus();
-//            fila[3] = habitacion.getTipoHabitacion();
-//            fila[4] = habitacion.getCostoHabitacion();
-//            dtmRecords.addRow(fila);
-//        });
-//        //Muestra de la información de la tabla
-//        tableData.setModel(dtmRecords);
-//    }
+    //Método que retorna la información de la base de datos de las habitaciones
+    private void obtenerDatosEmpleados() {
+        //Implementacion de las sentencias de MySQL 
+        EmpleadoDAO empleadoDAO = new EmpleadoDAO();
+        listaEmpleados = empleadoDAO.seleccionarLista();
+        //Implementacion de los titulos
+        setTitulosTabla();
+        Object[] fila = new Object[5];
+        //Recorrido de los objetos habitación e impresión de los datos en la tabla
+        listaHabitacionGlobal.forEach(habitacion -> {
+            fila[0] = habitacion.getIdHabitacion();
+            fila[1] = habitacion.getNumeroHabitacion();
+            fila[2] = habitacion.getStatus();
+            fila[3] = habitacion.getTipoHabitacion();
+            fila[4] = habitacion.getCostoHabitacion();
+            dtmRecords.addRow(fila);
+        });
+        //Muestra de la información de la tabla
+        tableData.setModel(dtmRecords);
+    }
+    
     //Método que retorna la información de la base de datos de las reservaciones
 //    private void obtenerDatosReservacion() {
 //        //Implementacion de las sentencias de MySQL 
