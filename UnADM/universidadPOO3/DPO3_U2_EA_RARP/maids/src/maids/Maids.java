@@ -7,6 +7,7 @@ package maids;
 
 import database.EmpleadoDAO;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import objetos.Empleado;
 
@@ -27,6 +28,22 @@ public class Maids {
         listaEmpleados.forEach((empleado) -> {
             System.out.println(empleado.toString());
         });
+        Date fecha = new Date();
+        java.sql.Date fechaSQL = formatoFechaSql(fecha);
+        
+        Empleado empleado = new Empleado(fechaSQL, "Raul Ramírez Pérez", "Alba Lopez Juarez", 480, 50, 50, 120);
+        int valor = empleadoDAO.insertar(empleado);
+        if(valor > 0){
+            System.out.println("Se ha agregado datos");
+        }else{
+            System.out.println("No se han agregado datos");
+        }
+    }
+        //Implementación del formato en SQL
+    public static java.sql.Date formatoFechaSql(Date date) {
+        long dateLong = date.getTime();
+        java.sql.Date dateSQL = new java.sql.Date(dateLong);
+        return dateSQL;
     }
     
 }

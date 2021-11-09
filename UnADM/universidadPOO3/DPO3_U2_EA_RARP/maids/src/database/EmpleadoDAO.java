@@ -26,7 +26,7 @@ public class EmpleadoDAO {
     private static final String SQL_INSERT = "INSERT INTO empleados (fecha, nombre_trabajador, nombre_cliente, tiempo_trabajado, comision_obtenida, descuentos_realizados, sueldototal) "
             + "VALUES (?,?,?,?,?,?,?);";
 
-    //Método que obtiene la lista de las habitaciones que hay en la base de datos
+    //Método que obtiene la lista de los empleados que hay en la base de datos
     public List<Empleado> seleccionarLista() {
         //Declaración de variables necesarias
         List<Empleado> listaEmpleados = new ArrayList<>();
@@ -82,8 +82,8 @@ public class EmpleadoDAO {
         return listaEmpleados;
     }
 
+    //Método que inserta datos en la base de datos
     public int insertar(Empleado empleado) {
-        //Declaración de las variables necesrias para poder realizar la conexion a la base de datos.
         //Declaración del objeto del canal de conexión
         Connection conn = null;
         //Declaración del objetos de sentencias
