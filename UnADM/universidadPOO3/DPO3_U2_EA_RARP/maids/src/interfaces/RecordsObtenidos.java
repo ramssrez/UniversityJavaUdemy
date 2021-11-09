@@ -6,7 +6,6 @@ package interfaces;
 import database.EmpleadoDAO;
 import java.util.Date;
 import java.util.List;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import objetos.Empleado;
 
@@ -27,7 +26,7 @@ public class RecordsObtenidos extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         //Sentencia que desactiva el minimizar y maximizar de las ventanas principales
         this.setResizable(false);
-
+        obtenerDatosEmpleados();
     }
 
     //Creación de los titulos de la tabla de habitaciones
@@ -47,23 +46,25 @@ public class RecordsObtenidos extends javax.swing.JFrame {
     private void obtenerDatosEmpleados() {
         //Implementacion de las sentencias de MySQL 
         EmpleadoDAO empleadoDAO = new EmpleadoDAO();
-        listaEmpleados = empleadoDAO.seleccionarLista();
+        listaEmpleadosGlobal = empleadoDAO.seleccionarLista();
         //Implementacion de los titulos
         setTitulosTabla();
-        Object[] fila = new Object[5];
+        Object[] fila = new Object[7];
         //Recorrido de los objetos habitación e impresión de los datos en la tabla
-        listaHabitacionGlobal.forEach(habitacion -> {
-            fila[0] = habitacion.getIdHabitacion();
-            fila[1] = habitacion.getNumeroHabitacion();
-            fila[2] = habitacion.getStatus();
-            fila[3] = habitacion.getTipoHabitacion();
-            fila[4] = habitacion.getCostoHabitacion();
+        listaEmpleadosGlobal.forEach(empleado -> {
+            fila[0] = empleado.getFecha();
+            fila[1] = empleado.getNombreTrabajador();
+            fila[2] = empleado.getNombreCliente();
+            fila[3] = empleado.getTiempoTrabajado();
+            fila[4] = empleado.getComision();
+            fila[5] = empleado.getDescuentoRealizado();
+            fila[6] = empleado.getSueldoTotal();
             dtmRecords.addRow(fila);
         });
         //Muestra de la información de la tabla
         tableData.setModel(dtmRecords);
     }
-    
+
     //Método que retorna la información de la base de datos de las reservaciones
 //    private void obtenerDatosReservacion() {
 //        //Implementacion de las sentencias de MySQL 

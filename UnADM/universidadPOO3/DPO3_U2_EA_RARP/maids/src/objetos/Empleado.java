@@ -14,8 +14,8 @@ public class Empleado {
     private int idComisión;
     private Date fecha;
     private String nombreTrabajador;
-    private String nombre_Cliente;
-    private int tiempoTrabajador;
+    private String nombreCliente;
+    private int tiempoTrabajado;
     private int comision;
     private int descuentoRealizado;
     private int sueldoTotal;
@@ -26,8 +26,8 @@ public class Empleado {
     public Empleado(Date fecha, String nombreTrabajador, String nombre_Cliente, int tiempoTrabajador, int comision, int descuentoRealizado, int sueldoTotal) {
         this.fecha = fecha;
         this.nombreTrabajador = nombreTrabajador;
-        this.nombre_Cliente = nombre_Cliente;
-        this.tiempoTrabajador = tiempoTrabajador;
+        this.nombreCliente = nombre_Cliente;
+        this.tiempoTrabajado = tiempoTrabajador;
         this.comision = comision;
         this.descuentoRealizado = descuentoRealizado;
         this.sueldoTotal = sueldoTotal;
@@ -37,8 +37,8 @@ public class Empleado {
         this.idComisión = idComisión;
         this.fecha = fecha;
         this.nombreTrabajador = nombreTrabajador;
-        this.nombre_Cliente = nombre_Cliente;
-        this.tiempoTrabajador = tiempoTrabajador;
+        this.nombreCliente = nombre_Cliente;
+        this.tiempoTrabajado = tiempoTrabajador;
         this.comision = comision;
         this.descuentoRealizado = descuentoRealizado;
         this.sueldoTotal = sueldoTotal;
@@ -66,20 +66,20 @@ public class Empleado {
         this.nombreTrabajador = nombreTrabajador;
     }
 
-    public String getNombre_Cliente() {
-        return nombre_Cliente;
+    public String getNombreCliente() {
+        return nombreCliente;
     }
 
-    public void setNombre_Cliente(String nombre_Cliente) {
-        this.nombre_Cliente = nombre_Cliente;
+    public void setNombreCliente(String nombreCliente) {
+        this.nombreCliente = nombreCliente;
     }
 
-    public int getTiempoTrabajador() {
-        return tiempoTrabajador;
+    public int getTiempoTrabajado() {
+        return tiempoTrabajado;
     }
 
-    public void setTiempoTrabajador(int tiempoTrabajador) {
-        this.tiempoTrabajador = tiempoTrabajador;
+    public void setTiempoTrabajado(int tiempoTrabajado) {
+        this.tiempoTrabajado = tiempoTrabajado;
     }
 
     public int getComision() {
@@ -108,7 +108,7 @@ public class Empleado {
 
     @Override
     public String toString() {
-        return "Empleado{" + "idComisi\u00f3n=" + idComisión + ", fecha=" + fecha + ", nombreTrabajador=" + nombreTrabajador + ", nombre_Cliente=" + nombre_Cliente + ", tiempoTrabajador=" + tiempoTrabajador + ", comision=" + comision + ", descuentoRealizado=" + descuentoRealizado + ", sueldoTotal=" + sueldoTotal + '}';
+        return "Empleado{" + "idComisi\u00f3n=" + idComisión + ", fecha=" + fecha + ", nombreTrabajador=" + nombreTrabajador + ", nombre_Cliente=" + nombreCliente + ", tiempoTrabajador=" + tiempoTrabajado + ", comision=" + comision + ", descuentoRealizado=" + descuentoRealizado + ", sueldoTotal=" + sueldoTotal + '}';
     }
 
 }
