@@ -21,7 +21,8 @@ public class EmpleadoDAO {
     //Declaración de la sentencia a realizar para selecionar la información de los empleados
     private static final String SQL_SELECT = "SELECT id_comision, fecha, nombre_trabajador, nombre_cliente, tiempo_trabajado, comision_obtenida, "
             + "descuentos_realizados, sueldototal FROM empleados;";
-    
+
+    //Declaración de la sentencia a realiza la insersión de datos en la base de datos
     private static final String SQL_INSERT = "INSERT INTO empleados (fecha, nombre_trabajador, nombre_cliente, tiempo_trabajado, comision_obtenida, descuentos_realizados, sueldototal) "
             + "VALUES (?,?,?,?,?,?,?);";
 
@@ -57,7 +58,7 @@ public class EmpleadoDAO {
                 int descuento = resultSet.getInt("descuentos_realizados");
                 int sueldo = resultSet.getInt("sueldototal");
                 //Creación del objeto Empleado
-                empleado = new Empleado(id,fecha, nombreTrabajador, nombreCliente, tiempo, comision, descuento, sueldo);
+                empleado = new Empleado(id, fecha, nombreTrabajador, nombreCliente, tiempo, comision, descuento, sueldo);
                 //Agregación del objeto habitación a la lista
                 listaEmpleados.add(empleado);
             }
@@ -80,8 +81,8 @@ public class EmpleadoDAO {
         //Se envia el objeto empleado que se ha generado
         return listaEmpleados;
     }
-    
-    public int insertar(Reservacion reservacion) {
+
+    public int insertar(Empleado empleado) {
         //Declaración de las variables necesrias para poder realizar la conexion a la base de datos.
         //Declaración del objeto del canal de conexión
         Connection conn = null;
@@ -97,11 +98,13 @@ public class EmpleadoDAO {
             preparedStatement = conn.prepareStatement(SQL_INSERT);
             //Envio de los parametros que se han seleccionado para poder realizar la insersión de datos
             //Insersión de la la variable de tipo DateSql para la base de datos
-            preparedStatement.setDate(1, reservacion.getFechaEntrada());
-            preparedStatement.setDate(2, reservacion.getFechaSalida());
-            preparedStatement.setString(3, String.valueOf(reservacion.getIdHabitacion()));
-            preparedStatement.setString(4, String.valueOf(reservacion.getDias()));
-            preparedStatement.setString(5, String.valueOf(reservacion.getCostoTotal()));
+            preparedStatement.setDate(1, empleado.getFecha());
+            preparedStatement.setString(2, empleado.getNombreTrabajador());
+            preparedStatement.setString(3, empleado.getNombreCliente());
+            preparedStatement.setString(4, String.valueOf(empleado.getTiempoTrabajado()));
+            preparedStatement.setString(5, String.valueOf(empleado.getComision()));
+            preparedStatement.setString(6, String.valueOf(empleado.getDescuentoRealizado()));
+            preparedStatement.setString(7, String.valueOf(empleado.getSueldoTotal()));
             //Sentencia para que se realice el alza de los datos
             registros = preparedStatement.executeUpdate();
         } catch (SQLException ex) {
