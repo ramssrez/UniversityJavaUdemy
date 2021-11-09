@@ -11,7 +11,7 @@ import java.sql.Statement;
 
 public class ConexionDB {
     //Variable URL que contienen la dirección de donde se tiene que conectar la base de datos
-    private static final String JDBC_URL = "jdbc:mysql://localhost:3306/la_estancia";
+    private static final String JDBC_URL = "jdbc:mysql://localhost:3306/bd_ea";
     //Variable que contiene el usuario para la base de datos
     private static final String JDBC_USER = "root";
     //Variable que contiene la contraseña para conectarse a la base de dartos

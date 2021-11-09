@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ *Código elaborado por: Raúl Ramírez Pérez
  */
 package database;
 
@@ -10,5 +8,8 @@ package database;
  * @author ramssrez
  */
 public class EmpleadoDAO {
+        //Declaración de la sentencia a realizar para selecionar la información de los empleados
+    private static final String SQL_SELECT = "SELECT * FROM empleados;";
+
     
 }
