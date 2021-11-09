@@ -40,15 +40,17 @@ public class RecordsObtenidos extends javax.swing.JFrame {
         return dtmRecords;
     }
 
-    //Método que retorna la información de la base de datos de las habitaciones
+    //Método que retorna la información de la base de datos de los empleados
     private void obtenerDatosEmpleados() {
         //Implementacion de las sentencias de MySQL 
         EmpleadoDAO empleadoDAO = new EmpleadoDAO();
+        //Asignación de la lista obtenido de la base de datso
         listaEmpleadosGlobal = empleadoDAO.seleccionarLista();
         //Implementacion de los titulos
         setTitulosTabla();
+        //Creción de filas para los titulos de las tablas
         Object[] fila = new Object[7];
-        //Recorrido de los objetos habitación e impresión de los datos en la tabla
+        //Recorrido de los objetos empleados e impresión de los datos en la tabla
         listaEmpleadosGlobal.forEach(empleado -> {
             fila[0] = empleado.getFecha();
             fila[1] = empleado.getNombreTrabajador();
@@ -60,7 +62,7 @@ public class RecordsObtenidos extends javax.swing.JFrame {
             dtmRecords.addRow(fila);
         });
         //Muestra de la información de la tabla
-        tableData.setModel(dtmRecords);
+        tableDataEmpleados.setModel(dtmRecords);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -76,7 +78,7 @@ public class RecordsObtenidos extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        tableData = new javax.swing.JTable();
+        tableDataEmpleados = new javax.swing.JTable();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -97,7 +99,7 @@ public class RecordsObtenidos extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        tableData.setModel(new javax.swing.table.DefaultTableModel(
+        tableDataEmpleados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -108,8 +110,8 @@ public class RecordsObtenidos extends javax.swing.JFrame {
 
             }
         ));
-        tableData.setFocusable(false);
-        jScrollPane3.setViewportView(tableData);
+        tableDataEmpleados.setFocusable(false);
+        jScrollPane3.setViewportView(tableDataEmpleados);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -174,6 +176,6 @@ public class RecordsObtenidos extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable tableData;
+    private javax.swing.JTable tableDataEmpleados;
     // End of variables declaration//GEN-END:variables
 }
