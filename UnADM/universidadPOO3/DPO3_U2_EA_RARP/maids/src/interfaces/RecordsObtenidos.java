@@ -14,8 +14,6 @@ public class RecordsObtenidos extends javax.swing.JFrame {
     //Declaración de variables necesarias
     private DefaultTableModel dtmRecords;
     private List<Empleado> listaEmpleadosGlobal;
-    private Thread hilo;
-    private int contador;
 
     /**
      * Creates new form Principal
@@ -64,87 +62,6 @@ public class RecordsObtenidos extends javax.swing.JFrame {
         //Muestra de la información de la tabla
         tableData.setModel(dtmRecords);
     }
-
-    //Método que retorna la información de la base de datos de las reservaciones
-//    private void obtenerDatosReservacion() {
-//        //Implementacion de las sentencias de MySQL 
-//        ReservacionDAO rdao = new ReservacionDAO();
-//        listaReservacionGlobal = rdao.seleccionarLista();
-//        //Implementacion de los titulos
-//        setTitulosReserva();
-//        Object[] fila = new Object[6];
-//        //Recorrido de los objetos reservación e impresión de los datos en la tabla
-//        listaReservacionGlobal.forEach(reservacion -> {
-//            fila[0] = reservacion.getIdReservacion();
-//            fila[1] = reservacion.getFechaEntrada();
-//            fila[2] = reservacion.getFechaSalida();
-//            fila[3] = reservacion.getDias();
-//            fila[4] = reservacion.getCostoTotal();
-//            fila[5] = reservacion.getNumeroHabitacion();
-//            dtmReservaiones.addRow(fila);
-//        });
-//        //Muestra de la información de la tabla
-//        tableReser.setModel(dtmReservaiones);
-//    }
-    //Implementación del formato en SQL
-    public java.sql.Date formatoFechaSql(Date date) {
-        long dateLong = date.getTime();
-        java.sql.Date dateSQL = new java.sql.Date(dateLong);
-        return dateSQL;
-    }
-
-//    //Calculo del costo total de la reservación por dias y costo de la habitación
-//    public int costoTotal(int numero, int dias) {
-//        listaHabitacionGlobal.forEach(hab -> {
-//            if (hab.getIdHabitacion() == numero) {
-//                costoHabitacion = hab.getCostoHabitacion();
-//            }
-//        });
-//        int costoTotal = costoHabitacion * dias;
-//        return costoTotal;
-//    }
-//
-//    //Método que realiza el calculo del contador de horas
-//    public void contadorHoras(int dias) {
-//        //Impleentación del uso de holos
-//        hilo = new Thread(new Runnable() {
-//            //Sobrescritura del método run del la implemnacion del hilo
-//            @Override
-//            public void run() {
-//                //Multiplicacion de los dias por horas
-//                int horas = dias * 24;
-//                int minutos = 0, segundos = 0, i;
-//                i = contador;
-//                //Implementación del while para realizar el contador de horas, minutos y segundos
-//                while (!(horas == 0 && minutos == 0 && segundos == 0)) {
-//                    if (segundos == 0) {
-//                        if (minutos == 0) {
-//                            horas--;
-//                            minutos = 59;
-//                            segundos = 59;
-//                        } else if (minutos != 0) {
-//                            minutos--;
-//                            segundos = 59;
-//                        }
-//                    } else {
-//                        segundos--;
-//                    }
-//                    //Impresión de las horas, minutos y segundos restantes de la reserva
-//                    System.out.println("Habitacion " + i + ": " + " H:" + horas + " M: " + minutos + " S: " + segundos);
-//                }
-//                //Modificación del estatus en la habitación en la base de datos
-//                modificarEstatusHabitacionDos(i);
-//                //Implementación para mostrar la información en las tablas.
-//                listaHabitacionGlobal = null;
-//                obtenerDatos();
-//                listaReservacionGlobal = null;
-//                obtenerDatosReservacion();
-//            }
-//        });
-//        //Inicio del hilo
-//        hilo.start();
-//
-//    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -239,13 +156,6 @@ public class RecordsObtenidos extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(RecordsObtenidos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
