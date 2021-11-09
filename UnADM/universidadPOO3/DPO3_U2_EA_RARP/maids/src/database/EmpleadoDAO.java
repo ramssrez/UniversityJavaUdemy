@@ -44,6 +44,7 @@ public class EmpleadoDAO {
             resultSet = preparedStatement.executeQuery();
             //ciclo while que retorno los datos de la base de datos
             while (resultSet.next()) {
+                //Asignación de variables de los datos obtenidos de la base de datos
                 int id = resultSet.getInt("id_comision");
                 Date fecha = resultSet.getDate("fecha");
                 String nombreTrabajador = resultSet.getString("nombre_trabajador");
@@ -52,7 +53,6 @@ public class EmpleadoDAO {
                 int comision = resultSet.getInt("comision_obtenida");
                 int descuento = resultSet.getInt("descuentos_realizados");
                 int sueldo = resultSet.getInt("sueldototal");
-
                 //Creación del objeto Empleado
                 empleado = new Empleado(id,fecha, nombreTrabajador, nombreCliente, tiempo, comision, descuento, sueldo);
                 //Agregación del objeto habitación a la lista
