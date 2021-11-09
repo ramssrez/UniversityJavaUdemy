@@ -48,10 +48,10 @@ public class EmpleadoDAO {
                 Date fecha = resultSet.getDate("fecha");
                 String nombreTrabajador = resultSet.getString("nombre_trabajador");
                 String nombreCliente = resultSet.getString("nombre_cliente");
-                int tiempo = resultSet.getInt("nombre_cliente ");
-                int comision = resultSet.getInt("nombre_cliente ");
-                int descuento = resultSet.getInt("nombre_cliente ");
-                int sueldo = resultSet.getInt("nombre_cliente ");
+                int tiempo = resultSet.getInt("tiempo_trabajado");
+                int comision = resultSet.getInt("comision_obtenida");
+                int descuento = resultSet.getInt("descuentos_realizados");
+                int sueldo = resultSet.getInt("sueldototal");
 
                 //Creación del objeto Empleado
                 empleado = new Empleado(id,fecha, nombreTrabajador, nombreCliente, tiempo, comision, descuento, sueldo);
