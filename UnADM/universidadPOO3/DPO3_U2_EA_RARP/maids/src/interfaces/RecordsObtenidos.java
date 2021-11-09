@@ -7,12 +7,13 @@ import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import objetos.Empleado;
 
 public class RecordsObtenidos extends javax.swing.JFrame {
 
     //Declaración de variables necesarias
     private DefaultTableModel dtmRecords;
-    private int costoHabitacion;
+    private List<Empleado> listaEmpleados;
     private Thread hilo;
     private int contador;
 
@@ -29,16 +30,17 @@ public class RecordsObtenidos extends javax.swing.JFrame {
     }
 
     //Creación de los titulos de la tabla de habitaciones
-    private DefaultTableModel setTitulos() {
+    private DefaultTableModel setTitulosTabla() {
         dtmRecords = new DefaultTableModel();
-        dtmRecords.addColumn("Id Habitacioón");
-        dtmRecords.addColumn("Número Habitación");
-        dtmRecords.addColumn("Estatus");
-        dtmRecords.addColumn("Tipo");
-        dtmRecords.addColumn("Costo");
+        dtmRecords.addColumn("Fecha");
+        dtmRecords.addColumn("Trabajador");
+        dtmRecords.addColumn("Cliente");
+        dtmRecords.addColumn("Tiempo Trabajado");
+        dtmRecords.addColumn("Comisión");
+        dtmRecords.addColumn("Descuento");
+        dtmRecords.addColumn("Sueldo Obtenido");
         return dtmRecords;
     }
-
 
 //    //Método que retorna la información de la base de datos de las habitaciones
 //    private void obtenerDatos() {
@@ -140,8 +142,6 @@ public class RecordsObtenidos extends javax.swing.JFrame {
 //        hilo.start();
 //
 //    }
-
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
