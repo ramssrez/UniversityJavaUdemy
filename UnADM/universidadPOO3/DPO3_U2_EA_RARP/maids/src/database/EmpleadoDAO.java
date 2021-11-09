@@ -10,21 +10,24 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import objetos.Empleado;
 
 /**
  *
  * @author ramssrez
  */
 public class EmpleadoDAO {
+
     //Declaración de la sentencia a realizar para selecionar la información de los empleados
-    private static final String SQL_SELECT = "SELECT id_comision, fecha, nombre_trabajador, nombre_cliente "
-            + "FROM empleados;";
+    private static final String SQL_SELECT = "SELECT id_comision, fecha, nombre_trabajador, nombre_cliente, tiempo_trabajado, comision_obtenida, "
+            + "descuentos_realizados, sueldototal FROM empleados;";
 
     //Método que obtiene la lista de las habitaciones que hay en la base de datos
-    public void seleccionarLista() {
+    public List<Empleado> seleccionarLista() {
         //Declaración de variables necesarias
-        ///List<Reservacion> listaReservacion = new ArrayList<>();
-        //Reservacion reservacion = null;
+        List<Empleado> listaEmpleados = new ArrayList<>();
+        //Declaración de empleado como nulo
+        Empleado empleado = null;
         //Declaración del objeto del canal de conexión
         Connection conn = null;
         //Declaración del objetos de sentencias
@@ -41,16 +44,19 @@ public class EmpleadoDAO {
             resultSet = preparedStatement.executeQuery();
             //ciclo while que retorno los datos de la base de datos
             while (resultSet.next()) {
-                int id = resultSet.getInt("id_reservacion");
-                Date fechDateEntrada = resultSet.getDate("fecha_entrada");
-                Date fechDateSalida = resultSet.getDate("fecha_salida");
-                int dias = resultSet.getInt("dias");
-                int costoTotal = resultSet.getInt("costo_total");
-                int numeroHabitacion = resultSet.getInt("no_habitacion");
-                //Creación del objeto habitación
-                reservacion = new Reservacion(id, fechDateEntrada, fechDateSalida, dias, costoTotal, numeroHabitacion);
+                int id = resultSet.getInt("id_comision");
+                Date fecha = resultSet.getDate("fecha");
+                String nombreTrabajador = resultSet.getString("nombre_trabajador");
+                String nombreCliente = resultSet.getString("costo_total");
+                int tiempo = resultSet.getInt("nombre_cliente ");
+                int comision = resultSet.getInt("nombre_cliente ");
+                int descuento = resultSet.getInt("nombre_cliente ");
+                int sueldo = resultSet.getInt("nombre_cliente ");
+
+                //Creación del objeto Empleado
+                empleado = new Empleado(fecha, nombreTrabajador, nombreCliente, tiempo, comision, descuento, sueldo);
                 //Agregación del objeto habitación a la lista
-                listaReservacion.add(reservacion);
+                listaEmpleados.add(empleado);
             }
 
         } catch (SQLException ex) {
@@ -69,7 +75,7 @@ public class EmpleadoDAO {
             }
         }
         //Se envia el objeto empleado que se ha generado
-        return listaReservacion;
+        return listaEmpleados;
     }
 
 }
