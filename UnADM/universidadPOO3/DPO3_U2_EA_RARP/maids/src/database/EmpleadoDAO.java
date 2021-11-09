@@ -47,14 +47,14 @@ public class EmpleadoDAO {
                 int id = resultSet.getInt("id_comision");
                 Date fecha = resultSet.getDate("fecha");
                 String nombreTrabajador = resultSet.getString("nombre_trabajador");
-                String nombreCliente = resultSet.getString("costo_total");
+                String nombreCliente = resultSet.getString("nombre_cliente");
                 int tiempo = resultSet.getInt("nombre_cliente ");
                 int comision = resultSet.getInt("nombre_cliente ");
                 int descuento = resultSet.getInt("nombre_cliente ");
                 int sueldo = resultSet.getInt("nombre_cliente ");
 
                 //Creación del objeto Empleado
-                empleado = new Empleado(fecha, nombreTrabajador, nombreCliente, tiempo, comision, descuento, sueldo);
+                empleado = new Empleado(id,fecha, nombreTrabajador, nombreCliente, tiempo, comision, descuento, sueldo);
                 //Agregación del objeto habitación a la lista
                 listaEmpleados.add(empleado);
             }

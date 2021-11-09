@@ -33,6 +33,19 @@ public class Empleado {
         this.sueldoTotal = sueldoTotal;
     }
 
+    public Empleado(int idComisión, Date fecha, String nombreTrabajador, String nombre_Cliente, int tiempoTrabajador, int comision, int descuentoRealizado, int sueldoTotal) {
+        this.idComisión = idComisión;
+        this.fecha = fecha;
+        this.nombreTrabajador = nombreTrabajador;
+        this.nombre_Cliente = nombre_Cliente;
+        this.tiempoTrabajador = tiempoTrabajador;
+        this.comision = comision;
+        this.descuentoRealizado = descuentoRealizado;
+        this.sueldoTotal = sueldoTotal;
+    }
+    
+    
+
     public int getIdComisión() {
         return idComisión;
     }
