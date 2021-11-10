@@ -3,11 +3,11 @@
  */
 package interfaces;
 
+import javax.swing.JOptionPane;
 
 public class AsignarTrabajo extends javax.swing.JFrame {
 
     //Declaración de variables necesarias
-
     /**
      * Creates new form Principal
      */
@@ -17,6 +17,21 @@ public class AsignarTrabajo extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         //Sentencia que desactiva el minimizar y maximizar de las ventanas principales
         this.setResizable(false);
+    }
+
+    //Método que verifica que los campos no se encuentren vacios
+    public boolean validacionCamposTexto() {
+
+        if ((jTextFieldTraUno.getText().equals("") && jTextFieldTraDos.getText().equals("") && jTextFieldTraTres.getText().equals("")
+                && jTextFieldCliUno.getText().equals("") && jTextFieldCliDos.getText().equals("") && jTextFieldCliTres.getText().equals("")
+                && jTextFecha.getText().equals(""))
+                || jTextFieldTraUno.getText().equals("") || jTextFieldTraDos.getText().equals("") || jTextFieldTraTres.getText().equals("")) {
+            //Retorno falso en caso de que sea correcto los campos vacios
+            return false;
+        } else {
+            //Retorno verdadero para el caso de que los campos esten llenos
+            return true;
+        }
     }
 
     /**
@@ -79,6 +94,11 @@ public class AsignarTrabajo extends javax.swing.JFrame {
 
         btnIniciarJornada.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnIniciarJornada.setText("Iniciar Jornada");
+        btnIniciarJornada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIniciarJornadaActionPerformed(evt);
+            }
+        });
 
         btnRegistrar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnRegistrar.setText("Registrar");
@@ -268,7 +288,7 @@ public class AsignarTrabajo extends javax.swing.JFrame {
                 .addComponent(jLabel12)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jProgressBarTraTres, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -292,7 +312,7 @@ public class AsignarTrabajo extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(406, 406, 406)
                         .addComponent(btnIniciarJornada, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(234, 234, 234)
+                        .addGap(232, 232, 232)
                         .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -303,24 +323,31 @@ public class AsignarTrabajo extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jTextFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanelTrabajdorUno2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanelTrabajdorUno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanelTrabajdorUno1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addComponent(btnIniciarJornada, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(21, 21, 21))))
+                    .addComponent(jPanelTrabajdorUno2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelTrabajdorUno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelTrabajdorUno1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnIniciarJornada, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnIniciarJornadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarJornadaActionPerformed
+        // TODO add your handling code here:
+        if(validacionCamposTexto()){
+            //Impresión del dialog en caso de que los campos se encuentrn vacios
+            JOptionPane.showMessageDialog(null, "Los campos se encuentran llenos");
+        }else{
+            //Impresión del dialog en caso de que los campos se encuentrn vacios
+            JOptionPane.showMessageDialog(null, "Los campos se encuentran vacios");
+        }
+    }//GEN-LAST:event_btnIniciarJornadaActionPerformed
 
     /**
      * @param args the command line arguments
