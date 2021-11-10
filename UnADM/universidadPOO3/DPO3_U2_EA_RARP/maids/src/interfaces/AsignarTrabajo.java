@@ -9,6 +9,9 @@ import javax.swing.JOptionPane;
 public class AsignarTrabajo extends javax.swing.JFrame {
 
     //Declaración de variables necesarias
+    private final int horas = 5;
+    private Thread hilo;
+
     /**
      * Creates new form Principal
      */
@@ -35,16 +38,48 @@ public class AsignarTrabajo extends javax.swing.JFrame {
             return true;
         }
     }
-    
+
     //Método que genera una numero aleatio entre -3 y 3
-    public int randomNumer(){
+    public int randomNumer() {
         int min = -3;
         int max = 4;
         Random random = new Random();
-        int value = random.nextInt(max-min) + min;
-        return value;
+        return random.nextInt(max - min) + min;
     }
-    
+
+    //Método que realiza el calculo del contador de horas
+    public void contadorHoras(int dias) {
+        //Impleentación del uso de holos
+        hilo = new Thread(new Runnable() {
+            //Sobrescritura del método run del la implemnacion del hilo
+            @Override
+            public void run() {
+                //Multiplicacion de los dias por horas
+                int horas = dias * 24;
+                int minutos = 0, segundos = 0, i;
+                //Implementación del while para realizar el contador de horas, minutos y segundos
+                while (!(horas == 0 && minutos == 0 && segundos == 0)) {
+                    if (segundos == 0) {
+                        if (minutos == 0) {
+                            horas--;
+                            minutos = 59;
+                            segundos = 59;
+                        } else if (minutos != 0) {
+                            minutos--;
+                            segundos = 59;
+                        }
+                    } else {
+                        segundos--;
+                    }
+                    //Impresión de las horas, minutos y segundos restantes de la reserva
+                    System.out.println("Trabajador " + ": " + " H:" + horas + " M: " + minutos + " S: " + segundos);
+                }
+            }
+        });
+        //Inicio del hilo
+        hilo.start();
+
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -352,10 +387,10 @@ public class AsignarTrabajo extends javax.swing.JFrame {
 
     private void btnIniciarJornadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarJornadaActionPerformed
         // TODO add your handling code here:
-        if(validacionCamposTexto()){
+        if (validacionCamposTexto()) {
             //Impresión del dialog en caso de que los campos se encuentrn vacios
             JOptionPane.showMessageDialog(null, "Los campos se encuentran llenos");
-        }else{
+        } else {
             //Impresión del dialog en caso de que los campos se encuentrn vacios
             JOptionPane.showMessageDialog(null, "Los campos se encuentran vacios");
         }
