@@ -20,50 +20,12 @@ public class AsignarTrabajo extends javax.swing.JFrame {
      */
     public AsignarTrabajo() {
         initComponents();
-        this.setTitle("Records Obtenidos");
+        this.setTitle("Asignar Trabajo");
         this.setLocationRelativeTo(null);
         //Sentencia que desactiva el minimizar y maximizar de las ventanas principales
         this.setResizable(false);
-        obtenerDatosEmpleados();
     }
 
-    //Creación de los titulos de la tabla de habitaciones
-    private DefaultTableModel setTitulosTabla() {
-        dtmRecords = new DefaultTableModel();
-        dtmRecords.addColumn("Fecha");
-        dtmRecords.addColumn("Trabajador");
-        dtmRecords.addColumn("Cliente");
-        dtmRecords.addColumn("Tiempo Trabajado");
-        dtmRecords.addColumn("Comisión");
-        dtmRecords.addColumn("Descuento");
-        dtmRecords.addColumn("Sueldo Obtenido");
-        return dtmRecords;
-    }
-
-    //Método que retorna la información de la base de datos de los empleados
-    private void obtenerDatosEmpleados() {
-        //Implementacion de las sentencias de MySQL 
-        EmpleadoDAO empleadoDAO = new EmpleadoDAO();
-        //Asignación de la lista obtenido de la base de datso
-        listaEmpleadosGlobal = empleadoDAO.seleccionarLista();
-        //Implementacion de los titulos
-        setTitulosTabla();
-        //Creción de filas para los titulos de las tablas
-        Object[] fila = new Object[7];
-        //Recorrido de los objetos empleados e impresión de los datos en la tabla
-        listaEmpleadosGlobal.forEach(empleado -> {
-            fila[0] = empleado.getFecha();
-            fila[1] = empleado.getNombreTrabajador();
-            fila[2] = empleado.getNombreCliente();
-            fila[3] = empleado.getTiempoTrabajado();
-            fila[4] = empleado.getComision();
-            fila[5] = empleado.getDescuentoRealizado();
-            fila[6] = empleado.getSueldoTotal();
-            dtmRecords.addRow(fila);
-        });
-        //Muestra de la información de la tabla
-        tableDataEmpleados.setModel(dtmRecords);
-    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -77,8 +39,8 @@ public class AsignarTrabajo extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jLabel9 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        tableDataEmpleados = new javax.swing.JTable();
+        btnIniciarJornada = new javax.swing.JButton();
+        btnRegistrar = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -99,35 +61,35 @@ public class AsignarTrabajo extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        tableDataEmpleados.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
+        btnIniciarJornada.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnIniciarJornada.setText("Iniciar Jornada");
 
-            }
-        ));
-        tableDataEmpleados.setFocusable(false);
-        jScrollPane3.setViewportView(tableDataEmpleados);
+        btnRegistrar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnRegistrar.setText("Registrar");
+        btnRegistrar.setToolTipText("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1159, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(106, 106, 106)
+                .addComponent(btnIniciarJornada, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(166, 166, 166)
+                .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(525, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
-                .addContainerGap())
+                .addContainerGap(324, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnIniciarJornada, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27))))
         );
 
         pack();
@@ -172,11 +134,11 @@ public class AsignarTrabajo extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnIniciarJornada;
+    private javax.swing.JButton btnRegistrar;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable tableDataEmpleados;
     // End of variables declaration//GEN-END:variables
 }
