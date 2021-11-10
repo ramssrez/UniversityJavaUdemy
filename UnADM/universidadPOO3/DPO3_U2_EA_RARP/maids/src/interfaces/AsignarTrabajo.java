@@ -3,17 +3,10 @@
  */
 package interfaces;
 
-import database.EmpleadoDAO;
-import java.util.Date;
-import java.util.List;
-import javax.swing.table.DefaultTableModel;
-import objetos.Empleado;
 
 public class AsignarTrabajo extends javax.swing.JFrame {
 
     //Declaración de variables necesarias
-    private DefaultTableModel dtmRecords;
-    private List<Empleado> listaEmpleadosGlobal;
 
     /**
      * Creates new form Principal
@@ -41,6 +34,11 @@ public class AsignarTrabajo extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         btnIniciarJornada = new javax.swing.JButton();
         btnRegistrar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jTextFecha = new javax.swing.JTextField();
+        jPanelTrabajdorUno = new javax.swing.JPanel();
+        jPanelTrabajadorDos = new javax.swing.JPanel();
+        jPanelTrabajadorTres = new javax.swing.JPanel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -68,28 +66,95 @@ public class AsignarTrabajo extends javax.swing.JFrame {
         btnRegistrar.setText("Registrar");
         btnRegistrar.setToolTipText("");
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel1.setText("Fecha");
+
+        jPanelTrabajdorUno.setBackground(new java.awt.Color(204, 204, 204));
+
+        javax.swing.GroupLayout jPanelTrabajdorUnoLayout = new javax.swing.GroupLayout(jPanelTrabajdorUno);
+        jPanelTrabajdorUno.setLayout(jPanelTrabajdorUnoLayout);
+        jPanelTrabajdorUnoLayout.setHorizontalGroup(
+            jPanelTrabajdorUnoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 372, Short.MAX_VALUE)
+        );
+        jPanelTrabajdorUnoLayout.setVerticalGroup(
+            jPanelTrabajdorUnoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jPanelTrabajadorDos.setBackground(new java.awt.Color(204, 204, 204));
+        jPanelTrabajadorDos.setPreferredSize(new java.awt.Dimension(372, 0));
+
+        javax.swing.GroupLayout jPanelTrabajadorDosLayout = new javax.swing.GroupLayout(jPanelTrabajadorDos);
+        jPanelTrabajadorDos.setLayout(jPanelTrabajadorDosLayout);
+        jPanelTrabajadorDosLayout.setHorizontalGroup(
+            jPanelTrabajadorDosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 372, Short.MAX_VALUE)
+        );
+        jPanelTrabajadorDosLayout.setVerticalGroup(
+            jPanelTrabajadorDosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 252, Short.MAX_VALUE)
+        );
+
+        jPanelTrabajadorTres.setBackground(new java.awt.Color(204, 204, 204));
+        jPanelTrabajadorTres.setPreferredSize(new java.awt.Dimension(372, 0));
+
+        javax.swing.GroupLayout jPanelTrabajadorTresLayout = new javax.swing.GroupLayout(jPanelTrabajadorTres);
+        jPanelTrabajadorTres.setLayout(jPanelTrabajadorTresLayout);
+        jPanelTrabajadorTresLayout.setHorizontalGroup(
+            jPanelTrabajadorTresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 372, Short.MAX_VALUE)
+        );
+        jPanelTrabajadorTresLayout.setVerticalGroup(
+            jPanelTrabajadorTresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(106, 106, 106)
-                .addComponent(btnIniciarJornada, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(166, 166, 166)
-                .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(525, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanelTrabajdorUno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanelTrabajadorDos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(jPanelTrabajadorTres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(326, 326, 326)
+                                .addComponent(btnIniciarJornada, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(183, 183, 183)
+                                .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(550, 550, 550)
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(324, Short.MAX_VALUE)
+                .addGap(19, 19, 19)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jTextFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnIniciarJornada, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27))))
+                    .addComponent(jPanelTrabajadorTres, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
+                    .addComponent(jPanelTrabajdorUno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelTrabajadorDos, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE))
+                .addGap(11, 11, 11)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnIniciarJornada, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38))
         );
 
         pack();
@@ -136,9 +201,14 @@ public class AsignarTrabajo extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIniciarJornada;
     private javax.swing.JButton btnRegistrar;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanelTrabajadorDos;
+    private javax.swing.JPanel jPanelTrabajadorTres;
+    private javax.swing.JPanel jPanelTrabajdorUno;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextFecha;
     // End of variables declaration//GEN-END:variables
 }
