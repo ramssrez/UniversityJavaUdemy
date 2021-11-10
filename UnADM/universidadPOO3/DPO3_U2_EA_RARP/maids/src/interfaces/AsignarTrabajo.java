@@ -72,7 +72,7 @@ public class AsignarTrabajo extends javax.swing.JFrame {
                         segundos--;
                     }
                     //Impresión de las horas, minutos y segundos restantes de la reserva
-                    System.out.println("Trabajador " + ": " + " H:" + horas + " M: " + minutos + " S: " + segundos);
+                    System.out.println("Habitacion "  + ": " + " H:" + horas + " M: " + minutos + " S: " + segundos);
                 }
             }
         });
@@ -80,7 +80,7 @@ public class AsignarTrabajo extends javax.swing.JFrame {
         hilo.start();
 
     }
-
+        
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
