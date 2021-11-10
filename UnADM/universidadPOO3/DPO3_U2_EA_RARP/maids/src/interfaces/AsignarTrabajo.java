@@ -22,10 +22,12 @@ public class AsignarTrabajo extends javax.swing.JFrame {
     //Método que verifica que los campos no se encuentren vacios
     public boolean validacionCamposTexto() {
 
-        if ((jTextFieldTraUno.getText().equals("") && jTextFieldTraDos.getText().equals("") && jTextFieldTraTres.getText().equals("")
-                && jTextFieldCliUno.getText().equals("") && jTextFieldCliDos.getText().equals("") && jTextFieldCliTres.getText().equals("")
+        if ((textTraUno.getText().equals("") && textTraDos.getText().equals("") && textTraTres.getText().equals("")
+                && textCliUno.getText().equals("") && textCliDos.getText().equals("") && textCliTres.getText().equals("")
                 && jTextFecha.getText().equals(""))
-                || jTextFieldTraUno.getText().equals("") || jTextFieldTraDos.getText().equals("") || jTextFieldTraTres.getText().equals("")) {
+                || textTraUno.getText().equals("") || textTraDos.getText().equals("") || textTraTres.getText().equals("")
+                || textCliUno.getText().equals("") || textCliDos.getText().equals("") || textCliTres.getText().equals("")
+                || jTextFecha.getText().equals("")) {
             //Retorno falso en caso de que sea correcto los campos vacios
             return false;
         } else {
@@ -54,22 +56,22 @@ public class AsignarTrabajo extends javax.swing.JFrame {
         jPanelTrabajdorUno = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextFieldTraUno = new javax.swing.JTextField();
-        jTextFieldCliUno = new javax.swing.JTextField();
+        textTraUno = new javax.swing.JTextField();
+        textCliUno = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jProgressBar1 = new javax.swing.JProgressBar();
         jPanelTrabajdorUno1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextFieldTraDos = new javax.swing.JTextField();
-        jTextFieldCliDos = new javax.swing.JTextField();
+        textTraDos = new javax.swing.JTextField();
+        textCliDos = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jProgressBarTraDos = new javax.swing.JProgressBar();
         jPanelTrabajdorUno2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jTextFieldTraTres = new javax.swing.JTextField();
-        jTextFieldCliTres = new javax.swing.JTextField();
+        textTraTres = new javax.swing.JTextField();
+        textCliTres = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jProgressBarTraTres = new javax.swing.JProgressBar();
 
@@ -115,9 +117,9 @@ public class AsignarTrabajo extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText("Nombre del Cliente 1");
 
-        jTextFieldTraUno.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        textTraUno.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
-        jTextFieldCliUno.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        textCliUno.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel8.setText("Avance %");
@@ -131,8 +133,8 @@ public class AsignarTrabajo extends javax.swing.JFrame {
                 .addGroup(jPanelTrabajdorUnoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelTrabajdorUnoLayout.createSequentialGroup()
                         .addGroup(jPanelTrabajdorUnoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextFieldCliUno, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldTraUno, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(textCliUno, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textTraUno, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(61, 61, 61))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelTrabajdorUnoLayout.createSequentialGroup()
                         .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -155,11 +157,11 @@ public class AsignarTrabajo extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel2)
                 .addGap(7, 7, 7)
-                .addComponent(jTextFieldTraUno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(textTraUno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldCliUno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(textCliUno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -177,9 +179,9 @@ public class AsignarTrabajo extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setText("Nombre del Cliente 2");
 
-        jTextFieldTraDos.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        textTraDos.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
-        jTextFieldCliDos.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        textCliDos.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel10.setText("Avance %");
@@ -193,8 +195,8 @@ public class AsignarTrabajo extends javax.swing.JFrame {
                 .addGroup(jPanelTrabajdorUno1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelTrabajdorUno1Layout.createSequentialGroup()
                         .addGroup(jPanelTrabajdorUno1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextFieldCliDos, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldTraDos, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(textCliDos, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textTraDos, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(61, 61, 61))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelTrabajdorUno1Layout.createSequentialGroup()
                         .addComponent(jProgressBarTraDos, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -217,11 +219,11 @@ public class AsignarTrabajo extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel3)
                 .addGap(7, 7, 7)
-                .addComponent(jTextFieldTraDos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(textTraDos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldCliDos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(textCliDos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -239,9 +241,9 @@ public class AsignarTrabajo extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("Nombre del Cliente 3");
 
-        jTextFieldTraTres.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        textTraTres.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
-        jTextFieldCliTres.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        textCliTres.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel12.setText("Avance %");
@@ -255,8 +257,8 @@ public class AsignarTrabajo extends javax.swing.JFrame {
                 .addGroup(jPanelTrabajdorUno2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelTrabajdorUno2Layout.createSequentialGroup()
                         .addGroup(jPanelTrabajdorUno2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextFieldCliTres, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldTraTres, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(textCliTres, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(textTraTres, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(61, 61, 61))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelTrabajdorUno2Layout.createSequentialGroup()
                         .addComponent(jProgressBarTraTres, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -279,11 +281,11 @@ public class AsignarTrabajo extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel4)
                 .addGap(7, 7, 7)
-                .addComponent(jTextFieldTraTres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(textTraTres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldCliTres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(textCliTres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addComponent(jLabel12)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -411,11 +413,11 @@ public class AsignarTrabajo extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextFecha;
-    private javax.swing.JTextField jTextFieldCliDos;
-    private javax.swing.JTextField jTextFieldCliTres;
-    private javax.swing.JTextField jTextFieldCliUno;
-    private javax.swing.JTextField jTextFieldTraDos;
-    private javax.swing.JTextField jTextFieldTraTres;
-    private javax.swing.JTextField jTextFieldTraUno;
+    private javax.swing.JTextField textCliDos;
+    private javax.swing.JTextField textCliTres;
+    private javax.swing.JTextField textCliUno;
+    private javax.swing.JTextField textTraDos;
+    private javax.swing.JTextField textTraTres;
+    private javax.swing.JTextField textTraUno;
     // End of variables declaration//GEN-END:variables
 }

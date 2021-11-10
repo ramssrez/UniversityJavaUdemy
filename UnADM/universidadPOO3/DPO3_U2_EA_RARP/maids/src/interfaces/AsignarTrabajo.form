@@ -153,8 +153,8 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="jTextFieldCliUno" min="-2" pref="281" max="-2" attributes="0"/>
-                              <Component id="jTextFieldTraUno" min="-2" pref="281" max="-2" attributes="0"/>
+                              <Component id="textCliUno" min="-2" pref="281" max="-2" attributes="0"/>
+                              <Component id="textTraUno" min="-2" pref="281" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
                       </Group>
@@ -188,11 +188,11 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
-                  <Component id="jTextFieldTraUno" min="-2" max="-2" attributes="0"/>
+                  <Component id="textTraUno" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jTextFieldCliUno" min="-2" max="-2" attributes="0"/>
+                  <Component id="textCliUno" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -219,14 +219,14 @@
             <Property name="text" type="java.lang.String" value="Nombre del Cliente 1"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextFieldTraUno">
+        <Component class="javax.swing.JTextField" name="textTraUno">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="12" style="0"/>
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextFieldCliUno">
+        <Component class="javax.swing.JTextField" name="textCliUno">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="12" style="0"/>
@@ -264,8 +264,8 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="jTextFieldCliDos" alignment="1" min="-2" pref="281" max="-2" attributes="0"/>
-                              <Component id="jTextFieldTraDos" alignment="1" min="-2" pref="281" max="-2" attributes="0"/>
+                              <Component id="textCliDos" alignment="1" min="-2" pref="281" max="-2" attributes="0"/>
+                              <Component id="textTraDos" alignment="1" min="-2" pref="281" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
                       </Group>
@@ -299,11 +299,11 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
-                  <Component id="jTextFieldTraDos" min="-2" max="-2" attributes="0"/>
+                  <Component id="textTraDos" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jTextFieldCliDos" min="-2" max="-2" attributes="0"/>
+                  <Component id="textCliDos" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -330,14 +330,14 @@
             <Property name="text" type="java.lang.String" value="Nombre del Cliente 2"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextFieldTraDos">
+        <Component class="javax.swing.JTextField" name="textTraDos">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="12" style="0"/>
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextFieldCliDos">
+        <Component class="javax.swing.JTextField" name="textCliDos">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="12" style="0"/>
@@ -375,8 +375,8 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="jTextFieldCliTres" alignment="1" min="-2" pref="281" max="-2" attributes="0"/>
-                              <Component id="jTextFieldTraTres" alignment="1" min="-2" pref="281" max="-2" attributes="0"/>
+                              <Component id="textCliTres" alignment="1" min="-2" pref="281" max="-2" attributes="0"/>
+                              <Component id="textTraTres" alignment="1" min="-2" pref="281" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
                       </Group>
@@ -410,11 +410,11 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
-                  <Component id="jTextFieldTraTres" min="-2" max="-2" attributes="0"/>
+                  <Component id="textTraTres" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jTextFieldCliTres" min="-2" max="-2" attributes="0"/>
+                  <Component id="textCliTres" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -441,14 +441,14 @@
             <Property name="text" type="java.lang.String" value="Nombre del Cliente 3"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextFieldTraTres">
+        <Component class="javax.swing.JTextField" name="textTraTres">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="12" style="0"/>
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextFieldCliTres">
+        <Component class="javax.swing.JTextField" name="textCliTres">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="12" style="0"/>
