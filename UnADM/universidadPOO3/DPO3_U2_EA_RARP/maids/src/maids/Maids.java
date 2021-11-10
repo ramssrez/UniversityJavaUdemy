@@ -9,6 +9,7 @@ import database.EmpleadoDAO;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 import objetos.Empleado;
 
 /**
@@ -30,20 +31,32 @@ public class Maids {
         });
         Date fecha = new Date();
         java.sql.Date fechaSQL = formatoFechaSql(fecha);
-        
+
         Empleado empleado = new Empleado(fechaSQL, "Raul Ramírez Pérez", "Alba Lopez Juarez", 480, 50, 50, 120);
         int valor = empleadoDAO.insertar(empleado);
-        if(valor > 0){
+        if (valor > 0) {
             System.out.println("Se ha agregado datos");
-        }else{
+        } else {
             System.out.println("No se han agregado datos");
         }
+        
+        
+        int min = -3;
+        int max = 4;
+        Random random = new Random();
+        //numeros random
+        for (int i = 0; i < 200; i++) {
+            int value = random.nextInt(max-min) + min;
+            System.out.println("value = " + value);
+        }
+
     }
-        //Implementación del formato en SQL
+    //Implementación del formato en SQL
+
     public static java.sql.Date formatoFechaSql(Date date) {
         long dateLong = date.getTime();
         java.sql.Date dateSQL = new java.sql.Date(dateLong);
         return dateSQL;
     }
-    
+
 }

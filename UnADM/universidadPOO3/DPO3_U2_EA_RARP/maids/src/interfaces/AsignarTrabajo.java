@@ -3,6 +3,7 @@
  */
 package interfaces;
 
+import java.util.Random;
 import javax.swing.JOptionPane;
 
 public class AsignarTrabajo extends javax.swing.JFrame {
@@ -21,7 +22,6 @@ public class AsignarTrabajo extends javax.swing.JFrame {
 
     //Método que verifica que los campos no se encuentren vacios
     public boolean validacionCamposTexto() {
-
         if ((textTraUno.getText().equals("") && textTraDos.getText().equals("") && textTraTres.getText().equals("")
                 && textCliUno.getText().equals("") && textCliDos.getText().equals("") && textCliTres.getText().equals("")
                 && jTextFecha.getText().equals(""))
@@ -35,6 +35,16 @@ public class AsignarTrabajo extends javax.swing.JFrame {
             return true;
         }
     }
+    
+    //Método que genera una numero aleatio entre -3 y 3
+    public int randomNumer(){
+        int min = -3;
+        int max = 4;
+        Random random = new Random();
+        int value = random.nextInt(max-min) + min;
+        return value;
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
