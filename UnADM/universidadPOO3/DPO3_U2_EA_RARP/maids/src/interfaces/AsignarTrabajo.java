@@ -4,6 +4,8 @@
 package interfaces;
 
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class AsignarTrabajo extends javax.swing.JFrame {
@@ -48,39 +50,77 @@ public class AsignarTrabajo extends javax.swing.JFrame {
     }
 
     //Método que realiza el calculo del contador de horas
-    public void contadorHoras(int dias) {
+    public void contadorHoras() {
         //Impleentación del uso de holos
         hilo = new Thread(new Runnable() {
             //Sobrescritura del método run del la implemnacion del hilo
             @Override
             public void run() {
                 //Multiplicacion de los dias por horas
-                int horas = dias * 24;
+                int horas = 8;
                 int minutos = 0, segundos = 0, i;
                 //Implementación del while para realizar el contador de horas, minutos y segundos
                 while (!(horas == 0 && minutos == 0 && segundos == 0)) {
-                    if (segundos == 0) {
-                        if (minutos == 0) {
-                            horas--;
-                            minutos = 59;
-                            segundos = 59;
-                        } else if (minutos != 0) {
-                            minutos--;
-                            segundos = 59;
+                    try {
+                        if (segundos == 0) {
+                            if (minutos == 0) {
+                                horas--;
+                                minutos = 59;
+                                segundos = 59;
+                            } else if (minutos != 0) {
+                                minutos--;
+                                segundos = 59;
+                            }
+                        } else {
+                            segundos--;
                         }
-                    } else {
-                        segundos--;
+                        //Impresión de las horas, minutos y segundos restantes de la reserva
+                        System.out.println("Habitacion " + ": " + " H:" + horas + " M: " + minutos + " S: " + segundos);
+                        Thread.sleep(100);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(AsignarTrabajo.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    //Impresión de las horas, minutos y segundos restantes de la reserva
-                    System.out.println("Habitacion "  + ": " + " H:" + horas + " M: " + minutos + " S: " + segundos);
                 }
             }
         });
         //Inicio del hilo
         hilo.start();
-
     }
-        
+
+    //Método que realiza el calculo del contador de horas
+    public void llenarProgres() {
+        int i = 0;
+        //Impleentación del uso de holos
+        hilo = new Thread(new Runnable() {
+            //Sobrescritura del método run del la implemnacion del hilo
+            @Override
+            public void run() {
+                //Multiplicacion de los dias por horas
+                int horas = 8;
+                int minutos = 0, segundos = 0;
+                //Implementación del while para realizar el contador de horas, minutos y segundos
+                for (int j = 0; j <= 100; j++) {
+                    try {
+                        Thread.sleep(100);
+
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(AsignarTrabajo.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    while (!(horas == 8)) {
+                        //i++;
+                    }
+                    jProgressBar1.setValue(j);
+                    if (jProgressBar1.getValue() == 100) {
+                        JOptionPane.showMessageDialog(null, "Se ha terminado el proceso");
+                    }
+                }
+
+            }
+        });
+        //Inicio del hilo
+        hilo.start();
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -168,6 +208,8 @@ public class AsignarTrabajo extends javax.swing.JFrame {
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel8.setText("Avance %");
+
+        jProgressBar1.setStringPainted(true);
 
         javax.swing.GroupLayout jPanelTrabajdorUnoLayout = new javax.swing.GroupLayout(jPanelTrabajdorUno);
         jPanelTrabajdorUno.setLayout(jPanelTrabajdorUnoLayout);
@@ -387,6 +429,8 @@ public class AsignarTrabajo extends javax.swing.JFrame {
 
     private void btnIniciarJornadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarJornadaActionPerformed
         // TODO add your handling code here:
+        contadorHoras();
+        llenarProgres();
         if (validacionCamposTexto()) {
             //Impresión del dialog en caso de que los campos se encuentrn vacios
             JOptionPane.showMessageDialog(null, "Los campos se encuentran llenos");
