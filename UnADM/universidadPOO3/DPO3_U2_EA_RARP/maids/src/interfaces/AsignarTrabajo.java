@@ -96,25 +96,39 @@ public class AsignarTrabajo extends javax.swing.JFrame {
             @Override
             public void run() {
                 //Multiplicacion de los dias por horas
-                int horas = 8;
+                int horas = 0;
                 int minutos = 0, segundos = 0;
-                //Implementación del while para realizar el contador de horas, minutos y segundos
-                for (int j = 0; j <= 100; j++) {
-                    try {
-                        Thread.sleep(100);
+                while (!(horas == 8)) {
 
-                    } catch (InterruptedException ex) {
-                        Logger.getLogger(AsignarTrabajo.class.getName()).log(Level.SEVERE, null, ex);
+                    if (segundos > 59) {
+                        segundos = 0;
+                        minutos++;
+                        if (minutos > 59) {
+                            minutos = 0;
+                            horas++;
+                        }
                     }
-                    while (!(horas == 8)) {
-                        //i++;
-                    }
-                    jProgressBar1.setValue(j);
-                    if (jProgressBar1.getValue() == 100) {
-                        JOptionPane.showMessageDialog(null, "Se ha terminado el proceso");
-                    }
+                    System.out.println(horas + " : " + minutos + " : " + segundos);
+
+                    segundos++;
                 }
 
+//                //Implementación del while para realizar el contador de horas, minutos y segundos
+//                for (int j = 0; j <= 100; j++) {
+//                    try {
+//                        Thread.sleep(100);
+//
+//                    } catch (InterruptedException ex) {
+//                        Logger.getLogger(AsignarTrabajo.class.getName()).log(Level.SEVERE, null, ex);
+//                    }
+//                    while (!(horas == 8)) {
+//                        //i++;
+//                    }
+//                    jProgressBar1.setValue(j);
+//                    if (jProgressBar1.getValue() == 100) {
+//                        JOptionPane.showMessageDialog(null, "Se ha terminado el proceso");
+//                    }
+//                }
             }
         });
         //Inicio del hilo
@@ -429,15 +443,15 @@ public class AsignarTrabajo extends javax.swing.JFrame {
 
     private void btnIniciarJornadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarJornadaActionPerformed
         // TODO add your handling code here:
-        contadorHoras();
+        //contadorHoras();
         llenarProgres();
-        if (validacionCamposTexto()) {
-            //Impresión del dialog en caso de que los campos se encuentrn vacios
-            JOptionPane.showMessageDialog(null, "Los campos se encuentran llenos");
-        } else {
-            //Impresión del dialog en caso de que los campos se encuentrn vacios
-            JOptionPane.showMessageDialog(null, "Los campos se encuentran vacios");
-        }
+//        if (validacionCamposTexto()) {
+//            //Impresión del dialog en caso de que los campos se encuentrn vacios
+//            JOptionPane.showMessageDialog(null, "Los campos se encuentran llenos");
+//        } else {
+//            //Impresión del dialog en caso de que los campos se encuentrn vacios
+//            JOptionPane.showMessageDialog(null, "Los campos se encuentran vacios");
+//        }
     }//GEN-LAST:event_btnIniciarJornadaActionPerformed
 
     /**
