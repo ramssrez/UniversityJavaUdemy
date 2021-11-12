@@ -6,6 +6,7 @@ package interfaces;
 import java.util.Date;
 import java.util.Random;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JProgressBar;
 import objetos.Empleado;
 
@@ -51,22 +52,22 @@ public class AsignarTrabajo extends javax.swing.JFrame {
     public int randomNumer() {
         int min = -3;
         int max = 4;
+        //Uso de la clase radom
         Random random = new Random();
         return random.nextInt(max - min) + min;
     }
 
+    //Método que realiza el calculo del salario y asignación de bonos y sueldos
     public void calculoTrabajador(int numeroRandom, int horas, String nombreTrab, String nombreCli, Date fecha) {
         int penalizacion = 0, sueldo = 0, bono = 0;
         if (numeroRandom == 0) {
             bono = BONO;
-            sueldo = SUELDO + bono;            
+            sueldo = SUELDO + bono;
         } else if (numeroRandom > 0) {
             penalizacion = PENALIZACION * numeroRandom;
-            System.out.println("penalizacion = " + penalizacion);
             sueldo = SUELDO - penalizacion;
         } else if (numeroRandom < 0) {
-            penalizacion = PENAIZACION_MENOR * numeroRandom;  
-            System.out.println("penalizacion = " + penalizacion);
+            penalizacion = PENAIZACION_MENOR * numeroRandom;
             sueldo = SUELDO + penalizacion;
         }
         Empleado empleado = new Empleado(formatoFechaSql(fecha), nombreTrab, nombreCli, horas, bono, penalizacion, sueldo);
@@ -74,13 +75,13 @@ public class AsignarTrabajo extends javax.swing.JFrame {
     }
 
     //Método que realiza el calculo del contador de horas
-    public void llenarProgres(JProgressBar jpb, JLabel label, Date fecha) {
+    public void llenarProgres(JProgressBar jpb, JLabel label, Date fecha, String nombre, String cliente) {
         //Impleentación del uso de hilos
-
         hilo = new Thread(new Runnable() {
             //Sobrescritura del método run del la implemnacion del hilo
             @Override
             public void run() {
+                //Declaración de variables necesarias
                 int random = randomNumer();
                 int horasTotalesRandom = random + HORAS_TOTALES;
                 int i = 0, j = 0;
@@ -89,8 +90,7 @@ public class AsignarTrabajo extends javax.swing.JFrame {
                 int segundosBar = horasTotalesRandom * 3600;
                 int unoPorCiento = segundosBar / 100;
                 int aux = unoPorCiento;
-                //Date fecha = jchooseDate.getDate();
-                System.out.println("fecha = " + fecha);
+                //Ciclo while para para poder realizar el contador
                 while (!(horas == horasTotalesRandom)) {
                     try {
                         Thread.sleep(1);
@@ -98,6 +98,7 @@ public class AsignarTrabajo extends javax.swing.JFrame {
                         System.out.println("exp = " + ex);
                     }
 
+                    //Uso de ciclos para poder realizar el incremento de las horas, minutos, segunso
                     if (segundos > 59) {
                         segundos = 0;
                         minutos++;
@@ -107,7 +108,7 @@ public class AsignarTrabajo extends javax.swing.JFrame {
                         }
                     }
 
-                    //System.out.println(horas + " : " + minutos + " : " + segundos);
+                    //Sentencia para poder realizar el uso de progresbar
                     String tiempo = "Tiempo: " + horas + " hora(s)";
                     label.setText(tiempo);
                     if ((aux == i)) {
@@ -118,8 +119,8 @@ public class AsignarTrabajo extends javax.swing.JFrame {
                     segundos++;
                     i++;
                 }
-
-                calculoTrabajador(random, horasTotalesRandom, "Enrique Juarez", "Rocío Hernandez", fecha);
+                //Llamdo al método para poder realizar el calculo de las variables establecidos
+                calculoTrabajador(random, horasTotalesRandom, nombre, cliente, fecha);
             }
         });
         //Inicio del hilo
@@ -131,6 +132,27 @@ public class AsignarTrabajo extends javax.swing.JFrame {
         long dateLong = date.getTime();
         java.sql.Date dateSQL = new java.sql.Date(dateLong);
         return dateSQL;
+    }
+
+    public void trabajadorUno() {
+        String nombre = textTraUno.getText();
+        String cliente = textCliUno.getText();
+        Date fecha = jchooseDate.getDate();
+        llenarProgres(jProgressBarTraUno, jAvanUno, fecha, nombre, cliente);
+    }
+
+    public void trabajadorDos() {
+        String nombre = textTraDos.getText();
+        String cliente = textCliDos.getText();
+        Date fecha = jchooseDate.getDate();
+        llenarProgres(jProgressBarTraDos, jAvaDos, fecha, nombre, cliente);
+    }
+
+    public void trabajadorTres() {
+        String nombre = textTraTres.getText();
+        String cliente = textCliTres.getText();
+        Date fecha = jchooseDate.getDate();
+        llenarProgres(jProgressBarTraTres, jAvaTres, fecha, nombre, cliente);
     }
 
     /**
@@ -215,8 +237,10 @@ public class AsignarTrabajo extends javax.swing.JFrame {
         jLabel5.setText("Nombre del Cliente 1");
 
         textTraUno.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        textTraUno.setText("Samantha Sanchez");
 
         textCliUno.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        textCliUno.setText("Ecdaly Lopez");
 
         jAvanUno.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jAvanUno.setText("Avance");
@@ -280,8 +304,10 @@ public class AsignarTrabajo extends javax.swing.JFrame {
         jLabel6.setText("Nombre del Cliente 2");
 
         textTraDos.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        textTraDos.setText("Ernesto Gonzales");
 
         textCliDos.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        textCliDos.setText("Sheila Sanchez");
 
         jAvaDos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jAvaDos.setText("Avance ");
@@ -344,8 +370,10 @@ public class AsignarTrabajo extends javax.swing.JFrame {
         jLabel7.setText("Nombre del Cliente 3");
 
         textTraTres.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        textTraTres.setText("Carlos Chavarria");
 
         textCliTres.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        textCliTres.setText("Magali Vga");
 
         jAvaTres.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jAvaTres.setText("Avance ");
@@ -447,20 +475,16 @@ public class AsignarTrabajo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIniciarJornadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarJornadaActionPerformed
-        // TODO add your handling code here:
-        //contadorHoras();
-        Date fecha = jchooseDate.getDate();
-        llenarProgres(jProgressBarTraUno, jAvanUno, fecha);
-        llenarProgres(jProgressBarTraDos, jAvaDos, fecha);
-        llenarProgres(jProgressBarTraTres, jAvaTres, fecha);
-
-//        if (validacionCamposTexto()) {
-//            //Impresión del dialog en caso de que los campos se encuentrn vacios
-//            JOptionPane.showMessageDialog(null, "Los campos se encuentran llenos");
-//        } else {
-//            //Impresión del dialog en caso de que los campos se encuentrn vacios
-//            JOptionPane.showMessageDialog(null, "Los campos se encuentran vacios");
-//        }
+        if (validacionCamposTexto()) {
+            //Impresión del dialog en caso de que los campos se encuentrn vacios
+            JOptionPane.showMessageDialog(null, "Los campos se encuentran llenos");
+            trabajadorUno();
+            trabajadorDos();
+            trabajadorTres();
+        } else {
+            //Impresión del dialog en caso de que los campos se encuentrn vacios
+            JOptionPane.showMessageDialog(null, "Los campos se encuentran vacios");
+        }
     }//GEN-LAST:event_btnIniciarJornadaActionPerformed
 
     /**
