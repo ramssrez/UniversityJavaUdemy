@@ -3,17 +3,21 @@
  */
 package interfaces;
 
+import java.util.Date;
 import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JProgressBar;
+import objetos.Empleado;
 
 public class AsignarTrabajo extends javax.swing.JFrame {
 
     //Declaración de variables necesarias
-    private final int horasTotales = 5;
+    private final int HORAS_TOTALES = 5;
+    private final int BONO = 200;
+    private final int PENALIZACION = 50;
+    private final int SUELDO = 500;
+    private final int PENAIZACION_MENOR = 100;
+
     private Thread hilo;
 
     /**
@@ -31,10 +35,10 @@ public class AsignarTrabajo extends javax.swing.JFrame {
     public boolean validacionCamposTexto() {
         if ((textTraUno.getText().equals("") && textTraDos.getText().equals("") && textTraTres.getText().equals("")
                 && textCliUno.getText().equals("") && textCliDos.getText().equals("") && textCliTres.getText().equals("")
-                && jTextFecha.getText().equals(""))
+                && jchooseDate.getDate() == null)
                 || textTraUno.getText().equals("") || textTraDos.getText().equals("") || textTraTres.getText().equals("")
                 || textCliUno.getText().equals("") || textCliDos.getText().equals("") || textCliTres.getText().equals("")
-                || jTextFecha.getText().equals("")) {
+                || jchooseDate.getDate() == null) {
             //Retorno falso en caso de que sea correcto los campos vacios
             return false;
         } else {
@@ -51,61 +55,45 @@ public class AsignarTrabajo extends javax.swing.JFrame {
         return random.nextInt(max - min) + min;
     }
 
-    //Método que realiza el calculo del contador de horas
-    public void contadorHoras() {
-        //Impleentación del uso de holos
-        hilo = new Thread(new Runnable() {
-            //Sobrescritura del método run del la implemnacion del hilo
-            @Override
-            public void run() {
-                //Multiplicacion de los dias por horas
-                int horas = 8;
-                int minutos = 0, segundos = 0, i;
-                //Implementación del while para realizar el contador de horas, minutos y segundos
-                while (!(horas == 0 && minutos == 0 && segundos == 0)) {
-                    try {
-                        if (segundos == 0) {
-                            if (minutos == 0) {
-                                horas--;
-                                minutos = 59;
-                                segundos = 59;
-                            } else if (minutos != 0) {
-                                minutos--;
-                                segundos = 59;
-                            }
-                        } else {
-                            segundos--;
-                        }
-                        //Impresión de las horas, minutos y segundos restantes de la reserva
-                        System.out.println("Habitacion " + ": " + " H:" + horas + " M: " + minutos + " S: " + segundos);
-                        Thread.sleep(100);
-                    } catch (InterruptedException ex) {
-                        Logger.getLogger(AsignarTrabajo.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-            }
-        });
-        //Inicio del hilo
-        hilo.start();
+    public void calculoTrabajador(int numeroRandom, int horas, String nombreTrab, String nombreCli, Date fecha) {
+        int penalizacion = 0, sueldo = 0, bono = 0;
+        if (numeroRandom == 0) {
+            bono = BONO;
+            sueldo = SUELDO + bono;            
+        } else if (numeroRandom > 0) {
+            penalizacion = PENALIZACION * numeroRandom;
+            System.out.println("penalizacion = " + penalizacion);
+            sueldo = SUELDO - penalizacion;
+        } else if (numeroRandom < 0) {
+            penalizacion = PENAIZACION_MENOR * numeroRandom;  
+            System.out.println("penalizacion = " + penalizacion);
+            sueldo = SUELDO + penalizacion;
+        }
+        Empleado empleado = new Empleado(formatoFechaSql(fecha), nombreTrab, nombreCli, horas, bono, penalizacion, sueldo);
+        System.out.println(empleado.toString());
     }
 
     //Método que realiza el calculo del contador de horas
-    public void llenarProgres(JProgressBar jpb, JLabel label) {
-        //Impleentación del uso de holos
+    public void llenarProgres(JProgressBar jpb, JLabel label, Date fecha) {
+        //Impleentación del uso de hilos
+
         hilo = new Thread(new Runnable() {
             //Sobrescritura del método run del la implemnacion del hilo
             @Override
             public void run() {
-                //Multiplicacion de los dias por horas
+                int random = randomNumer();
+                int horasTotalesRandom = random + HORAS_TOTALES;
                 int i = 0, j = 0;
                 int horas = 0;
                 int minutos = 0, segundos = 0;
-                int segundosBar = horasTotales * 3600;
+                int segundosBar = horasTotalesRandom * 3600;
                 int unoPorCiento = segundosBar / 100;
                 int aux = unoPorCiento;
-                while (!(horas == horasTotales)) {
+                //Date fecha = jchooseDate.getDate();
+                System.out.println("fecha = " + fecha);
+                while (!(horas == horasTotalesRandom)) {
                     try {
-                        Thread.sleep(10);
+                        Thread.sleep(1);
                     } catch (InterruptedException ex) {
                         System.out.println("exp = " + ex);
                     }
@@ -119,23 +107,30 @@ public class AsignarTrabajo extends javax.swing.JFrame {
                         }
                     }
 
-                    System.out.println(horas + " : " + minutos + " : " + segundos);
-                    String tiempo = "Tiempo: " + horas + " hora(s)"; 
+                    //System.out.println(horas + " : " + minutos + " : " + segundos);
+                    String tiempo = "Tiempo: " + horas + " hora(s)";
                     label.setText(tiempo);
                     if ((aux == i)) {
                         j++;
                         jpb.setValue(j);
-                        //String texto ="Avance " + j + "%";
-                        //jAvanUno.setText(texto);
                         aux = unoPorCiento + aux;
                     }
                     segundos++;
                     i++;
                 }
+
+                calculoTrabajador(random, horasTotalesRandom, "Enrique Juarez", "Rocío Hernandez", fecha);
             }
         });
         //Inicio del hilo
         hilo.start();
+    }
+
+    //Implementación del formato en SQL
+    public java.sql.Date formatoFechaSql(Date date) {
+        long dateLong = date.getTime();
+        java.sql.Date dateSQL = new java.sql.Date(dateLong);
+        return dateSQL;
     }
 
     /**
@@ -154,7 +149,6 @@ public class AsignarTrabajo extends javax.swing.JFrame {
         btnIniciarJornada = new javax.swing.JButton();
         btnRegistrar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jTextFecha = new javax.swing.JTextField();
         jPanelTrabajdorUno = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -176,6 +170,7 @@ public class AsignarTrabajo extends javax.swing.JFrame {
         textCliTres = new javax.swing.JTextField();
         jAvaTres = new javax.swing.JLabel();
         jProgressBarTraTres = new javax.swing.JProgressBar();
+        jchooseDate = new com.toedter.calendar.JDateChooser();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -399,8 +394,10 @@ public class AsignarTrabajo extends javax.swing.JFrame {
                 .addComponent(jAvaTres)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jProgressBarTraTres, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
+
+        jchooseDate.setDateFormatString("yyyy-MM-dd");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -411,8 +408,8 @@ public class AsignarTrabajo extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(550, 550, 550)
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jchooseDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanelTrabajdorUno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -430,11 +427,11 @@ public class AsignarTrabajo extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(23, 23, 23)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
-                    .addComponent(jTextFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
+                    .addComponent(jchooseDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanelTrabajdorUno2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanelTrabajdorUno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -452,10 +449,10 @@ public class AsignarTrabajo extends javax.swing.JFrame {
     private void btnIniciarJornadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarJornadaActionPerformed
         // TODO add your handling code here:
         //contadorHoras();
-        llenarProgres(jProgressBarTraUno,jAvanUno);
-        llenarProgres(jProgressBarTraDos, jAvaDos);
-        llenarProgres(jProgressBarTraTres, jAvaTres);
-        
+        Date fecha = jchooseDate.getDate();
+        llenarProgres(jProgressBarTraUno, jAvanUno, fecha);
+        llenarProgres(jProgressBarTraDos, jAvaDos, fecha);
+        llenarProgres(jProgressBarTraTres, jAvaTres, fecha);
 
 //        if (validacionCamposTexto()) {
 //            //Impresión del dialog en caso de que los campos se encuentrn vacios
@@ -527,7 +524,7 @@ public class AsignarTrabajo extends javax.swing.JFrame {
     private javax.swing.JProgressBar jProgressBarTraUno;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextFecha;
+    private com.toedter.calendar.JDateChooser jchooseDate;
     private javax.swing.JTextField textCliDos;
     private javax.swing.JTextField textCliTres;
     private javax.swing.JTextField textCliUno;
