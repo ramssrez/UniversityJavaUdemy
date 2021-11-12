@@ -39,14 +39,13 @@ public class Maids {
         } else {
             System.out.println("No se han agregado datos");
         }
-        
-        
+
         int min = -3;
         int max = 4;
         Random random = new Random();
         //numeros random
         for (int i = 0; i < 200; i++) {
-            int value = random.nextInt(max-min) + min;
+            int value = random.nextInt(max - min) + min;
             System.out.println("value = " + value);
         }
 

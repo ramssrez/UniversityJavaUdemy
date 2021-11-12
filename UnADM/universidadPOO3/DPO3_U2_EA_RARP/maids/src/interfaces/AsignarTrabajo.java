@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 public class AsignarTrabajo extends javax.swing.JFrame {
 
     //Declaración de variables necesarias
-    private final int horas = 5;
+    private final int horasTotales = 5;
     private Thread hilo;
 
     /**
@@ -89,17 +89,25 @@ public class AsignarTrabajo extends javax.swing.JFrame {
 
     //Método que realiza el calculo del contador de horas
     public void llenarProgres() {
-        int i = 0;
         //Impleentación del uso de holos
         hilo = new Thread(new Runnable() {
             //Sobrescritura del método run del la implemnacion del hilo
             @Override
             public void run() {
                 //Multiplicacion de los dias por horas
+                int i = 0, j = 0;
                 int horas = 0;
                 int minutos = 0, segundos = 0;
-                while (!(horas == 8)) {
-
+                int segundosBar = horasTotales * 3600;
+                int unoPorCiento = segundosBar / 100;
+                int aux = unoPorCiento;
+                while (!(horas == horasTotales)) {
+//                    try {
+//                        Thread.sleep(10);
+//                    } catch (InterruptedException ex) {
+//                        System.out.println("exp = " + ex);
+//                    }
+                    
                     if (segundos > 59) {
                         segundos = 0;
                         minutos++;
@@ -109,26 +117,16 @@ public class AsignarTrabajo extends javax.swing.JFrame {
                         }
                     }
                     System.out.println(horas + " : " + minutos + " : " + segundos);
-
+                    if ((aux == i)) {
+                        j++;
+                        jProgressBar1.setValue(j);
+                        String texto ="Avance " + j + "%";
+                        jAvanUno.setText(texto);
+                        aux = unoPorCiento + aux;
+                    }
                     segundos++;
+                    i++;
                 }
-
-//                //Implementación del while para realizar el contador de horas, minutos y segundos
-//                for (int j = 0; j <= 100; j++) {
-//                    try {
-//                        Thread.sleep(100);
-//
-//                    } catch (InterruptedException ex) {
-//                        Logger.getLogger(AsignarTrabajo.class.getName()).log(Level.SEVERE, null, ex);
-//                    }
-//                    while (!(horas == 8)) {
-//                        //i++;
-//                    }
-//                    jProgressBar1.setValue(j);
-//                    if (jProgressBar1.getValue() == 100) {
-//                        JOptionPane.showMessageDialog(null, "Se ha terminado el proceso");
-//                    }
-//                }
             }
         });
         //Inicio del hilo
@@ -157,7 +155,7 @@ public class AsignarTrabajo extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         textTraUno = new javax.swing.JTextField();
         textCliUno = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
+        jAvanUno = new javax.swing.JLabel();
         jProgressBar1 = new javax.swing.JProgressBar();
         jPanelTrabajdorUno1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -220,8 +218,8 @@ public class AsignarTrabajo extends javax.swing.JFrame {
 
         textCliUno.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel8.setText("Avance %");
+        jAvanUno.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jAvanUno.setText("Avance");
 
         jProgressBar1.setStringPainted(true);
 
@@ -249,7 +247,7 @@ public class AsignarTrabajo extends javax.swing.JFrame {
                             .addComponent(jLabel2)))
                     .addGroup(jPanelTrabajdorUnoLayout.createSequentialGroup()
                         .addGap(173, 173, 173)
-                        .addComponent(jLabel8)))
+                        .addComponent(jAvanUno)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelTrabajdorUnoLayout.setVerticalGroup(
@@ -264,7 +262,7 @@ public class AsignarTrabajo extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(textCliUno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
-                .addComponent(jLabel8)
+                .addComponent(jAvanUno)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -285,7 +283,9 @@ public class AsignarTrabajo extends javax.swing.JFrame {
         textCliDos.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel10.setText("Avance %");
+        jLabel10.setText("Avance ");
+
+        jProgressBarTraDos.setStringPainted(true);
 
         javax.swing.GroupLayout jPanelTrabajdorUno1Layout = new javax.swing.GroupLayout(jPanelTrabajdorUno1);
         jPanelTrabajdorUno1.setLayout(jPanelTrabajdorUno1Layout);
@@ -347,7 +347,9 @@ public class AsignarTrabajo extends javax.swing.JFrame {
         textCliTres.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel12.setText("Avance %");
+        jLabel12.setText("Avance ");
+
+        jProgressBarTraTres.setStringPainted(true);
 
         javax.swing.GroupLayout jPanelTrabajdorUno2Layout = new javax.swing.GroupLayout(jPanelTrabajdorUno2);
         jPanelTrabajdorUno2.setLayout(jPanelTrabajdorUno2Layout);
@@ -495,6 +497,7 @@ public class AsignarTrabajo extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIniciarJornada;
     private javax.swing.JButton btnRegistrar;
+    private javax.swing.JLabel jAvanUno;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -505,7 +508,6 @@ public class AsignarTrabajo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanelTrabajdorUno;
     private javax.swing.JPanel jPanelTrabajdorUno1;
