@@ -6,7 +6,9 @@ package interfaces;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JProgressBar;
 
 public class AsignarTrabajo extends javax.swing.JFrame {
 
@@ -88,7 +90,7 @@ public class AsignarTrabajo extends javax.swing.JFrame {
     }
 
     //Método que realiza el calculo del contador de horas
-    public void llenarProgres() {
+    public void llenarProgres(JProgressBar jpb, JLabel label) {
         //Impleentación del uso de holos
         hilo = new Thread(new Runnable() {
             //Sobrescritura del método run del la implemnacion del hilo
@@ -102,12 +104,12 @@ public class AsignarTrabajo extends javax.swing.JFrame {
                 int unoPorCiento = segundosBar / 100;
                 int aux = unoPorCiento;
                 while (!(horas == horasTotales)) {
-//                    try {
-//                        Thread.sleep(10);
-//                    } catch (InterruptedException ex) {
-//                        System.out.println("exp = " + ex);
-//                    }
-                    
+                    try {
+                        Thread.sleep(10);
+                    } catch (InterruptedException ex) {
+                        System.out.println("exp = " + ex);
+                    }
+
                     if (segundos > 59) {
                         segundos = 0;
                         minutos++;
@@ -116,12 +118,15 @@ public class AsignarTrabajo extends javax.swing.JFrame {
                             horas++;
                         }
                     }
+
                     System.out.println(horas + " : " + minutos + " : " + segundos);
+                    String tiempo = "Tiempo: " + horas + " hora(s)"; 
+                    label.setText(tiempo);
                     if ((aux == i)) {
                         j++;
-                        jProgressBar1.setValue(j);
-                        String texto ="Avance " + j + "%";
-                        jAvanUno.setText(texto);
+                        jpb.setValue(j);
+                        //String texto ="Avance " + j + "%";
+                        //jAvanUno.setText(texto);
                         aux = unoPorCiento + aux;
                     }
                     segundos++;
@@ -156,20 +161,20 @@ public class AsignarTrabajo extends javax.swing.JFrame {
         textTraUno = new javax.swing.JTextField();
         textCliUno = new javax.swing.JTextField();
         jAvanUno = new javax.swing.JLabel();
-        jProgressBar1 = new javax.swing.JProgressBar();
+        jProgressBarTraUno = new javax.swing.JProgressBar();
         jPanelTrabajdorUno1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         textTraDos = new javax.swing.JTextField();
         textCliDos = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
+        jAvaDos = new javax.swing.JLabel();
         jProgressBarTraDos = new javax.swing.JProgressBar();
         jPanelTrabajdorUno2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         textTraTres = new javax.swing.JTextField();
         textCliTres = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
+        jAvaTres = new javax.swing.JLabel();
         jProgressBarTraTres = new javax.swing.JProgressBar();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -221,7 +226,7 @@ public class AsignarTrabajo extends javax.swing.JFrame {
         jAvanUno.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jAvanUno.setText("Avance");
 
-        jProgressBar1.setStringPainted(true);
+        jProgressBarTraUno.setStringPainted(true);
 
         javax.swing.GroupLayout jPanelTrabajdorUnoLayout = new javax.swing.GroupLayout(jPanelTrabajdorUno);
         jPanelTrabajdorUno.setLayout(jPanelTrabajdorUnoLayout);
@@ -236,19 +241,20 @@ public class AsignarTrabajo extends javax.swing.JFrame {
                             .addComponent(textTraUno, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(61, 61, 61))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelTrabajdorUnoLayout.createSequentialGroup()
-                        .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jProgressBarTraUno, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(104, 104, 104))))
             .addGroup(jPanelTrabajdorUnoLayout.createSequentialGroup()
+                .addGap(125, 125, 125)
                 .addGroup(jPanelTrabajdorUnoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
                     .addGroup(jPanelTrabajdorUnoLayout.createSequentialGroup()
-                        .addGap(125, 125, 125)
-                        .addGroup(jPanelTrabajdorUnoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel2)))
-                    .addGroup(jPanelTrabajdorUnoLayout.createSequentialGroup()
-                        .addGap(173, 173, 173)
-                        .addComponent(jAvanUno)))
+                        .addGap(21, 21, 21)
+                        .addComponent(jLabel5)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelTrabajdorUnoLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jAvanUno)
+                .addGap(191, 191, 191))
         );
         jPanelTrabajdorUnoLayout.setVerticalGroup(
             jPanelTrabajdorUnoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -264,7 +270,7 @@ public class AsignarTrabajo extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addComponent(jAvanUno)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jProgressBarTraUno, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -282,8 +288,8 @@ public class AsignarTrabajo extends javax.swing.JFrame {
 
         textCliDos.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel10.setText("Avance ");
+        jAvaDos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jAvaDos.setText("Avance ");
 
         jProgressBarTraDos.setStringPainted(true);
 
@@ -311,7 +317,7 @@ public class AsignarTrabajo extends javax.swing.JFrame {
                             .addComponent(jLabel3)))
                     .addGroup(jPanelTrabajdorUno1Layout.createSequentialGroup()
                         .addGap(173, 173, 173)
-                        .addComponent(jLabel10)))
+                        .addComponent(jAvaDos)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelTrabajdorUno1Layout.setVerticalGroup(
@@ -326,7 +332,7 @@ public class AsignarTrabajo extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(textCliDos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
-                .addComponent(jLabel10)
+                .addComponent(jAvaDos)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jProgressBarTraDos, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -346,8 +352,8 @@ public class AsignarTrabajo extends javax.swing.JFrame {
 
         textCliTres.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
-        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel12.setText("Avance ");
+        jAvaTres.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jAvaTres.setText("Avance ");
 
         jProgressBarTraTres.setStringPainted(true);
 
@@ -375,7 +381,7 @@ public class AsignarTrabajo extends javax.swing.JFrame {
                             .addComponent(jLabel4)))
                     .addGroup(jPanelTrabajdorUno2Layout.createSequentialGroup()
                         .addGap(173, 173, 173)
-                        .addComponent(jLabel12)))
+                        .addComponent(jAvaTres)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelTrabajdorUno2Layout.setVerticalGroup(
@@ -390,7 +396,7 @@ public class AsignarTrabajo extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(textCliTres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
-                .addComponent(jLabel12)
+                .addComponent(jAvaTres)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jProgressBarTraTres, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(60, Short.MAX_VALUE))
@@ -446,7 +452,11 @@ public class AsignarTrabajo extends javax.swing.JFrame {
     private void btnIniciarJornadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarJornadaActionPerformed
         // TODO add your handling code here:
         //contadorHoras();
-        llenarProgres();
+        llenarProgres(jProgressBarTraUno,jAvanUno);
+        llenarProgres(jProgressBarTraDos, jAvaDos);
+        llenarProgres(jProgressBarTraTres, jAvaTres);
+        
+
 //        if (validacionCamposTexto()) {
 //            //Impresión del dialog en caso de que los campos se encuentrn vacios
 //            JOptionPane.showMessageDialog(null, "Los campos se encuentran llenos");
@@ -497,11 +507,11 @@ public class AsignarTrabajo extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIniciarJornada;
     private javax.swing.JButton btnRegistrar;
+    private javax.swing.JLabel jAvaDos;
+    private javax.swing.JLabel jAvaTres;
     private javax.swing.JLabel jAvanUno;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -512,9 +522,9 @@ public class AsignarTrabajo extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelTrabajdorUno;
     private javax.swing.JPanel jPanelTrabajdorUno1;
     private javax.swing.JPanel jPanelTrabajdorUno2;
-    private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JProgressBar jProgressBarTraDos;
     private javax.swing.JProgressBar jProgressBarTraTres;
+    private javax.swing.JProgressBar jProgressBarTraUno;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextFecha;
