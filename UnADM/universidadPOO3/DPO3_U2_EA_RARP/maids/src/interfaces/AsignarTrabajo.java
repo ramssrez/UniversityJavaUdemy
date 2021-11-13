@@ -60,7 +60,7 @@ public class AsignarTrabajo extends javax.swing.JFrame {
     }
 
     //Método que realiza el calculo del salario y asignación de bonos y sueldos
-    public void calculoTrabajador(int numeroRandom, int horas, String nombreTrab, String nombreCli, Date fecha) {
+    public void calculoTrabajador(int numeroRandom, int horas, String nombreTrab, String nombreCli, Date fecha, int entero) {
         int penalizacion = 0, sueldo = 0, bono = 0;
         if (numeroRandom == 0) {
             bono = BONO;
@@ -73,11 +73,19 @@ public class AsignarTrabajo extends javax.swing.JFrame {
             sueldo = SUELDO + penalizacion;
         }
         Empleado empleado = new Empleado(formatoFechaSql(fecha), nombreTrab, nombreCli, horas, bono, penalizacion, sueldo);
-        System.out.println(empleado.toString());
+        if(entero == 1){
+            empleado1 = empleado;
+        }
+        if(entero == 2){
+            empleado2 = empleado;
+        }
+        if(entero == 3){
+            empleado3 = empleado;
+        }
     }
 
     //Método que realiza el calculo del contador de horas
-    public void llenarProgres(JProgressBar jpb, JLabel label, Date fecha, String nombre, String cliente, String texto) {
+    public void llenarProgres(JProgressBar jpb, JLabel label, Date fecha, String nombre, String cliente, String texto, int entero) {
         //Impleentación del uso de hilos
         hilo = new Thread(new Runnable() {
             //Sobrescritura del método run del la implemnacion del hilo
@@ -122,7 +130,7 @@ public class AsignarTrabajo extends javax.swing.JFrame {
                     i++;
                 }
                 //Llamdo al método para poder realizar el calculo de las variables establecidos
-                calculoTrabajador(random, horasTotalesRandom, nombre, cliente, fecha);
+                calculoTrabajador(random, horasTotalesRandom, nombre, cliente, fecha, entero);
                 String text = "Se ha finalizado el tiempo del " + texto;
                 JOptionPane.showMessageDialog(null, text);
             }
@@ -142,21 +150,21 @@ public class AsignarTrabajo extends javax.swing.JFrame {
         String nombre = textTraUno.getText();
         String cliente = textCliUno.getText();
         Date fecha = jchooseDate.getDate();
-        llenarProgres(jProgressBarTraUno, jAvanUno, fecha, nombre, cliente,"Trabajador 1");
+        llenarProgres(jProgressBarTraUno, jAvanUno, fecha, nombre, cliente,"Trabajador 1", 1);
     }
 
     public void trabajadorDos() {
         String nombre = textTraDos.getText();
         String cliente = textCliDos.getText();
         Date fecha = jchooseDate.getDate();
-        llenarProgres(jProgressBarTraDos, jAvaDos, fecha, nombre, cliente, "Trabajaor 2");
+        llenarProgres(jProgressBarTraDos, jAvaDos, fecha, nombre, cliente, "Trabajaor 2",2);
     }
 
     public void trabajadorTres() {
         String nombre = textTraTres.getText();
         String cliente = textCliTres.getText();
         Date fecha = jchooseDate.getDate();
-        llenarProgres(jProgressBarTraTres, jAvaTres, fecha, nombre, cliente,"Trabajador 3");
+        llenarProgres(jProgressBarTraTres, jAvaTres, fecha, nombre, cliente,"Trabajador 3",3);
     }
     
     public void insertar(Empleado empleado){
@@ -524,7 +532,9 @@ public class AsignarTrabajo extends javax.swing.JFrame {
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         // TODO add your handling code here:
-        
+        System.out.println(empleado1);
+        System.out.println(empleado2);
+        System.out.println(empleado3);
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     /**

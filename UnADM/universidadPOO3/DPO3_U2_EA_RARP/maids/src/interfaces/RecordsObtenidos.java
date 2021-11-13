@@ -4,7 +4,6 @@
 package interfaces;
 
 import database.EmpleadoDAO;
-import java.util.Date;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import objetos.Empleado;
