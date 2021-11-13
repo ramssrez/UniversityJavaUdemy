@@ -32,6 +32,8 @@ public class AsignarTrabajo extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         //Sentencia que desactiva el minimizar y maximizar de las ventanas principales
         this.setResizable(false);
+        //Asignación del botón para que sea no clickeable
+        btnRegistrar.setEnabled(false);
     }
 
     //Método que verifica que los campos no se encuentren vacios
@@ -72,14 +74,16 @@ public class AsignarTrabajo extends javax.swing.JFrame {
             penalizacion = PENAIZACION_MENOR * numeroRandom;
             sueldo = SUELDO + penalizacion;
         }
+        //Creación del objetos empleado
         Empleado empleado = new Empleado(formatoFechaSql(fecha), nombreTrab, nombreCli, horas, bono, penalizacion, sueldo);
-        if(entero == 1){
+        //Asignación del empleado global el empelado creado
+        if (entero == 1) {
             empleado1 = empleado;
         }
-        if(entero == 2){
+        if (entero == 2) {
             empleado2 = empleado;
         }
-        if(entero == 3){
+        if (entero == 3) {
             empleado3 = empleado;
         }
     }
@@ -133,6 +137,10 @@ public class AsignarTrabajo extends javax.swing.JFrame {
                 calculoTrabajador(random, horasTotalesRandom, nombre, cliente, fecha, entero);
                 String text = "Se ha finalizado el tiempo del " + texto;
                 JOptionPane.showMessageDialog(null, text);
+
+                if (jProgressBarTraUno.getPercentComplete() == 1.0 && jProgressBarTraDos.getPercentComplete() == 1.0 && jProgressBarTraTres.getPercentComplete() == 1.0) {
+                    btnRegistrar.setEnabled(true);
+                }
             }
         });
         //Inicio del hilo
@@ -150,24 +158,24 @@ public class AsignarTrabajo extends javax.swing.JFrame {
         String nombre = textTraUno.getText();
         String cliente = textCliUno.getText();
         Date fecha = jchooseDate.getDate();
-        llenarProgres(jProgressBarTraUno, jAvanUno, fecha, nombre, cliente,"Trabajador 1", 1);
+        llenarProgres(jProgressBarTraUno, jAvanUno, fecha, nombre, cliente, "Trabajador 1", 1);
     }
 
     public void trabajadorDos() {
         String nombre = textTraDos.getText();
         String cliente = textCliDos.getText();
         Date fecha = jchooseDate.getDate();
-        llenarProgres(jProgressBarTraDos, jAvaDos, fecha, nombre, cliente, "Trabajaor 2",2);
+        llenarProgres(jProgressBarTraDos, jAvaDos, fecha, nombre, cliente, "Trabajaor 2", 2);
     }
 
     public void trabajadorTres() {
         String nombre = textTraTres.getText();
         String cliente = textCliTres.getText();
         Date fecha = jchooseDate.getDate();
-        llenarProgres(jProgressBarTraTres, jAvaTres, fecha, nombre, cliente,"Trabajador 3",3);
+        llenarProgres(jProgressBarTraTres, jAvaTres, fecha, nombre, cliente, "Trabajador 3", 3);
     }
-    
-    public void insertar(Empleado empleado){
+
+    public void insertar(Empleado empleado) {
         EmpleadoDAO empleadodao = new EmpleadoDAO();
         //Llamado del metodo para insertar datos a la base de datos
         int entero = empleadodao.insertar(empleado);
@@ -185,7 +193,7 @@ public class AsignarTrabajo extends javax.swing.JFrame {
         }
     }
 
-    public void limpiarCampos(){
+    public void limpiarCampos() {
         textCliDos.setText("");
         textCliTres.setText("");
         textCliUno.setText("");
@@ -194,6 +202,7 @@ public class AsignarTrabajo extends javax.swing.JFrame {
         textTraTres.setText("");
         jchooseDate.setDate(null);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -531,10 +540,9 @@ public class AsignarTrabajo extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIniciarJornadaActionPerformed
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        // TODO add your handling code here:
-        System.out.println(empleado1);
-        System.out.println(empleado2);
-        System.out.println(empleado3);
+        insertar(empleado1);
+        insertar(empleado2);
+        insertar(empleado3);
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     /**
