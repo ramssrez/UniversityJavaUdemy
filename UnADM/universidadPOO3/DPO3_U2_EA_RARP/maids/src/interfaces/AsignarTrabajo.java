@@ -137,7 +137,8 @@ public class AsignarTrabajo extends javax.swing.JFrame {
                 calculoTrabajador(random, horasTotalesRandom, nombre, cliente, fecha, entero);
                 String text = "Se ha finalizado el tiempo del " + texto;
                 JOptionPane.showMessageDialog(null, text);
-
+                
+                //Verificación del progres bar para hacer clickeeable el boton registrar
                 if (jProgressBarTraUno.getPercentComplete() == 1.0 && jProgressBarTraDos.getPercentComplete() == 1.0 && jProgressBarTraTres.getPercentComplete() == 1.0) {
                     btnRegistrar.setEnabled(true);
                 }
