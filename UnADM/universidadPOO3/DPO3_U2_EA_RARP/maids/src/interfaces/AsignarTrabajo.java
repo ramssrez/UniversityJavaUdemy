@@ -3,6 +3,7 @@
  */
 package interfaces;
 
+import principal.Inicio;
 import database.EmpleadoDAO;
 import java.util.Date;
 import java.util.Random;
