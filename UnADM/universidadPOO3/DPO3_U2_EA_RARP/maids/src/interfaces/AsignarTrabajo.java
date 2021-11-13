@@ -242,6 +242,9 @@ public class AsignarTrabajo extends javax.swing.JFrame {
         jAvaTres = new javax.swing.JLabel();
         jProgressBarTraTres = new javax.swing.JProgressBar();
         jchooseDate = new com.toedter.calendar.JDateChooser();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jIemAsigar = new javax.swing.JMenuItem();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -476,10 +479,24 @@ public class AsignarTrabajo extends javax.swing.JFrame {
                 .addComponent(jAvaTres)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jProgressBarTraTres, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         jchooseDate.setDateFormatString("yyyy-MM-dd");
+
+        jMenu1.setText("Inicio");
+
+        jIemAsigar.setText("Ir");
+        jIemAsigar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jIemAsigarActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jIemAsigar);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -515,9 +532,9 @@ public class AsignarTrabajo extends javax.swing.JFrame {
                     .addComponent(jchooseDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelTrabajdorUno2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelTrabajdorUno2, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
                     .addComponent(jPanelTrabajdorUno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanelTrabajdorUno1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanelTrabajdorUno1, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnIniciarJornada, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -545,6 +562,13 @@ public class AsignarTrabajo extends javax.swing.JFrame {
         insertar(empleado2);
         insertar(empleado3);
     }//GEN-LAST:event_btnRegistrarActionPerformed
+
+    private void jIemAsigarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jIemAsigarActionPerformed
+        // TODO add your handling code here:
+        Inicio inicio = new Inicio();
+        inicio.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jIemAsigarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -590,6 +614,7 @@ public class AsignarTrabajo extends javax.swing.JFrame {
     private javax.swing.JLabel jAvaDos;
     private javax.swing.JLabel jAvaTres;
     private javax.swing.JLabel jAvanUno;
+    private javax.swing.JMenuItem jIemAsigar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
@@ -599,6 +624,8 @@ public class AsignarTrabajo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanelTrabajdorUno;
     private javax.swing.JPanel jPanelTrabajdorUno1;
     private javax.swing.JPanel jPanelTrabajdorUno2;

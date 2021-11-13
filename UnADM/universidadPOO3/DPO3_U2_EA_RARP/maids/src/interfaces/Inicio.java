@@ -90,14 +90,12 @@ public class Inicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jIemAsigarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jIemAsigarActionPerformed
-        // TODO add your handling code here:
         AsignarTrabajo asignarTrabajo = new AsignarTrabajo();
         asignarTrabajo.setVisible(true);
         dispose();
     }//GEN-LAST:event_jIemAsigarActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        // TODO add your handling code here:
         RecordsObtenidos obtenidos = new RecordsObtenidos();
         obtenidos.setVisible(true);
         dispose();
