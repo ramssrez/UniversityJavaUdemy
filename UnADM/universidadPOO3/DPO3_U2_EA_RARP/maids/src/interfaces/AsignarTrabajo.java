@@ -3,6 +3,7 @@
  */
 package interfaces;
 
+import database.EmpleadoDAO;
 import java.util.Date;
 import java.util.Random;
 import javax.swing.JLabel;
@@ -18,6 +19,7 @@ public class AsignarTrabajo extends javax.swing.JFrame {
     private final int PENALIZACION = 50;
     private final int SUELDO = 500;
     private final int PENAIZACION_MENOR = 100;
+    private Empleado empleado1, empleado2, empleado3;
 
     private Thread hilo;
 
@@ -75,7 +77,7 @@ public class AsignarTrabajo extends javax.swing.JFrame {
     }
 
     //Método que realiza el calculo del contador de horas
-    public void llenarProgres(JProgressBar jpb, JLabel label, Date fecha, String nombre, String cliente) {
+    public void llenarProgres(JProgressBar jpb, JLabel label, Date fecha, String nombre, String cliente, String texto) {
         //Impleentación del uso de hilos
         hilo = new Thread(new Runnable() {
             //Sobrescritura del método run del la implemnacion del hilo
@@ -121,6 +123,8 @@ public class AsignarTrabajo extends javax.swing.JFrame {
                 }
                 //Llamdo al método para poder realizar el calculo de las variables establecidos
                 calculoTrabajador(random, horasTotalesRandom, nombre, cliente, fecha);
+                String text = "Se ha finalizado el tiempo del " + texto;
+                JOptionPane.showMessageDialog(null, text);
             }
         });
         //Inicio del hilo
@@ -138,23 +142,50 @@ public class AsignarTrabajo extends javax.swing.JFrame {
         String nombre = textTraUno.getText();
         String cliente = textCliUno.getText();
         Date fecha = jchooseDate.getDate();
-        llenarProgres(jProgressBarTraUno, jAvanUno, fecha, nombre, cliente);
+        llenarProgres(jProgressBarTraUno, jAvanUno, fecha, nombre, cliente,"Trabajador 1");
     }
 
     public void trabajadorDos() {
         String nombre = textTraDos.getText();
         String cliente = textCliDos.getText();
         Date fecha = jchooseDate.getDate();
-        llenarProgres(jProgressBarTraDos, jAvaDos, fecha, nombre, cliente);
+        llenarProgres(jProgressBarTraDos, jAvaDos, fecha, nombre, cliente, "Trabajaor 2");
     }
 
     public void trabajadorTres() {
         String nombre = textTraTres.getText();
         String cliente = textCliTres.getText();
         Date fecha = jchooseDate.getDate();
-        llenarProgres(jProgressBarTraTres, jAvaTres, fecha, nombre, cliente);
+        llenarProgres(jProgressBarTraTres, jAvaTres, fecha, nombre, cliente,"Trabajador 3");
+    }
+    
+    public void insertar(Empleado empleado){
+        EmpleadoDAO empleadodao = new EmpleadoDAO();
+        //Llamado del metodo para insertar datos a la base de datos
+        int entero = empleadodao.insertar(empleado);
+        //Musetra de dialogs en caso de que se agreguen correctamente los datos a la base de datos
+        if (entero > 0) {
+            //Llamado al Dialog que manda un mensaje que se ha realizado correctamente el ingreso de información en la base de datos
+            JOptionPane.showMessageDialog(null, "Se ha insertado el empleado");
+            //Método que limpia las cajas de texto de la interface
+            limpiarCampos();
+        } else {
+            //Llamado al Dialog que manda un mensaje que se ha realizado correctamente el ingreso de información en la base de datos
+            JOptionPane.showMessageDialog(null, "No se ha insertado un empleado");
+            //Método que limpia las cajas de texto de la interface
+            limpiarCampos();
+        }
     }
 
+    public void limpiarCampos(){
+        textCliDos.setText("");
+        textCliTres.setText("");
+        textCliUno.setText("");
+        textTraUno.setText("");
+        textTraDos.setText("");
+        textTraTres.setText("");
+        jchooseDate.setDate(null);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -224,6 +255,11 @@ public class AsignarTrabajo extends javax.swing.JFrame {
         btnRegistrar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnRegistrar.setText("Registrar");
         btnRegistrar.setToolTipText("");
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Fecha");
@@ -476,8 +512,7 @@ public class AsignarTrabajo extends javax.swing.JFrame {
 
     private void btnIniciarJornadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarJornadaActionPerformed
         if (validacionCamposTexto()) {
-            //Impresión del dialog en caso de que los campos se encuentrn vacios
-            JOptionPane.showMessageDialog(null, "Los campos se encuentran llenos");
+            //Uso de los métodos para guardar los trabajos
             trabajadorUno();
             trabajadorDos();
             trabajadorTres();
@@ -486,6 +521,11 @@ public class AsignarTrabajo extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Los campos se encuentran vacios");
         }
     }//GEN-LAST:event_btnIniciarJornadaActionPerformed
+
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnRegistrarActionPerformed
 
     /**
      * @param args the command line arguments
