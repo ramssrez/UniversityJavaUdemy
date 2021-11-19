@@ -18,3 +18,21 @@ CALL nuevoUsuario('Noemi', 'Prado', 'Prado', '1994-08-15', 'npp@gmail.com', 'Fem
 /* Muestra del procedimiento creado */
 SHOW PROCEDURE STATUS LIKE 'nuevoUsuario';
 
+/* Creación del procedimiento de salida con las ventas totales */
+DELIMITER // 
+CREATE PROCEDURE ventas_totales_cajero(IN idCaj INT, OUT numero INT)
+BEGIN
+SELECT SUM(costototal) INTO numero from servicio inner join cajero on cajero.idcajero=servicio.idcajero where cajero.idcajero=idCaj;
+END//
+DELIMITER ;
+CALL ventas_totales_cajero(1,@numero);
+SELECT @numero AS Total Ventas;
+
+/* Sentencia para la suma */
+SELECT SUM(costototal) from servicio inner join cajero on cajero.idcajero=servicio.idcajero where cajero.idcajero=2;
+
+SELECT nombre, SUM(costototal) AS suma from servicio inner join cajero on cajero.idcajero=servicio.idcajero where cajero.idcajero=2;
+
+SELECT nombre, SUM(costototal) AS suma from servicio inner join cajero on cajero.idcajero=servicio.idcajero where cajero.idcajero=1;
+
+SELECT concat(nombre, " ", apellido1) AS Cajero, SUM(costototal) AS suma from servicio inner join cajero on cajero.idcajero=servicio.idcajero where cajero.idcajero=1;
