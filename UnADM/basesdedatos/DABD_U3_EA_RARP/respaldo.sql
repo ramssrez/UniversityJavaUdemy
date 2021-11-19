@@ -4,13 +4,14 @@ C:\Users\ramss\Documents\respaldos
  */
 
  /* Ejercicio de prueba */
-mysqldump -u root -p es1921023412 >C:\Users\ramss\Documents\respaldos\respaldo_es192.sql
+mysqldump -u root -p es1921023412 > C:\Users\ramss\Documents\respaldos\respaldo_es192.sql
 
 /* Respaldo de la base de datos de limitos */
-mysqldump -u root -p lomitos >C:\Users\ramss\Documents\respaldos\respaldo_lomitos.sql
+mysqldump -u root -p lomitos > C:\Users\ramss\Documents\respaldos\respaldo_lomitos.sql
 
  /* Creación de la base de datos */
  CREATE DATABASE backupes1921023412;
  USE backupes1921023412;
- 
-  
+
+ /* Restaurar base de datos */
+mysql -u root -p backupes1921023412 < C:\Users\ramss\Documents\respaldos\respaldo_lomitos.sql
