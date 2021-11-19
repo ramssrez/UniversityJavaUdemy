@@ -36,3 +36,14 @@ SELECT nombre, SUM(costototal) AS suma from servicio inner join cajero on cajero
 SELECT nombre, SUM(costototal) AS suma from servicio inner join cajero on cajero.idcajero=servicio.idcajero where cajero.idcajero=1;
 
 SELECT concat(nombre, " ", apellido1) AS Cajero, SUM(costototal) AS suma from servicio inner join cajero on cajero.idcajero=servicio.idcajero where cajero.idcajero=1;
+
+/* Retorno de dos valores */
+DELIMITER // 
+CREATE PROCEDURE ventas_totales_cajero(IN idCaj INT, OUT nom varchar(45), numero INT)
+BEGIN
+SELECT CONCAT(nombre, " ", apellido1, " ",apellido2), SUM(costototal) INTO nom, numero from servicio inner join cajero on cajero.idcajero=servicio.idcajero where cajero.idcajero=idCaj;
+END//
+DELIMITER ;
+
+CALL ventas_totales_cajero(1,@nombre,@numero);
+SELECT @nombre AS "Nombre cajero", @numero AS "Ventas Totales";
