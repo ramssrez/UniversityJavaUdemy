@@ -26,7 +26,7 @@ SELECT SUM(costototal) INTO numero from servicio inner join cajero on cajero.idc
 END//
 DELIMITER ;
 CALL ventas_totales_cajero(1,@numero);
-SELECT @numero AS Total Ventas;
+SELECT @numero AS "Total Ventas";
 
 /* Sentencia para la suma */
 SELECT SUM(costototal) from servicio inner join cajero on cajero.idcajero=servicio.idcajero where cajero.idcajero=2;
@@ -39,9 +39,20 @@ SELECT concat(nombre, " ", apellido1) AS Cajero, SUM(costototal) AS suma from se
 
 /* Retorno de dos valores */
 DELIMITER // 
-CREATE PROCEDURE ventas_totales_cajero(IN idCaj INT, OUT nom varchar(45), numero INT)
+CREATE PROCEDURE ventas_totales_cajero(IN idCaj INT, OUT nom varchar(60), numero INT)
 BEGIN
 SELECT CONCAT(nombre, " ", apellido1, " ",apellido2), SUM(costototal) INTO nom, numero from servicio inner join cajero on cajero.idcajero=servicio.idcajero where cajero.idcajero=idCaj;
+END//
+DELIMITER ;
+
+CALL ventas_totales_cajero(1,@nombre,@numero);
+SELECT @nombre AS "Nombre cajero", @numero AS "Ventas Totales";
+
+/* Retorno de dos valores */
+DELIMITER // 
+CREATE PROCEDURE ventas_totales_cajero(IN idcaj INT, OUT nom VARCHAR(45), numero VARCHAR(10))
+BEGIN
+SELECT CONCAT(nombre, " ", apellido1), SUM(servicio.costototal) INTO nom, numero FROM servicio INNER JOIN cajero ON cajero.idcajero=servicio.idcajero WHERE cajero.idcajero=idcaj;
 END//
 DELIMITER ;
 
