@@ -8,3 +8,9 @@ mysqldump -u root -p es1921023412 >C:\Users\ramss\Documents\respaldos\respaldo_e
 
 /* Respaldo de la base de datos de limitos */
 mysqldump -u root -p lomitos >C:\Users\ramss\Documents\respaldos\respaldo_lomitos.sql
+
+ /* Creación de la base de datos */
+ CREATE DATABASE backupes1921023412;
+ USE backupes1921023412;
+ 
+  
