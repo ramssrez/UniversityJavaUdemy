@@ -20,13 +20,16 @@ SHOW PROCEDURE STATUS LIKE 'nuevoUsuario';
 
 /* Creación del procedimiento de salida con las ventas totales */
 DELIMITER // 
-CREATE PROCEDURE ventas_totales_cajero(IN idCaj INT, OUT numero INT)
+CREATE PROCEDURE ventas_totales_cajero(IN id_caj INT, OUT numero INT)
 BEGIN
-SELECT SUM(costototal) INTO numero from servicio inner join cajero on cajero.idcajero=servicio.idcajero where cajero.idcajero=idCaj;
+SELECT SUM(costototal) INTO numero FROM servicio INNER JOIN cajero ON 
+cajero.idcajero=servicio.idcajero WHERE cajero.idcajero=id_caj;
 END//
 DELIMITER ;
 CALL ventas_totales_cajero(1,@numero);
 SELECT @numero AS "Total Ventas";
+
+SHOW PROCEDURE STATUS LIKE 'ventas_totales_cajero';
 
 /* Sentencia para la suma */
 SELECT SUM(costototal) from servicio inner join cajero on cajero.idcajero=servicio.idcajero where cajero.idcajero=2;
@@ -58,3 +61,17 @@ DELIMITER ;
 
 CALL ventas_totales_cajero(1,@nombre,@numero);
 SELECT @nombre AS "Nombre cajero", @numero AS "Ventas Totales";
+
+/* Insertar datos de cajeros */
+INSERT INTO cajero (nombre, apellido1, apellido2, turno) VALUES ('Sandra', 'Ortiz', 'Ortiz', 'Vespertino');
+INSERT INTO cajero (nombre, apellido1, apellido2, turno) VALUES ('Rogelio', 'Luna', 'Luna', 'Matutino');
+INSERT INTO cajero (nombre, apellido1, apellido2, turno) VALUES ('Elena', 'Rodriguez', 'Rodriguez', 'Vespertino');
+
+UPDATE servicio SET idcajero = '2' WHERE (idservicio = '6');
+UPDATE servicio SET idcajero = '3' WHERE (idservicio = '7');
+UPDATE servicio SET idcajero = '3' WHERE (idservicio = '8');
+UPDATE servicio SET idcajero = '4' WHERE (idservicio = '9');
+UPDATE servicio SET idcajero = '4' WHERE (idservicio = '10');
+UPDATE servicio SET idcajero = '5' WHERE (idservicio = '11');
+UPDATE servicio SET idcajero = '5' WHERE (idservicio = '12');
+UPDATE servicio SET idcajero = '5' WHERE (idservicio = '13');
