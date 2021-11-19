@@ -75,3 +75,19 @@ UPDATE servicio SET idcajero = '4' WHERE (idservicio = '10');
 UPDATE servicio SET idcajero = '5' WHERE (idservicio = '11');
 UPDATE servicio SET idcajero = '5' WHERE (idservicio = '12');
 UPDATE servicio SET idcajero = '5' WHERE (idservicio = '13');
+
+/* Creación del procedimiento de INOUT */
+DELIMITER // 
+CREATE PROCEDURE mostrarCorreo(INOUT nom VARCHAR(45), OUT email VARCHAR(45))
+BEGIN
+SELECT correo INTO email FROM usuario WHERE nombre = nom;
+END//
+DELIMITER ;
+
+SHOW PROCEDURE STATUS LIKE 'mostrarCorreo';
+
+SET @nombre = "Miguel";
+CALL mostrarCorreo(@nombre,@correo);
+SELECT @nombre as "Nombre", @correo AS "Correo";
+
+SELECT email FROM usuario WHERE nombre = "Jose";
