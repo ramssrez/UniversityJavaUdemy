@@ -24,7 +24,6 @@ public class Servidor {
         Socket socket = null;
         final int PUERTO = 5000;
         int contador = 0;
-        ArrayList<String> doctoresList = new ArrayList<>();
         String dr1 = "Dr. Juan Sanchez Sanchez";
         String dr2 = "Dra. Irma Fernandez Fernandez";
         String dr3 = "Dr. Carlos Leon Leon";
@@ -35,16 +34,6 @@ public class Servidor {
         String dr8 = "Dra. Alma Diaz Diaz";
         String dr9 = "Dr. Jose Rodriguez Rodrioguez";
         String dr10 = "Dra. Selena Sanchez Sanchez";
-        doctoresList.add(dr1);
-        doctoresList.add(dr2);
-        doctoresList.add(dr3);
-        doctoresList.add(dr4);
-        doctoresList.add(dr5);
-        doctoresList.add(dr6);
-        doctoresList.add(dr7);
-        doctoresList.add(dr8);
-        doctoresList.add(dr9);
-        doctoresList.add(dr10);
 
         String[] doctores = {dr1, dr2, dr3, dr4, dr5, dr6, dr7, dr8, dr9, dr10};
 
@@ -58,6 +47,7 @@ public class Servidor {
             while (true) {
                 //Método en donde el servidor esta a la espera o escucha de las peticiones del cliente
                 socket = serverSocket.accept();
+                
                 if (contador == 10) {
                     contador = 0;
                 }
