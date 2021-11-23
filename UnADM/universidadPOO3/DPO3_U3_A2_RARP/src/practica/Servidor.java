@@ -18,6 +18,7 @@ public class Servidor {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        System.out.println("ESTO ES DESDE EL SERVIDOR");
         // TODO code application logic here
         //Declaración de variables para su utilización
         ServerSocket serverSocket = null;
