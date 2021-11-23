@@ -23,6 +23,17 @@ public class Inicio extends javax.swing.JFrame {
         this.setResizable(false);
     }
 
+        //Método que verifica que los campos no se encuentren vacios
+    public boolean validacionCamposTexto() {
+        if ((jtfName.getText().equals("") && jtfSocialNumber.getText().equals("") && jtaSintomas.getText().equals(""))
+                || jtfName.getText().equals("") || jtfSocialNumber.getText().equals("") || jtaSintomas.getText().equals("")) {
+            //Retorno falso en caso de que sea correcto los campos vacios
+            return false;
+        } else {
+            //Retorno verdadero para el caso de que los campos esten llenos
+            return true;
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -157,13 +168,7 @@ public class Inicio extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
