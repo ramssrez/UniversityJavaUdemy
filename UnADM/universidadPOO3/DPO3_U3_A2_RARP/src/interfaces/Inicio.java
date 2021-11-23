@@ -1,5 +1,9 @@
 package interfaces;
 
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
+
 import javax.swing.JOptionPane;
 import objetos.PacienteAlta;
 
@@ -9,6 +13,8 @@ import objetos.PacienteAlta;
  */
 public class Inicio extends javax.swing.JFrame {
 
+    private final String HOST = "127.0.0.1";
+    private final int PUERTO = 5000;
     /**
      * Creates new form CrearArchivos
      */
@@ -31,12 +37,35 @@ public class Inicio extends javax.swing.JFrame {
             return true;
         }
     }
-    
+
     //Método para limpiár las areas de texto de la aplicación
-    public void limpiarCampos(){
+    public void limpiarCampos() {
         jtfName.setText("");
         jtfSocialNumber.setText("");
         jtaSintomas.setText("");
+    }
+
+    public void generarConexionServidor() {
+        String nombre = jtfName.getText();
+        //System.out.println("nombre = " + nombre);
+        String numero = jtfSocialNumber.getText();
+        //System.out.println("numero = " + numero);
+        String sintomas = jtaSintomas.getText();
+        //System.out.println("sintomas = " + sintomas);
+        PacienteAlta paciente = new PacienteAlta(nombre, numero, sintomas);
+        System.out.println(paciente.toString());
+        
+        try {
+            Socket socket = new Socket(HOST, PUERTO);
+            ObjectOutputStream envioDatos = new ObjectOutputStream(socket.getOutputStream());
+            envioDatos.writeObject(paciente);
+            socket.close();
+
+        } catch (IOException ex) {
+            System.out.println("Error Selección: " + ex.getMessage());
+            ex.printStackTrace(System.out);;
+        }
+
     }
 
     /**
@@ -162,15 +191,7 @@ public class Inicio extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (validacionCamposTexto()) {
             JOptionPane.showMessageDialog(null, "Los campos se encuentran llenos");
-            String nombre = jtfName.getText();
-            System.out.println("nombre = " + nombre);
-            String numero = jtfSocialNumber.getText();
-            System.out.println("numero = " + numero);
-            String sintomas = jtaSintomas.getText();
-            System.out.println("sintomas = " + sintomas);
-            PacienteAlta paciente = new PacienteAlta(nombre,numero,sintomas);
-            System.out.println(paciente.toString());
-
+            generarConexionServidor();
         } else {
             JOptionPane.showMessageDialog(null, "Los campos se encuentran vacios");
 
