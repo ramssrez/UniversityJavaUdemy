@@ -1,11 +1,13 @@
 
 package objetos;
 
+import java.io.Serializable;
+
 /**
  *
  * @author ramssrez
  */
-public class PacienteAlta {
+public class PacienteAlta implements Serializable{
     private String nombre;
     private String numeroSocial;
     private String sintomas;
