@@ -3,10 +3,10 @@ package practica;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import objetos.PacienteAlta;
 
 /**
  *
@@ -23,39 +23,34 @@ public class Servidor {
         //Declaración de variables para su utilización
         ServerSocket serverSocket = null;
         Socket socket = null;
-        DataInputStream in;
-        DataOutputStream out;
         final int PUERTO = 5000;
+        int contador = 1;
 
         //Uso del try/catch para el serverSocket
         try {
             //Inicialización del server con el puerto en donde va a estar funcionando, para este caso el puedto 5000
             serverSocket = new ServerSocket(PUERTO);
             System.out.println("Servidor iniciado");
+            PacienteAlta pacienteAlta;
 
             while (true) {
                 //Método en donde el servidor esta a la espera o escucha de las peticiones del cliente
-                
                 socket = serverSocket.accept();
-                System.out.println("Cliente conectado");
-                //Implementación de loos puentes para conectar con el servidor
-                in = new DataInputStream(socket.getInputStream());
-                out = new DataOutputStream(socket.getOutputStream());
-
-                //Se queda a la espera a que el cliente escriba algo
-                String mensaje = in.readUTF();
-
-                System.out.println(mensaje);
-                out.writeUTF("Hola mundo desde el servidor");
-
+                ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
+                pacienteAlta = (PacienteAlta) inputStream.readObject();
+                System.out.println(pacienteAlta.toString());
                 socket.close();
-                System.out.println("Cliente desconectado");
-
+                contador++;
+                System.out.println("contador: " + contador);
             }
         } catch (IOException ex) {
             System.out.println("Error Selección: " + ex.getMessage());
             ex.printStackTrace(System.out);
+        } catch (ClassNotFoundException ex) {
+            System.out.println("Error Selección: " + ex.getMessage());
+            ex.printStackTrace(System.out);
         }
+        
     }
 
 }
