@@ -30,6 +30,13 @@ public class Inicio extends javax.swing.JFrame {
             return true;
         }
     }
+    
+    //Método para limpiár las areas de texto de la aplicación
+    public void limpiarCampos(){
+        jtfName.setText("");
+        jtfSocialNumber.setText("");
+        jtaSintomas.setText("");
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
