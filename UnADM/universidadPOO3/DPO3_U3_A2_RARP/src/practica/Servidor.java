@@ -46,7 +46,7 @@ public class Servidor {
         doctoresList.add(dr9);
         doctoresList.add(dr10);
 
-        String[] doctores = {dr1,dr2,dr3,dr4,dr5,dr6,dr7,dr8,dr9,dr10};
+        String[] doctores = {dr1, dr2, dr3, dr4, dr5, dr6, dr7, dr8, dr9, dr10};
 
         //Uso del try/catch para el serverSocket
         try {
@@ -54,19 +54,19 @@ public class Servidor {
             serverSocket = new ServerSocket(PUERTO);
             System.out.println("Servidor iniciado");
             PacienteAlta pacienteAlta;
-            if (contador == 9){
-                contador = 0;
-            }
 
             while (true) {
                 //Método en donde el servidor esta a la espera o escucha de las peticiones del cliente
                 socket = serverSocket.accept();
+                if (contador == 10) {
+                    contador = 0;
+                }
                 ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
                 pacienteAlta = (PacienteAlta) inputStream.readObject();
                 pacienteAlta.setDoctorAsignado(doctores[contador]);
-                String consultorio = String.valueOf(contador+2);
+                String consultorio = String.valueOf(contador + 2);
                 pacienteAlta.setNumeroConsultorio(consultorio);
-                String turno = String.valueOf(contador+1);
+                String turno = String.valueOf(contador + 1);
                 pacienteAlta.setNumeroTurno(turno);
                 System.out.println(pacienteAlta.toString());
                 socket.close();
