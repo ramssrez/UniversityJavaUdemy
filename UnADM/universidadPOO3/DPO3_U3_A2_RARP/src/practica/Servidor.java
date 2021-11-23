@@ -35,9 +35,9 @@ public class Servidor {
 
             while (true) {
                 //Método en donde el servidor esta a la espera o escucha de las peticiones del cliente
-                System.out.println("Cliente conectado");
+                
                 socket = serverSocket.accept();
-
+                System.out.println("Cliente conectado");
                 //Implementación de loos puentes para conectar con el servidor
                 in = new DataInputStream(socket.getInputStream());
                 out = new DataOutputStream(socket.getOutputStream());

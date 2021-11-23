@@ -25,6 +25,14 @@ public class Clente {
             //Implementación de loos puentes para conectar con el servidor
             in = new DataInputStream(socket.getInputStream());
             out = new DataOutputStream(socket.getOutputStream());
+
+            out.writeUTF("Hola mundo desde el cliente");
+
+            //Uso del método para leer lo que manda el servidor
+            String mensaje = in.readUTF();
+            System.out.println(mensaje);
+            socket.close();
+
         } catch (IOException ex) {
             System.out.println("Error Selección: " + ex.getMessage());
             ex.printStackTrace(System.out);;
