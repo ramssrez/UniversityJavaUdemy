@@ -1,6 +1,7 @@
 package interfaces;
 
 import javax.swing.JOptionPane;
+import objetos.PacienteAlta;
 
 /**
  *
@@ -167,6 +168,8 @@ public class Inicio extends javax.swing.JFrame {
             System.out.println("numero = " + numero);
             String sintomas = jtaSintomas.getText();
             System.out.println("sintomas = " + sintomas);
+            PacienteAlta paciente = new PacienteAlta(nombre,numero,sintomas);
+            System.out.println(paciente.toString());
 
         } else {
             JOptionPane.showMessageDialog(null, "Los campos se encuentran vacios");
