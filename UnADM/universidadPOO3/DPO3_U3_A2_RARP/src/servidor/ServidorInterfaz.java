@@ -1,14 +1,27 @@
 package servidor;
 
-
 /**
  *
  * @author ramssrez
  */
-public class ServidorInterfaz extends javax.swing.JFrame {
+public class ServidorInterfaz extends javax.swing.JFrame implements Runnable {
 
     private final String HOST = "127.0.0.1";
     private final int PUERTO = 5000;
+    private int contador = 0;
+    private final String dr1 = "Dr. Juan Sanchez Sanchez";
+    private final String dr2 = "Dra. Irma Fernandez Fernandez";
+    private final String dr3 = "Dr. Carlos Leon Leon";
+    private final String dr4 = "Dra. Rosa Mercado Mercado";
+    private final String dr5 = "Dr. Rodrigo Leyva Leyva";
+    private final String dr6 = "Dra. Sofia Lazcano Lazcano";
+    private final String dr7 = "Dr. Gerardo Martinez Martinez";
+    private final String dr8 = "Dra. Alma Diaz Diaz";
+    private final String dr9 = "Dr. Jose Rodriguez Rodrioguez";
+    private final String dr10 = "Dra. Selena Sanchez Sanchez";
+
+    String[] doctores = {dr1, dr2, dr3, dr4, dr5, dr6, dr7, dr8, dr9, dr10};
+
     /**
      * Creates new form CrearArchivos
      */
@@ -18,8 +31,8 @@ public class ServidorInterfaz extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         //Sentencia que desactiva el minimizar y maximizar de las ventanas principales
         this.setResizable(false);
+        jtfRegistro.setEditable(false);
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -37,7 +50,7 @@ public class ServidorInterfaz extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setText("Hospital General: Urgencias");
+        jLabel1.setText("Hospital General: Servidor");
 
         jtfRegistro.setColumns(20);
         jtfRegistro.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -50,14 +63,14 @@ public class ServidorInterfaz extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -99,8 +112,6 @@ public class ServidorInterfaz extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -114,4 +125,10 @@ public class ServidorInterfaz extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jtfRegistro;
     // End of variables declaration//GEN-END:variables
+
+    //]Uso del método run, el cual es necesario usar por la implementación de runneable
+    @Override
+    public void run() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
