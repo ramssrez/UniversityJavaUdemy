@@ -1,7 +1,9 @@
-package practica;
+package servidor;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -23,6 +25,7 @@ public class Servidor {
         ServerSocket serverSocket = null;
         Socket socket = null;
         final int PUERTO = 5000;
+        String HOST = "127.0.0.1";
         int contador = 0;
         String dr1 = "Dr. Juan Sanchez Sanchez";
         String dr2 = "Dra. Irma Fernandez Fernandez";
@@ -58,10 +61,11 @@ public class Servidor {
                 pacienteAlta.setNumeroConsultorio(consultorio);
                 String turno = String.valueOf(contador + 1);
                 pacienteAlta.setNumeroTurno(turno);
-                System.out.println(pacienteAlta.toString());
+                //System.out.println(pacienteAlta.toString());
+                Socket socketRespuesta = new Socket(HOST,5010);
+                //ObjectOutputStream
                 socket.close();
                 contador++;
-                System.out.println("contador: " + contador);
             }
         } catch (IOException ex) {
             System.out.println("Error Selección: " + ex.getMessage());

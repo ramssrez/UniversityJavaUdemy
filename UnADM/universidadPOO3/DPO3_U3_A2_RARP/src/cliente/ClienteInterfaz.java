@@ -1,4 +1,4 @@
-package interfaces;
+package cliente;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -11,14 +11,14 @@ import objetos.PacienteAlta;
  *
  * @author ramssrez
  */
-public class Inicio extends javax.swing.JFrame {
+public class ClienteInterfaz extends javax.swing.JFrame {
 
     private final String HOST = "127.0.0.1";
     private final int PUERTO = 5000;
     /**
      * Creates new form CrearArchivos
      */
-    public Inicio() {
+    public ClienteInterfaz() {
         initComponents();
         this.setTitle("Cliente");
         this.setLocationRelativeTo(null);
@@ -86,6 +86,8 @@ public class Inicio extends javax.swing.JFrame {
         jtfSocialNumber = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtaSintomas = new javax.swing.JTextArea();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jtaSintomas1 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -102,7 +104,7 @@ public class Inicio extends javax.swing.JFrame {
         jLabel4.setText("Sintomas");
 
         jbtnEnviar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jbtnEnviar.setText("Enviar");
+        jbtnEnviar.setText("Registrar");
         jbtnEnviar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnEnviarActionPerformed(evt);
@@ -125,6 +127,13 @@ public class Inicio extends javax.swing.JFrame {
         jtaSintomas.setAutoscrolls(false);
         jScrollPane1.setViewportView(jtaSintomas);
 
+        jtaSintomas1.setColumns(20);
+        jtaSintomas1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jtaSintomas1.setRows(5);
+        jtaSintomas1.setToolTipText("");
+        jtaSintomas1.setAutoscrolls(false);
+        jScrollPane2.setViewportView(jtaSintomas1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -144,13 +153,8 @@ public class Inicio extends javax.swing.JFrame {
                             .addComponent(jtfName)
                             .addComponent(jtfSocialNumber, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(145, 145, 145)
-                                .addComponent(jLabel4))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(139, 139, 139)
-                                .addComponent(jbtnEnviar)))
+                        .addGap(145, 145, 145)
+                        .addComponent(jLabel4)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -160,6 +164,14 @@ public class Inicio extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(127, 127, 127)
+                .addComponent(jbtnEnviar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -179,9 +191,11 @@ public class Inicio extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(222, 222, 222)
+                .addGap(18, 18, 18)
                 .addComponent(jbtnEnviar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(89, Short.MAX_VALUE))
         );
 
         pack();
@@ -216,21 +230,22 @@ public class Inicio extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClienteInterfaz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClienteInterfaz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClienteInterfaz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Inicio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClienteInterfaz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Inicio().setVisible(true);
+                new ClienteInterfaz().setVisible(true);
             }
         });
     }
@@ -241,8 +256,10 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton jbtnEnviar;
     private javax.swing.JTextArea jtaSintomas;
+    private javax.swing.JTextArea jtaSintomas1;
     private javax.swing.JTextField jtfName;
     private javax.swing.JTextField jtfSocialNumber;
     // End of variables declaration//GEN-END:variables
