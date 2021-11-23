@@ -172,6 +172,7 @@ public class Inicio extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Los campos se encuentran vacios");
 
         }
+        limpiarCampos();
     }//GEN-LAST:event_jbtnEnviarActionPerformed
 
     /**
