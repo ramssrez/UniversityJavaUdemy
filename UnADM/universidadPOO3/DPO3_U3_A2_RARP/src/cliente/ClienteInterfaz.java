@@ -33,7 +33,7 @@ public class ClienteInterfaz extends javax.swing.JFrame implements Runnable {
         //Creación del hilo para su implementación y se mantenga a la escucha del servidor
         Thread thread = new Thread(this);
         thread.start();
-        jtaDatosServidor.setEnabled(false);
+        jtaDatosServidor.setEditable(false);
     }
 
     //Método que verifica que los campos no se encuentren vacios
@@ -77,7 +77,7 @@ public class ClienteInterfaz extends javax.swing.JFrame implements Runnable {
             //Catch que registra algún error por parte del servidor
         } catch (IOException ex) {
             System.out.println("Error IOException: " + ex.getMessage());
-            ex.printStackTrace(System.out);;
+            ex.printStackTrace(System.out);
         }
 
     }
