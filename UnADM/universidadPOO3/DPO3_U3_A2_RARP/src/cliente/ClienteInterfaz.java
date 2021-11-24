@@ -79,7 +79,7 @@ public class ClienteInterfaz extends javax.swing.JFrame implements Runnable {
     public void run() {
         System.out.println("Esto es desde el hilo cliente");
         PacienteAlta pacienteAsignado;
-
+        
         try {
             ServerSocket servidor = new ServerSocket(PUERTOCLIENTE);
             while (true) {
@@ -87,6 +87,15 @@ public class ClienteInterfaz extends javax.swing.JFrame implements Runnable {
                 ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
                 pacienteAsignado = (PacienteAlta) inputStream.readObject();
                 System.out.println(pacienteAsignado.toString());
+                String turno = pacienteAsignado.getNumeroTurno();
+                String sintomas = pacienteAsignado.getSintomas();
+                String nombre = pacienteAsignado.getNombre();
+                String numeroSocial = pacienteAsignado.getNumeroSocial();
+                String doctor = pacienteAsignado.getDoctorAsignado();
+                String consultorio = pacienteAsignado.getNumeroConsultorio();
+                String mensaje = "Turno: " + turno + " \n Nombre: " + nombre +
+                        "Número Seguro Social: " + numeroSocial;
+                jtaDatosServidor.setText(mensaje);
             }
 
         } catch (IOException ex) {
@@ -117,7 +126,7 @@ public class ClienteInterfaz extends javax.swing.JFrame implements Runnable {
         jScrollPane1 = new javax.swing.JScrollPane();
         jtaSintomas = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jtaSintomas1 = new javax.swing.JTextArea();
+        jtaDatosServidor = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -157,12 +166,12 @@ public class ClienteInterfaz extends javax.swing.JFrame implements Runnable {
         jtaSintomas.setAutoscrolls(false);
         jScrollPane1.setViewportView(jtaSintomas);
 
-        jtaSintomas1.setColumns(20);
-        jtaSintomas1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jtaSintomas1.setRows(5);
-        jtaSintomas1.setToolTipText("");
-        jtaSintomas1.setAutoscrolls(false);
-        jScrollPane2.setViewportView(jtaSintomas1);
+        jtaDatosServidor.setColumns(20);
+        jtaDatosServidor.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jtaDatosServidor.setRows(5);
+        jtaDatosServidor.setToolTipText("");
+        jtaDatosServidor.setAutoscrolls(false);
+        jScrollPane2.setViewportView(jtaDatosServidor);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -288,8 +297,8 @@ public class ClienteInterfaz extends javax.swing.JFrame implements Runnable {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton jbtnEnviar;
+    private javax.swing.JTextArea jtaDatosServidor;
     private javax.swing.JTextArea jtaSintomas;
-    private javax.swing.JTextArea jtaSintomas1;
     private javax.swing.JTextField jtfName;
     private javax.swing.JTextField jtfSocialNumber;
     // End of variables declaration//GEN-END:variables
