@@ -45,6 +45,7 @@ public class ServidorInterfaz extends javax.swing.JFrame implements Runnable {
         //Sentencia que desactiva el minimizar y maximizar de las ventanas principales
         this.setResizable(false);
         jtfRegistro.setEditable(false);
+        //Creación del hilo
         Thread thread = new Thread(this);
         thread.start();
     }
@@ -53,32 +54,50 @@ public class ServidorInterfaz extends javax.swing.JFrame implements Runnable {
     @Override
     public void run() {
         System.out.println("Esto es desde el hilo servidor");
+        //Decalración del paciente}alta
         PacienteAlta pacienteAlta;
 
+        //Try/catch
         try {
+            //Declaración de la variable name
             String name;
+            //Delaclaración del serverSocket con el puerto donde se va alojar el servidor
             ServerSocket servidor = new ServerSocket(PUERTOSERVIDOR);
+            //Uso del while para que el servidor se encuentre constantemente a la escucha del cliente
             while (true) {
+                //Inicializacion del socket
                 Socket socket = servidor.accept();
+                //Uso del if para el caso de que sea igual a un valor se resetea el contador
                 if (contador == 10) {
                     contador = 0;
                 }
+                //Declaración del Stream para obtener los que envie el Cliente
                 ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
+                //Parse del objeto que envia el cliente a un objeto de tipo PacienteAlta
                 pacienteAlta = (PacienteAlta) inputStream.readObject();
+                //Obtencio del nombre del paciente
                 name = pacienteAlta.getNombre();
+                //Impresión del nombre del paciente para comprobar que se registro exitosamente
                 String message = "\n El paciente " + name + " fue registrado exitosamente";
                 jtfRegistro.setText(message);
+                //Asignación del doctor al paciente
                 pacienteAlta.setDoctorAsignado(doctores[contador]);
+                //Asignación del consultorio para el paciente
                 String consultorio = String.valueOf(contador + 2);
                 pacienteAlta.setNumeroConsultorio(consultorio);
+                //Asignación del turno del paciente
                 String turno = String.valueOf(contador + 1);
                 pacienteAlta.setNumeroTurno(turno);
-                //System.out.println(pacienteAlta.toString());
+                //Declaración del socket en donde se cuenta con los daots del Cliente
                 Socket socketRespuesta = new Socket(HOST, PUERTOCLIENTE);
+                //Envio de los datos del objeto donde se modifico ciertos datos del objeto
                 ObjectOutputStream envioCliente = new ObjectOutputStream(socketRespuesta.getOutputStream());
+                //Envio del objetodo hacia el cliente
                 envioCliente.writeObject(pacienteAlta);
+                //Cierre de los socket de recibo y repuesta del servidor
                 socketRespuesta.close();
                 socket.close();
+                //Incremento del contador
                 contador++;
             }
 
