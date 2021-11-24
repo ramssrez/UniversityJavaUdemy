@@ -1,7 +1,9 @@
 package cliente;
 
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.net.ServerSocket;
 import java.net.Socket;
 
 import javax.swing.JOptionPane;
@@ -11,7 +13,7 @@ import objetos.PacienteAlta;
  *
  * @author ramssrez
  */
-public class ClienteInterfaz extends javax.swing.JFrame {
+public class ClienteInterfaz extends javax.swing.JFrame implements Runnable {
 
     private final String HOST = "127.0.0.1";
     private final int PUERTOSERVIDOR = 5000;
@@ -26,6 +28,8 @@ public class ClienteInterfaz extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         //Sentencia que desactiva el minimizar y maximizar de las ventanas principales
         this.setResizable(false);
+        Thread thread = new Thread(this);
+        thread.start();
     }
 
     //Método que verifica que los campos no se encuentren vacios
@@ -55,7 +59,7 @@ public class ClienteInterfaz extends javax.swing.JFrame {
         String sintomas = jtaSintomas.getText();
         //System.out.println("sintomas = " + sintomas);
         PacienteAlta paciente = new PacienteAlta(nombre, numero, sintomas);
-        System.out.println(paciente.toString());
+        //System.out.println(paciente.toString());
 
         try {
             Socket socket = new Socket(HOST, PUERTOSERVIDOR);
@@ -68,6 +72,30 @@ public class ClienteInterfaz extends javax.swing.JFrame {
             ex.printStackTrace(System.out);;
         }
 
+    }
+
+    //]Uso del método run, el cual es necesario usar por la implementación de runneable
+    @Override
+    public void run() {
+        System.out.println("Esto es desde el hilo cliente");
+        PacienteAlta pacienteAsignado;
+
+        try {
+            ServerSocket servidor = new ServerSocket(PUERTOCLIENTE);
+            while (true) {
+                Socket socket = servidor.accept();
+                ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
+                pacienteAsignado = (PacienteAlta) inputStream.readObject();
+                System.out.println(pacienteAsignado.toString());
+            }
+
+        } catch (IOException ex) {
+            System.out.println("Error Selección: " + ex.getMessage());
+            ex.printStackTrace(System.out);
+        } catch (ClassNotFoundException ex) {
+            System.out.println("Error Selección: " + ex.getMessage());
+            ex.printStackTrace(System.out);
+        }
     }
 
     /**
