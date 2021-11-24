@@ -14,7 +14,8 @@ import objetos.PacienteAlta;
 public class ClienteInterfaz extends javax.swing.JFrame {
 
     private final String HOST = "127.0.0.1";
-    private final int PUERTO = 5000;
+    private final int PUERTOSERVIDOR = 5000;
+    private final int PUERTOCLIENTE = 5050;
 
     /**
      * Creates new form CrearArchivos
@@ -57,7 +58,7 @@ public class ClienteInterfaz extends javax.swing.JFrame {
         System.out.println(paciente.toString());
 
         try {
-            Socket socket = new Socket(HOST, PUERTO);
+            Socket socket = new Socket(HOST, PUERTOSERVIDOR);
             ObjectOutputStream envioDatos = new ObjectOutputStream(socket.getOutputStream());
             envioDatos.writeObject(paciente);
             socket.close();

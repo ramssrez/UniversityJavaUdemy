@@ -2,6 +2,7 @@ package servidor;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import objetos.PacienteAlta;
@@ -13,7 +14,8 @@ import objetos.PacienteAlta;
 public class ServidorInterfaz extends javax.swing.JFrame implements Runnable {
 
     private final String HOST = "127.0.0.1";
-    private final int PUERTO = 5000;
+    private final int PUERTOSERVIDOR = 5000;
+    private final int PUERTOCLIENTE = 5050;
     private int contador = 0;
     private final String dr1 = "Dr. Juan Sanchez Sanchez";
     private final String dr2 = "Dra. Irma Fernandez Fernandez";
@@ -142,7 +144,7 @@ public class ServidorInterfaz extends javax.swing.JFrame implements Runnable {
 
         try {
             String name;
-            ServerSocket servidor = new ServerSocket(PUERTO);
+            ServerSocket servidor = new ServerSocket(PUERTOSERVIDOR);
             while(true){
                 Socket socket = servidor.accept();
                 if (contador == 10) {
@@ -159,8 +161,10 @@ public class ServidorInterfaz extends javax.swing.JFrame implements Runnable {
                 String turno = String.valueOf(contador + 1);
                 pacienteAlta.setNumeroTurno(turno);
                 System.out.println(pacienteAlta.toString());
-                //Socket socketRespuesta = new Socket(HOST,5010);
-                //ObjectOutputStream
+                Socket socketRespuesta = new Socket(HOST,PUERTOCLIENTE);
+                ObjectOutputStream envioCliente = new ObjectOutputStream(socketRespuesta.getOutputStream());
+                envioCliente.writeObject(pacienteAlta);
+                socketRespuesta.close();
                 socket.close();
                 contador++;
             }
