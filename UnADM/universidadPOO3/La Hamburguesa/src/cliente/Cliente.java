@@ -250,7 +250,7 @@ public class Cliente extends javax.swing.JFrame implements Runnable {
         if (validacionCamposTexto()) {
             //Llamado al método para la conexión del servidor
             //generarConexionServidor();
-            JOptionPane.showMessageDialog(null, "Los campos se encuentran vacios");
+            JOptionPane.showMessageDialog(null, "Los campos se encuentran llenos");
         } else {
             //Dialog para el caso de que los campos se encuentran vacios
             JOptionPane.showMessageDialog(null, "Los campos se encuentran vacios");

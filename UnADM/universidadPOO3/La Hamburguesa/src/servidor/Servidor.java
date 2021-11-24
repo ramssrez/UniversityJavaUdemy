@@ -5,7 +5,6 @@
  */
 package servidor;
 
-import cliente.*;
 import javax.swing.JOptionPane;
 
 /**
@@ -32,11 +31,7 @@ public class Servidor extends javax.swing.JFrame implements Runnable {
         //Creación del hilo para su implementación y se mantenga a la escucha del servidor
         Thread thread = new Thread(this);
         thread.start();
-        btngRadios.add(jrbPackOne);
-        btngRadios.add(jrbPackTwo);
-        btngRadios.add(jrbPackThree);
-        btngRadios.add(jrbPackFor);
-        jtStatus.setEditable(false);
+        jtDatosPedidos.setEditable(false);
     }
 
     @Override
@@ -46,8 +41,8 @@ public class Servidor extends javax.swing.JFrame implements Runnable {
 
     //Método que verifica que los campos no se encuentren vacios
     public boolean validacionCamposTexto() {
-        if ((jtfName.getText().equals("") && jtfPhone.getText().equals("") && jtAdress.getText().equals(""))
-                || jtfName.getText().equals("") || jtfPhone.getText().equals("") || jtAdress.getText().equals("")) {
+        if ((jtfNameRepartidor.getText().equals("") && jtfHora.getText().equals(""))
+                || jtfNameRepartidor.getText().equals("") || jtfHora.getText().equals("")) {
             //Retorno falso en caso de que sea correcto los campos vacios
             return false;
         } else {
@@ -65,181 +60,104 @@ public class Servidor extends javax.swing.JFrame implements Runnable {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btngRadios = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jtfName = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jtfPhone = new javax.swing.JTextField();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jtAdress = new javax.swing.JTextArea();
-        jrbPackOne = new javax.swing.JRadioButton();
-        jrbPackTwo = new javax.swing.JRadioButton();
-        jrbPackThree = new javax.swing.JRadioButton();
-        jrbPackFor = new javax.swing.JRadioButton();
         jLabel6 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jtStatus = new javax.swing.JTextArea();
+        jtDatosPedidos = new javax.swing.JTextArea();
+        jtfNameRepartidor = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jtfHora = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 204, 255));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setText("La Hamburguesa");
+        jLabel1.setText("La Hamburguesa:Servidor");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setText("Nombre");
-
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel3.setText("Ingresa los siguientes datos");
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel4.setText("Teléfono");
-
-        jtfName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jtfName.setText("Jorge Negrete Sanchez");
-        jtfName.setToolTipText("");
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel5.setText("Dirección de entrega");
-
-        jtfPhone.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jtfPhone.setText("5555555552");
-        jtfPhone.setToolTipText("");
-
-        jtAdress.setColumns(20);
-        jtAdress.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jtAdress.setRows(5);
-        jtAdress.setText("Av. Revolución #9, Colonia San Pedro Culhuacan\nTexcoco, Estado de México\n");
-        jtAdress.setToolTipText("");
-        jtAdress.setAutoscrolls(false);
-        jScrollPane2.setViewportView(jtAdress);
-
-        jrbPackOne.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jrbPackOne.setText("Pack 1");
-
-        jrbPackTwo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jrbPackTwo.setText("Pack 2");
-
-        jrbPackThree.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jrbPackThree.setText("Pack 3");
-
-        jrbPackFor.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jrbPackFor.setText("Pack 4");
+        jLabel2.setText("Datos del pedido");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel6.setText("Escoge alguno de nuestro paquete");
+        jLabel6.setText("Nombre del repartidor");
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton1.setText("Realizar Pedido");
+        jButton1.setText("Asignar Pedido");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel7.setText("Status del Pedido");
+        jtDatosPedidos.setColumns(20);
+        jtDatosPedidos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jtDatosPedidos.setRows(5);
+        jtDatosPedidos.setToolTipText("");
+        jtDatosPedidos.setAutoscrolls(false);
+        jScrollPane3.setViewportView(jtDatosPedidos);
 
-        jtStatus.setColumns(20);
-        jtStatus.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jtStatus.setRows(5);
-        jtStatus.setToolTipText("");
-        jtStatus.setAutoscrolls(false);
-        jScrollPane3.setViewportView(jtStatus);
+        jtfNameRepartidor.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jtfNameRepartidor.setText("Jorge Negrete Sanchez");
+        jtfNameRepartidor.setToolTipText("");
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel8.setText("Tiempo de entrega");
+
+        jtfHora.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jtfHora.setText("30 Minutos");
+        jtfHora.setToolTipText("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(94, 94, 94))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addGap(86, 86, 86))))
+                .addContainerGap(54, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(50, 50, 50))
             .addGroup(layout.createSequentialGroup()
-                .addGap(129, 129, 129)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
-                    .addComponent(jButton1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(129, 129, 129)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton1)
+                            .addComponent(jLabel6)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(17, 17, 17)
+                                .addComponent(jLabel8))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(151, 151, 151)
+                        .addComponent(jLabel2)))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(169, 169, 169)
-                                .addComponent(jLabel2))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(164, 164, 164)
-                                .addComponent(jLabel4))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(124, 124, 124)
-                                .addComponent(jLabel5))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(69, 69, 69)
-                                .addComponent(jLabel3))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(156, 156, 156)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jrbPackTwo)
-                                    .addComponent(jrbPackOne)
-                                    .addComponent(jrbPackThree)
-                                    .addComponent(jrbPackFor))))
-                        .addGap(0, 59, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jtfName)
-                            .addComponent(jtfPhone, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane3))))
+                    .addComponent(jScrollPane3)
+                    .addComponent(jtfNameRepartidor)
+                    .addComponent(jtfHora))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(6, 6, 6)
                 .addComponent(jLabel1)
-                .addGap(1, 1, 1)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtfName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel4)
-                .addGap(18, 18, 18)
-                .addComponent(jtfPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
-                .addGap(9, 9, 9)
-                .addComponent(jrbPackOne)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jrbPackTwo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jrbPackThree)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jrbPackFor)
+                .addComponent(jtfNameRepartidor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jtfHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel7)
-                .addGap(1, 1, 1)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         pack();
@@ -251,7 +169,7 @@ public class Servidor extends javax.swing.JFrame implements Runnable {
         if (validacionCamposTexto()) {
             //Llamado al método para la conexión del servidor
             //generarConexionServidor();
-            JOptionPane.showMessageDialog(null, "Los campos se encuentran vacios");
+            JOptionPane.showMessageDialog(null, "Los campos se encuentran Llenos");
         } else {
             //Dialog para el caso de que los campos se encuentran vacios
             JOptionPane.showMessageDialog(null, "Los campos se encuentran vacios");
@@ -284,13 +202,6 @@ public class Servidor extends javax.swing.JFrame implements Runnable {
             java.util.logging.Logger.getLogger(Servidor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -301,24 +212,14 @@ public class Servidor extends javax.swing.JFrame implements Runnable {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup btngRadios;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JRadioButton jrbPackFor;
-    private javax.swing.JRadioButton jrbPackOne;
-    private javax.swing.JRadioButton jrbPackThree;
-    private javax.swing.JRadioButton jrbPackTwo;
-    private javax.swing.JTextArea jtAdress;
-    private javax.swing.JTextArea jtStatus;
-    private javax.swing.JTextField jtfName;
-    private javax.swing.JTextField jtfPhone;
+    private javax.swing.JTextArea jtDatosPedidos;
+    private javax.swing.JTextField jtfHora;
+    private javax.swing.JTextField jtfNameRepartidor;
     // End of variables declaration//GEN-END:variables
 }
