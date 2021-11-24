@@ -14,6 +14,7 @@ import objetos.PacienteAlta;
  * @author ramssrez
  */
 public class ClienteInterfaz extends javax.swing.JFrame implements Runnable {
+
     //Declaración del host para correr el servidor y cliente en la misma maquina
     private final String HOST = "127.0.0.1";
     //Declaración de los puertos tanto el servidor como el cliente
@@ -87,7 +88,7 @@ public class ClienteInterfaz extends javax.swing.JFrame implements Runnable {
         System.out.println("Esto es desde el hilo cliente");
         //DElcaración de la variable del paciente
         PacienteAlta pacienteAsignado;
-        
+
         //Try/catch para hacer el Cliente como un servidor, con su propio puerto
         try {
             //Declaración serverSocket asignando un puerto exclusivo para el cliente
@@ -101,12 +102,12 @@ public class ClienteInterfaz extends javax.swing.JFrame implements Runnable {
                 //Parseo del objeto que venga del servidor a un PacienteAlta
                 pacienteAsignado = (PacienteAlta) inputStream.readObject();
                 //Impresión del mensaje de todos los datos que se obtuvieron del servidor
-                String mensaje = "Turno: " + pacienteAsignado.getNumeroTurno() + 
-                        "\nNúmero Seguro Social: " + pacienteAsignado.getNumeroSocial() +
-                        "\nNombre: " + pacienteAsignado.getNombre() +
-                        "\nSintomas: " + pacienteAsignado.getSintomas() +
-                        "\nNombre Doctor: " + pacienteAsignado.getDoctorAsignado() +
-                        "\nNúmero consultorio: " + pacienteAsignado.getNumeroConsultorio();
+                String mensaje = "Turno: " + pacienteAsignado.getNumeroTurno()
+                        + "\nNúmero Seguro Social: " + pacienteAsignado.getNumeroSocial()
+                        + "\nNombre: " + pacienteAsignado.getNombre()
+                        + "\nSintomas: " + pacienteAsignado.getSintomas()
+                        + "\nNombre Doctor: " + pacienteAsignado.getDoctorAsignado()
+                        + "\nNúmero consultorio: " + pacienteAsignado.getNumeroConsultorio();
                 //Impresión del mensaje en el área de texto
                 jtaDatosServidor.setText(mensaje);
             }

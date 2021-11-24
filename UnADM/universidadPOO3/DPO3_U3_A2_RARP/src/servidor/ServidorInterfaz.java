@@ -12,11 +12,15 @@ import objetos.PacienteAlta;
  * @author ramssrez
  */
 public class ServidorInterfaz extends javax.swing.JFrame implements Runnable {
-    
+
+    //Declaración de variables necesarias para su implementación
     private final String HOST = "127.0.0.1";
+    //Declaración de puertos para el servidor y el cleinte
     private final int PUERTOSERVIDOR = 5000;
     private final int PUERTOCLIENTE = 5050;
     private int contador = 0;
+
+    //Declaración de los doctores que con los que se cuentan en urgencias
     private final String dr1 = "Dr. Juan Sanchez Sanchez";
     private final String dr2 = "Dra. Irma Fernandez Fernandez";
     private final String dr3 = "Dr. Carlos Leon Leon";
@@ -28,6 +32,7 @@ public class ServidorInterfaz extends javax.swing.JFrame implements Runnable {
     private final String dr9 = "Dr. Jose Rodriguez Rodrioguez";
     private final String dr10 = "Dra. Selena Sanchez Sanchez";
 
+    //Creación del arreglos que contiene la información del 
     String[] doctores = {dr1, dr2, dr3, dr4, dr5, dr6, dr7, dr8, dr9, dr10};
 
     /**
@@ -42,6 +47,48 @@ public class ServidorInterfaz extends javax.swing.JFrame implements Runnable {
         jtfRegistro.setEditable(false);
         Thread thread = new Thread(this);
         thread.start();
+    }
+
+    //]Uso del método run, el cual es necesario usar por la implementación de runneable
+    @Override
+    public void run() {
+        System.out.println("Esto es desde el hilo servidor");
+        PacienteAlta pacienteAlta;
+
+        try {
+            String name;
+            ServerSocket servidor = new ServerSocket(PUERTOSERVIDOR);
+            while (true) {
+                Socket socket = servidor.accept();
+                if (contador == 10) {
+                    contador = 0;
+                }
+                ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
+                pacienteAlta = (PacienteAlta) inputStream.readObject();
+                name = pacienteAlta.getNombre();
+                String message = "\n El paciente " + name + " fue registrado exitosamente";
+                jtfRegistro.setText(message);
+                pacienteAlta.setDoctorAsignado(doctores[contador]);
+                String consultorio = String.valueOf(contador + 2);
+                pacienteAlta.setNumeroConsultorio(consultorio);
+                String turno = String.valueOf(contador + 1);
+                pacienteAlta.setNumeroTurno(turno);
+                //System.out.println(pacienteAlta.toString());
+                Socket socketRespuesta = new Socket(HOST, PUERTOCLIENTE);
+                ObjectOutputStream envioCliente = new ObjectOutputStream(socketRespuesta.getOutputStream());
+                envioCliente.writeObject(pacienteAlta);
+                socketRespuesta.close();
+                socket.close();
+                contador++;
+            }
+
+        } catch (IOException ex) {
+            System.out.println("Error Selección: " + ex.getMessage());
+            ex.printStackTrace(System.out);
+        } catch (ClassNotFoundException ex) {
+            System.out.println("Error Selección: " + ex.getMessage());
+            ex.printStackTrace(System.out);
+        }
     }
 
     /**
@@ -136,46 +183,4 @@ public class ServidorInterfaz extends javax.swing.JFrame implements Runnable {
     private javax.swing.JTextArea jtfRegistro;
     // End of variables declaration//GEN-END:variables
 
-    //]Uso del método run, el cual es necesario usar por la implementación de runneable
-    @Override
-    public void run() {
-        System.out.println("Esto es desde el hilo servidor");
-        PacienteAlta pacienteAlta;
-
-        try {
-            String name;
-            ServerSocket servidor = new ServerSocket(PUERTOSERVIDOR);
-            while(true){
-                Socket socket = servidor.accept();
-                if (contador == 10) {
-                    contador = 0;
-                }
-                ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
-                pacienteAlta = (PacienteAlta) inputStream.readObject();
-                name = pacienteAlta.getNombre();
-                String message = "\n El paciente " + name + " fue registrado exitosamente";
-                jtfRegistro.setText(message);
-                pacienteAlta.setDoctorAsignado(doctores[contador]);
-                String consultorio = String.valueOf(contador + 2);
-                pacienteAlta.setNumeroConsultorio(consultorio);
-                String turno = String.valueOf(contador + 1);
-                pacienteAlta.setNumeroTurno(turno);
-                //System.out.println(pacienteAlta.toString());
-                Socket socketRespuesta = new Socket(HOST,PUERTOCLIENTE);
-                ObjectOutputStream envioCliente = new ObjectOutputStream(socketRespuesta.getOutputStream());
-                envioCliente.writeObject(pacienteAlta);
-                socketRespuesta.close();
-                socket.close();
-                contador++;
-            }
-            
-            
-        } catch (IOException ex) {
-            System.out.println("Error Selección: " + ex.getMessage());
-            ex.printStackTrace(System.out);
-        }catch (ClassNotFoundException ex) {
-            System.out.println("Error Selección: " + ex.getMessage());
-            ex.printStackTrace(System.out);
-        }
-    }
 }
