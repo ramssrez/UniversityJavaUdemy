@@ -5,6 +5,8 @@
  */
 package cliente;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ramssrez
@@ -39,6 +41,18 @@ public class Cliente extends javax.swing.JFrame implements Runnable {
     @Override
     public void run() {
         System.out.println("Esto es un hilo desde el Cliente");
+    }
+
+    //Método que verifica que los campos no se encuentren vacios
+    public boolean validacionCamposTexto() {
+        if ((jtfName.getText().equals("") && jtfPhone.getText().equals("") && jtAdress.getText().equals(""))
+                || jtfName.getText().equals("") || jtfPhone.getText().equals("") || jtAdress.getText().equals("")) {
+            //Retorno falso en caso de que sea correcto los campos vacios
+            return false;
+        } else {
+            //Retorno verdadero para el caso de que los campos esten llenos
+            return true;
+        }
     }
 
     /**
@@ -121,6 +135,11 @@ public class Cliente extends javax.swing.JFrame implements Runnable {
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton1.setText("Realizar Pedido");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("Status del Pedido");
@@ -224,6 +243,19 @@ public class Cliente extends javax.swing.JFrame implements Runnable {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        //Validación de los campos para que no se encuentren vacios
+        if (validacionCamposTexto()) {
+            //Llamado al método para la conexión del servidor
+            //generarConexionServidor();
+            JOptionPane.showMessageDialog(null, "Los campos se encuentran vacios");
+        } else {
+            //Dialog para el caso de que los campos se encuentran vacios
+            JOptionPane.showMessageDialog(null, "Los campos se encuentran vacios");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
