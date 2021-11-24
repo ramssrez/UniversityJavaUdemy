@@ -9,7 +9,13 @@ package servidor;
  *
  * @author ramssrez
  */
-public class Servidor extends javax.swing.JFrame {
+public class Servidor extends javax.swing.JFrame implements Runnable {
+
+    //Declaración del host para correr el servidor y cliente en la misma maquina
+    private final String HOST = "127.0.0.1";
+    //Declaración de los puertos tanto el servidor como el cliente
+    private final int PUERTOSERVIDOR = 5000;
+    private final int PUERTOCLIENTE = 5050;
 
     /**
      * Creates new form Servidor
@@ -20,6 +26,14 @@ public class Servidor extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         //Sentencia que desactiva el minimizar y maximizar de las ventanas principales
         this.setResizable(false);
+        //Creación del hilo para su implementación y se mantenga a la escucha del servidor
+        Thread thread = new Thread(this);
+        thread.start();
+    }
+
+    @Override
+    public void run() {
+        System.out.println("Esto es un hilo desde el Servidor");
     }
 
     /**
