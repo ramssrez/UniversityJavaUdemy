@@ -5,7 +5,11 @@
  */
 package cliente;
 
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
 import javax.swing.JOptionPane;
+import objetos.Pedido;
 
 /**
  *
@@ -35,6 +39,7 @@ public class Cliente extends javax.swing.JFrame implements Runnable {
         btngRadios.add(jrbPackTwo);
         btngRadios.add(jrbPackThree);
         btngRadios.add(jrbPackFor);
+        jrbPackOne.setSelected(true);
         jtStatus.setEditable(false);
     }
 
@@ -53,6 +58,47 @@ public class Cliente extends javax.swing.JFrame implements Runnable {
             //Retorno verdadero para el caso de que los campos esten llenos
             return true;
         }
+    }
+
+    //Método que genera la conexión con el servidor 
+    public void generarConexionServidor() {
+        //Obtención de los datos ingresados en las áreas de texto
+        String nombre = jtfName.getText();
+        String direccion = jtAdress.getText();
+        String telefono = jtfPhone.getText();
+        String paquete = null;
+        if (jrbPackOne.isSelected()) {
+            paquete = "Paquete Uno";
+        } else if (jrbPackTwo.isSelected()) {
+            paquete = "Paquete Dos";
+        } else if (jrbPackThree.isSelected()) {
+            paquete = "Paquete Tres";
+        } else if (jrbPackFor.isSelected()) {
+            paquete = "Paquete Cuatro";
+        }
+        //Instancia del objeto formulario con lo que se obtuvo del formulario
+        Pedido pedido = new Pedido(nombre, direccion, paquete, telefono);
+        System.out.println(pedido.toString());
+        
+        /*
+        //Try/Catch para el socket
+        try {
+            //Instancia del socket con el uso del Host y el puerto del servidor
+            Socket socket = new Socket(HOST, PUERTOSERVIDOR);
+            //Instancia del Stream para enviar el objeto por medio de la red
+            ObjectOutputStream envioDatos = new ObjectOutputStream(socket.getOutputStream());
+            //Envio del objeto
+            //envioDatos.writeObject(paciente);
+            //Cierre de la coneción del servidor
+            socket.close();
+
+            //Catch que registra algún error por parte del servidor
+        } catch (IOException ex) {
+            System.out.println("Error IOException: " + ex.getMessage());
+            ex.printStackTrace(System.out);
+        }
+        */
+
     }
 
     /**
@@ -79,7 +125,7 @@ public class Cliente extends javax.swing.JFrame implements Runnable {
         jrbPackThree = new javax.swing.JRadioButton();
         jrbPackFor = new javax.swing.JRadioButton();
         jLabel6 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jbtnReealizarPedido = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jtStatus = new javax.swing.JTextArea();
@@ -133,11 +179,11 @@ public class Cliente extends javax.swing.JFrame implements Runnable {
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setText("Escoge alguno de nuestro paquete");
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton1.setText("Realizar Pedido");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jbtnReealizarPedido.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jbtnReealizarPedido.setText("Realizar Pedido");
+        jbtnReealizarPedido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jbtnReealizarPedidoActionPerformed(evt);
             }
         });
 
@@ -168,7 +214,7 @@ public class Cliente extends javax.swing.JFrame implements Runnable {
                 .addGap(129, 129, 129)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
-                    .addComponent(jButton1))
+                    .addComponent(jbtnReealizarPedido))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -233,7 +279,7 @@ public class Cliente extends javax.swing.JFrame implements Runnable {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jrbPackFor)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
+                .addComponent(jbtnReealizarPedido)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel7)
                 .addGap(1, 1, 1)
@@ -244,18 +290,18 @@ public class Cliente extends javax.swing.JFrame implements Runnable {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jbtnReealizarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnReealizarPedidoActionPerformed
         // TODO add your handling code here:
         //Validación de los campos para que no se encuentren vacios
         if (validacionCamposTexto()) {
             //Llamado al método para la conexión del servidor
-            //generarConexionServidor();
+            generarConexionServidor();
             JOptionPane.showMessageDialog(null, "Los campos se encuentran llenos");
         } else {
             //Dialog para el caso de que los campos se encuentran vacios
             JOptionPane.showMessageDialog(null, "Los campos se encuentran vacios");
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jbtnReealizarPedidoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -295,7 +341,6 @@ public class Cliente extends javax.swing.JFrame implements Runnable {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup btngRadios;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -305,6 +350,7 @@ public class Cliente extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JButton jbtnReealizarPedido;
     private javax.swing.JRadioButton jrbPackFor;
     private javax.swing.JRadioButton jrbPackOne;
     private javax.swing.JRadioButton jrbPackThree;

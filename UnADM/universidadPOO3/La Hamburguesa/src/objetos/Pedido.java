@@ -1,24 +1,28 @@
 
 package objetos;
 
+import java.io.Serializable;
+
 /**
  *
  * @author ramssrez
  */
-public class Pedido {
+public class Pedido implements Serializable{
     private String nombre;
     private String dirección;
     private String pack;
+    private String telefono;
     private String repartidor;
     private String tiempo;
 
     public Pedido() {
     }
 
-    public Pedido(String nombre, String dirección, String pack) {
+    public Pedido(String nombre, String dirección, String pack, String telefono) {
         this.nombre = nombre;
         this.dirección = dirección;
         this.pack = pack;
+        this.telefono = telefono;
     }
 
     public Pedido(String nombre, String dirección, String pack, String repartidor, String tiempo) {
@@ -67,6 +71,14 @@ public class Pedido {
 
     public void setTiempo(String tiempo) {
         this.tiempo = tiempo;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 
     @Override
