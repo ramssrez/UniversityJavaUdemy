@@ -87,14 +87,12 @@ public class ClienteInterfaz extends javax.swing.JFrame implements Runnable {
                 ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
                 pacienteAsignado = (PacienteAlta) inputStream.readObject();
                 System.out.println(pacienteAsignado.toString());
-                String turno = pacienteAsignado.getNumeroTurno();
-                String sintomas = pacienteAsignado.getSintomas();
-                String nombre = pacienteAsignado.getNombre();
-                String numeroSocial = pacienteAsignado.getNumeroSocial();
-                String doctor = pacienteAsignado.getDoctorAsignado();
-                String consultorio = pacienteAsignado.getNumeroConsultorio();
-                String mensaje = "Turno: " + turno + " \n Nombre: " + nombre +
-                        "Número Seguro Social: " + numeroSocial;
+                String mensaje = "Turno: " + pacienteAsignado.getNumeroTurno() + 
+                        "\nNúmero Seguro Social: " + pacienteAsignado.getNumeroSocial() +
+                        "\nNombre: " + pacienteAsignado.getNombre() +
+                        "\nSintomas: " + pacienteAsignado.getSintomas() +
+                        "\nNombre Doctor: " + pacienteAsignado.getDoctorAsignado() +
+                        "\nNúmero consultorio: " + pacienteAsignado.getNumeroConsultorio();
                 jtaDatosServidor.setText(mensaje);
             }
 
@@ -233,23 +231,22 @@ public class ClienteInterfaz extends javax.swing.JFrame implements Runnable {
                 .addGap(18, 18, 18)
                 .addComponent(jbtnEnviar)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(89, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnEnviarActionPerformed
-        // TODO add your handling code here:
+        jtaDatosServidor.setText("");
         if (validacionCamposTexto()) {
-            JOptionPane.showMessageDialog(null, "Los campos se encuentran llenos");
             generarConexionServidor();
         } else {
             JOptionPane.showMessageDialog(null, "Los campos se encuentran vacios");
 
         }
-        //limpiarCampos();
+        limpiarCampos();
     }//GEN-LAST:event_jbtnEnviarActionPerformed
 
     /**

@@ -12,7 +12,7 @@ import objetos.PacienteAlta;
  * @author ramssrez
  */
 public class ServidorInterfaz extends javax.swing.JFrame implements Runnable {
-
+    
     private final String HOST = "127.0.0.1";
     private final int PUERTOSERVIDOR = 5000;
     private final int PUERTOCLIENTE = 5050;
