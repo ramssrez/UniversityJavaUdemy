@@ -15,6 +15,7 @@ public class ClienteInterfaz extends javax.swing.JFrame {
 
     private final String HOST = "127.0.0.1";
     private final int PUERTO = 5000;
+
     /**
      * Creates new form CrearArchivos
      */
@@ -54,7 +55,7 @@ public class ClienteInterfaz extends javax.swing.JFrame {
         //System.out.println("sintomas = " + sintomas);
         PacienteAlta paciente = new PacienteAlta(nombre, numero, sintomas);
         System.out.println(paciente.toString());
-        
+
         try {
             Socket socket = new Socket(HOST, PUERTO);
             ObjectOutputStream envioDatos = new ObjectOutputStream(socket.getOutputStream());

@@ -1,5 +1,11 @@
 package servidor;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.net.ServerSocket;
+import java.net.Socket;
+import objetos.PacienteAlta;
+
 /**
  *
  * @author ramssrez
@@ -27,11 +33,13 @@ public class ServidorInterfaz extends javax.swing.JFrame implements Runnable {
      */
     public ServidorInterfaz() {
         initComponents();
-        this.setTitle("Cliente");
+        this.setTitle("Servidor");
         this.setLocationRelativeTo(null);
         //Sentencia que desactiva el minimizar y maximizar de las ventanas principales
         this.setResizable(false);
         jtfRegistro.setEditable(false);
+        Thread thread = new Thread(this);
+        thread.start();
     }
 
     /**
@@ -65,12 +73,12 @@ public class ServidorInterfaz extends javax.swing.JFrame implements Runnable {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(43, 43, 43))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -78,8 +86,8 @@ public class ServidorInterfaz extends javax.swing.JFrame implements Runnable {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(89, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -129,6 +137,41 @@ public class ServidorInterfaz extends javax.swing.JFrame implements Runnable {
     //]Uso del método run, el cual es necesario usar por la implementación de runneable
     @Override
     public void run() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("Esto es desde el hilo");
+        PacienteAlta pacienteAlta;
+
+        try {
+            String name;
+            ServerSocket servidor = new ServerSocket(PUERTO);
+            while(true){
+                Socket socket = servidor.accept();
+                if (contador == 10) {
+                    contador = 0;
+                }
+                ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
+                pacienteAlta = (PacienteAlta) inputStream.readObject();
+                name = pacienteAlta.getNombre();
+                String message = "\n El paciente " + name + " fue registrado exitosamente";
+                jtfRegistro.setText(message);
+                pacienteAlta.setDoctorAsignado(doctores[contador]);
+                String consultorio = String.valueOf(contador + 2);
+                pacienteAlta.setNumeroConsultorio(consultorio);
+                String turno = String.valueOf(contador + 1);
+                pacienteAlta.setNumeroTurno(turno);
+                System.out.println(pacienteAlta.toString());
+                //Socket socketRespuesta = new Socket(HOST,5010);
+                //ObjectOutputStream
+                socket.close();
+                contador++;
+            }
+            
+            
+        } catch (IOException ex) {
+            System.out.println("Error Selección: " + ex.getMessage());
+            ex.printStackTrace(System.out);
+        }catch (ClassNotFoundException ex) {
+            System.out.println("Error Selección: " + ex.getMessage());
+            ex.printStackTrace(System.out);
+        }
     }
 }
