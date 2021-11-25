@@ -4,7 +4,7 @@ package objetos;
  *
  * @author ramssrez
  */
-public class Personall {
+public class Personal {
     private int id;
     private String nombre;
     private String apellidos;
@@ -14,10 +14,10 @@ public class Personall {
     private String puesto;
     private String sueldo;
 
-    public Personall() {
+    public Personal() {
     }
 
-    public Personall(String nombre, String apellidos, String area, String edad, String numeroEmpleado, String puesto, String sueldo) {
+    public Personal(String nombre, String apellidos, String area, String edad, String numeroEmpleado, String puesto, String sueldo) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.area = area;
