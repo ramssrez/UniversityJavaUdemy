@@ -45,7 +45,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("Selecciona una opción del menú");
 
-        jMenu1.setText("Asignar Trabajo");
+        jMenu1.setText("Habitación");
 
         jIemAsigar.setText("Ir");
         jIemAsigar.addActionListener(new java.awt.event.ActionListener() {
@@ -57,14 +57,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jItemReporte.setText("Reportes trabajo");
+        jItemReporte.setText("Personal");
 
         jMenuItem2.setText("Ir");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
-            }
-        });
         jItemReporte.add(jMenuItem2);
 
         jMenuBar1.add(jItemReporte);
@@ -92,16 +87,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jIemAsigarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jIemAsigarActionPerformed
-//        AsignarTrabajo asignarTrabajo = new AsignarTrabajo();
-//        asignarTrabajo.setVisible(true);
-//        dispose();
+        // TODO add your handling code here:
+        HabiitacionInterface hi = new HabiitacionInterface();
+        hi.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jIemAsigarActionPerformed
-
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-//        RecordsObtenidos obtenidos = new RecordsObtenidos();
-//        obtenidos.setVisible(true);
-//        dispose();
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -129,13 +119,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
