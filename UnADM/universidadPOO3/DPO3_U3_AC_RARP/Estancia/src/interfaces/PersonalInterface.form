@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <NonVisualComponents>
+    <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
+      <SubComponents>
+        <Menu class="javax.swing.JMenu" name="jMenu1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Men&#xfa; Principal"/>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="jmtMenu">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="ir"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmtMenuActionPerformed"/>
+              </Events>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
+      </SubComponents>
+    </Menu>
+  </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -8,6 +29,7 @@
     </Property>
   </Properties>
   <SyntheticProperties>
+    <SyntheticProperty name="menuBar" type="java.lang.String" value="jMenuBar1"/>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
@@ -80,11 +102,11 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jtfNumberWorker" max="32767" attributes="0"/>
                           <Component id="jtfName" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jtfName1" alignment="1" max="32767" attributes="0"/>
-                          <Component id="jtfName4" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jtfName5" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jtfName2" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jtfName3" alignment="1" max="32767" attributes="0"/>
+                          <Component id="jtfApellidos" alignment="1" max="32767" attributes="0"/>
+                          <Component id="jtfEdad" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jtfPuesto" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jtfSueldo" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jtfArea" alignment="1" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -110,24 +132,24 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jtfName1" min="-2" max="-2" attributes="0"/>
+              <Component id="jtfApellidos" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jtfName4" min="-2" max="-2" attributes="0"/>
+              <Component id="jtfEdad" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jtfName5" min="-2" max="-2" attributes="0"/>
+              <Component id="jtfPuesto" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jtfName2" min="-2" max="-2" attributes="0"/>
+              <Component id="jtfSueldo" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jtfName3" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="101" max="32767" attributes="0"/>
+              <Component id="jtfArea" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="79" max="32767" attributes="0"/>
               <Component id="jbtnReealizarPedido" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
           </Group>
@@ -214,7 +236,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtnReealizarPedidoActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="jtfName1">
+    <Component class="javax.swing.JTextField" name="jtfApellidos">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="14" style="0"/>
@@ -248,7 +270,7 @@
         <Property name="text" type="java.lang.String" value="&#xc1;rea"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jtfName2">
+    <Component class="javax.swing.JTextField" name="jtfSueldo">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="14" style="0"/>
@@ -258,7 +280,7 @@
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jtfName3">
+    <Component class="javax.swing.JTextField" name="jtfArea">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="14" style="0"/>
@@ -268,7 +290,7 @@
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jtfName4">
+    <Component class="javax.swing.JTextField" name="jtfEdad">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="14" style="0"/>
@@ -278,7 +300,7 @@
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jtfName5">
+    <Component class="javax.swing.JTextField" name="jtfPuesto">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="14" style="0"/>

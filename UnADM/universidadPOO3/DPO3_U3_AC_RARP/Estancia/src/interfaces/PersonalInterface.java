@@ -41,14 +41,17 @@ public class PersonalInterface extends javax.swing.JFrame {
         jtfName = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jbtnReealizarPedido = new javax.swing.JButton();
-        jtfName1 = new javax.swing.JTextField();
+        jtfApellidos = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jtfName2 = new javax.swing.JTextField();
-        jtfName3 = new javax.swing.JTextField();
-        jtfName4 = new javax.swing.JTextField();
-        jtfName5 = new javax.swing.JTextField();
+        jtfSueldo = new javax.swing.JTextField();
+        jtfArea = new javax.swing.JTextField();
+        jtfEdad = new javax.swing.JTextField();
+        jtfPuesto = new javax.swing.JTextField();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jmtMenu = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 204, 255));
@@ -89,10 +92,10 @@ public class PersonalInterface extends javax.swing.JFrame {
             }
         });
 
-        jtfName1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jtfName1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jtfName1.setText("Negrete Sanchez");
-        jtfName1.setToolTipText("");
+        jtfApellidos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jtfApellidos.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jtfApellidos.setText("Negrete Sanchez");
+        jtfApellidos.setToolTipText("");
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("Edad");
@@ -103,25 +106,39 @@ public class PersonalInterface extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel9.setText("Área");
 
-        jtfName2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jtfName2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jtfName2.setText("12000");
-        jtfName2.setToolTipText("");
+        jtfSueldo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jtfSueldo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jtfSueldo.setText("12000");
+        jtfSueldo.setToolTipText("");
 
-        jtfName3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jtfName3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jtfName3.setText("Recursos Humanos");
-        jtfName3.setToolTipText("");
+        jtfArea.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jtfArea.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jtfArea.setText("Recursos Humanos");
+        jtfArea.setToolTipText("");
 
-        jtfName4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jtfName4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jtfName4.setText("39");
-        jtfName4.setToolTipText("");
+        jtfEdad.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jtfEdad.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jtfEdad.setText("39");
+        jtfEdad.setToolTipText("");
 
-        jtfName5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jtfName5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jtfName5.setText("Coordinador");
-        jtfName5.setToolTipText("");
+        jtfPuesto.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jtfPuesto.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jtfPuesto.setText("Coordinador");
+        jtfPuesto.setToolTipText("");
+
+        jMenu1.setText("Menú Principal");
+
+        jmtMenu.setText("ir");
+        jmtMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmtMenuActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jmtMenu);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -168,11 +185,11 @@ public class PersonalInterface extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jtfNumberWorker)
                             .addComponent(jtfName)
-                            .addComponent(jtfName1, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jtfName4)
-                            .addComponent(jtfName5)
-                            .addComponent(jtfName2)
-                            .addComponent(jtfName3, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(jtfApellidos, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jtfEdad)
+                            .addComponent(jtfPuesto)
+                            .addComponent(jtfSueldo)
+                            .addComponent(jtfArea, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -193,24 +210,24 @@ public class PersonalInterface extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtfName1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jtfApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtfName4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jtfEdad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtfName5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jtfPuesto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtfName2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jtfSueldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtfName3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
+                .addComponent(jtfArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
                 .addComponent(jbtnReealizarPedido)
                 .addGap(40, 40, 40))
         );
@@ -223,6 +240,13 @@ public class PersonalInterface extends javax.swing.JFrame {
         //Validación de los campos para que no se encuentren vacios
 
     }//GEN-LAST:event_jbtnReealizarPedidoActionPerformed
+
+    private void jmtMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmtMenuActionPerformed
+        // TODO add your handling code here:
+        MenuPrincipal mp = new MenuPrincipal();
+        mp.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jmtMenuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -270,13 +294,16 @@ public class PersonalInterface extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JButton jbtnReealizarPedido;
+    private javax.swing.JMenuItem jmtMenu;
+    private javax.swing.JTextField jtfApellidos;
+    private javax.swing.JTextField jtfArea;
+    private javax.swing.JTextField jtfEdad;
     private javax.swing.JTextField jtfName;
-    private javax.swing.JTextField jtfName1;
-    private javax.swing.JTextField jtfName2;
-    private javax.swing.JTextField jtfName3;
-    private javax.swing.JTextField jtfName4;
-    private javax.swing.JTextField jtfName5;
     private javax.swing.JTextField jtfNumberWorker;
+    private javax.swing.JTextField jtfPuesto;
+    private javax.swing.JTextField jtfSueldo;
     // End of variables declaration//GEN-END:variables
 }
