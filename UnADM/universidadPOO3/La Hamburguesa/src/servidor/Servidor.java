@@ -26,7 +26,7 @@ public class Servidor extends javax.swing.JFrame implements Runnable {
      */
     public Servidor() {
         initComponents();
-        this.setTitle("Cliente");
+        this.setTitle("Servidor");
         this.setLocationRelativeTo(null);
         //Sentencia que desactiva el minimizar y maximizar de las ventanas principales
         this.setResizable(false);
