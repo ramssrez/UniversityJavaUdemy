@@ -23,9 +23,6 @@ public class HabiitacionInterface extends javax.swing.JFrame {
     private Thread hilo;
     private int contador;
 
-    /**
-     * Creates new form Principal
-     */
     public HabiitacionInterface() {
         initComponents();
         this.setTitle("Inicio");

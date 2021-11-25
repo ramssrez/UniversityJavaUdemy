@@ -1,11 +1,5 @@
 package interfaces;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.net.ServerSocket;
-import java.net.Socket;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -13,15 +7,6 @@ import javax.swing.JOptionPane;
  */
 public class Personal extends javax.swing.JFrame {
 
-    //Declaración del host para correr el servidor y cliente en la misma maquina
-    private final String HOST = "127.0.0.1";
-    //Declaración de los puertos tanto el servidor como el cliente
-    private final int PUERTOSERVIDOR = 5000;
-    private final int PUERTOCLIENTE = 5050;
-
-    /**
-     * Creates new form Registro
-     */
     public Personal() {
         initComponents();
         this.setTitle("Cliente");

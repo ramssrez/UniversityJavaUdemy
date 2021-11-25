@@ -13,9 +13,6 @@ package interfaces;
  */
 public class MenuPrincipal extends javax.swing.JFrame {
 
-    /**
-     * Creates new form CrearArchivos
-     */
     public MenuPrincipal() {
         initComponents();
         this.setTitle("Inicio");
