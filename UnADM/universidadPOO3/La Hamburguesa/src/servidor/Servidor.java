@@ -33,17 +33,17 @@ public class Servidor extends javax.swing.JFrame implements Runnable {
         //Creación del hilo para su implementación y se mantenga a la escucha del servidor
         Thread thread = new Thread(this);
         thread.start();
+        //Asignación del área de texto como no modificable
         jtDatosPedidos.setEditable(false);
     }
 
+    //Uso del metodo run para poder realizar un hilo para que se mantenga a la escucha del cliente
     @Override
     public void run() {
-        System.out.println("Esto es un hilo desde el Cliente");
+        System.out.println("Esto es un hilo desde el Servidor");
 
         //Try/catch
         try {
-            //Declaración de la variable name
-            //String name;
             //Delaclaración del serverSocket con el puerto donde se va alojar el servidor
             ServerSocket servidor = new ServerSocket(PUERTOSERVIDOR);
             //Uso del while para que el servidor se encuentre constantemente a la escucha del cliente
@@ -54,12 +54,13 @@ public class Servidor extends javax.swing.JFrame implements Runnable {
                 ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
                 //Parse del objeto que envia el cliente a un objeto de tipo PacienteAlta
                 pedido = (Pedido) inputStream.readObject();
-                //Recuperación de la información del pedido
+                //Recuperación de la información del pedido para mostrarla en el área de texto
                 String mensajePedido = "Pedido recibido: "
                         + "\nNombre cliente: " + pedido.getNombre()
                         + "\nPaquete escogido: " + pedido.getPack()
                         + "\nTelefono: " + pedido.getTelefono()
                         + "\nDirección: " + pedido.getDirección();
+                //Asiganción de la información que se obtuvo del cliente
                 jtDatosPedidos.setText(mensajePedido);
                 //Cierre del socket
                 socket.close();
@@ -116,6 +117,7 @@ public class Servidor extends javax.swing.JFrame implements Runnable {
         }
     }
 
+    //Método que se encarga de limpiar los ccampos de texto
     public void limpiarCampos() {
         jtDatosPedidos.setText("");
         jtfNameRepartidor.setText("");
@@ -236,15 +238,18 @@ public class Servidor extends javax.swing.JFrame implements Runnable {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //Método asginado al boton
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
         if (pedido != null) {
             //Validación de los campos para que no se encuentren vacios
             if (validacionCamposTexto()) {
                 //Llamado al método para la conexión del servidor
                 generarConexionCliente();
+                //JDialog que menciona que se a enviado a un repartidor
                 JOptionPane.showMessageDialog(null, "Se ha enviado al repartidor");
+                //Lllamado al método para limpiar datos
                 limpiarCampos();
+                //Asignación del pedido como nulo
                 pedido = null;
             } else {
                 //Dialog para el caso de que los campos se encuentran vacios

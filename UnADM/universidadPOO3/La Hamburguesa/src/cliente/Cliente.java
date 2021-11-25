@@ -32,34 +32,36 @@ public class Cliente extends javax.swing.JFrame implements Runnable {
         //Creación del hilo para su implementación y se mantenga a la escucha del servidor
         Thread thread = new Thread(this);
         thread.start();
+        //Asignación de los radio group para ingresar los radio button
         btngRadios.add(jrbPackOne);
         btngRadios.add(jrbPackTwo);
         btngRadios.add(jrbPackThree);
         btngRadios.add(jrbPackFor);
         jrbPackOne.setSelected(true);
+        //Asignación del área de texto como no modificable
         jtStatus.setEditable(false);
     }
 
+    //Implementación del la clase Run para comenzar con el hilo de la aplicación
     @Override
     public void run() {
         System.out.println("Esto es un hilo desde el Cliente");
-        //Declaración de la variable del paciente
+        //Declaración de la variable del pedido
         Pedido pedido;
 
         //Try/catch para hacer el Cliente como un servidor, con su propio puerto
         try {
             //Declaración serverSocket asignando un puerto exclusivo para el cliente
             ServerSocket servidor = new ServerSocket(PUERTOCLIENTE);
-            //Escucha del Cleitne para cuando el servidor mande los objetos creados
+            //Escucha del Cliente para cuando el servidor mande los objetos creados
             while (true) {
                 //Declaración del socket para inicializar un servidor dentro de Cliente
                 Socket socket = servidor.accept();
-                //DEclaración del Stream para obtener la información o datos que envie el servidor
+                //Declaración del Stream para obtener la información o datos que envie el servidor
                 ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
                 //Parseo del objeto que venga del servidor a un PacienteAlta
                 pedido = (Pedido) inputStream.readObject();
                 //Impresión del mensaje de todos los datos que se obtuvieron del servidor
-                
                 String mensaje = "Estimado cliente: " + pedido.getNombre() + " hemos recibido"
                         + "\nsu pedido " + pedido.getPack() +", lo estaremos enviando a la "
                         + "\ndirección " + pedido.getDirección() + ". En un tiempo estimado de " + pedido.getTiempo() + ","
@@ -67,7 +69,7 @@ public class Cliente extends javax.swing.JFrame implements Runnable {
                 
                 //Impresión del mensaje en el área de texto
                 jtStatus.setText(mensaje);
-                //jtaDatosServidor.setText(mensaje);
+                //Cierre del socket
                 socket.close();
             }
             //Excepción para el el caso del ServerSocket
@@ -109,7 +111,7 @@ public class Cliente extends javax.swing.JFrame implements Runnable {
         } else if (jrbPackFor.isSelected()) {
             paquete = "Paquete Cuatro";
         }
-        //Instancia del objeto formulario con lo que se obtuvo del formulario
+        //Instancia del objeto pedido con lo que se obtuvo del formulario
         Pedido pedido = new Pedido(nombre, direccion, paquete, telefono);
         System.out.println(pedido.toString());
         
@@ -130,9 +132,11 @@ public class Cliente extends javax.swing.JFrame implements Runnable {
             System.out.println("Error IOException: " + ex.getMessage());
             ex.printStackTrace(System.out);
         }
-        jtStatus.setText("Se ha enviado el pedido");
+        //Impresión de que se se ha creado un enio
+        jtStatus.setText("Se ha enviado el pedido....");
     }
     
+    //Método que limpia los campos de texto que se utilizaron
     public void limpiarCampos(){
         jtAdress.setText("");
         jtfName.setText("");
@@ -330,13 +334,15 @@ public class Cliente extends javax.swing.JFrame implements Runnable {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //Método asignado al boton 
     private void jbtnReealizarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnReealizarPedidoActionPerformed
-        // TODO add your handling code here:
         //Validación de los campos para que no se encuentren vacios
         if (validacionCamposTexto()) {
             //Llamado al método para la conexión del servidor
             generarConexionServidor();
+            //Dialog confirmando que se ha enviado el pedido
             JOptionPane.showMessageDialog(null, "Se ha enviado el pedido");
+            //llamado al método que limpia los campos de texto
             limpiarCampos();
             
         } else {
