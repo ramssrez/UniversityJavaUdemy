@@ -24,6 +24,7 @@ public class Servidor extends javax.swing.JFrame implements Runnable {
     //Declaración de los puertos tanto el servidor como el cliente
     private final int PUERTOSERVIDOR = 5000;
     private final int PUERTOCLIENTE = 5050;
+    private Pedido pedido;
 
     /**
      * Creates new form Registro
@@ -43,7 +44,6 @@ public class Servidor extends javax.swing.JFrame implements Runnable {
     @Override
     public void run() {
         System.out.println("Esto es un hilo desde el Cliente");
-        Pedido pedido;
 
         //Try/catch
         try {
@@ -72,14 +72,6 @@ public class Servidor extends javax.swing.JFrame implements Runnable {
                         + "\nTelefono: " + pedido.getTelefono()
                         + "\nDirección: " + pedido.getDirección();
                 jtDatosPedidos.setText(mensajePedido);
-                //Declaración del socket en donde se cuenta con los daots del Cliente
-                //Socket socketRespuesta = new Socket(HOST, PUERTOCLIENTE);
-                //Envio de los datos del objeto donde se modifico ciertos datos del objeto
-                //ObjectOutputStream envioCliente = new ObjectOutputStream(socketRespuesta.getOutputStream());
-                //Envio del objetodo hacia el cliente
-                //envioCliente.writeObject(pacienteAlta);
-                //Cierre de los socket de recibo y repuesta del servidor
-                //socketRespuesta.close();
                 socket.close();
 
             }
@@ -102,6 +94,36 @@ public class Servidor extends javax.swing.JFrame implements Runnable {
         } else {
             //Retorno verdadero para el caso de que los campos esten llenos
             return true;
+        }
+    }
+
+    //Método que genera la conexión con el servidor 
+    public void generarConexionCliente() {
+        //Obtención de los datos ingresados en las áreas de texto
+        String nombre = jtfNameRepartidor.getText();
+        String tiempo = jtfHora.getText();
+        pedido.setRepartidor(nombre);
+        pedido.setTiempo(tiempo);
+
+        //Instancia del objeto formulario con lo que se obtuvo del formulario
+        //Pedido pedido = new Pedido(nombre, direccion, paquete, telefono);
+        System.out.println(pedido.toString());
+
+        //Try/Catch para el socket
+        try {
+            //Instancia del socket con el uso del Host y el puerto del servidor
+            Socket socket = new Socket(HOST, PUERTOCLIENTE);
+            //Instancia del Stream para enviar el objeto por medio de la red
+            ObjectOutputStream envioDatos = new ObjectOutputStream(socket.getOutputStream());
+            //Envio del objeto
+            envioDatos.writeObject(pedido);
+            //Cierre de la coneción del servidor
+            socket.close();
+
+            //Catch que registra algún error por parte del servidor
+        } catch (IOException ex) {
+            System.out.println("Error IOException: " + ex.getMessage());
+            ex.printStackTrace(System.out);
         }
     }
 
@@ -222,7 +244,7 @@ public class Servidor extends javax.swing.JFrame implements Runnable {
         //Validación de los campos para que no se encuentren vacios
         if (validacionCamposTexto()) {
             //Llamado al método para la conexión del servidor
-            //generarConexionServidor();
+            generarConexionCliente();
             JOptionPane.showMessageDialog(null, "Los campos se encuentran Llenos");
         } else {
             //Dialog para el caso de que los campos se encuentran vacios

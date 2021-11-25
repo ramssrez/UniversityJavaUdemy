@@ -86,7 +86,7 @@ public class ClienteInterfaz extends javax.swing.JFrame implements Runnable {
     @Override
     public void run() {
         System.out.println("Esto es desde el hilo cliente");
-        //DElcaración de la variable del paciente
+        //Declaración de la variable del paciente
         PacienteAlta pacienteAsignado;
 
         //Try/catch para hacer el Cliente como un servidor, con su propio puerto

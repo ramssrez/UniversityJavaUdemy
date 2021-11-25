@@ -6,7 +6,9 @@
 package cliente;
 
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.net.ServerSocket;
 import java.net.Socket;
 import javax.swing.JOptionPane;
 import objetos.Pedido;
@@ -46,6 +48,42 @@ public class Cliente extends javax.swing.JFrame implements Runnable {
     @Override
     public void run() {
         System.out.println("Esto es un hilo desde el Cliente");
+        //Declaración de la variable del paciente
+        Pedido pedido;
+
+        //Try/catch para hacer el Cliente como un servidor, con su propio puerto
+        try {
+            //Declaración serverSocket asignando un puerto exclusivo para el cliente
+            ServerSocket servidor = new ServerSocket(PUERTOCLIENTE);
+            //Escucha del Cleitne para cuando el servidor mande los objetos creados
+            while (true) {
+                //Declaración del socket para inicializar un servidor dentro de Cliente
+                Socket socket = servidor.accept();
+                //DEclaración del Stream para obtener la información o datos que envie el servidor
+                ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
+                //Parseo del objeto que venga del servidor a un PacienteAlta
+                pedido = (Pedido) inputStream.readObject();
+                //Impresión del mensaje de todos los datos que se obtuvieron del servidor
+                
+                String mensaje = "Estimado cliente: " + pedido.getNombre() + " hemos recibido"
+                        + "\nsu pedido " + pedido.getPack() +", lo estaremos enviando a la "
+                        + "\ndirección " + pedido.getDirección() + "en un tiempo estimado de " + pedido.getTiempo() + ","
+                        + "\nsu repartidor es " + pedido.getRepartidor() + " gracias por su preferencia";
+                
+                //Impresión del mensaje en el área de texto
+                jtStatus.setText(mensaje);
+                //jtaDatosServidor.setText(mensaje);
+                socket.close();
+            }
+            //Excepción para el el caso del ServerSocket
+        } catch (IOException ex) {
+            System.out.println("Error IOException: " + ex.getMessage());
+            ex.printStackTrace(System.out);
+            //Excepción para el caso de que no se encuentre un objeto desde el servidor
+        } catch (ClassNotFoundException ex) {
+            System.out.println("Error ClassNotFound: " + ex.getMessage());
+            ex.printStackTrace(System.out);
+        }
     }
 
     //Método que verifica que los campos no se encuentren vacios
@@ -97,8 +135,7 @@ public class Cliente extends javax.swing.JFrame implements Runnable {
             System.out.println("Error IOException: " + ex.getMessage());
             ex.printStackTrace(System.out);
         }
-        
-
+        jtStatus.setText("Se ha enviado el pedido");
     }
 
     /**
@@ -283,8 +320,8 @@ public class Cliente extends javax.swing.JFrame implements Runnable {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel7)
                 .addGap(1, 1, 1)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -297,6 +334,7 @@ public class Cliente extends javax.swing.JFrame implements Runnable {
             //Llamado al método para la conexión del servidor
             generarConexionServidor();
             JOptionPane.showMessageDialog(null, "Se ha enviado el pedido");
+            
         } else {
             //Dialog para el caso de que los campos se encuentran vacios
             JOptionPane.showMessageDialog(null, "Los campos se encuentran vacios");
