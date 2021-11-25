@@ -297,6 +297,9 @@ public class HabiitacionInterface extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         tableReser = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu = new javax.swing.JMenuItem();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -394,6 +397,20 @@ public class HabiitacionInterface extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel7.setText("Lista de reservaciones actuales");
+
+        jMenu1.setText("Menú Principal");
+
+        jMenu.setText("ir");
+        jMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenu);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -508,6 +525,13 @@ public class HabiitacionInterface extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnCrearReservacionActionPerformed
 
+    private void jMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuActionPerformed
+        // TODO add your handling code here:
+        MenuPrincipal mp = new MenuPrincipal();
+        mp.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jMenuActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -561,6 +585,9 @@ public class HabiitacionInterface extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private com.toedter.components.JLocaleChooser jLocaleChooser1;
+    private javax.swing.JMenuItem jMenu;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
