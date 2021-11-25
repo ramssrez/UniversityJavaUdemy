@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cliente;
 
 import java.io.IOException;
@@ -67,7 +62,7 @@ public class Cliente extends javax.swing.JFrame implements Runnable {
                 
                 String mensaje = "Estimado cliente: " + pedido.getNombre() + " hemos recibido"
                         + "\nsu pedido " + pedido.getPack() +", lo estaremos enviando a la "
-                        + "\ndirección " + pedido.getDirección() + "en un tiempo estimado de " + pedido.getTiempo() + ","
+                        + "\ndirección " + pedido.getDirección() + ". En un tiempo estimado de " + pedido.getTiempo() + ","
                         + "\nsu repartidor es " + pedido.getRepartidor() + " gracias por su preferencia";
                 
                 //Impresión del mensaje en el área de texto
@@ -137,6 +132,12 @@ public class Cliente extends javax.swing.JFrame implements Runnable {
         }
         jtStatus.setText("Se ha enviado el pedido");
     }
+    
+    public void limpiarCampos(){
+        jtAdress.setText("");
+        jtfName.setText("");
+        jtfPhone.setText("");
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -183,6 +184,7 @@ public class Cliente extends javax.swing.JFrame implements Runnable {
         jLabel4.setText("Teléfono");
 
         jtfName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jtfName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jtfName.setText("Jorge Negrete Sanchez");
         jtfName.setToolTipText("");
 
@@ -190,6 +192,7 @@ public class Cliente extends javax.swing.JFrame implements Runnable {
         jLabel5.setText("Dirección de entrega");
 
         jtfPhone.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jtfPhone.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jtfPhone.setText("5555555552");
         jtfPhone.setToolTipText("");
 
@@ -299,9 +302,9 @@ public class Cliente extends javax.swing.JFrame implements Runnable {
                 .addComponent(jtfName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel4)
-                .addGap(18, 18, 18)
-                .addComponent(jtfPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jtfPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -334,6 +337,7 @@ public class Cliente extends javax.swing.JFrame implements Runnable {
             //Llamado al método para la conexión del servidor
             generarConexionServidor();
             JOptionPane.showMessageDialog(null, "Se ha enviado el pedido");
+            limpiarCampos();
             
         } else {
             //Dialog para el caso de que los campos se encuentran vacios

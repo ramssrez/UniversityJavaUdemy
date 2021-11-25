@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package servidor;
 
 import java.io.IOException;
@@ -55,25 +50,19 @@ public class Servidor extends javax.swing.JFrame implements Runnable {
             while (true) {
                 //Inicializacion del socket
                 Socket socket = servidor.accept();
-                //Uso del if para el caso de que sea igual a un valor se resetea el contador
-                /*
-                if (contador == 10) {
-                    contador = 0;
-                }
-                 */
                 //Declaración del Stream para obtener los que envie el Cliente
                 ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
                 //Parse del objeto que envia el cliente a un objeto de tipo PacienteAlta
                 pedido = (Pedido) inputStream.readObject();
                 //Recuperación de la información del pedido
-                String mensajePedido = "Pedido recibido, datos del pedido\n"
+                String mensajePedido = "Pedido recibido: "
                         + "\nNombre cliente: " + pedido.getNombre()
                         + "\nPaquete escogido: " + pedido.getPack()
                         + "\nTelefono: " + pedido.getTelefono()
                         + "\nDirección: " + pedido.getDirección();
                 jtDatosPedidos.setText(mensajePedido);
+                //Cierre del socket
                 socket.close();
-
             }
 
         } catch (IOException ex) {
@@ -127,6 +116,12 @@ public class Servidor extends javax.swing.JFrame implements Runnable {
         }
     }
 
+    public void limpiarCampos() {
+        jtDatosPedidos.setText("");
+        jtfNameRepartidor.setText("");
+        jtfHora.setText("");
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -174,13 +169,15 @@ public class Servidor extends javax.swing.JFrame implements Runnable {
         jScrollPane3.setViewportView(jtDatosPedidos);
 
         jtfNameRepartidor.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jtfNameRepartidor.setText("Jorge Negrete Sanchez");
+        jtfNameRepartidor.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jtfNameRepartidor.setText("Pedro Infante");
         jtfNameRepartidor.setToolTipText("");
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel8.setText("Tiempo de entrega");
 
         jtfHora.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jtfHora.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jtfHora.setText("30 Minutos");
         jtfHora.setToolTipText("");
 
@@ -241,14 +238,21 @@ public class Servidor extends javax.swing.JFrame implements Runnable {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        //Validación de los campos para que no se encuentren vacios
-        if (validacionCamposTexto()) {
-            //Llamado al método para la conexión del servidor
-            generarConexionCliente();
-            JOptionPane.showMessageDialog(null, "Los campos se encuentran Llenos");
+        if (pedido != null) {
+            //Validación de los campos para que no se encuentren vacios
+            if (validacionCamposTexto()) {
+                //Llamado al método para la conexión del servidor
+                generarConexionCliente();
+                JOptionPane.showMessageDialog(null, "Se ha enviado al repartidor");
+                limpiarCampos();
+                pedido = null;
+            } else {
+                //Dialog para el caso de que los campos se encuentran vacios
+                JOptionPane.showMessageDialog(null, "Los campos se encuentran vacios");
+            }
         } else {
             //Dialog para el caso de que los campos se encuentran vacios
-            JOptionPane.showMessageDialog(null, "Los campos se encuentran vacios");
+            JOptionPane.showMessageDialog(null, "No se cuenta con información de algún pedido");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
