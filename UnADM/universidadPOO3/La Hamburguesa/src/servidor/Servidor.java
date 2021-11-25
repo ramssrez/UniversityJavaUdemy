@@ -5,7 +5,13 @@
  */
 package servidor;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.ServerSocket;
+import java.net.Socket;
 import javax.swing.JOptionPane;
+import objetos.Pedido;
 
 /**
  *
@@ -37,6 +43,54 @@ public class Servidor extends javax.swing.JFrame implements Runnable {
     @Override
     public void run() {
         System.out.println("Esto es un hilo desde el Cliente");
+        Pedido pedido;
+
+        //Try/catch
+        try {
+            //Declaración de la variable name
+            //String name;
+            //Delaclaración del serverSocket con el puerto donde se va alojar el servidor
+            ServerSocket servidor = new ServerSocket(PUERTOSERVIDOR);
+            //Uso del while para que el servidor se encuentre constantemente a la escucha del cliente
+            while (true) {
+                //Inicializacion del socket
+                Socket socket = servidor.accept();
+                //Uso del if para el caso de que sea igual a un valor se resetea el contador
+                /*
+                if (contador == 10) {
+                    contador = 0;
+                }
+                 */
+                //Declaración del Stream para obtener los que envie el Cliente
+                ObjectInputStream inputStream = new ObjectInputStream(socket.getInputStream());
+                //Parse del objeto que envia el cliente a un objeto de tipo PacienteAlta
+                pedido = (Pedido) inputStream.readObject();
+                //Recuperación de la información del pedido
+                String mensajePedido = "Pedido recibido, datos del pedido\n"
+                        + "\nNombre cliente: " + pedido.getNombre()
+                        + "\nPaquete escogido: " + pedido.getPack()
+                        + "\nTelefono: " + pedido.getTelefono()
+                        + "\nDirección: " + pedido.getDirección();
+                jtDatosPedidos.setText(mensajePedido);
+                //Declaración del socket en donde se cuenta con los daots del Cliente
+                //Socket socketRespuesta = new Socket(HOST, PUERTOCLIENTE);
+                //Envio de los datos del objeto donde se modifico ciertos datos del objeto
+                //ObjectOutputStream envioCliente = new ObjectOutputStream(socketRespuesta.getOutputStream());
+                //Envio del objetodo hacia el cliente
+                //envioCliente.writeObject(pacienteAlta);
+                //Cierre de los socket de recibo y repuesta del servidor
+                //socketRespuesta.close();
+                socket.close();
+
+            }
+
+        } catch (IOException ex) {
+            System.out.println("Error Selección: " + ex.getMessage());
+            ex.printStackTrace(System.out);
+        } catch (ClassNotFoundException ex) {
+            System.out.println("Error Selección: " + ex.getMessage());
+            ex.printStackTrace(System.out);
+        }
     }
 
     //Método que verifica que los campos no se encuentren vacios

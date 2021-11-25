@@ -80,7 +80,7 @@ public class Cliente extends javax.swing.JFrame implements Runnable {
         Pedido pedido = new Pedido(nombre, direccion, paquete, telefono);
         System.out.println(pedido.toString());
         
-        /*
+        
         //Try/Catch para el socket
         try {
             //Instancia del socket con el uso del Host y el puerto del servidor
@@ -88,7 +88,7 @@ public class Cliente extends javax.swing.JFrame implements Runnable {
             //Instancia del Stream para enviar el objeto por medio de la red
             ObjectOutputStream envioDatos = new ObjectOutputStream(socket.getOutputStream());
             //Envio del objeto
-            //envioDatos.writeObject(paciente);
+            envioDatos.writeObject(pedido);
             //Cierre de la coneción del servidor
             socket.close();
 
@@ -97,7 +97,7 @@ public class Cliente extends javax.swing.JFrame implements Runnable {
             System.out.println("Error IOException: " + ex.getMessage());
             ex.printStackTrace(System.out);
         }
-        */
+        
 
     }
 
@@ -296,7 +296,7 @@ public class Cliente extends javax.swing.JFrame implements Runnable {
         if (validacionCamposTexto()) {
             //Llamado al método para la conexión del servidor
             generarConexionServidor();
-            JOptionPane.showMessageDialog(null, "Los campos se encuentran llenos");
+            JOptionPane.showMessageDialog(null, "Se ha enviado el pedido");
         } else {
             //Dialog para el caso de que los campos se encuentran vacios
             JOptionPane.showMessageDialog(null, "Los campos se encuentran vacios");
