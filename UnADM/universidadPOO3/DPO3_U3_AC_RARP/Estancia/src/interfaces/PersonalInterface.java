@@ -9,7 +9,7 @@ public class PersonalInterface extends javax.swing.JFrame {
 
     public PersonalInterface() {
         initComponents();
-        this.setTitle("Cliente");
+        this.setTitle("Personal");
         this.setLocationRelativeTo(null);
         //Sentencia que desactiva el minimizar y maximizar de las ventanas principales
         this.setResizable(false);
@@ -19,8 +19,8 @@ public class PersonalInterface extends javax.swing.JFrame {
     
     //Método que limpia los campos de texto que se utilizaron
     public void limpiarCampos(){
+        jtfNumberWorker.setText("");
         jtfName.setText("");
-        jtfPhone.setText("");
     }
 
     /**
@@ -36,11 +36,19 @@ public class PersonalInterface extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jtfName = new javax.swing.JTextField();
+        jtfNumberWorker = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jtfPhone = new javax.swing.JTextField();
+        jtfName = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jbtnReealizarPedido = new javax.swing.JButton();
+        jtfName1 = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jtfName2 = new javax.swing.JTextField();
+        jtfName3 = new javax.swing.JTextField();
+        jtfName4 = new javax.swing.JTextField();
+        jtfName5 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 204, 255));
@@ -49,29 +57,29 @@ public class PersonalInterface extends javax.swing.JFrame {
         jLabel1.setText("La Estancia");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setText("Nombre");
+        jLabel2.setText("Número de Empleado");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setText("Alta de personal");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel4.setText("Apellido");
+        jLabel4.setText("Nombre");
+
+        jtfNumberWorker.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jtfNumberWorker.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jtfNumberWorker.setText("12345");
+        jtfNumberWorker.setToolTipText("");
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel5.setText("Apellidos");
 
         jtfName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jtfName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jtfName.setText("Jorge Negrete Sanchez");
+        jtfName.setText("Jorge");
         jtfName.setToolTipText("");
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel5.setText("Dirección de entrega");
-
-        jtfPhone.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jtfPhone.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jtfPhone.setText("5555555552");
-        jtfPhone.setToolTipText("");
-
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel6.setText("Escoge alguno de nuestro paquete");
+        jLabel6.setText("Puesto");
 
         jbtnReealizarPedido.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jbtnReealizarPedido.setText("Realizar Pedido");
@@ -81,45 +89,91 @@ public class PersonalInterface extends javax.swing.JFrame {
             }
         });
 
+        jtfName1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jtfName1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jtfName1.setText("Negrete Sanchez");
+        jtfName1.setToolTipText("");
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel7.setText("Edad");
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel8.setText("Sueldo");
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel9.setText("Área");
+
+        jtfName2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jtfName2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jtfName2.setText("12000");
+        jtfName2.setToolTipText("");
+
+        jtfName3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jtfName3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jtfName3.setText("Recursos Humanos");
+        jtfName3.setToolTipText("");
+
+        jtfName4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jtfName4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jtfName4.setText("39");
+        jtfName4.setToolTipText("");
+
+        jtfName5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jtfName5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jtfName5.setText("Coordinador");
+        jtfName5.setToolTipText("");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(129, 129, 129)
-                .addComponent(jbtnReealizarPedido)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(169, 169, 169)
-                                .addComponent(jLabel2))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(164, 164, 164)
-                                .addComponent(jLabel4))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(124, 124, 124)
-                                .addComponent(jLabel5)))
-                        .addGap(0, 137, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jtfName)
-                            .addComponent(jtfPhone, javax.swing.GroupLayout.Alignment.TRAILING))))
-                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jbtnReealizarPedido)
+                .addGap(130, 130, 130))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(171, 171, 171)
+                        .addComponent(jLabel4))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(172, 172, 172)
+                        .addComponent(jLabel7))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(176, 176, 176)
+                        .addComponent(jLabel6))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(175, 175, 175)
+                        .addComponent(jLabel8))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(179, 179, 179)
+                        .addComponent(jLabel9)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addGap(86, 86, 86))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 121, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel1))
-                        .addGap(118, 118, 118))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2))
+                                .addGap(118, 118, 118))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(171, 171, 171))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jtfNumberWorker)
+                            .addComponent(jtfName)
+                            .addComponent(jtfName1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jtfName4)
+                            .addComponent(jtfName5)
+                            .addComponent(jtfName2)
+                            .addComponent(jtfName3, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -131,18 +185,34 @@ public class PersonalInterface extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtfName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jtfNumberWorker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jtfPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jtfName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
-                .addGap(77, 77, 77)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jtfName1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jtfName4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
-                .addGap(115, 115, 115)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jtfName5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jtfName2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jtfName3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
                 .addComponent(jbtnReealizarPedido)
-                .addContainerGap(151, Short.MAX_VALUE))
+                .addGap(40, 40, 40))
         );
 
         pack();
@@ -180,21 +250,7 @@ public class PersonalInterface extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(PersonalInterface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -211,8 +267,16 @@ public class PersonalInterface extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JButton jbtnReealizarPedido;
     private javax.swing.JTextField jtfName;
-    private javax.swing.JTextField jtfPhone;
+    private javax.swing.JTextField jtfName1;
+    private javax.swing.JTextField jtfName2;
+    private javax.swing.JTextField jtfName3;
+    private javax.swing.JTextField jtfName4;
+    private javax.swing.JTextField jtfName5;
+    private javax.swing.JTextField jtfNumberWorker;
     // End of variables declaration//GEN-END:variables
 }
