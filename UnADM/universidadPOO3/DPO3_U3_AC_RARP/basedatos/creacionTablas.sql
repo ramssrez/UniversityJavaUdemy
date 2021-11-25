@@ -18,6 +18,17 @@ CREATE TABLE la_estancia.estatus (
   PRIMARY KEY (id_estatus)
 );
 
+CREATE TABLE  la_estancia.personal (
+  id_personal INT NOT NULL AUTO_INCREMENT,
+  nombre VARCHAR(45) NOT NULL,
+  apellidos VARCHAR(45) NOT NULL,
+  numero_empleado VARCHAR(45) NOT NULL,
+  edad VARCHAR(45) NOT NULL,
+  puesto VARCHAR (45) NOT NULL,
+  sueldo VARCHAR (45) NOT NULL,
+  area VARCHAR(45) NOT NULL,
+  PRIMARY KEY (id_personal)
+);
 /*Creación de la tabla habitaciones*/
 CREATE TABLE  la_estancia.habitaciones (
   id_habitacion INT NOT NULL AUTO_INCREMENT,
@@ -55,7 +66,10 @@ CREATE TABLE reservaciones(
     ON DELETE NO ACTION
     ON UPDATE NO ACTION
 );
-
+CREATE TABLE  la_estancia.personal (
+  id_personal INT NOT NULL AUTO_INCREMENT,
+  nombre 
+);
 /* Muestra de la tablas creadas */
 SHOW TABLES;
 

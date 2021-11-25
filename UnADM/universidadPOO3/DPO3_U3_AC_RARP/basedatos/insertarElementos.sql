@@ -25,3 +25,5 @@ INSERT INTO habitaciones (no_habitacion, id_estatus, id_tipo_habitacion) VALUES(
 INSERT INTO habitaciones (no_habitacion, id_estatus, id_tipo_habitacion) VALUES("20","1","4");   
 
 INSERT INTO reservaciones (fecha_entrada, fecha_salida, id_habitacion) VALUES ('2021-01-08', '2021-11-07', '1');
+
+INSERT INTO la_estancia.personal (nombre, apellidos, numero_empleado, edad, puesto, sueldo, area) VALUES ('Joge', 'Negrete Sanchez', '12345', '39', 'Gerente', '12000', 'Recursos Humanos');
