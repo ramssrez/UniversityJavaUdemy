@@ -17,3 +17,4 @@ SELECT id_reservacion, fecha_entrada, fecha_salida,dias, costo_total, no_habitac
 INNER JOIN habitaciones ON habitaciones.id_habitacion = reservaciones.id_habitacion;
 
 SELECT id_personal, nombre, apellidos, numero_empleado, edad, puesto, sueldo, area FROM personal WHERE numero_empleado = ?
+SELECT id_personal, nombre, apellidos, numero_empleado, edad, puesto, sueldo, area FROM personal

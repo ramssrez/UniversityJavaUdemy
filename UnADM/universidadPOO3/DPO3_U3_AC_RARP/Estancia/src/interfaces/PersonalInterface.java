@@ -2,6 +2,7 @@ package interfaces;
 
 import database.PersonalDAO;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import objetos.Personal;
 
 /**
@@ -9,6 +10,7 @@ import objetos.Personal;
  * @author ramssrez
  */
 public class PersonalInterface extends javax.swing.JFrame {
+        private DefaultTableModel dtm;
 
     public PersonalInterface() {
         initComponents();
@@ -17,6 +19,18 @@ public class PersonalInterface extends javax.swing.JFrame {
         //Sentencia que desactiva el minimizar y maximizar de las ventanas principales
         this.setResizable(false);
 
+    }
+        //Creación de los titulos de la tabla de habitaciones
+    private DefaultTableModel setTitulos() {
+        dtm = new DefaultTableModel();
+        dtm.addColumn("N. Personal");
+        dtm.addColumn("Nombre");
+        dtm.addColumn("Apellidos");
+        dtm.addColumn("Edad");
+        dtm.addColumn("Puesto");
+        dtm.addColumn("Sueldo");
+        dtm.addColumn("Area");
+        return dtm;
     }
 
     //Método que limpia los campos de texto que se utilizaron

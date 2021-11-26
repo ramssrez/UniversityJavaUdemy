@@ -11,7 +11,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.ResultSet;
-import java.sql.Date;
 import objetos.Personal;
 
 /**
@@ -24,6 +23,8 @@ public class PersonalDAO {
     private static final String SQL_INSERT = "INSERT INTO personal(nombre, apellidos, numero_empleado, edad, puesto, sueldo, area) VALUES(?,?,?,?,?,?,?)";
 
     private static final String SQL_SELECT = "SELECT id_personal, nombre, apellidos, numero_empleado, edad, puesto, sueldo, area FROM personal WHERE numero_empleado = ?";
+
+    private static final String SQL_SELECT_LIST = "SELECT id_personal, nombre, apellidos, numero_empleado, edad, puesto, sueldo, area FROM personal";
 
     public int insertar(Personal personal) {
         //Declaración de las variables necesrias para poder realizar la conexion a la base de datos.
@@ -103,7 +104,7 @@ public class PersonalDAO {
                 String sueldo = resultSet.getString("sueldo");
                 String area = resultSet.getString("area");
                 //Creación del objeto personal
-                p = new Personal(idPersonal,nombre, apellido, area, edad, numero, puesto, sueldo);
+                p = new Personal(idPersonal, nombre, apellido, area, edad, numero, puesto, sueldo);
 
             } //En caso de que no se haya hecho la conexión, se manda un mensaje de que no se han podido recuperar los datos
             else {
@@ -129,4 +130,55 @@ public class PersonalDAO {
         return p;
     }
 
+    //Método que obtiene la lista del personal que hay en la base de datos
+    public List<Personal> seleccionarLista() {
+        //Declaración de variables necesarias
+        List<Personal> listaPersonal = new ArrayList<>();
+        Personal p = null;
+        //Declaración del objeto del canal de conexión
+        Connection conn = null;
+        //Declaración del objetos de sentencias
+        PreparedStatement preparedStatement = null;
+        //Declaración de objeto de resultados de las sentencias
+        ResultSet resultSet = null;
+
+        try {
+            //Declaración del canal de conexión
+            conn = ConexionDB.getConnection();
+            //Envio de sentencias SQL para recuperar la información necesaria
+            preparedStatement = conn.prepareStatement(SQL_SELECT_LIST);
+            //Sentencia para que se haga la consulta
+            resultSet = preparedStatement.executeQuery();
+            //ciclo while que retorno los datos de la base de datos
+            while (resultSet.next()) {
+                String nombre = resultSet.getString("nombre");
+                String apellido = resultSet.getString("apellidos");
+                String numero = resultSet.getString("numero_empleado");
+                String edad = resultSet.getString("edad");
+                String puesto = resultSet.getString("puesto");
+                String sueldo = resultSet.getString("sueldo");
+                String area = resultSet.getString("area");
+                //Creación del objeto personal
+                p = new Personal(nombre, apellido, area, edad, numero, puesto, sueldo);
+                //Agregación del objeto personal a la lista
+                listaPersonal.add(p);
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("Error Selección: " + ex.getMessage());
+            ex.printStackTrace(System.out);
+        } finally {
+            try {
+                //Cierre del resultado de la sentencia
+                ConexionDB.close(resultSet);
+                //Cierre de la sentecia enviada
+                ConexionDB.close(preparedStatement);
+                //Cierre del canal de conexión
+                ConexionDB.close(conn);
+            } catch (SQLException ex) {
+                ex.printStackTrace(System.out);
+            }
+        }
+        return listaPersonal;
+    }
 }
