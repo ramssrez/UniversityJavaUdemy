@@ -78,15 +78,26 @@ public class PersonalInterface extends javax.swing.JFrame {
         //contadorHoras(dias);
     }
 
-    public void retornarEmpleado(){
+    public void retornarEmpleado() {
         String numeroEmpleado = jtfNumberWorker.getText();
-                //Instancia de la clase ProductoDAO
+        //Instancia de la clase ProductoDAO
         PersonalDAO personalDAO = new PersonalDAO();
         //Declaración del objeto producto como nul
-        Personal p = personalDAO.seleccionar("12347");
-        System.out.println("p = " + p.toString());
+        Personal p = personalDAO.seleccionar(numeroEmpleado);
+        if (p != null) {
+            jtfName.setText(p.getNombre());
+            jtfApellidos.setText(p.getApellidos());
+            jtfNumberWorker.setText(p.getNumeroEmpleado());
+            jtfArea.setText(p.getArea());
+            jtfEdad.setText(p.getEdad());
+            jtfPuesto.setText(p.getPuesto());
+            jtfSueldo.setText(p.getSueldo());
+        } else {
+            JOptionPane.showMessageDialog(null, "Este personal no existe");
+        }
+
     }
-   
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
