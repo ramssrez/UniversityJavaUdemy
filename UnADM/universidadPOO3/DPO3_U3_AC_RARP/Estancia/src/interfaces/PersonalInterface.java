@@ -1,6 +1,5 @@
 package interfaces;
 
-
 /**
  *
  * @author ramssrez
@@ -16,13 +15,66 @@ public class PersonalInterface extends javax.swing.JFrame {
 
     }
 
-    
     //Método que limpia los campos de texto que se utilizaron
-    public void limpiarCampos(){
+    public void limpiarCampos() {
         jtfNumberWorker.setText("");
         jtfName.setText("");
+        jtfApellidos.setText("");
+        jtfArea.setText("");
+        jtfEdad.setText("");
+        jtfPuesto.setText("");
+        jtfSueldo.setText("");
     }
 
+    //Método que verifica que los campos no se encuentren vacios
+    public boolean validacionCamposTexto() {
+
+        if ((jtfApellidos.getText().equals("") && jtfNumberWorker.getText().equals("")&& jtfName.getText().equals(""))
+                || jdtStart.getDate() == null || jdtStart.getDate() == null || jtfIdentificador.getText().equals("")) {
+            //Retorno falso en caso de que sea correcto los campos vacios
+            return false;
+        } else {
+            //Retorno verdadero para el caso de que los campos esten llenos
+            return true;
+        }
+    }
+
+    /*
+        //Método que crea las reservación y la inserta en la base de datos
+    public void crearReservacion() {
+        //Retorno de la informaicón dentro de las cajas de tecto
+        Date fechaEntrada = jdtStart.getDate();
+        Date fechaSalida = jdtFinish.getDate();
+        int numero = Integer.parseInt(jtfIdentificador.getText());
+        //Inicialización del contador en base al id de la habitación
+        contador = numero;
+        //Calculo de los dias entre dos fechas
+        int dias = diasEntreFechas(fechaSalida, fechaEntrada);
+        int costo = costoTotal(numero, dias);
+        //Creación del objeto reservación
+        Reservacion reservacion = new Reservacion(formatoFechaSql(fechaEntrada), formatoFechaSql(fechaSalida), numero, dias, costo);
+        ReservacionDAO rdao = new ReservacionDAO();
+        //Llamado del metodo para insertar datos a la base de datos
+        int entero = rdao.insertar(reservacion);
+        //Musetra de dialogs en caso de que se agreguen correctamente los datos a la base de datos
+        if (entero > 0) {
+            //Llamado al Dialog que manda un mensaje que se ha realizado correctamente el ingreso de información en la base de datos
+            JOptionPane.showMessageDialog(null, "Se han creado la reservación");
+            //Modificación del estatus de la habitación disponibles
+            modificarEstatusHabitacion(numero);
+            //Método que limpia las cajas de texto de la interface
+            limpiarCampos();
+        } else {
+            //Llamado al Dialog que manda un mensaje que se ha realizado correctamente el ingreso de información en la base de datos
+            JOptionPane.showMessageDialog(null, "No se ha res3ervado la habitación");
+            //Método que limpia las cajas de texto de la interface
+            limpiarCampos();
+        }
+        //Comienzo del contador de las horas por medio de hilos
+        contadorHoras(dias);
+    }
+
+     */
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
