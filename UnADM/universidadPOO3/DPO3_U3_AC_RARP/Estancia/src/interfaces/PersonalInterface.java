@@ -1,5 +1,9 @@
 package interfaces;
 
+import database.PersonalDAO;
+import javax.swing.JOptionPane;
+import objetos.Personal;
+
 /**
  *
  * @author ramssrez
@@ -29,8 +33,12 @@ public class PersonalInterface extends javax.swing.JFrame {
     //Método que verifica que los campos no se encuentren vacios
     public boolean validacionCamposTexto() {
 
-        if ((jtfApellidos.getText().equals("") && jtfNumberWorker.getText().equals("")&& jtfName.getText().equals(""))
-                || jdtStart.getDate() == null || jdtStart.getDate() == null || jtfIdentificador.getText().equals("")) {
+        if ((jtfApellidos.getText().equals("") && jtfNumberWorker.getText().equals("") && jtfName.getText().equals("")
+                && jtfArea.getText().equals("") && jtfEdad.getText().equals("") && jtfPuesto.getText().equals("")
+                && jtfSueldo.getText().equals(""))
+                || jtfApellidos.getText().equals("") || jtfNumberWorker.getText().equals("") || jtfName.getText().equals("")
+                || jtfArea.getText().equals("") || jtfEdad.getText().equals("") || jtfPuesto.getText().equals("")
+                || jtfSueldo.getText().equals("")) {
             //Retorno falso en caso de que sea correcto los campos vacios
             return false;
         } else {
@@ -39,42 +47,38 @@ public class PersonalInterface extends javax.swing.JFrame {
         }
     }
 
-    /*
+    
         //Método que crea las reservación y la inserta en la base de datos
-    public void crearReservacion() {
-        //Retorno de la informaicón dentro de las cajas de tecto
-        Date fechaEntrada = jdtStart.getDate();
-        Date fechaSalida = jdtFinish.getDate();
-        int numero = Integer.parseInt(jtfIdentificador.getText());
-        //Inicialización del contador en base al id de la habitación
-        contador = numero;
-        //Calculo de los dias entre dos fechas
-        int dias = diasEntreFechas(fechaSalida, fechaEntrada);
-        int costo = costoTotal(numero, dias);
-        //Creación del objeto reservación
-        Reservacion reservacion = new Reservacion(formatoFechaSql(fechaEntrada), formatoFechaSql(fechaSalida), numero, dias, costo);
-        ReservacionDAO rdao = new ReservacionDAO();
+    public void crearPersonal() {
+        //Recuperación de la información desde las cajas de texto
+        String nombre = jtfName.getText();
+        String numeroTrabajdor = jtfNumberWorker.getText();
+        String edad = jtfEdad.getText();
+        String apellidos = jtfApellidos.getText();
+        String area = jtfArea.getText();
+        String puesto = jtfPuesto.getText();
+        String sueldo = jtfSueldo.getText();
+        //Creación del objeto Personal
+        Personal personal = new Personal(nombre,apellidos,area,edad,numeroTrabajdor,puesto,sueldo);
+        PersonalDAO pdao = new PersonalDAO();
         //Llamado del metodo para insertar datos a la base de datos
-        int entero = rdao.insertar(reservacion);
+        int entero = pdao.insertar(personal);
         //Musetra de dialogs en caso de que se agreguen correctamente los datos a la base de datos
         if (entero > 0) {
             //Llamado al Dialog que manda un mensaje que se ha realizado correctamente el ingreso de información en la base de datos
-            JOptionPane.showMessageDialog(null, "Se han creado la reservación");
-            //Modificación del estatus de la habitación disponibles
-            modificarEstatusHabitacion(numero);
+            JOptionPane.showMessageDialog(null, "Se han creado un personal");
             //Método que limpia las cajas de texto de la interface
             limpiarCampos();
         } else {
             //Llamado al Dialog que manda un mensaje que se ha realizado correctamente el ingreso de información en la base de datos
-            JOptionPane.showMessageDialog(null, "No se ha res3ervado la habitación");
+            JOptionPane.showMessageDialog(null, "No se ha creado un pesonal");
             //Método que limpia las cajas de texto de la interface
             limpiarCampos();
         }
         //Comienzo del contador de las horas por medio de hilos
-        contadorHoras(dias);
+        //contadorHoras(dias);
     }
-
-     */
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -92,7 +96,7 @@ public class PersonalInterface extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jtfName = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jbtnReealizarPedido = new javax.swing.JButton();
+        jbtnCrear = new javax.swing.JButton();
         jtfApellidos = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -101,6 +105,7 @@ public class PersonalInterface extends javax.swing.JFrame {
         jtfArea = new javax.swing.JTextField();
         jtfEdad = new javax.swing.JTextField();
         jtfPuesto = new javax.swing.JTextField();
+        jbtnBuscar = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jmtMenu = new javax.swing.JMenuItem();
@@ -136,11 +141,11 @@ public class PersonalInterface extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setText("Puesto");
 
-        jbtnReealizarPedido.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jbtnReealizarPedido.setText("Realizar Pedido");
-        jbtnReealizarPedido.addActionListener(new java.awt.event.ActionListener() {
+        jbtnCrear.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jbtnCrear.setText(" Crear Personal");
+        jbtnCrear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtnReealizarPedidoActionPerformed(evt);
+                jbtnCrearActionPerformed(evt);
             }
         });
 
@@ -178,6 +183,14 @@ public class PersonalInterface extends javax.swing.JFrame {
         jtfPuesto.setText("Coordinador");
         jtfPuesto.setToolTipText("");
 
+        jbtnBuscar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jbtnBuscar.setText("Buscar Personal");
+        jbtnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnBuscarActionPerformed(evt);
+            }
+        });
+
         jMenu1.setText("Menú Principal");
 
         jmtMenu.setText("ir");
@@ -196,10 +209,6 @@ public class PersonalInterface extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jbtnReealizarPedido)
-                .addGap(130, 130, 130))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -243,6 +252,12 @@ public class PersonalInterface extends javax.swing.JFrame {
                             .addComponent(jtfSueldo)
                             .addComponent(jtfArea, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addContainerGap())))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(135, 135, 135)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jbtnBuscar)
+                    .addComponent(jbtnCrear))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -279,19 +294,27 @@ public class PersonalInterface extends javax.swing.JFrame {
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jtfArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
-                .addComponent(jbtnReealizarPedido)
-                .addGap(40, 40, 40))
+                .addGap(18, 18, 18)
+                .addComponent(jbtnCrear)
+                .addGap(18, 18, 18)
+                .addComponent(jbtnBuscar)
+                .addContainerGap(58, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     //Método asignado al boton 
-    private void jbtnReealizarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnReealizarPedidoActionPerformed
+    private void jbtnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCrearActionPerformed
         //Validación de los campos para que no se encuentren vacios
-
-    }//GEN-LAST:event_jbtnReealizarPedidoActionPerformed
+        if (validacionCamposTexto()) {
+            JOptionPane.showMessageDialog(null, "Los campos se encuentran Llenos");
+            crearPersonal();
+        } else {
+            //Impresión del dialog en caso de que los campos se encuentrn vacios
+            JOptionPane.showMessageDialog(null, "Los campos se encuentran vacios");
+        }
+    }//GEN-LAST:event_jbtnCrearActionPerformed
 
     private void jmtMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmtMenuActionPerformed
         // TODO add your handling code here:
@@ -299,6 +322,10 @@ public class PersonalInterface extends javax.swing.JFrame {
         mp.setVisible(true);
         dispose();
     }//GEN-LAST:event_jmtMenuActionPerformed
+
+    private void jbtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnBuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtnBuscarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -348,7 +375,8 @@ public class PersonalInterface extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JButton jbtnReealizarPedido;
+    private javax.swing.JButton jbtnBuscar;
+    private javax.swing.JButton jbtnCrear;
     private javax.swing.JMenuItem jmtMenu;
     private javax.swing.JTextField jtfApellidos;
     private javax.swing.JTextField jtfArea;

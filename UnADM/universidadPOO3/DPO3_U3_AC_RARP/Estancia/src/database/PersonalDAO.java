@@ -21,7 +21,7 @@ import objetos.Personal;
 public class PersonalDAO {
     //Declaración de la sentencia a realizar para insertar un registro a  la base de datos
 
-    private static final String SQL_INSERT = "INSERT INTO personla(nombre, apellidos, numero_empleado, edad, puesto, sueldo, area) VALUES(?,?,?,?,?,?,?)";
+    private static final String SQL_INSERT = "INSERT INTO personal(nombre, apellidos, numero_empleado, edad, puesto, sueldo, area) VALUES(?,?,?,?,?,?,?)";
 
     public int insertar(Personal personal) {
         //Declaración de las variables necesrias para poder realizar la conexion a la base de datos.
