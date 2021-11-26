@@ -27,6 +27,18 @@ public class Personal {
         this.sueldo = sueldo;
     }
 
+    public Personal(int id, String nombre, String apellidos, String area, String edad, String numeroEmpleado, String puesto, String sueldo) {
+        this.id = id;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.area = area;
+        this.edad = edad;
+        this.numeroEmpleado = numeroEmpleado;
+        this.puesto = puesto;
+        this.sueldo = sueldo;
+    }
+    
+
     public int getId() {
         return id;
     }

@@ -47,8 +47,7 @@ public class PersonalInterface extends javax.swing.JFrame {
         }
     }
 
-    
-        //Método que crea las reservación y la inserta en la base de datos
+    //Método que crea las reservación y la inserta en la base de datos
     public void crearPersonal() {
         //Recuperación de la información desde las cajas de texto
         String nombre = jtfName.getText();
@@ -59,7 +58,7 @@ public class PersonalInterface extends javax.swing.JFrame {
         String puesto = jtfPuesto.getText();
         String sueldo = jtfSueldo.getText();
         //Creación del objeto Personal
-        Personal personal = new Personal(nombre,apellidos,area,edad,numeroTrabajdor,puesto,sueldo);
+        Personal personal = new Personal(nombre, apellidos, area, edad, numeroTrabajdor, puesto, sueldo);
         PersonalDAO pdao = new PersonalDAO();
         //Llamado del metodo para insertar datos a la base de datos
         int entero = pdao.insertar(personal);
@@ -77,6 +76,15 @@ public class PersonalInterface extends javax.swing.JFrame {
         }
         //Comienzo del contador de las horas por medio de hilos
         //contadorHoras(dias);
+    }
+
+    public void retornarEmpleado(){
+        String numeroEmpleado = jtfNumberWorker.getText();
+                //Instancia de la clase ProductoDAO
+        PersonalDAO personalDAO = new PersonalDAO();
+        //Declaración del objeto producto como nul
+        Personal p = personalDAO.seleccionar("12347");
+        System.out.println("p = " + p.toString());
     }
    
     /**
@@ -325,6 +333,8 @@ public class PersonalInterface extends javax.swing.JFrame {
 
     private void jbtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnBuscarActionPerformed
         // TODO add your handling code here:
+        //Personal p = retornarEmpleado();
+        retornarEmpleado();
     }//GEN-LAST:event_jbtnBuscarActionPerformed
 
     /**

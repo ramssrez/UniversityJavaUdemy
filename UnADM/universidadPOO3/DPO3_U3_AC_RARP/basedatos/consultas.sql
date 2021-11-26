@@ -15,3 +15,5 @@ AND estatus = 'Disponible' ORDER BY no_habitacion;
 
 SELECT id_reservacion, fecha_entrada, fecha_salida,dias, costo_total, no_habitacion FROM reservaciones
 INNER JOIN habitaciones ON habitaciones.id_habitacion = reservaciones.id_habitacion;
+
+SELECT id_personal, nombre, apellidos, numero_empleado, edad, puesto, sueldo, area FROM personal WHERE numero_empleado = ?
