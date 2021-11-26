@@ -78,12 +78,13 @@ public class PersonalInterface extends javax.swing.JFrame {
         //contadorHoras(dias);
     }
 
-    public void retornarEmpleado() {
+    public void retornarPersonal() {
         String numeroEmpleado = jtfNumberWorker.getText();
         //Instancia de la clase ProductoDAO
         PersonalDAO personalDAO = new PersonalDAO();
         //Declaración del objeto producto como nul
         Personal p = personalDAO.seleccionar(numeroEmpleado);
+        System.out.println("p = " + p.toString());
         if (p != null) {
             jtfName.setText(p.getNombre());
             jtfApellidos.setText(p.getApellidos());
@@ -95,7 +96,6 @@ public class PersonalInterface extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Este personal no existe");
         }
-
     }
 
     /**
@@ -125,6 +125,10 @@ public class PersonalInterface extends javax.swing.JFrame {
         jtfEdad = new javax.swing.JTextField();
         jtfPuesto = new javax.swing.JTextField();
         jbtnBuscar = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tableReser = new javax.swing.JTable();
+        jLabel10 = new javax.swing.JLabel();
+        jbtnImprimir = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jmtMenu = new javax.swing.JMenuItem();
@@ -139,7 +143,7 @@ public class PersonalInterface extends javax.swing.JFrame {
         jLabel2.setText("Número de Empleado");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel3.setText("Alta de personal");
+        jLabel3.setText("Alta, Busqueda de personal");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Nombre");
@@ -210,6 +214,38 @@ public class PersonalInterface extends javax.swing.JFrame {
             }
         });
 
+        tableReser.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tableReser.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6"
+            }
+        ));
+        tableReser.setFocusable(false);
+        jScrollPane4.setViewportView(tableReser);
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jLabel10.setText("Ingresa Solo en Número de empleado");
+
+        jbtnImprimir.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jbtnImprimir.setText("Imprimir Personal");
+        jbtnImprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnImprimirActionPerformed(evt);
+            }
+        });
+
         jMenu1.setText("Menú Principal");
 
         jmtMenu.setText("ir");
@@ -231,52 +267,45 @@ public class PersonalInterface extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(171, 171, 171)
-                        .addComponent(jLabel4))
+                        .addGap(275, 275, 275)
+                        .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(172, 172, 172)
-                        .addComponent(jLabel7))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(176, 176, 176)
-                        .addComponent(jLabel6))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(175, 175, 175)
-                        .addComponent(jLabel8))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(179, 179, 179)
-                        .addComponent(jLabel9)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                        .addGap(27, 27, 27)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel9))
+                        .addGap(27, 27, 27)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jtfArea, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jtfSueldo)
+                                    .addComponent(jtfPuesto)
+                                    .addComponent(jtfApellidos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
+                                    .addComponent(jtfNumberWorker)
+                                    .addComponent(jtfName)
+                                    .addComponent(jtfEdad, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jbtnCrear)
+                                    .addComponent(jbtnBuscar)
+                                    .addComponent(jbtnImprimir)
+                                    .addComponent(jLabel10))))))
+                .addGap(0, 57, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 13, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 121, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2))
-                                .addGap(118, 118, 118))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(171, 171, 171))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jtfNumberWorker)
-                            .addComponent(jtfName)
-                            .addComponent(jtfApellidos, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jtfEdad)
-                            .addComponent(jtfPuesto)
-                            .addComponent(jtfSueldo)
-                            .addComponent(jtfArea, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addComponent(jLabel3)
+                        .addGap(219, 219, 219))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 675, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(135, 135, 135)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jbtnBuscar)
-                    .addComponent(jbtnCrear))
-                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -285,39 +314,46 @@ public class PersonalInterface extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(1, 1, 1)
                 .addComponent(jLabel3)
+                .addGap(7, 7, 7)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jtfNumberWorker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbtnCrear))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jtfName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtfNumberWorker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtfName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtfApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jtfApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jbtnBuscar)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtfEdad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtfPuesto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtfSueldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jtfArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtfEdad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel10))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jtfPuesto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jtfSueldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(jbtnImprimir)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtfArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
                 .addGap(18, 18, 18)
-                .addComponent(jbtnCrear)
-                .addGap(18, 18, 18)
-                .addComponent(jbtnBuscar)
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pack();
@@ -327,6 +363,7 @@ public class PersonalInterface extends javax.swing.JFrame {
     private void jbtnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCrearActionPerformed
         //Validación de los campos para que no se encuentren vacios
         if (validacionCamposTexto()) {
+            //
             JOptionPane.showMessageDialog(null, "Los campos se encuentran Llenos");
             crearPersonal();
         } else {
@@ -343,10 +380,19 @@ public class PersonalInterface extends javax.swing.JFrame {
     }//GEN-LAST:event_jmtMenuActionPerformed
 
     private void jbtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnBuscarActionPerformed
-        // TODO add your handling code here:
-        //Personal p = retornarEmpleado();
-        retornarEmpleado();
+        //Validación de los campos para que no se encuentren vacios
+        if (!jtfNumberWorker.getText().equals("")) {
+            //Llamado al metodo para retornoar el perosonal
+            retornarPersonal();
+        } else {
+            //Impresión del dialog en caso de que los campos se encuentrn vacios
+            JOptionPane.showMessageDialog(null, "El campo del número de empleado esta vacio");
+        }
     }//GEN-LAST:event_jbtnBuscarActionPerformed
+
+    private void jbtnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnImprimirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtnImprimirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -386,6 +432,7 @@ public class PersonalInterface extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -396,8 +443,10 @@ public class PersonalInterface extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JButton jbtnBuscar;
     private javax.swing.JButton jbtnCrear;
+    private javax.swing.JButton jbtnImprimir;
     private javax.swing.JMenuItem jmtMenu;
     private javax.swing.JTextField jtfApellidos;
     private javax.swing.JTextField jtfArea;
@@ -406,5 +455,6 @@ public class PersonalInterface extends javax.swing.JFrame {
     private javax.swing.JTextField jtfNumberWorker;
     private javax.swing.JTextField jtfPuesto;
     private javax.swing.JTextField jtfSueldo;
+    private javax.swing.JTable tableReser;
     // End of variables declaration//GEN-END:variables
 }

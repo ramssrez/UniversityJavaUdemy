@@ -99,7 +99,7 @@ public class PersonalDAO {
                 String apellido = resultSet.getString("apellidos");
                 String numero = resultSet.getString("numero_empleado");
                 String edad = resultSet.getString("edad");
-                String puesto = resultSet.getString("sueldo");
+                String puesto = resultSet.getString("puesto");
                 String sueldo = resultSet.getString("sueldo");
                 String area = resultSet.getString("area");
                 //Creación del objeto personal
