@@ -11,9 +11,6 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FilterOutputStream;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -22,6 +19,7 @@ import java.util.logging.Logger;
 public class PersonalInterface extends javax.swing.JFrame {
 
     private DefaultTableModel dtm;
+    private List<Personal> listaPersonal;
 
     public PersonalInterface() {
         initComponents();
@@ -29,6 +27,7 @@ public class PersonalInterface extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         //Sentencia que desactiva el minimizar y maximizar de las ventanas principales
         this.setResizable(false);
+        //tablePersonal.setEnabled(false);
 
     }
     //Creación de los titulos de la tabla de habitaciones
@@ -128,7 +127,7 @@ public class PersonalInterface extends javax.swing.JFrame {
     private void obtenerDatos() {
         //Implementacion de las sentencias de MySQL 
         PersonalDAO personalDAO = new PersonalDAO();
-        List<Personal> listaPersonal = personalDAO.seleccionarLista();
+        listaPersonal = personalDAO.seleccionarLista();
         //Implementacion de los titulos
         setTitulos();
         Object[] fila = new Object[7];
@@ -145,6 +144,42 @@ public class PersonalInterface extends javax.swing.JFrame {
         });
         //Muestra de la información de la tabla
         tablePersonal.setModel(dtm);
+    }
+
+    private void generarDocumento(Personal p) {
+        Document document = new Document();
+
+        try {
+            String ruta = System.getProperty("user.home");
+            PdfWriter.getInstance(document, new FileOutputStream(ruta + "/Desktop/reporte.pdf"));
+            document.open();
+            PdfPTable table = new PdfPTable(7);
+            table.addCell("N. Trabajador");
+            table.addCell("Nombre");
+            table.addCell("Apellidos");
+            table.addCell("Edad");
+            table.addCell("Puesto");
+            table.addCell("Sueldo");
+            table.addCell("Área");
+
+            table.addCell(p.getNumeroEmpleado());
+            table.addCell(p.getNombre());
+            table.addCell(p.getApellidos());
+            table.addCell(p.getEdad());
+            table.addCell(p.getPuesto());
+            table.addCell(p.getSueldo());
+            table.addCell(p.getArea());
+
+            document.add(table);
+            document.close();
+
+        } catch (DocumentException ex) {
+            System.out.println("Error: " + ex.getMessage());
+            ex.printStackTrace(System.out);
+        } catch (FileNotFoundException ex) {
+            System.out.println("Error: " + ex.getMessage());
+            ex.printStackTrace(System.out);
+        }
     }
 
     /**
@@ -283,6 +318,11 @@ public class PersonalInterface extends javax.swing.JFrame {
             }
         ));
         tablePersonal.setFocusable(false);
+        tablePersonal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                clieceado(evt);
+            }
+        });
         jScrollPane4.setViewportView(tablePersonal);
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
@@ -452,32 +492,12 @@ public class PersonalInterface extends javax.swing.JFrame {
 
     private void jbtnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnImprimirActionPerformed
         obtenerDatos();
-        Document document = new Document();
-
-        try {
-            String ruta = System.getProperty("user.home");
-            PdfWriter.getInstance(document, new FileOutputStream(ruta + "/Desktop/reporte.pdf"));
-            document.open();
-            PdfPTable table = new PdfPTable(7);
-            table.addCell("N. Trabajador");
-            table.addCell("Nombre");
-            table.addCell("Apellidos");
-            table.addCell("Edad");
-            table.addCell("Puesto");
-            table.addCell("Sueldo");
-            table.addCell("Área");
-
-            document.add(table);
-            document.close();
-
-        } catch (DocumentException ex) {
-            System.out.println("Error: " + ex.getMessage());
-            ex.printStackTrace(System.out);
-        } catch (FileNotFoundException ex) {
-            System.out.println("Error: " + ex.getMessage());
-            ex.printStackTrace(System.out);
-        }
     }//GEN-LAST:event_jbtnImprimirActionPerformed
+
+    private void clieceado(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clieceado
+        Personal p = listaPersonal.get(tablePersonal.getSelectedRow());
+        generarDocumento(p);
+    }//GEN-LAST:event_clieceado
 
     /**
      * @param args the command line arguments
