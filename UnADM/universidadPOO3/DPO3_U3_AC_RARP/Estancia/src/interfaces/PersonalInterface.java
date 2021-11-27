@@ -131,7 +131,7 @@ public class PersonalInterface extends javax.swing.JFrame {
         //Implementacion de los titulos
         setTitulos();
         Object[] fila = new Object[7];
-        //Recorrido de los objetos habitación e impresión de los datos en la tabla
+        //Recorrido de los objetos personal e impresión de los datos en la tabla
         listaPersonal.forEach(personal -> {
             fila[0] = personal.getNumeroEmpleado();
             fila[1] = personal.getNombre();
@@ -146,14 +146,22 @@ public class PersonalInterface extends javax.swing.JFrame {
         tablePersonal.setModel(dtm);
     }
 
+    //Método que permite generar un documento pdf donde se imprime los datos del personal
     private void generarDocumento(Personal p) {
+        //Creación del documento de la librería
         Document document = new Document();
 
+        //Uso de try/catch necesaria para poder realizar la creación de un documetno
         try {
+            //Obtención de la ruta del sistema y el usuario
             String ruta = System.getProperty("user.home");
+            //Seleccion de la ruta para agregar o crear un reporte
             PdfWriter.getInstance(document, new FileOutputStream(ruta + "/Desktop/reporte.pdf"));
+            //Apertura del documento para modificarlo
             document.open();
+            //Uso de la clase PdfTable de la liraría para su implementación
             PdfPTable table = new PdfPTable(7);
+            //Agregación de los nombres de las columnas del documento
             table.addCell("N. Trabajador");
             table.addCell("Nombre");
             table.addCell("Apellidos");
@@ -162,6 +170,7 @@ public class PersonalInterface extends javax.swing.JFrame {
             table.addCell("Sueldo");
             table.addCell("Área");
 
+            //Sección en donde se agrega la inforamción del personal
             table.addCell(p.getNumeroEmpleado());
             table.addCell(p.getNombre());
             table.addCell(p.getApellidos());
@@ -170,15 +179,17 @@ public class PersonalInterface extends javax.swing.JFrame {
             table.addCell(p.getSueldo());
             table.addCell(p.getArea());
 
+            //Agregación de la tabla al doumetno
             document.add(table);
             document.close();
 
-        } catch (DocumentException ex) {
+            //Sección de las excepciones en el caso de que no se encuenre un documetno o se crea
+        } catch (DocumentException | FileNotFoundException ex) {
             System.out.println("Error: " + ex.getMessage());
             ex.printStackTrace(System.out);
-        } catch (FileNotFoundException ex) {
-            System.out.println("Error: " + ex.getMessage());
-            ex.printStackTrace(System.out);
+        } finally{
+            //En el caso de que no se crea un documento validamos con el finaly para que se cierre
+            document.close();
         }
     }
 
@@ -459,7 +470,7 @@ public class PersonalInterface extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    //Método asignado al boton 
+    //Método asignado al boton  de crear un personal
     private void jbtnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCrearActionPerformed
         //Validación de los campos para que no se encuentren vacios
         if (validacionCamposTexto()) {
@@ -472,13 +483,14 @@ public class PersonalInterface extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jbtnCrearActionPerformed
 
+    //Método para moverse hacia el menú principal
     private void jmtMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmtMenuActionPerformed
-        // TODO add your handling code here:
         MenuPrincipal mp = new MenuPrincipal();
         mp.setVisible(true);
         dispose();
     }//GEN-LAST:event_jmtMenuActionPerformed
 
+    //Método para buscar la información del personal
     private void jbtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnBuscarActionPerformed
         //Validación de los campos para que no se encuentren vacios
         if (!jtfNumberWorker.getText().equals("")) {
@@ -490,12 +502,17 @@ public class PersonalInterface extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jbtnBuscarActionPerformed
 
+    //Método para obtener la lista de datos del personal
     private void jbtnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnImprimirActionPerformed
+        //Método que realiza la consulta de los datos
         obtenerDatos();
     }//GEN-LAST:event_jbtnImprimirActionPerformed
 
+    //Método que al presionar una de las opciones de la tabla genera el documento
     private void clieceado(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clieceado
+        //Obtención del objeto personal de la tabla
         Personal p = listaPersonal.get(tablePersonal.getSelectedRow());
+        //Llamado al metodo para generar un documento
         generarDocumento(p);
     }//GEN-LAST:event_clieceado
 
