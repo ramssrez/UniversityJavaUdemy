@@ -57,6 +57,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jItemReporte.setText("Personal");
 
         jMenuItem2.setText("Ir");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jItemReporte.add(jMenuItem2);
 
         jMenuBar1.add(jItemReporte);
@@ -83,12 +88,19 @@ public class MenuPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //Uso del método para ir a la venana de habitaciones
     private void jIemAsigarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jIemAsigarActionPerformed
-        // TODO add your handling code here:
         HabiitacionInterface hi = new HabiitacionInterface();
         hi.setVisible(true);
         dispose();
     }//GEN-LAST:event_jIemAsigarActionPerformed
+
+    //Asignación del evento del menú para ir a la pantalla de personal
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        PersonalInterface pi = new PersonalInterface();
+        pi.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
