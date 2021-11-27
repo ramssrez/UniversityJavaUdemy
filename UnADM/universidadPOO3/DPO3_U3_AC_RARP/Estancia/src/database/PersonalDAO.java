@@ -24,7 +24,7 @@ public class PersonalDAO {
 
     private static final String SQL_SELECT = "SELECT id_personal, nombre, apellidos, numero_empleado, edad, puesto, sueldo, area FROM personal WHERE numero_empleado = ?";
 
-    private static final String SQL_SELECT_LIST = "SELECT id_personal, nombre, apellidos, numero_empleado, edad, puesto, sueldo, area FROM personal";
+    private static final String SQL_SELECT_LIST = "SELECT id_personal, nombre, apellidos, numero_empleado, edad, puesto, sueldo, area FROM personal ORDER BY numero_empleado";
 
     public int insertar(Personal personal) {
         //Declaración de las variables necesrias para poder realizar la conexion a la base de datos.

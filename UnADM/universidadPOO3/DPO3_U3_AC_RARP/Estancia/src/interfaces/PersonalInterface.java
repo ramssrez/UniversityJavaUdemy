@@ -1,6 +1,7 @@
 package interfaces;
 
 import database.PersonalDAO;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import objetos.Personal;
@@ -10,7 +11,8 @@ import objetos.Personal;
  * @author ramssrez
  */
 public class PersonalInterface extends javax.swing.JFrame {
-        private DefaultTableModel dtm;
+
+    private DefaultTableModel dtm;
 
     public PersonalInterface() {
         initComponents();
@@ -20,7 +22,8 @@ public class PersonalInterface extends javax.swing.JFrame {
         this.setResizable(false);
 
     }
-        //Creación de los titulos de la tabla de habitaciones
+    //Creación de los titulos de la tabla de habitaciones
+
     private DefaultTableModel setTitulos() {
         dtm = new DefaultTableModel();
         dtm.addColumn("N. Personal");
@@ -112,6 +115,29 @@ public class PersonalInterface extends javax.swing.JFrame {
         }
     }
 
+    //Método que retorna la información de la base de datos de las habitaciones
+    private void obtenerDatos() {
+        //Implementacion de las sentencias de MySQL 
+        PersonalDAO personalDAO = new PersonalDAO();
+        List<Personal> listaPersonal = personalDAO.seleccionarLista();
+        //Implementacion de los titulos
+        setTitulos();
+        Object[] fila = new Object[7];
+        //Recorrido de los objetos habitación e impresión de los datos en la tabla
+        listaPersonal.forEach(personal -> {
+            fila[0] = personal.getNumeroEmpleado();
+            fila[1] = personal.getNombre();
+            fila[2] = personal.getApellidos();
+            fila[3] = personal.getEdad();
+            fila[4] = personal.getPuesto();
+            fila[5] = personal.getSueldo();
+            fila[6] = personal.getArea();
+            dtm.addRow(fila);
+        });
+        //Muestra de la información de la tabla
+        tablePersonal.setModel(dtm);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -140,9 +166,10 @@ public class PersonalInterface extends javax.swing.JFrame {
         jtfPuesto = new javax.swing.JTextField();
         jbtnBuscar = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
-        tableReser = new javax.swing.JTable();
+        tablePersonal = new javax.swing.JTable();
         jLabel10 = new javax.swing.JLabel();
         jbtnImprimir = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jmtMenu = new javax.swing.JMenuItem();
@@ -228,8 +255,8 @@ public class PersonalInterface extends javax.swing.JFrame {
             }
         });
 
-        tableReser.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        tableReser.setModel(new javax.swing.table.DefaultTableModel(
+        tablePersonal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        tablePersonal.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -246,8 +273,8 @@ public class PersonalInterface extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6"
             }
         ));
-        tableReser.setFocusable(false);
-        jScrollPane4.setViewportView(tableReser);
+        tablePersonal.setFocusable(false);
+        jScrollPane4.setViewportView(tablePersonal);
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jLabel10.setText("Ingresa Solo en Número de empleado");
@@ -259,6 +286,9 @@ public class PersonalInterface extends javax.swing.JFrame {
                 jbtnImprimirActionPerformed(evt);
             }
         });
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel11.setText("Lista de personal");
 
         jMenu1.setText("Menú Principal");
 
@@ -320,6 +350,10 @@ public class PersonalInterface extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 675, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(257, 257, 257)
+                .addComponent(jLabel11)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -365,9 +399,11 @@ public class PersonalInterface extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtfArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -406,6 +442,7 @@ public class PersonalInterface extends javax.swing.JFrame {
 
     private void jbtnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnImprimirActionPerformed
         // TODO add your handling code here:
+        obtenerDatos();
     }//GEN-LAST:event_jbtnImprimirActionPerformed
 
     /**
@@ -447,6 +484,7 @@ public class PersonalInterface extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -469,6 +507,6 @@ public class PersonalInterface extends javax.swing.JFrame {
     private javax.swing.JTextField jtfNumberWorker;
     private javax.swing.JTextField jtfPuesto;
     private javax.swing.JTextField jtfSueldo;
-    private javax.swing.JTable tableReser;
+    private javax.swing.JTable tablePersonal;
     // End of variables declaration//GEN-END:variables
 }
