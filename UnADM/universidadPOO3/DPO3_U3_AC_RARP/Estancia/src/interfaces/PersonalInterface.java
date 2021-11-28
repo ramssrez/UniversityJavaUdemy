@@ -21,8 +21,10 @@ public class PersonalInterface extends javax.swing.JFrame {
     //Delcaración de variables necesarias para su utilización
     private DefaultTableModel dtm;
     private List<Personal> listaPersonal;
+    private final FondoPanel fondo = new FondoPanel();
 
     public PersonalInterface() {
+        this.setContentPane(fondo);
         initComponents();
         this.setTitle("Personal");
         this.setLocationRelativeTo(null);
@@ -188,7 +190,7 @@ public class PersonalInterface extends javax.swing.JFrame {
         } catch (DocumentException | FileNotFoundException ex) {
             System.out.println("Error: " + ex.getMessage());
             ex.printStackTrace(System.out);
-        } finally{
+        } finally {
             //En el caso de que no se crea un documento validamos con el finaly para que se cierre
             document.close();
         }

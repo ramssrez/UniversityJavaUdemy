@@ -22,8 +22,10 @@ public class HabiitacionInterface extends javax.swing.JFrame {
     private int costoHabitacion;
     private Thread hilo;
     private int contador;
+    private final FondoPanel FONDO = new FondoPanel();
 
     public HabiitacionInterface() {
+        this.setContentPane(FONDO);
         initComponents();
         this.setTitle("Inicio");
         this.setLocationRelativeTo(null);
