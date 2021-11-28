@@ -21,10 +21,11 @@ public class PersonalInterface extends javax.swing.JFrame {
     //Delcaración de variables necesarias para su utilización
     private DefaultTableModel dtm;
     private List<Personal> listaPersonal;
-    private final FondoPanel fondo = new FondoPanel();
+    private final FondoPanel FONDO = new FondoPanel();
 
     public PersonalInterface() {
-        this.setContentPane(fondo);
+        //Asignación del fondo con una imagen elegida
+        this.setContentPane(FONDO);
         initComponents();
         this.setTitle("Personal");
         this.setLocationRelativeTo(null);

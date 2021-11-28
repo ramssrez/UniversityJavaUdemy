@@ -25,6 +25,7 @@ public class HabiitacionInterface extends javax.swing.JFrame {
     private final FondoPanel FONDO = new FondoPanel();
 
     public HabiitacionInterface() {
+        //Asignación del fondo con una imagen elegida
         this.setContentPane(FONDO);
         initComponents();
         this.setTitle("Inicio");

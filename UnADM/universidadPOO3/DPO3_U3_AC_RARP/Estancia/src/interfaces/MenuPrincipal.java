@@ -5,15 +5,16 @@
  */
 package interfaces;
 
-
 /**
  *
  * @author ramssrez
  */
 public class MenuPrincipal extends javax.swing.JFrame {
 
-    private final FondoPanel FONDO = new FondoPanel();    
+    private final FondoPanel FONDO = new FondoPanel();
+
     public MenuPrincipal() {
+        //Asignación del fondo con una imagen elegida
         this.setContentPane(FONDO);
         initComponents();
         this.setTitle("Inicio");
