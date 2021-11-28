@@ -32,5 +32,9 @@ PARTITION dos VALUES less than(10),
 PARTITION tres VALUES less than(15)
 );
 
-select table_name,partition_name,partition_description,table_rows from
-information_schema.partitions where table_name =  servicio;
+/* Seleccion de usuairo por  */
+SELECT * FROM servicio PARTITION(uno, dos, tres);
+SELECT * FROM usuario PARTITION(p0);
+SELECT * FROM usuario PARTITION(p1);
+SELECT * FROM usuario PARTITION(p2);
+SELECT * FROM usuario PARTITION(p3);
