@@ -18,8 +18,8 @@ import objetos.Personal;
  * @author ramssrez
  */
 public class PersonalDAO {
-    //Declaración de la sentencia a realizar para insertar un registro a  la base de datos
-
+    
+    //Declaración de la sentencias a utilizar para hacer uso de las sentecias SQL
     private static final String SQL_INSERT = "INSERT INTO personal(nombre, apellidos, numero_empleado, edad, puesto, sueldo, area) VALUES(?,?,?,?,?,?,?)";
 
     private static final String SQL_SELECT = "SELECT id_personal, nombre, apellidos, numero_empleado, edad, puesto, sueldo, area FROM personal WHERE numero_empleado = ?";
@@ -41,7 +41,6 @@ public class PersonalDAO {
             //Envio de sentencias SQL para insertar datos a la base de datos
             preparedStatement = conn.prepareStatement(SQL_INSERT);
             //Envio de los parametros que se han seleccionado para poder realizar la insersión de datos
-            //Insersión de la la variable de tipo DateSql para la base de datos
             preparedStatement.setString(1, personal.getNombre());
             preparedStatement.setString(2, personal.getApellidos());
             preparedStatement.setString(3, personal.getNumeroEmpleado());

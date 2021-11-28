@@ -18,6 +18,7 @@ import java.io.FileOutputStream;
  */
 public class PersonalInterface extends javax.swing.JFrame {
 
+    //Delcaración de variables necesarias para su utilización
     private DefaultTableModel dtm;
     private List<Personal> listaPersonal;
 
