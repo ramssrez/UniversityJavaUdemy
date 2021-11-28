@@ -243,14 +243,13 @@ public class PersonalInterface extends javax.swing.JFrame {
         jLabel2.setText("Número de Empleado");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel3.setText("Alta, Busqueda de personal");
+        jLabel3.setText("Alta, busqueda y impresión de personal");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Nombre");
 
         jtfNumberWorker.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jtfNumberWorker.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jtfNumberWorker.setText("12345");
         jtfNumberWorker.setToolTipText("");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -258,7 +257,6 @@ public class PersonalInterface extends javax.swing.JFrame {
 
         jtfName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jtfName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jtfName.setText("Jorge");
         jtfName.setToolTipText("");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -274,7 +272,6 @@ public class PersonalInterface extends javax.swing.JFrame {
 
         jtfApellidos.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jtfApellidos.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jtfApellidos.setText("Negrete Sanchez");
         jtfApellidos.setToolTipText("");
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -288,22 +285,18 @@ public class PersonalInterface extends javax.swing.JFrame {
 
         jtfSueldo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jtfSueldo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jtfSueldo.setText("12000");
         jtfSueldo.setToolTipText("");
 
         jtfArea.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jtfArea.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jtfArea.setText("Recursos Humanos");
         jtfArea.setToolTipText("");
 
         jtfEdad.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jtfEdad.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jtfEdad.setText("39");
         jtfEdad.setToolTipText("");
 
         jtfPuesto.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jtfPuesto.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jtfPuesto.setText("Coordinador");
         jtfPuesto.setToolTipText("");
 
         jbtnBuscar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -405,28 +398,30 @@ public class PersonalInterface extends javax.swing.JFrame {
                                     .addComponent(jbtnImprimir)
                                     .addComponent(jLabel10))))))
                 .addGap(0, 57, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 13, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(219, 219, 219))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 675, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(257, 257, 257)
-                .addComponent(jLabel11)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 13, Short.MAX_VALUE)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 675, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(257, 257, 257)
+                                .addComponent(jLabel11))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(161, 161, 161)
+                                .addComponent(jLabel3)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(1, 1, 1)
+                .addGap(2, 2, 2)
                 .addComponent(jLabel3)
-                .addGap(7, 7, 7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jtfNumberWorker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -478,8 +473,7 @@ public class PersonalInterface extends javax.swing.JFrame {
     private void jbtnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCrearActionPerformed
         //Validación de los campos para que no se encuentren vacios
         if (validacionCamposTexto()) {
-            //
-            JOptionPane.showMessageDialog(null, "Los campos se encuentran Llenos");
+            //Método para crear un personal en la base de datos
             crearPersonal();
         } else {
             //Impresión del dialog en caso de que los campos se encuentrn vacios
@@ -500,6 +494,7 @@ public class PersonalInterface extends javax.swing.JFrame {
         if (!jtfNumberWorker.getText().equals("")) {
             //Llamado al metodo para retornoar el perosonal
             retornarPersonal();
+            JOptionPane.showMessageDialog(null, "Se ha recuperado información de personal");
         } else {
             //Impresión del dialog en caso de que los campos se encuentrn vacios
             JOptionPane.showMessageDialog(null, "El campo del número de empleado esta vacio");

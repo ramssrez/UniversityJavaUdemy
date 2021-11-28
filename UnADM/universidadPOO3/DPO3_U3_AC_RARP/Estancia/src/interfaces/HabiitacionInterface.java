@@ -28,7 +28,7 @@ public class HabiitacionInterface extends javax.swing.JFrame {
         //Asignación del fondo con una imagen elegida
         this.setContentPane(FONDO);
         initComponents();
-        this.setTitle("Inicio");
+        this.setTitle("Reservación");
         this.setLocationRelativeTo(null);
         //Sentencia que desactiva el minimizar y maximizar de las ventanas principales
         this.setResizable(false);
