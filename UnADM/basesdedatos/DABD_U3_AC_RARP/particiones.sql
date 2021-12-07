@@ -38,3 +38,19 @@ SELECT * FROM usuario PARTITION(p0);
 SELECT * FROM usuario PARTITION(p1);
 SELECT * FROM usuario PARTITION(p2);
 SELECT * FROM usuario PARTITION(p3);
+
+
+/* Creacion de las vistas como ejemplo*/
+CREATE VIEW ejemplo AS
+SELECT idusuario, nombre, apellido1 FROM usuario;
+
+CREATE VIEW ejemplo AS
+SELECT nombre, apellido1 FROM usuario;
+
+CREATE VIEW usuario_factura AS
+SELECT nombre, apellido1,apellido2, razonsocial, direccion, autorizacion, facturacion.fecha,costototal FROM usuario 
+INNER JOIN facturacion INNER JOIN servicio WHERE usuario.idusuario = facturacion.idusuario AND facturacion.idservicio = servicio.idservicio;
+
+CREATE VIEW servicios_solicitados AS
+SELECT usuario.nombre, usuario.apellido1,usuario.apellido2, servicio.fecha, origen, destino, costototal,asiento, cajero.nombre AS "Nombre Cajero" FROM usuario 
+INNER JOIN servicio INNER JOIN cajero WHERE usuario.idusuario = servicio.idusuario AND servicio.idcajero = cajero.idcajero;
