@@ -1,11 +1,50 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ejercicios Formularios</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script type="text/javascript" src="recursos/funciones.js"></script>
     </head>
     <body>
-        <div>TODO write content</div>
+        <form name="form1" action="/JavaWeb/ServletFormulario" method="post"
+              onsubmit="return validarForm(this)">
+            <input type="hidden" name="oculto" value="valorOculto">
+            <table width="200" id="enfasis-column">
+                <caption>
+                    Formulario Registro de Datos
+                </caption>
+                <tr>
+                    <td class="columna">
+                        Usuario: (*)
+                    </td>
+                    <td>
+                        <input class="default" type="text" name="usuario"
+                               value="Escribir usuario" onfocus="this.select()">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="columna">
+                        Password: (*)
+                    </td>   
+                    <td>
+                        <input class="default" type="password" name="password"
+                               onfocus="this.select()">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="columna">
+                        Tecnologías de Internet: (*)
+                    </td>   
+                    <td>
+                        Java <input type="checkbox" name="tecnologia" value="java">
+                        &nbsp;&nbsp;&nbsp;
+                        .Net <input type="checkbox" name="tecnologia" value="net">
+                        &nbsp;&nbsp;&nbsp;
+                        Php <input type="checkbox" name="tecnologia" value="php">
+                        &nbsp;&nbsp;&nbsp;                    
+                    </td>
+                </tr>
+            </table>
+        </form>
     </body>
 </html>
