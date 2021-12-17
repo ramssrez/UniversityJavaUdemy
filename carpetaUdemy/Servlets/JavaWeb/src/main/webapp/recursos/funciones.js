@@ -47,6 +47,8 @@ function validarForm(forma) {
         alert("Debe seleccionar una ocupación");
         return false;
     }
-
+    //Hasta este punto es un formulario valido
+    alert("Formulario valido, enviado datos al servidor");
+    return true;
 }
 
