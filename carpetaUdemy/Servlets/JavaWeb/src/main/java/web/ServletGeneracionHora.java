@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
  * @author ramssrez
  */
 
-@WebServlet("GeneracionHora")
+@WebServlet("/GeneracionHora")
 public class ServletGeneracionHora extends HttpServlet{
     
     

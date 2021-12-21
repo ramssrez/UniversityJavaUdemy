@@ -1,5 +1,7 @@
+web\ServletGeneracionHora.class
 web\Servlet.class
 web\ServletHeader.class
+web\ServletFormularios.class
+web\ServletGeneracionExcel.class
 web\HolaMundo.class
 web\ServletEstados.class
-web\ServletFormularios.class
