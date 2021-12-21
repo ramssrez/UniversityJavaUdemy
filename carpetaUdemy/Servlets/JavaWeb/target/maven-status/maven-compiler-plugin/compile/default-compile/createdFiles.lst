@@ -1,6 +1,7 @@
 web\ServletGeneracionHora.class
 web\Servlet.class
 web\ServletHeader.class
+web\ServletCookies.class
 web\ServletFormularios.class
 web\ServletGeneracionExcel.class
 web\HolaMundo.class
