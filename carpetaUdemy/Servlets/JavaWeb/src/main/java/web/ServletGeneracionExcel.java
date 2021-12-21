@@ -20,7 +20,7 @@ public class ServletGeneracionExcel extends HttpServlet {
         //vnd Vendor Specific
 
         //Indicacion del tipo de repuseta al navegador
-        response.setContentType("application/vnd.ms-excel");
+        response.setContentType("application/vnd.ms-excel"); 
         response.setHeader("Content-Disposition", "attachment;filename=ejemploExcel.xls");
         //NOta: Para el uso de excel usar excel poi.apache.org
 
@@ -31,10 +31,10 @@ public class ServletGeneracionExcel extends HttpServlet {
 
         //Se despliega información al cliente.
         PrintWriter out = response.getWriter();
-        out.print("\tValores");
-        out.print("\t1");
-        out.print("\t2");
-        out.print("Total\n=SUMA(b1:b2)");
+        out.println("\tValores");
+        out.println("\t1");
+        out.println("\t2");
+        out.println("Total\t=SUMA(b2:b3)");
         out.close();
 
     }
