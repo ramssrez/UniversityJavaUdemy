@@ -3,6 +3,7 @@ web\Servlet.class
 web\ServletHeader.class
 web\ServletContadorVisitas.class
 web\ServletCookies.class
+web\ServletSesiones.class
 web\ServletFormularios.class
 web\ServletGeneracionExcel.class
 web\HolaMundo.class
