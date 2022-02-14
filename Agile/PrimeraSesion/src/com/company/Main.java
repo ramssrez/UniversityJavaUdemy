@@ -4,7 +4,6 @@ public class Main {
 
     public static void main(String[] args) {
 	// write your code here
-        System.out.println("Hola mundo desde Java");
-
+        System.out.println("Esto es una prueba");
     }
 }
