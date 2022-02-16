@@ -32,5 +32,12 @@ public class CuentaCheques extends CuentaBancaria{
         super.reducirFondos(importeTotal);
     }
 
+    @Override
+    public void imprimirEstadoCuenta() {
+        System.out.println("Estado de cuenta de cheques.....");
+        System.out.println("Balance : " +getBalance());
+        System.out.println("comisión retiro: " + comision);
+    }
+
 
 }

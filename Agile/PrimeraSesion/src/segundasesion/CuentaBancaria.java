@@ -1,6 +1,6 @@
 package segundasesion;
 
-public class CuentaBancaria {
+public abstract class CuentaBancaria {
     private double balance;
 
     public CuentaBancaria(double balance) {
@@ -22,4 +22,5 @@ public class CuentaBancaria {
             this.balance -= importe;
         }
     }
+    public abstract void imprimirEstadoCuenta();
 }
