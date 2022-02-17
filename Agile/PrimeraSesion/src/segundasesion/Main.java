@@ -39,19 +39,24 @@ public class Main {
         CuentaBancaria cuentaInversion = new CuentaInversion(1000.0,0.05);
         CuentaBancaria cuentaCheques = new CuentaCheques(1000.0,5.0);
 
-        Cliente cliente = new Cliente();
-        cliente.agregarProducto(credito);
-        cliente.agregarProducto(cuentaCheques);
-        cliente.agregarProducto(cuentaInversion);
-        if(cliente.cancelarServicio()){
-            System.out.println("Cancelación autorizada");
-        }else{
-            for(ProductoFinanciero producto : cliente.getProductos()){
-                if (producto.getSaldo()!=0.0){
-                    producto.imprimirEstadoCuenta();
-                }
-            }
-            System.out.println("Cancelación no autorizada");
-        }
+        //Cliente cliente = new Cliente();
+//        cliente.agregarProducto(credito);
+//        cliente.agregarProducto(cuentaCheques);
+//        cliente.agregarProducto(cuentaInversion);
+//        if(cliente.cancelarServicio()){
+//            System.out.println("Cancelación autorizada");
+//        }else{
+//            for(ProductoFinanciero producto : cliente.getProductos()){
+//                if (producto.getSaldo()!=0.0){
+//                    producto.imprimirEstadoCuenta();
+//                }
+//            }
+//            System.out.println("Cancelación no autorizada");
+//        }
+        Cliente cliente = new Cliente("Raúl","1234",10000);
+        Configuracion configuracion = new Configuracion();
+        configuracion.setMaxLineaCreditoPorIngresoMensual(4.0);
+        AdministradorProducto adminitradorProducto = new AdministradorProducto(configuracion);
+
     }
 }

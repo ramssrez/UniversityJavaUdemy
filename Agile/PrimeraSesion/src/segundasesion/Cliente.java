@@ -5,22 +5,24 @@ import java.util.List;
 
 public class Cliente {
     private String nombre;
-    private List<ProductoFinanciero> productos = new ArrayList<>();
+    private String numCliente;
+    private double ingresoMensual;
 
-    public void agregarProducto(ProductoFinanciero productoFinanciero){
-        productos.add(productoFinanciero);
+    public Cliente(String nombre, String numCliente, double ingresoMensual) {
+        this.nombre = nombre;
+        this.numCliente = numCliente;
+        this.ingresoMensual = ingresoMensual;
     }
 
-    public List<ProductoFinanciero> getProductos() {
-        return productos;
+    public String getNombre() {
+        return nombre;
     }
 
-    public boolean cancelarServicio(){
-        for (ProductoFinanciero producto : productos){
-            if (producto.getSaldo() != 0.0) {
-                return false;
-            }
-        }
-        return true;
+    public String getNumCliente() {
+        return numCliente;
+    }
+
+    public double getIngresoMensual() {
+        return ingresoMensual;
     }
 }
