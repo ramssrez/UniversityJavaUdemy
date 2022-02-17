@@ -15,6 +15,6 @@ public class MainDos {
         System.out.println("Aplicando corte............");
         System.out.println("Nuevo balance: " + cuentaBancaria.getBalance());
         cuentaBancaria.imprimirEstadoCuenta();
-
+        CuentaBancaria bancaria = new CuentaCheques(1000,5.0);
     }
 }

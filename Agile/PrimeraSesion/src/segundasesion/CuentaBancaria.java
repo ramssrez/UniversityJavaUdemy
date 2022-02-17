@@ -1,6 +1,6 @@
 package segundasesion;
 
-public abstract class CuentaBancaria {
+public abstract class CuentaBancaria  implements ProductoFinanciero {
     private double balance;
 
     public CuentaBancaria(double balance) {
@@ -23,4 +23,9 @@ public abstract class CuentaBancaria {
         }
     }
     public abstract void imprimirEstadoCuenta();
+
+    @Override
+    public double getSaldo() {
+        return balance;
+    }
 }
