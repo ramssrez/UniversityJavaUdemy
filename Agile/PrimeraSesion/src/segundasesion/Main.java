@@ -57,6 +57,12 @@ public class Main {
         Configuracion configuracion = new Configuracion();
         configuracion.setMaxLineaCreditoPorIngresoMensual(4.0);
         AdministradorProducto adminitradorProducto = new AdministradorProducto(configuracion);
-
+        adminitradorProducto.agregarProducto(cliente, credito);
+        System.out.println(String.format("El cliente %s ha solicitado cancelar sus cuentas", cliente.getNumCliente()));
+        if(adminitradorProducto.puedeCancelar(cliente)){
+            System.out.println("Cancelación autorizada");
+        }else{
+            System.out.println("Cancelación denegada");
+        }
     }
 }
