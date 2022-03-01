@@ -27,6 +27,18 @@ public class AdministradorProducto {
                 return;
             }
         }
+        if(producto instanceof CuentaInversion){
+            boolean cuentaChques = false;
+            for (ProductoFinanciero pf : productos){
+                if(pf instanceof CuentaCheques){
+                    cuentaChques = true;
+                }
+            }
+            if (!cuentaChques){
+                System.out.println("Se necesita una cuenta de cheques para poder tener una cuenta de inversion");
+                return;
+            }
+        }
         productos.add(producto);
     }
 

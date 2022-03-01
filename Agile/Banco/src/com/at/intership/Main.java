@@ -1,7 +1,7 @@
 package com.at.intership;
 
 public class Main {
-
+    double impuesto;
     public static void main(String[] args) {
         // Cuenta genérica
 //        CuentaBancaria cuentaBancaria = new CuentaBancaria(1000.0);
@@ -26,6 +26,7 @@ public class Main {
 
         // Cuenta inversion
         // Definir impuesto %
+        double impuesto = 0.15;
         CuentaInversion cuentaInversion = new CuentaInversion(1000.0, 0.05);
         System.out.println("Balance inicial: " + cuentaInversion.getBalance());
         System.out.println("Retiro: 600");
@@ -35,12 +36,14 @@ public class Main {
         cuentaInversion.reducirFondos(600.0);
         System.out.println("Nuevo balance:" + cuentaInversion.getBalance());
         System.out.println("Aplicando corte...");
-        cuentaInversion.aplicarCorte();
+        cuentaInversion.aplicarCorte(impuesto);
         System.out.println("Nuevo balance:" + cuentaInversion.getBalance());
         cuentaInversion.imprimirEstadoCuenta();
         // modificar impuesto
-        cuentaInversion.aplicarCorte();
+        impuesto = 0.20;
+        cuentaInversion.aplicarCorte(impuesto);
         System.out.println("Nuevo balance:" + cuentaInversion.getBalance());
+        cuentaInversion.imprimirEstadoCuenta();
 
         // Cuenta de cheques: Comisión por retiro
         // Cuenta de inversion: + intereses
