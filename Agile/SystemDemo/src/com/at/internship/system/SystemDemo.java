@@ -70,6 +70,12 @@ public class SystemDemo {
                 case "sys-username":
                     printSystemUsername();
                     break;
+                case "divide-double":
+                    System.out.println("Comando divide");;
+                    break;
+                case "divide-integer":
+                    divisionEntera();
+                    break;
                 case "exit":
                     // No recomendado: En la mayoría de los casos, no se recomienda invocar a System.exit(int)
                     //System.exit(0);
@@ -86,7 +92,13 @@ public class SystemDemo {
                 "- print-path\n" +
                 "- print-java-home\n" +
                 "- sys-username\n" +
+                "- divide-double\n" +
+                "- divide-integer\n" +
                 "- exit");
+    }
+    public static void divisionEntera(){
+        int valoruno=0, valorDos=0;
+        
     }
 
     private static void printSystemUsername() {
