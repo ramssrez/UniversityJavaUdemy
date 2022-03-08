@@ -71,7 +71,7 @@ public class SystemDemo {
                     printSystemUsername();
                     break;
                 case "divide-double":
-                    System.out.println("Comando divide");;
+                    divisionDouble();
                     break;
                 case "divide-integer":
                     divisionEntera();
@@ -125,6 +125,34 @@ public class SystemDemo {
             //System.out.println(e.getMessage());
         }
         System.out.printf("%d / %d = %.1f \n", numerado, denominador, resultado);
+    }
+    public static void divisionDouble(){
+        double numerado=0.0, denominador=0.0, resultado=0.0;
+        boolean validarNumerador = true, validarDenominador =true;
+        while (validarNumerador){
+            try {
+                System.out.print("Enter Numerator: ");
+                numerado = Double.parseDouble(System.console().readLine());
+                validarNumerador = false;
+            }catch (Exception e){
+                System.out.println("Input wrong: Expect a Double number");
+            }
+        }
+        while (validarDenominador){
+            try {
+                System.out.print("Enter Denominator: ");
+                denominador = Double.parseDouble(System.console().readLine());
+                validarDenominador = false;
+            }catch (Exception e){
+                System.out.println("Input wrong: Expect a Double number");
+            }
+        }
+        try{
+            resultado = numerado / denominador;
+        }catch(ArithmeticException e){
+            resultado = Double.POSITIVE_INFINITY;
+        }
+        System.out.printf("%.1f / %.1f = %.3f \n", numerado, denominador, resultado);
     }
 
     private static void printSystemUsername() {
