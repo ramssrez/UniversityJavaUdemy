@@ -97,8 +97,34 @@ public class SystemDemo {
                 "- exit");
     }
     public static void divisionEntera(){
-        int valoruno=0, valorDos=0;
-        
+        int numerado=0, denominador=0;
+        double resultado=0;
+        boolean validarNumerador = true, validarDenominador =true;
+        while (validarNumerador){
+            try {
+                System.out.print("Enter Numerator: ");
+                numerado = Integer.parseInt(System.console().readLine());
+                validarNumerador = false;
+            }catch (Exception e){
+                System.out.println("Input wrong: Expect an Integer number");
+            }
+        }
+        while (validarDenominador){
+            try {
+                System.out.print("Enter Denominator: ");
+                denominador = Integer.parseInt(System.console().readLine());
+                validarDenominador = false;
+            }catch (Exception e){
+                System.out.println("Input wrong: Expect an Integer number");
+            }
+        }
+        try{
+            resultado = numerado / denominador;
+        }catch(ArithmeticException e){
+            resultado = Double.POSITIVE_INFINITY;
+            //System.out.println(e.getMessage());
+        }
+        System.out.printf("%d / %d = %.1f \n", numerado, denominador, resultado);
     }
 
     private static void printSystemUsername() {
