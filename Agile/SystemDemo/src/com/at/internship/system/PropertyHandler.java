@@ -12,6 +12,7 @@ public class PropertyHandler {
     private static final String PROP_PROPS_FILE = "com.at.internship.system.propsFile";
 
 
+
     /**
      * Buena práctica de programación: Documentar métodos y parámetros en el formato estándar para javadocs
      * @param defaultPropsFile from classpath
@@ -20,6 +21,7 @@ public class PropertyHandler {
      * @throws IOException
      */
     public static void load(String defaultPropsFile, String configPropsFile) throws FileNotFoundException, IOException {
+        System.out.println("PROP_PROPS_FILE = " + PROP_PROPS_FILE);
         // Load default properties
         Properties defaultProps = new Properties(System.getProperties());
         //FileInputStream in = new FileInputStream(defaultPropsFile);
