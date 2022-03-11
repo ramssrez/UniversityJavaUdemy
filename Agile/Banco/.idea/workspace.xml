@@ -2,15 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c4eab588-4999-4f87-8fce-354d4d0ebac9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../Demo/src/META-INF/MANIFEST.MF" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Demo/src/Principall.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Herencia/com/at/intership/AdministradorProducto.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Herencia/com/at/intership/AdministradorProducto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Herencia/com/at/intership/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Herencia/com/at/intership/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/at/intership/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/at/intership/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SystemDemo/out/artifacts/SystemDemo_jar/SystemDemo.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../SystemDemo/out/artifacts/SystemDemo_jar/SystemDemo.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SystemDemo/out/production/SystemDemo/com/at/internship/system/PropertyHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/../SystemDemo/out/production/SystemDemo/com/at/internship/system/PropertyHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../SystemDemo/src/com/at/internship/system/PropertyHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/../SystemDemo/src/com/at/internship/system/PropertyHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Poker/out/production/Poker/PokerCard.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Poker/out/production/Poker/PokerCard.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Poker/out/production/Poker/PokerCardTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Poker/out/production/Poker/PokerCardTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Poker/src/PokerCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Poker/src/PokerCard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Poker/src/PokerCardTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Poker/src/PokerCardTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -1,7 +1,4 @@
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 public class PokerCard {
     static final String SUIT_SPADES = "SPADES";
@@ -13,7 +10,8 @@ public class PokerCard {
 
     static Set<String> suitSet() {
         //return new HashSet<>(Arrays.asList(SUIT_SPADES,SUIT_DIAMONDS,SUIT_CLOVERS,SUIT_HEARTS));
-        return new TreeSet<>(Arrays.asList(SUIT_SPADES,SUIT_DIAMONDS,SUIT_CLOVERS,SUIT_HEARTS));
+        //return new TreeSet<>(Arrays.asList(SUIT_SPADES,SUIT_DIAMONDS,SUIT_CLOVERS,SUIT_HEARTS));
+        return new LinkedHashSet<>(Arrays.asList(SUIT_SPADES,SUIT_DIAMONDS,SUIT_CLOVERS,SUIT_HEARTS));
     }
 
     private String suit;
