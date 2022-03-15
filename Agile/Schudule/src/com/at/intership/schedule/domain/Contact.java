@@ -74,9 +74,9 @@ public class Contact {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Contact)) return false;
         Contact contact = (Contact) o;
-        return Objects.equals(id, contact.id) && Objects.equals(firstName, contact.firstName) && Objects.equals(lastname, contact.lastname) && Objects.equals(emailAdress, contact.emailAdress) && Objects.equals(phoneNumber, contact.phoneNumber) && Objects.equals(birday, contact.birday);
+        return id != null && id.equals(contact.id);
     }
 
     @Override
