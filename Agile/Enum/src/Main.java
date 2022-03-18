@@ -16,6 +16,29 @@ public class Main {
         String nombreFigura = JOptionPane.showInputDialog(Mensajes.INGRESO_NOMBRE_FIGURA);
         TipoFigurasEnum figura  = getNombreFigura(nombreFigura);
         IMedidas medidas = null;
+        switch (figura) {
+            case CIRCULO:
+                double radio = validarDouble(Mensajes.INGRESO_RADIO, Mensajes.UNIDAD_MEDIDA_CM);
+                medidas = new Circulo(radio);
+                break;
+
+            case CUADRADO:
+                double lado =validarDouble(Mensajes.INGRESO_LADO,Mensajes.UNIDAD_MEDIDA_CM);
+                        //Double.parseDouble(JOptionPane.showInputDialog(String.format(Mensajes.INGRESO_LADO, Mensajes.UNIDAD_MEDIDA_CM)));
+                medidas = new Cuadrado(lado);
+                break;
+
+            case RECTANGULO:
+                double base = validarDouble(Mensajes.INGRESO_BASE,Mensajes.UNIDAD_MEDIDA_CM);
+                        //Double.parseDouble(JOptionPane.showInputDialog(String.format(Mensajes.INGRESO_BASE, Mensajes.UNIDAD_MEDIDA_CM)));
+                double altura = validarDouble(Mensajes.INGRESO_ALTURA, Mensajes.UNIDAD_MEDIDA_CM);
+                        //Double.parseDouble(JOptionPane.showInputDialog(String.format(Mensajes.INGRESO_ALTURA, Mensajes.UNIDAD_MEDIDA_CM, Mensajes.UNIDAD_MEDIDA_CM, Mensajes.UNIDAD_MEDIDA_CM, Mensajes.UNIDAD_MEDIDA_CM)));
+                medidas = new Rectangulo(base, altura);
+                break;
+        }
+        String mensaje = String.format(Mensajes.MENSAJE_SALIDA,nombreFigura,medidas.calcularPerimetro(),medidas.calcularArea());
+        JOptionPane.showMessageDialog(null,mensaje);
+
 
         /*if (nombreFigura.equalsIgnoreCase(FIGURA_CIRCULO)) {
             double radio = Double.parseDouble(JOptionPane.showInputDialog("Ingresa el radio en cm"));
@@ -39,34 +62,28 @@ public class Main {
             double altura = Double.parseDouble(JOptionPane.showInputDialog("Ingresa la altura en cm"));
             medidas = new Rectangulo(base, altura);
         }*/
-        switch (figura) {
-            case CIRCULO:
-                double radio = Double.parseDouble(JOptionPane.showInputDialog(String.format(Mensajes.INGRESO_RADIO, Mensajes.UNIDAD_MEDIDA_CM)));
-                medidas = new Circulo(radio);
-                break;
-
-            case CUADRADO:
-                double lado = Double.parseDouble(JOptionPane.showInputDialog(String.format(Mensajes.INGRESO_LADO, Mensajes.UNIDAD_MEDIDA_CM)));
-                medidas = new Cuadrado(lado);
-                break;
-
-            case RECTANGULO:
-                double base = Double.parseDouble(JOptionPane.showInputDialog(String.format(Mensajes.INGRESO_BASE, Mensajes.UNIDAD_MEDIDA_CM)));
-                double altura = Double.parseDouble(JOptionPane.showInputDialog(String.format(Mensajes.INGRESO_ALTURA, Mensajes.UNIDAD_MEDIDA_CM, Mensajes.UNIDAD_MEDIDA_CM, Mensajes.UNIDAD_MEDIDA_CM, Mensajes.UNIDAD_MEDIDA_CM)));
-                medidas = new Rectangulo(base, altura);
-                break;
-        }
-        String mensaje = "La figura ingresada fue " + nombreFigura + ", que tiene como perímetro: " + medidas.calcularPerimetro() + " y área: " + medidas.calcularArea();
-        //mensaje = String.format()
-        System.out.printf(String.format("ESto es una parametr %s ",medidas.calcularArea()));
-        JOptionPane.showMessageDialog(null,mensaje);
-
-
         //String mensaje = "La figura ingresada fue " + nombreFigura + ", que tiene como perímetro: " + medidas.calcularPerimetro() + " y área: " + medidas.calcularArea();
 
-        System.out.println(mensaje);
+    }
+    public static double validarDouble(String opcionFigura, String unidad){
+        String opcion = JOptionPane.showInputDialog(String.format(opcionFigura, unidad));
+        while (!isNumberDouble(opcion)) {
+            opcion = JOptionPane.showInputDialog(null,String.format(opcionFigura,unidad),Mensajes.MENSAJE_PRECAUCION,JOptionPane.ERROR_MESSAGE);
+        }
+        return Double.parseDouble(opcion);
     }
 
+    private static boolean isNumberDouble(String s) {
+        try {
+            Double.parseDouble(s);
+            return true;
+        } catch (NumberFormatException e) {
+            System.out.println(e.getMessage().getClass());
+            System.out.println(e.getMessage());
+
+            return false;
+        }
+    }
     public static TipoFigurasEnum getNombreFigura(String nombreFigura) {
         TipoFigurasEnum[] tipoFigurasEnums = TipoFigurasEnum.values();
 
