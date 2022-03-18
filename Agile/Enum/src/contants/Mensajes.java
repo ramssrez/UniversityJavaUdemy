@@ -10,5 +10,5 @@ public class Mensajes {
     public static final String UNIDAD_MEDIDA_CM = "cm";
     public static final String MENSAJE_SALIDA = "La figura ingresada fue %s, que tiene como perímetro: %s y área: %s";
     public static final String MENSAJE_PRECAUCION = "Error, vuelve a intentarlo";
-
+    public static final String MENSAJE_SALIDA_PROGRAMA = "No hay datos de la figura o se cancelado el proceso";
 }
