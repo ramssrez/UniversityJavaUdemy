@@ -2,6 +2,8 @@ package com.at.intership.schedule;
 
 import com.at.intership.schedule.domain.Contact;
 import com.at.intership.schedule.repositorio.ContactRepository;
+import com.at.intership.schedule.StaticExample;
+
 
 import java.time.LocalDate;
 import java.time.Month;
@@ -41,6 +43,8 @@ public class Test {
 
         System.out.println("Every who was birthday on december");
         repository.findAll(c -> c.getBirday().getMonth() == Month.DECEMBER).forEach(System.out::println);
+
+        StaticExample.printSomething();
 
     }
 }

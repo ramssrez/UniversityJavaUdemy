@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 public class AppointmenteRespository {
     private List<Appointment> appointmentList = new ArrayList<>();
     private static int ID_SEQUENCE = 0;
-
+    AppointmenteRespository(){}
     public List<Appointment> findAll() {
         return appointmentList
                 .stream()

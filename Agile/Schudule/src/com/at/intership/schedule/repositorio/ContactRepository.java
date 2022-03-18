@@ -11,6 +11,9 @@ import java.util.stream.Collectors;
 public class ContactRepository {
     private List<Contact> contactList = new ArrayList<>();
     private static int ID_SEQUENCE =0;
+    ContactRepository(){
+
+    }
     public List<Contact> findAll(){
         return contactList
                 .stream() //ContactList genera stream de salida a traves de la función stream
