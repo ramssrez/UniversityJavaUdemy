@@ -1,17 +1,11 @@
 import contants.Mensajes;
 import contants.TipoFigurasEnum;
-import figura.Circulo;
-import figura.Cuadrado;
-import figura.Rectangulo;
+import figura.*;
 import interfaces.IMedidas;
 
 import javax.swing.*;
 
 public class Main {
-    /*public static final String FIGURA_CIRCULO = "Circulo";
-    public static final String FIGURA_CUADRADO = "Cuadrado";
-    public static final String FIGURA_RECTANGULO = "Rectangulo";*/
-
     public static void main(String[] args) {
 
         String nombreFigura = JOptionPane.showInputDialog(Mensajes.INGRESO_NOMBRE_FIGURA);
@@ -34,6 +28,17 @@ public class Main {
                     double altura = validarDouble(Mensajes.INGRESO_ALTURA, Mensajes.UNIDAD_MEDIDA_CM);
                     medidas = new Rectangulo(base, altura);
                     break;
+
+                case ISOSCELES:
+                    double baseIsoceles = validarDouble(Mensajes.INGRESO_BASE,Mensajes.UNIDAD_MEDIDA_CM);
+                    double ladoIsosceles = validarDouble(Mensajes.INGRESO_LADO,Mensajes.UNIDAD_MEDIDA_CM);
+                    medidas = new TrianguloIsosceles(baseIsoceles,ladoIsosceles);
+                    break;
+
+                case EQUILATERO:
+                    double ladoTriangulo = validarDouble(Mensajes.INGRESO_LADO,Mensajes.UNIDAD_MEDIDA_CM);
+                    medidas = new TrianguloEquilatero(ladoTriangulo);
+                    break;
             }
             String mensaje = String.format(Mensajes.MENSAJE_SALIDA,nombreFigura,medidas.calcularPerimetro(),medidas.calcularArea());
             JOptionPane.showMessageDialog(null,mensaje);
@@ -41,11 +46,6 @@ public class Main {
             System.out.println(e.getMessage());
             JOptionPane.showMessageDialog(null,Mensajes.MENSAJE_SALIDA_PROGRAMA);
         }
-
-
-
-
-
         /*if (nombreFigura.equalsIgnoreCase(FIGURA_CIRCULO)) {
             double radio = Double.parseDouble(JOptionPane.showInputDialog("Ingresa el radio en cm"));
             medidas = new Circulo(radio);
@@ -78,13 +78,11 @@ public class Main {
         }
         return Double.parseDouble(opcion);
     }
-
     private static boolean isNumberDouble(String s) {
         try {
             Double.parseDouble(s);
             return true;
         } catch (NumberFormatException e) {
-            System.out.println(e.getMessage().getClass());
             System.out.println(e.getMessage());
             return false;
         }

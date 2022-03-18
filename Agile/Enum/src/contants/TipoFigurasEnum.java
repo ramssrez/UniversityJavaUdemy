@@ -3,5 +3,7 @@ package contants;
 public enum TipoFigurasEnum {
     CIRCULO,
     CUADRADO,
-    RECTANGULO;
+    RECTANGULO,
+    EQUILATERO,
+    ISOSCELES;
 }
