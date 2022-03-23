@@ -14,7 +14,8 @@ public class CashRegister {
         boolean keepReading = true;
         while (keepReading) {
             try {
-                total = total.add(BigDecimal.valueOf(input.readDouble("Price " + index))).setScale(2, RoundingMode.HALF_UP);
+                //total = total.add(BigDecimal.valueOf(input.readDouble("Price " + index))).setScale(2, RoundingMode.HALF_UP);
+                total = total.add(input.readBigDecimal("Price " + index));
                 index++;
             }catch (InputAbortedException e){
                 keepReading = false;
@@ -25,7 +26,8 @@ public class CashRegister {
         System.out.println("Total amount: " + total);
 
         try {
-            BigDecimal payment =BigDecimal.valueOf(input.readDouble("Enter payment")).setScale(2,RoundingMode.HALF_UP);
+            BigDecimal payment = input.readBigDecimal("Enter payment: ");
+            //BigDecimal payment =BigDecimal.valueOf(input.readDouble("Enter payment")).setScale(2,RoundingMode.HALF_UP);
             BigDecimal change = payment.subtract(total);
             if (change.compareTo(BigDecimal.ZERO) < 0){
                 System.out.println("You need to pay more" + change.abs());
