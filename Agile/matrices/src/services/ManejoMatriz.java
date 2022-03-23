@@ -37,6 +37,14 @@ public class ManejoMatriz {
     }
 
     public boolean validarEspacio(int fila, int columna){
-        return matriz[fila][columna].equals("X") || matriz[fila][columna].equals("Y");
+        return matriz[fila][columna].equals("X") || matriz[fila][columna].equals("O");
+    }
+
+    public String[][] getMatriz() {
+        return matriz;
+    }
+
+    public void setMatriz(String[][] matriz) {
+        this.matriz = matriz;
     }
 }
