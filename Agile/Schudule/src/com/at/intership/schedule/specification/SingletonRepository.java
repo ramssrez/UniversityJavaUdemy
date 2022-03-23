@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class SingletonRepository {
+    /*
     private static Map<String, Object>  singletontMap;
     public static  final String KEY_CONTACT_REPOSITORY = "contactRespository";
     public static  final String KEY_APPOINTMENT_REPOSITORy = "appointmenteRespository";
@@ -16,5 +17,7 @@ public class SingletonRepository {
         singletontMap.put(KEY_APPOINTMENT_REPOSITORy, new AppointmenteRespository());
     }
 
+
+     */
     private SingletonRepository(){}
 }

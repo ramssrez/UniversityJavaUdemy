@@ -10,12 +10,10 @@ public class GatoService {
         Scanner sc = new Scanner(System.in);
         boolean juegoTerminado = false;
         ManejoMatriz tablero = new ManejoMatriz(3,3);
-        //String[][] tablero = {{"-","-","-"},{"-","-","-"},{"-","-","-"}};
         int ronda = 1;
-        int contador = 1;
+        int contador = 0;
         JugadoresEnum jugadorActual = obtenerJugadorActual(ronda);
-
-        do {
+        while (!juegoTerminado){
             try {
                 if (contador == 9){
                     System.out.println("Juego terminado");
@@ -25,17 +23,13 @@ public class GatoService {
                 System.out.println("Ingresa las coordenadas en formato x,y: ");
                 String dato = sc.nextLine();
                 Integer[] coordenadas = obtenerCoordenadas(dato);
-                //tablero.imprimirMatriz();
                 if (!tablero.validarEspacio(coordenadas[0],coordenadas[1])){
-                    //System.out.println("Si se encuentra lleno");
                     tablero.insertarDato(coordenadas[0],coordenadas[1],jugadorActual);
                     jugadorActual = obtenerJugadorActual(++ronda);
                     tablero.imprimirMatriz();
                 }else{
                     System.out.println("Casilla llena, ingresa otra casilla");
                 }
-
-                System.out.println(contador);
                 contador++;
 
             }catch (NullPointerException e){
@@ -45,7 +39,7 @@ public class GatoService {
             }catch (ArrayIndexOutOfBoundsException e){
                 System.out.println("Ingresa los datos en formato x,y");
             }
-        } while (!juegoTerminado);
+        }
     }
 
     private static Integer[] obtenerCoordenadas(String dato) {
