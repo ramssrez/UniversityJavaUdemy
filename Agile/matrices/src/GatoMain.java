@@ -22,9 +22,6 @@ public class GatoMain {
             System.out.println("Ingresa las coordenadas en formato x,y: ");
             String dato = sc.nextLine();
             Integer[] coordenadas = obtenerCoordenadas(dato);
-            if (validarEspacioMatiz(coordenadas[0],coordenadas[1],tablero)){
-                System.out.println("Ya hay una cordenada ingresasa");
-            }
             insertarFicha(tablero, coordenadas[0], coordenadas[1], jugadorActual);
             jugadorActual = obtenerJugadorActual(++ronda);
             imprimirTablero(tablero);

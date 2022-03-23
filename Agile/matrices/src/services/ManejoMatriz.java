@@ -36,9 +36,7 @@ public class ManejoMatriz {
         this.matriz[fila][columna] = jugadorActual.getFicha();
     }
 
-    public void validarEspacio(int fila, int columna){
-        if (matriz[fila][columna].equals("X") || matriz[fila][columna].equals("Y")){
-            System.out.println();
-        }
+    public boolean validarEspacio(int fila, int columna){
+        return matriz[fila][columna].equals("X") || matriz[fila][columna].equals("Y");
     }
 }
