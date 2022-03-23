@@ -8,6 +8,7 @@ public class Appointment {
     private Integer contactId;
     private LocalDateTime time;
     private String subject;
+    private Contact contact;
 
     public Appointment() {}
 
@@ -18,6 +19,14 @@ public class Appointment {
         this.contactId = source.contactId;
         this.time = source.time;
         this.subject = source.subject;
+    }
+
+    public Contact getContact() {
+        return contact;
+    }
+
+    public void setContact(Contact contact) {
+        this.contact = contact;
     }
 
     public Integer getId() {
