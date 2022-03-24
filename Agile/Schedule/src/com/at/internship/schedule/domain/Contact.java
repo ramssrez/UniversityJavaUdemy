@@ -1,6 +1,7 @@
 package com.at.internship.schedule.domain;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 
 public class Contact {
@@ -10,6 +11,7 @@ public class Contact {
     private String emailAddress;
     private String phoneNumber;
     private LocalDate birthDay;
+    private List<Appointment> appointments;
 
     public Contact() {}
 
@@ -20,6 +22,14 @@ public class Contact {
         this.emailAddress = source.emailAddress;
         this.phoneNumber = source.phoneNumber;
         this.birthDay = source.birthDay;
+    }
+
+    public List<Appointment> getAppointments() {
+        return appointments;
+    }
+
+    public void setAppointments(List<Appointment> appointments) {
+        this.appointments = appointments;
     }
 
     public Integer getId() {

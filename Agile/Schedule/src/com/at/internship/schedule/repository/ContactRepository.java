@@ -5,6 +5,8 @@ import com.at.internship.schedule.specification.SpecificationUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -37,6 +39,12 @@ public class ContactRepository {
                 .collect(Collectors.toList());
     }
 
+    public Optional<Contact> findOne(Integer id) {
+        return contactList
+                .stream().filter(a -> Objects.equals(a.getId(), id))
+                .findFirst();
+    }
+
     public Contact save(Contact c) {
         Contact clone = new Contact(c);
         if(clone.getId() == null)
@@ -65,5 +73,4 @@ public class ContactRepository {
                 .map(Contact::new)
                 .collect(Collectors.toList());
     }
-
 }

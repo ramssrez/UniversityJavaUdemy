@@ -53,4 +53,33 @@ public class ContactRepositoryTest {
                 .forEach(System.out::println);
     }
 
+    public static void saveContacts() {
+        ContactRepository contactRepository = (ContactRepository) SingletonRepository.getSingleton(KEY_CONTACT_REPOSITORY);
+
+        Contact contact;
+
+        contact = new Contact();
+        contact.setFirstName("Pablo");
+        contact.setLastName("Castañeda");
+        contact.setEmailAddress("pablo.1.gmail.com");
+        contact.setPhoneNumber("1111111111");
+        contact.setBirthDay(LocalDate.of(1997, 12, 31));
+        contactRepository.save(contact);
+
+        contact = new Contact();
+        contact.setFirstName("David");
+        contact.setLastName("Santander");
+        contact.setEmailAddress("david.1.gmail.com");
+        contact.setPhoneNumber("2222222222");
+        contact.setBirthDay(LocalDate.of(1995, 12, 30));
+        contactRepository.save(contact);
+
+        contact = new Contact();
+        contact.setFirstName("David");
+        contact.setLastName("Barredo");
+        contact.setEmailAddress("david.2.gmail.com");
+        contact.setPhoneNumber("3333333333");
+        contact.setBirthDay(LocalDate.of(1985, 5, 25));
+        contactRepository.save(contact);
+    }
 }

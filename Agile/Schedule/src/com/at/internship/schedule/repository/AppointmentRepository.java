@@ -1,6 +1,7 @@
 package com.at.internship.schedule.repository;
 
 import com.at.internship.schedule.domain.Appointment;
+import com.at.internship.schedule.domain.Contact;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -18,24 +19,30 @@ public class AppointmentRepository {
 
     AppointmentRepository() { }
 
+    private ContactRepository getContactRepository() {
+        if(contactRepository == null)
+            contactRepository = (ContactRepository) SingletonRepository.getSingleton(SingletonRepository.KEY_CONTACT_REPOSITORY);
+        return contactRepository;
+    }
+
     public List<Appointment> findAll() {
         return appointmentList.stream().map(Appointment::new).collect(Collectors.toList());
     }
 
-    public Optional<Appointment> findOne(Integer id) {
+    public Optional<? extends Appointment> findOne(Integer id) {
         return appointmentList
-                .stream().filter(a -> Objects.equals(a.getId(), id))
+                .stream().filter(a -> Objects.equals(a.getId(), id)).map(InnerAppointment::new)
                 .findFirst();
     }
 
     public List<Appointment> findAll(Predicate<? super Appointment> predicate) {
         if(predicate == null)
             return findAll();
-        return appointmentList.stream().filter(predicate).map(Appointment::new).collect(Collectors.toList());
+        return appointmentList.stream().filter(predicate).map(InnerAppointment::new).collect(Collectors.toList());
     }
 
     public Appointment save(Appointment c) {
-        Appointment clone = new Appointment(c);
+        Appointment clone = new InnerAppointment(c);
         if(clone.getId() == null)
             clone.setId(++ID_SEQUENCE);
 
@@ -45,7 +52,7 @@ public class AppointmentRepository {
         else
             appointmentList.add(clone);
 
-        return new Appointment(clone);
+        return new InnerAppointment(clone);
     }
 
     public void delete(Integer id) {
@@ -56,7 +63,26 @@ public class AppointmentRepository {
         return appointmentList
                 .stream()
                 .filter(c -> date.isEqual(c.getTime().toLocalDate()))
-                .map(Appointment::new)
+                .map(InnerAppointment::new)
                 .collect(Collectors.toList());
+    }
+
+    private class InnerAppointment extends Appointment {
+        private boolean contactLoaded = false;
+
+        private InnerAppointment(Appointment source) {
+            super(source);
+        }
+
+        @Override
+        public Contact getContact() {
+            if(!contactLoaded) {
+                if(super.getContact() == null && getContactId() != null)
+                    setContact(getContactRepository().findOne(getContactId()).orElse(null));
+                contactLoaded = true;
+            }
+
+            return super.getContact();
+        }
     }
 }
