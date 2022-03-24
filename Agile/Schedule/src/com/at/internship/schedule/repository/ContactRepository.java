@@ -2,8 +2,10 @@ package com.at.internship.schedule.repository;
 
 import com.at.internship.schedule.domain.Appointment;
 import com.at.internship.schedule.domain.Contact;
+import com.at.internship.schedule.serialization.csv.ContactSerializer;
 import com.at.internship.schedule.specification.SpecificationUtils;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -16,9 +18,14 @@ public class ContactRepository {
 
     private List<Contact> contactList = new ArrayList<>();
     private AppointmentRepository appointmentRepository;
+    private ContactSerializer serializer;
 
 
-    ContactRepository() {}
+    ContactRepository() {
+        serializer = new ContactSerializer();
+        contactList = serializer.deserialize();
+        ID_SEQUENCE = contactList.stream().map(Contact::getId).max(Integer::compare).orElse(0);
+    }
 
     public List<Contact> findAll() {
         return contactList
@@ -48,7 +55,7 @@ public class ContactRepository {
                 .findFirst();
     }
 
-    public Contact save(Contact c) {
+    public Contact save(Contact c) throws IOException {
         Contact clone = new Inner(c);
         if(clone.getId() == null)
             clone.setId(++ID_SEQUENCE);
@@ -58,15 +65,16 @@ public class ContactRepository {
             contactList.set(index, clone);
         else
             contactList.add(clone);
-
+        serializer.serialize(contactList);
         return new Inner(clone);
     }
 
-    public void delete(Integer id) {
+    public void delete(Integer id) throws IOException{
         contactList = contactList
                 .stream()
                 .filter(c -> !c.getId().equals(id))
                 .collect(Collectors.toList());
+        serializer.serialize(contactList);
     }
 
     public List<Contact> findAllByName(String name) {

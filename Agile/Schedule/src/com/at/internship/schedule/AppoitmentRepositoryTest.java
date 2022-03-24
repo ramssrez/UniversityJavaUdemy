@@ -4,11 +4,13 @@ import com.at.internship.schedule.domain.Appointment;
 import com.at.internship.schedule.repository.AppointmentRepository;
 import com.at.internship.schedule.repository.SingletonRepository;
 import static com.at.internship.schedule.repository.SingletonRepository.*;
+
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
 public class AppoitmentRepositoryTest {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         AppointmentRepository appointmentRepository = (AppointmentRepository) SingletonRepository.getSingleton(KEY_APPOINTMENT_REPOSITORY);
         // ContactRepository contactRepository = (ContactRepository) SingletonRepository.getSingleton(KEY_CONTACT_REPOSITORY);
 

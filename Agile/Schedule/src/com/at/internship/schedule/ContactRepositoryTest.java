@@ -4,6 +4,7 @@ import com.at.internship.schedule.domain.Contact;
 import com.at.internship.schedule.repository.ContactRepository;
 import com.at.internship.schedule.repository.SingletonRepository;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.Optional;
@@ -12,12 +13,27 @@ import static com.at.internship.schedule.repository.SingletonRepository.*;
 
 public class ContactRepositoryTest {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException{
         ContactRepository contactRepository = (ContactRepository) getSingleton(KEY_CONTACT_REPOSITORY);
-        saveContacts();
+        //saveContacts();
         AppoitmentRepositoryTest.saveAppoitment();
+        Contact contact;
 
+        contact = new Contact();
+        contact.setFirstName("Pablo");
+        contact.setLastName("Castañeda");
+        contact.setEmailAddress("pablo.1.gmail.com");
+        contact.setPhoneNumber("1111111111");
+        contact.setBirthDay(LocalDate.of(1997, 12, 31));
+        contactRepository.save(contact);
 
+        contact = new Contact();
+        contact.setFirstName("David");
+        contact.setLastName("Santander");
+        contact.setEmailAddress("david.1.gmail.com");
+        contact.setPhoneNumber("2222222222");
+        contact.setBirthDay(LocalDate.of(1995, 12, 30));
+        contactRepository.save(contact);
 
         System.out.println("\nAll the contacts...");
         contactRepository.findAll().forEach(System.out::println);
@@ -35,13 +51,13 @@ public class ContactRepositoryTest {
         if(optSelect.isPresent()){
             Contact select = optSelect.get();
             System.out.println("Contact # " + select.getId());
-            System.out.println("Contact lastname: " + select.getLastName());
+            System.out.println("Contact name: " + select.getFirstName());
             System.out.println("Appointments");
             select.getAppointments().forEach(System.out::println);
         }
     }
 
-    public static void saveContacts() {
+    public static void saveContacts() throws IOException {
         ContactRepository contactRepository = (ContactRepository) SingletonRepository.getSingleton(KEY_CONTACT_REPOSITORY);
 
         Contact contact;
