@@ -1,5 +1,6 @@
 package com.at.internship.schedule.repository;
 
+import com.at.internship.schedule.domain.Appointment;
 import com.at.internship.schedule.domain.Contact;
 import com.at.internship.schedule.specification.SpecificationUtils;
 
@@ -14,6 +15,8 @@ public class ContactRepository {
     private static int ID_SEQUENCE = 0;
 
     private List<Contact> contactList = new ArrayList<>();
+    private AppointmentRepository appointmentRepository;
+
 
     ContactRepository() {}
 
@@ -21,7 +24,7 @@ public class ContactRepository {
         return contactList
                 .stream() // contactList genera stream de salida a través de la función stream()
                 // Stream de entrada va a la operación map
-                .map(Contact::new)
+                .map(Inner::new)
                 // Map genera stream de salida
                 // Stream de entrada va a la operación collect
                 .collect(Collectors.toList());
@@ -35,7 +38,7 @@ public class ContactRepository {
                 .stream()
                 .filter(predicate)
                 // filter() -> stream -> map()
-                .map(Contact::new)
+                .map(Inner::new)
                 .collect(Collectors.toList());
     }
 
@@ -46,7 +49,7 @@ public class ContactRepository {
     }
 
     public Contact save(Contact c) {
-        Contact clone = new Contact(c);
+        Contact clone = new Inner(c);
         if(clone.getId() == null)
             clone.setId(++ID_SEQUENCE);
 
@@ -56,7 +59,7 @@ public class ContactRepository {
         else
             contactList.add(clone);
 
-        return new Contact(clone);
+        return new Inner(clone);
     }
 
     public void delete(Integer id) {
@@ -70,7 +73,31 @@ public class ContactRepository {
         return contactList
                 .stream()
                 .filter(c -> SpecificationUtils.like(String.format("%s %s", c.getFirstName(), c.getLastName()), name))
-                .map(Contact::new)
+                .map(Inner::new)
                 .collect(Collectors.toList());
+    }
+    private class Inner extends Contact {
+        private boolean appointmentsLoaded = false;
+
+        private Inner(Contact source) {
+            super(source);
+        }
+
+        @Override
+        public List<Appointment> getAppointments() {
+            if(!appointmentsLoaded) {
+                if(super.getAppointments() == null && getId() != null)
+                    setAppointments(getAppointmentRepository().findAll(appointment -> appointment.getContactId().equals(getId())));
+                appointmentsLoaded= true;
+            }
+
+            return super.getAppointments();
+        }
+    }
+
+    private AppointmentRepository getAppointmentRepository() {
+        if(appointmentRepository == null)
+            appointmentRepository = (AppointmentRepository) SingletonRepository.getSingleton(SingletonRepository.KEY_APPOINTMENT_REPOSITORY);
+        return appointmentRepository;
     }
 }
