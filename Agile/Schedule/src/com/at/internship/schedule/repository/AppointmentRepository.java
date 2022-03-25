@@ -2,7 +2,9 @@ package com.at.internship.schedule.repository;
 
 import com.at.internship.schedule.domain.Appointment;
 import com.at.internship.schedule.domain.Contact;
+import com.at.internship.schedule.serialization.csv.ApoitmentSerializer;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,10 +16,15 @@ import java.util.stream.Collectors;
 public class AppointmentRepository {
     private static int ID_SEQUENCE = 0;
 
-    private List<Appointment> appointmentList = new ArrayList<>();
+    private List<Appointment> appointmentList;
     private ContactRepository contactRepository;
+    private ApoitmentSerializer serializer;
 
-    AppointmentRepository() { }
+    AppointmentRepository() {
+        serializer = new ApoitmentSerializer();
+        appointmentList = serializer.deserialize();
+        ID_SEQUENCE = appointmentList.stream().map(Appointment::getId).max(Integer::compare).orElse(0);
+    }
 
     private ContactRepository getContactRepository() {
         if(contactRepository == null)
@@ -41,7 +48,7 @@ public class AppointmentRepository {
         return appointmentList.stream().filter(predicate).map(InnerAppointment::new).collect(Collectors.toList());
     }
 
-    public Appointment save(Appointment c) {
+    public Appointment save(Appointment c) throws IOException {
         Appointment clone = new InnerAppointment(c);
         if(clone.getId() == null)
             clone.setId(++ID_SEQUENCE);
@@ -51,12 +58,13 @@ public class AppointmentRepository {
             appointmentList.set(index, clone);
         else
             appointmentList.add(clone);
-
+        serializer.serialize(appointmentList);
         return new InnerAppointment(clone);
     }
 
-    public void delete(Integer id) {
+    public void delete(Integer id) throws IOException {
         appointmentList = appointmentList.stream().filter(c -> !c.getId().equals(id)).collect(Collectors.toList());
+        serializer.serialize(appointmentList);
     }
 
     public List<Appointment> findAllByDate(LocalDate date) {

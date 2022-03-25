@@ -25,7 +25,7 @@ public class AppoitmentRepositoryTest {
         System.out.println("Contact ID: " + select.getContactId());
         System.out.println("Contact name: " + select.getContact().getFirstName());
     }
-    public static void saveAppoitment() {
+    public static void saveAppoitment() throws IOException{
         AppointmentRepository appointmentRepository = (AppointmentRepository) SingletonRepository.getSingleton(KEY_APPOINTMENT_REPOSITORY);
 
         Appointment appointment;

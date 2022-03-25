@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 public class ContactRepository {
     private static int ID_SEQUENCE = 0;
 
-    private List<Contact> contactList = new ArrayList<>();
+    private List<Contact> contactList;
     private AppointmentRepository appointmentRepository;
     private ContactSerializer serializer;
 

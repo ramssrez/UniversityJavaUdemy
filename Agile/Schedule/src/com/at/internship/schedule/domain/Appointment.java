@@ -20,7 +20,6 @@ public class Appointment {
         this.time = source.time;
         this.subject = source.subject;
     }
-
     public Contact getContact() {
         return contact;
     }
