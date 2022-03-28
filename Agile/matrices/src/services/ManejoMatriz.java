@@ -47,20 +47,25 @@ public class ManejoMatriz {
     public void setMatriz(String[][] matriz) {
         this.matriz = matriz;
     }
-    
 
-    public String obtenerGanador(){
-        boolean jugadorA = (matriz[0][0].equals("X") && matriz[0][1].equals("X") && matriz[0][2].equals("X")) ||
+    public boolean ganadorJugadorA(){
+        return  (matriz[0][0].equals("X") && matriz[0][1].equals("X") && matriz[0][2].equals("X")) ||
                 (matriz[1][0].equals("X") && matriz[1][1].equals("X") && matriz[1][2].equals("X")) ||
                 (matriz[2][0].equals("X") && matriz[2][1].equals("X") && matriz[2][2].equals("X")) ||
                 matriz[0][0].equals("X") && matriz[1][1].equals("X") && matriz[2][2].equals("X");
-        boolean jugadorB = (matriz[0][0].equals("O") && matriz[0][1].equals("O") && matriz[0][2].equals("O")) ||
+    }
+
+    public boolean ganadorJugadorB(){
+        return  (matriz[0][0].equals("O") && matriz[0][1].equals("O") && matriz[0][2].equals("O")) ||
                 (matriz[1][0].equals("O") && matriz[1][1].equals("O") && matriz[1][2].equals("O")) ||
                 (matriz[2][0].equals("O") && matriz[2][1].equals("O") && matriz[2][2].equals("O")) ||
                 matriz[0][0].equals("O") && matriz[1][1].equals("O") && matriz[2][2].equals("O");
-        if (jugadorA){
+    }
+
+    public String obtenerGanador(){
+        if (ganadorJugadorA()){
             return "El jugador A ha ganado";
-        }else if(jugadorB){
+        }else if(ganadorJugadorB()){
             return "El jugador B ha ganado";
         }else{
             return "Ha quedado empate el juego";
@@ -68,18 +73,6 @@ public class ManejoMatriz {
     }
 
     public boolean hayGanador(){
-        boolean hayGanador = false;
-        boolean jugadorA = (matriz[0][0].equals("X") && matriz[0][1].equals("X") && matriz[0][2].equals("X")) ||
-                (matriz[1][0].equals("X") && matriz[1][1].equals("X") && matriz[1][2].equals("X")) ||
-                (matriz[2][0].equals("X") && matriz[2][1].equals("X") && matriz[2][2].equals("X")) ||
-                matriz[0][0].equals("X") && matriz[1][1].equals("X") && matriz[2][2].equals("X");
-        boolean jugadorB = (matriz[0][0].equals("O") && matriz[0][1].equals("O") && matriz[0][2].equals("O")) ||
-                (matriz[1][0].equals("O") && matriz[1][1].equals("O") && matriz[1][2].equals("O")) ||
-                (matriz[2][0].equals("O") && matriz[2][1].equals("O") && matriz[2][2].equals("O")) ||
-                matriz[0][0].equals("O") && matriz[1][1].equals("O") && matriz[2][2].equals("O");
-        if (jugadorA || jugadorB){
-            hayGanador = true;
-        }
-        return hayGanador;
+        return ganadorJugadorA() || ganadorJugadorB();
     }
 }
