@@ -1,8 +1,4 @@
-import enums.JugadoresEnum;
 import services.GatoService;
-
-import java.util.Scanner;
-import java.util.stream.Stream;
 
 public class GatoMain {
 

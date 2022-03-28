@@ -18,6 +18,12 @@ public class GatoService {
                 if (contador == 9){
                     System.out.println("Juego terminado");
                     juegoTerminado = true;
+                    System.out.println(tablero.obtenerGanador());
+                    break;
+                } else if(tablero.hayGanador()){
+                    System.out.println("Juego terminado");
+                    juegoTerminado = true;
+                    System.out.println(tablero.obtenerGanador());
                     break;
                 }
                 System.out.println("Ingresa las coordenadas en formato x,y: ");
