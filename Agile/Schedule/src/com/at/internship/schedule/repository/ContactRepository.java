@@ -27,7 +27,7 @@ public class ContactRepository {
         ID_SEQUENCE = contactList.stream().map(Contact::getId).max(Integer::compare).orElse(0);
     }
 
-    public List<Contact> findAll() {
+    public synchronized List<Contact> findAll() {
         return contactList
                 .stream() // contactList genera stream de salida a través de la función stream()
                 // Stream de entrada va a la operación map
@@ -37,7 +37,7 @@ public class ContactRepository {
                 .collect(Collectors.toList());
     }
 
-    public List<Contact> findAll(Predicate<Contact> predicate) {
+    public synchronized List<Contact> findAll(Predicate<Contact> predicate) {
         if(predicate == null)
             return findAll();
         // La referencia al método puede reemplazar la expresión lambda
@@ -49,17 +49,16 @@ public class ContactRepository {
                 .collect(Collectors.toList());
     }
 
-    public Optional<Contact> findOne(Integer id) {
+    public synchronized Optional<Contact> findOne(Integer id) {
         return contactList
                 .stream().filter(a -> Objects.equals(a.getId(), id))
                 .findFirst();
     }
 
-    public Contact save(Contact c) throws IOException {
+    public synchronized Contact save(Contact c) throws IOException {
         Contact clone = new Inner(c);
         if(clone.getId() == null)
             clone.setId(++ID_SEQUENCE);
-
         int index = contactList.indexOf(c);
         if(index > -1)
             contactList.set(index, clone);
@@ -69,7 +68,7 @@ public class ContactRepository {
         return new Inner(clone);
     }
 
-    public void delete(Integer id) throws IOException{
+    public synchronized void delete(Integer id) throws IOException{
         contactList = contactList
                 .stream()
                 .filter(c -> !c.getId().equals(id))
