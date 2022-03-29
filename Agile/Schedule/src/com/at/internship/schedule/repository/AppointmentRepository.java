@@ -32,23 +32,23 @@ public class AppointmentRepository {
         return contactRepository;
     }
 
-    public List<Appointment> findAll() {
+    public synchronized List<Appointment> findAll() {
         return appointmentList.stream().map(Appointment::new).collect(Collectors.toList());
     }
 
-    public Optional<? extends Appointment> findOne(Integer id) {
-        return appointmentList
-                .stream().filter(a -> Objects.equals(a.getId(), id)).map(InnerAppointment::new)
-                .findFirst();
-    }
-
-    public List<Appointment> findAll(Predicate<? super Appointment> predicate) {
+    public synchronized List<Appointment> findAll(Predicate<? super Appointment> predicate) {
         if(predicate == null)
             return findAll();
         return appointmentList.stream().filter(predicate).map(InnerAppointment::new).collect(Collectors.toList());
     }
 
-    public Appointment save(Appointment c) throws IOException {
+    public synchronized Optional<? extends Appointment> findOne(Integer id) {
+        return appointmentList
+                .stream().filter(a -> Objects.equals(a.getId(), id)).map(InnerAppointment::new)
+                .findFirst();
+    }
+
+    public synchronized Appointment save(Appointment c) throws IOException {
         Appointment clone = new InnerAppointment(c);
         if(clone.getId() == null)
             clone.setId(++ID_SEQUENCE);
@@ -62,7 +62,7 @@ public class AppointmentRepository {
         return new InnerAppointment(clone);
     }
 
-    public void delete(Integer id) throws IOException {
+    public synchronized void delete(Integer id) throws IOException {
         appointmentList = appointmentList.stream().filter(c -> !c.getId().equals(id)).collect(Collectors.toList());
         serializer.serialize(appointmentList);
     }

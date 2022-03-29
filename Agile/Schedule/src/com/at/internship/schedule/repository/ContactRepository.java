@@ -26,6 +26,11 @@ public class ContactRepository {
         contactList = serializer.deserialize();
         ID_SEQUENCE = contactList.stream().map(Contact::getId).max(Integer::compare).orElse(0);
     }
+    private AppointmentRepository getAppointmentRepository() {
+        if(appointmentRepository == null)
+            appointmentRepository = (AppointmentRepository) SingletonRepository.getSingleton(SingletonRepository.KEY_APPOINTMENT_REPOSITORY);
+        return appointmentRepository;
+    }
 
     public synchronized List<Contact> findAll() {
         return contactList
@@ -102,9 +107,4 @@ public class ContactRepository {
         }
     }
 
-    private AppointmentRepository getAppointmentRepository() {
-        if(appointmentRepository == null)
-            appointmentRepository = (AppointmentRepository) SingletonRepository.getSingleton(SingletonRepository.KEY_APPOINTMENT_REPOSITORY);
-        return appointmentRepository;
-    }
 }
