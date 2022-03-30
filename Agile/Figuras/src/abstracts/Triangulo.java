@@ -1,6 +1,8 @@
 package abstracts;
 
-public abstract class Triangulo {
+import interfaces.IMedidas;
+
+public abstract class Triangulo implements IMedidas {
 
     protected double altura;
 

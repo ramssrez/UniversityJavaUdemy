@@ -2,6 +2,8 @@ import constants.Mensajes;
 import constants.ProcesosEnum;
 import constants.TipoFigurasEnum;
 import excepciones.ProcesoInterrumpidoException;
+import figuras.*;
+import interfaces.IMedidas;
 
 import javax.swing.*;
 import java.util.NoSuchElementException;
@@ -36,6 +38,9 @@ public class Main {
                         System.out.println("figura = " + figura);
 
                     case INGRESO_VALORES:
+                        if (figura != null)
+                            solicitarAtributos(figura);
+                        else throw new NullPointerException();
                         // TODO: Pedir valores para los cálculos
 
                 }
@@ -47,6 +52,49 @@ public class Main {
                 }
             }
         } while (!procesoCompletado);
+    }
+
+    public static void solicitarAtributos(TipoFigurasEnum figura){
+        IMedidas medidas = null;
+        String lectura = "";
+        switch(figura){
+            case CIRCULO:
+                lectura = JOptionPane.showInputDialog(String.format(Mensajes.INGRESO_RADIO,Mensajes.UNIDAD_MEDIDA_CM,figura.getNombre()));
+                double radio = Double.parseDouble(lectura);
+                medidas = new Circulo(radio);
+                break;
+            case CUADRADO:
+                lectura = JOptionPane.showInputDialog(String.format(Mensajes.INGRESO_LADO,Mensajes.UNIDAD_MEDIDA_CM,figura.getNombre()));
+                double lado = Double.parseDouble(lectura);
+                medidas = new Cuadrado(lado);
+                break;
+            case RECTANGULO:
+                lectura = JOptionPane.showInputDialog(String.format(Mensajes.INGRESO_BASE,Mensajes.UNIDAD_MEDIDA_CM,figura.getNombre()));
+                double base = Double.parseDouble(lectura);
+                lectura = JOptionPane.showInputDialog(String.format(Mensajes.INGRESO_ALTURA,Mensajes.UNIDAD_MEDIDA_CM,figura.getNombre()));
+                double altura = Double.parseDouble(lectura);
+                medidas = new Rectangulo(base, altura);
+                break;
+            case TRIANGULO_ISOSCELES:
+                lectura = JOptionPane.showInputDialog(String.format(Mensajes.INGRESO_LADO,Mensajes.UNIDAD_MEDIDA_CM,figura.getNombre()));
+                double ladoI = Double.parseDouble(lectura);
+                lectura = JOptionPane.showInputDialog(String.format(Mensajes.INGRESO_BASE,Mensajes.UNIDAD_MEDIDA_CM,figura.getNombre()));
+                double baseI= Double.parseDouble(lectura);
+                medidas = new TrianguloIsosceles(ladoI, baseI);
+                break;
+            case TRIANGULO_EQUILATERO:
+                lectura = JOptionPane.showInputDialog(String.format(Mensajes.INGRESO_LADO,Mensajes.UNIDAD_MEDIDA_CM,figura.getNombre()));
+
+                double ladoE = Double.parseDouble(lectura);
+                medidas = new TrianguloEquilatero(ladoE);
+                break;
+        }
+
+        if( medidas != null){
+            String mensaje = String.format(Mensajes.MENSAJE_FINAL, figura.getNombre(), medidas.calcularPerimetro(), medidas.calcularArea());
+            JOptionPane.showMessageDialog(null,mensaje);
+        }
+
     }
 
     public static TipoFigurasEnum getNombre(String mensaje) throws ProcesoInterrumpidoException {

@@ -19,4 +19,11 @@ public class Circulo implements IMedidas {
     public double calcularArea() {
         return Math.PI * Math.pow(this.radio, 2);
     }
+
+    @Override
+    public String toString() {
+        return "Circulo{" +
+                "radio=" + radio +
+                '}';
+    }
 }

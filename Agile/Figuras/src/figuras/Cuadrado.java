@@ -19,4 +19,11 @@ public class Cuadrado implements IMedidas {
     public double calcularArea() {
         return Math.pow(this.lado, 2);
     }
+
+    @Override
+    public String toString() {
+        return "Cuadrado{" +
+                "lado=" + lado +
+                '}';
+    }
 }

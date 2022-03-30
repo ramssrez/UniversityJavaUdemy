@@ -21,4 +21,12 @@ public class Rectangulo implements IMedidas {
     public double calcularArea() {
         return this.base * this.altura;
     }
+
+    @Override
+    public String toString() {
+        return "Rectangulo{" +
+                "base=" + base +
+                ", altura=" + altura +
+                '}';
+    }
 }
