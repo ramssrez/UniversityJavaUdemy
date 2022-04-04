@@ -1,4 +1,5 @@
 import com.adrian.reflection.classes.domain.Empleado;
+import com.adrian.reflection.classes.domain.EnumExample;
 
 public class Main {
 
