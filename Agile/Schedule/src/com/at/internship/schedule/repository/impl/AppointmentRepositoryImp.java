@@ -1,34 +1,34 @@
-package com.at.internship.schedule.repository;
+package com.at.internship.schedule.repository.impl;
 
 import com.at.internship.schedule.domain.Appointment;
 import com.at.internship.schedule.domain.Contact;
+import com.at.internship.schedule.repository.IRepository;
 import com.at.internship.schedule.serialization.csv.ApoitmentSerializer;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-public class AppointmentRepository {
+public class AppointmentRepositoryImp implements IRepository<Appointment,Integer> {
     private static int ID_SEQUENCE = 0;
 
     private List<Appointment> appointmentList;
-    private ContactRepository contactRepository;
+    private ContactRepositoryImp contactRepository;
     private ApoitmentSerializer serializer;
 
-    AppointmentRepository() {
+    AppointmentRepositoryImp() {
         serializer = new ApoitmentSerializer();
         appointmentList = serializer.deserialize();
         ID_SEQUENCE = appointmentList.stream().map(Appointment::getId).max(Integer::compare).orElse(0);
     }
 
-    private ContactRepository getContactRepository() {
+    private ContactRepositoryImp getContactRepository() {
         if(contactRepository == null)
-            contactRepository = (ContactRepository) SingletonRepository.getSingleton(SingletonRepository.KEY_CONTACT_REPOSITORY);
+            contactRepository = (ContactRepositoryImp) SingletonRepository.getSingleton(SingletonRepository.KEY_CONTACT_REPOSITORY);
         return contactRepository;
     }
 

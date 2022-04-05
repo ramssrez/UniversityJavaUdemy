@@ -1,13 +1,13 @@
 package synchonizarion;
 
 import com.at.internship.schedule.domain.Contact;
-import com.at.internship.schedule.repository.ContactRepository;
-import com.at.internship.schedule.repository.SingletonRepository;
+import com.at.internship.schedule.repository.impl.ContactRepositoryImp;
+import com.at.internship.schedule.repository.impl.SingletonRepository;
 
 import java.io.IOException;
 import java.time.LocalDate;
 
-import static com.at.internship.schedule.repository.SingletonRepository.*;
+import static com.at.internship.schedule.repository.impl.SingletonRepository.*;
 
 public class CurrentePersistenceTest {
     public static void main(String[] args) {
@@ -24,9 +24,9 @@ public class CurrentePersistenceTest {
     }
 
     static class ContactCreator implements Runnable{
-        private final ContactRepository contactRepository;
+        private final ContactRepositoryImp contactRepository;
         public ContactCreator(){
-            contactRepository = (ContactRepository) SingletonRepository.getSingleton(KEY_CONTACT_REPOSITORY);
+            contactRepository = (ContactRepositoryImp) SingletonRepository.getSingleton(KEY_CONTACT_REPOSITORY);
         }
 
         @Override
@@ -63,10 +63,10 @@ public class CurrentePersistenceTest {
     }
 
     static class ContactCreatorDos implements Runnable {
-        private final ContactRepository contactRepository;
+        private final ContactRepositoryImp contactRepository;
 
         public ContactCreatorDos() {
-            contactRepository = (ContactRepository) SingletonRepository.getSingleton(KEY_CONTACT_REPOSITORY);
+            contactRepository = (ContactRepositoryImp) SingletonRepository.getSingleton(KEY_CONTACT_REPOSITORY);
         }
 
         @Override

@@ -1,34 +1,34 @@
-package com.at.internship.schedule.repository;
+package com.at.internship.schedule.repository.impl;
 
 import com.at.internship.schedule.domain.Appointment;
 import com.at.internship.schedule.domain.Contact;
+import com.at.internship.schedule.repository.IRepository;
 import com.at.internship.schedule.serialization.csv.ContactSerializer;
 import com.at.internship.schedule.specification.SpecificationUtils;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-public class ContactRepository {
+public class ContactRepositoryImp implements IRepository <Contact, Integer > {
     private static int ID_SEQUENCE = 0;
 
     private List<Contact> contactList;
-    private AppointmentRepository appointmentRepository;
+    private AppointmentRepositoryImp appointmentRepository;
     private ContactSerializer serializer;
 
 
-    ContactRepository() {
+    ContactRepositoryImp(){
         serializer = new ContactSerializer();
         contactList = serializer.deserialize();
         ID_SEQUENCE = contactList.stream().map(Contact::getId).max(Integer::compare).orElse(0);
     }
-    private AppointmentRepository getAppointmentRepository() {
+    private AppointmentRepositoryImp getAppointmentRepository() {
         if(appointmentRepository == null)
-            appointmentRepository = (AppointmentRepository) SingletonRepository.getSingleton(SingletonRepository.KEY_APPOINTMENT_REPOSITORY);
+            appointmentRepository = (AppointmentRepositoryImp) SingletonRepository.getSingleton(SingletonRepository.KEY_APPOINTMENT_REPOSITORY);
         return appointmentRepository;
     }
 
@@ -42,7 +42,7 @@ public class ContactRepository {
                 .collect(Collectors.toList());
     }
 
-    public synchronized List<Contact> findAll(Predicate<Contact> predicate) {
+    public synchronized List<Contact> findAll(Predicate<? super Contact> predicate) {
         if(predicate == null)
             return findAll();
         // La referencia al método puede reemplazar la expresión lambda

@@ -1,9 +1,10 @@
 package com.at.internship.schedule;
 
 import com.at.internship.schedule.domain.Appointment;
-import com.at.internship.schedule.repository.AppointmentRepository;
-import com.at.internship.schedule.repository.SingletonRepository;
-import static com.at.internship.schedule.repository.SingletonRepository.*;
+import com.at.internship.schedule.repository.IRepository;
+import com.at.internship.schedule.repository.impl.AppointmentRepositoryImp;
+import com.at.internship.schedule.repository.impl.SingletonRepository;
+import static com.at.internship.schedule.repository.impl.SingletonRepository.*;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -11,8 +12,9 @@ import java.util.Optional;
 
 public class AppoitmentRepositoryTest {
     public static void main(String[] args) throws IOException {
-        AppointmentRepository appointmentRepository = (AppointmentRepository) SingletonRepository.getSingleton(KEY_APPOINTMENT_REPOSITORY);
+        //AppointmentRepositoryImp appointmentRepository = (AppointmentRepositoryImp) SingletonRepository.getSingleton(KEY_APPOINTMENT_REPOSITORY);
         // ContactRepository contactRepository = (ContactRepository) SingletonRepository.getSingleton(KEY_CONTACT_REPOSITORY);
+        IRepository<Appointment, Integer> appointmentRepository =(IRepository<Appointment, Integer>) SingletonRepository.getSingleton(KEY_APPOINTMENT_REPOSITORY);
 
         ContactRepositoryTest.saveContacts();
         saveAppoitment();
@@ -26,7 +28,7 @@ public class AppoitmentRepositoryTest {
         System.out.println("Contact name: " + select.getContact().getFirstName());
     }
     public static void saveAppoitment() throws IOException{
-        AppointmentRepository appointmentRepository = (AppointmentRepository) SingletonRepository.getSingleton(KEY_APPOINTMENT_REPOSITORY);
+        AppointmentRepositoryImp appointmentRepository = (AppointmentRepositoryImp) SingletonRepository.getSingleton(KEY_APPOINTMENT_REPOSITORY);
 
         Appointment appointment;
 

@@ -1,20 +1,20 @@
 package com.at.internship.schedule;
 
 import com.at.internship.schedule.domain.Contact;
-import com.at.internship.schedule.repository.ContactRepository;
-import com.at.internship.schedule.repository.SingletonRepository;
+import com.at.internship.schedule.repository.impl.ContactRepositoryImp;
+import com.at.internship.schedule.repository.impl.SingletonRepository;
 
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.Optional;
 
-import static com.at.internship.schedule.repository.SingletonRepository.*;
+import static com.at.internship.schedule.repository.impl.SingletonRepository.*;
 
 public class ContactRepositoryTest {
 
     public static void main(String[] args) throws IOException{
-        ContactRepository contactRepository = (ContactRepository) getSingleton(KEY_CONTACT_REPOSITORY);
+        ContactRepositoryImp contactRepository = (ContactRepositoryImp) getSingleton(KEY_CONTACT_REPOSITORY);
         //saveContacts();
         AppoitmentRepositoryTest.saveAppoitment();
         Contact contact;
@@ -58,7 +58,7 @@ public class ContactRepositoryTest {
     }
 
     public static void saveContacts() throws IOException {
-        ContactRepository contactRepository = (ContactRepository) SingletonRepository.getSingleton(KEY_CONTACT_REPOSITORY);
+        ContactRepositoryImp contactRepository = (ContactRepositoryImp) SingletonRepository.getSingleton(KEY_CONTACT_REPOSITORY);
 
         Contact contact;
 

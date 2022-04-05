@@ -1,5 +1,6 @@
-package com.at.internship.schedule.repository;
+package com.at.internship.schedule.repository.impl;
 
+import com.at.internship.schedule.repository.IRepository;
 import com.at.internship.schedule.repository.impl.AppointmentRepositoryImp;
 import com.at.internship.schedule.repository.impl.ContactRepositoryImp;
 
@@ -10,7 +11,7 @@ public class SingletonRepository {
     public static final String KEY_CONTACT_REPOSITORY = "contactRepository";
     public static final String KEY_APPOINTMENT_REPOSITORY = "appointmentRepository";
 
-    private static Map<String, Object> singletonMap;
+    private static Map<String, IRepository<? , ?>> singletonMap;
 
     static {
         singletonMap = new HashMap<>();
