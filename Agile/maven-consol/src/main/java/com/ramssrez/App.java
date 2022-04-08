@@ -10,4 +10,10 @@ public class App
     {
         System.out.println( "Hello World!" );
     }
+    public void holaMundo(){
+        System.out.print("Hola mundo con Maven");
+    }
+    public double numeroEjemplo(int n){
+        return Math.pow(n,2);
+    }
 }
