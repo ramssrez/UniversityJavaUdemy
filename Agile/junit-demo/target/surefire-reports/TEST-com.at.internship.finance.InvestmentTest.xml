@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.at.internship.finance.InvestmentTest" time="0.027" tests="2" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.at.internship.finance.InvestmentTest" time="0.061" tests="4" errors="0" skipped="0" failures="2">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_301\jre\bin"/>
@@ -64,6 +64,22 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase name="testGetYield" classname="com.at.internship.finance.InvestmentTest" time="0.019"/>
-  <testcase name="testGetFinalCapital" classname="com.at.internship.finance.InvestmentTest" time="0.002"/>
+  <testcase name="testValidatePeriodCountProvidePositive" classname="com.at.internship.finance.InvestmentTest" time="0.041">
+    <failure message="Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown." type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown.
+	at com.at.internship.finance.InvestmentTest.testValidatePeriodCountProvidePositive(InvestmentTest.java:53)
+</failure>
+    <system-out><![CDATA[Before all test
+Before each test
+]]></system-out>
+  </testcase>
+  <testcase name="testValidatePeriodCountProvideNegative" classname="com.at.internship.finance.InvestmentTest" time="0.004">
+    <failure message="expected: &lt;The numbe of periods should be 1 at minimum&gt; but was: &lt;The number of periods should be 1 at minimum&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: expected: <The numbe of periods should be 1 at minimum> but was: <The number of periods should be 1 at minimum>
+	at com.at.internship.finance.InvestmentTest.testValidatePeriodCountProvideNegative(InvestmentTest.java:48)
+]]></failure>
+    <system-out><![CDATA[Before all test
+Before each test
+]]></system-out>
+  </testcase>
+  <testcase name="testGetYield" classname="com.at.internship.finance.InvestmentTest" time="0.002"/>
+  <testcase name="testGetFinalCapital" classname="com.at.internship.finance.InvestmentTest" time="0.004"/>
 </testsuite>

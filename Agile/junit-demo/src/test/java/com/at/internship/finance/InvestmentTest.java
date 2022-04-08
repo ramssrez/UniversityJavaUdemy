@@ -47,4 +47,14 @@ public class InvestmentTest {
         );
         Assertions.assertEquals("The number of periods should be 1 at minimum",e.getMessage());
     }
+
+    @Test
+    @Disabled
+    public void testValidatePeriodCountProvidePositive(){
+        IllegalArgumentException e = Assertions.assertThrows(
+                IllegalArgumentException.class,
+                ()-> investment.validatePeriodCount(5)
+        );
+    }
+
 }
