@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.at.internship.finance.InvestmentTest" time="0.061" tests="4" errors="0" skipped="0" failures="2">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.at.internship.finance.InvestmentTest" time="0.044" tests="4" errors="0" skipped="1" failures="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_301\jre\bin"/>
     <property name="java.vm.version" value="25.301-b09"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
-    <property name="maven.multiModuleProjectDirectory" value="C:\Users\ramss\Documents\CarpetaJava\Agile\junit-demo"/>
+    <property name="maven.multiModuleProjectDirectory" value="C:/Users/ramss/Documents/CarpetaJava/Agile/junit-demo"/>
     <property name="java.vendor.url" value="http://java.oracle.com/"/>
     <property name="path.separator" value=";"/>
     <property name="guice.disable.misplaced.annotation.check" value="true"/>
@@ -26,22 +26,22 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="user.variant" value=""/>
     <property name="os.name" value="Windows 10"/>
-    <property name="classworlds.conf" value="C:\Program Files\Apache Maven\bin\m2.conf"/>
+    <property name="classworlds.conf" value="C:/Program Files/Apache Maven/bin/m2.conf"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_301\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files\Python310\Scripts\;C:\Program Files\Python310\;C:\Python39\Scripts\;C:\Python39\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\OpenSCAP 1.3.0\;C:\Program Files\nodejs\;C:\ProgramData\chocolatey\bin;C:\Program Files\dotnet\;C:\Program Files\Git\cmd;C:\Program Files\Java\jdk1.8.0_301\bin;C:\Program Files\Apache Maven\bin;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\ramss\AppData\Local\Microsoft\WindowsApps;C:\Users\ramss\AppData\Roaming\npm;C:\Users\ramss\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files\heroku\bin;C:\Users\ramss\.dotnet\tools;C:\Users\ramss\anaconda3;C:\Users\ramss\anaconda3\Scripts;C:\Users\ramss\anaconda3\Library\bin;;."/>
-    <property name="maven.conf" value="C:\Program Files\Apache Maven/conf"/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_301\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Users\ramss\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\ramss\bin;C:\Program Files\Python310\Scripts;C:\Program Files\Python310;C:\Python39\Scripts;C:\Python39;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\Program Files (x86)\OpenSCAP 1.3.0;C:\Program Files\nodejs;C:\ProgramData\chocolatey\bin;C:\Program Files\dotnet;C:\Program Files\Git\cmd;C:\Program Files\Java\jdk1.8.0_301\bin;C:\Program Files\Apache Maven\bin;C:\Program Files\MySQL\MySQL Shell 8.0\bin;C:\Users\ramss\AppData\Local\Microsoft\WindowsApps;C:\Users\ramss\AppData\Roaming\npm;C:\Users\ramss\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files\heroku\bin;C:\Users\ramss\.dotnet\tools;C:\Users\ramss\anaconda3;C:\Users\ramss\anaconda3\Scripts;C:\Users\ramss\anaconda3\Library\bin;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl;."/>
+    <property name="maven.conf" value="C:/Program Files/Apache Maven/conf"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.class.version" value="52.0"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="os.version" value="10.0"/>
-    <property name="library.jansi.path" value="C:\Program Files\Apache Maven\lib\jansi-native"/>
+    <property name="library.jansi.path" value="C:/Program Files/Apache Maven/lib/jansi-native"/>
     <property name="user.home" value="C:\Users\ramss"/>
     <property name="user.timezone" value="Europe/Berlin"/>
     <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
     <property name="java.specification.version" value="1.8"/>
     <property name="file.encoding" value="Cp1252"/>
     <property name="user.name" value="ramssrez"/>
-    <property name="java.class.path" value="C:\Program Files\Apache Maven\boot\plexus-classworlds-2.6.0.jar"/>
+    <property name="java.class.path" value="C:/Program Files/Apache Maven/boot/plexus-classworlds-2.6.0.jar"/>
     <property name="java.vm.specification.version" value="1.8"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.home" value="C:\Program Files\Java\jdk1.8.0_301\jre"/>
@@ -53,33 +53,19 @@
     <property name="java.version" value="1.8.0_301"/>
     <property name="java.ext.dirs" value="C:\Program Files\Java\jdk1.8.0_301\jre\lib\ext;C:\WINDOWS\Sun\Java\lib\ext"/>
     <property name="sun.boot.class.path" value="C:\Program Files\Java\jdk1.8.0_301\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_301\jre\lib\rt.jar;C:\Program Files\Java\jdk1.8.0_301\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.8.0_301\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_301\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_301\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_301\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_301\jre\classes"/>
-    <property name="sun.stderr.encoding" value="cp850"/>
     <property name="java.vendor" value="Oracle Corporation"/>
     <property name="maven.home" value="C:\Program Files\Apache Maven"/>
     <property name="file.separator" value="\"/>
     <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
-    <property name="sun.stdout.encoding" value="cp850"/>
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase name="testValidatePeriodCountProvidePositive" classname="com.at.internship.finance.InvestmentTest" time="0.041">
-    <failure message="Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown." type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown.
-	at com.at.internship.finance.InvestmentTest.testValidatePeriodCountProvidePositive(InvestmentTest.java:53)
-</failure>
-    <system-out><![CDATA[Before all test
-Before each test
-]]></system-out>
+  <testcase name="testValidatePeriodCountProvidePositive" classname="com.at.internship.finance.InvestmentTest" time="0">
+    <skipped message="public void com.at.internship.finance.InvestmentTest.testValidatePeriodCountProvidePositive() is @Disabled"/>
   </testcase>
-  <testcase name="testValidatePeriodCountProvideNegative" classname="com.at.internship.finance.InvestmentTest" time="0.004">
-    <failure message="expected: &lt;The numbe of periods should be 1 at minimum&gt; but was: &lt;The number of periods should be 1 at minimum&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: expected: <The numbe of periods should be 1 at minimum> but was: <The number of periods should be 1 at minimum>
-	at com.at.internship.finance.InvestmentTest.testValidatePeriodCountProvideNegative(InvestmentTest.java:48)
-]]></failure>
-    <system-out><![CDATA[Before all test
-Before each test
-]]></system-out>
-  </testcase>
-  <testcase name="testGetYield" classname="com.at.internship.finance.InvestmentTest" time="0.002"/>
-  <testcase name="testGetFinalCapital" classname="com.at.internship.finance.InvestmentTest" time="0.004"/>
+  <testcase name="testValidatePeriodCountProvideNegative" classname="com.at.internship.finance.InvestmentTest" time="0.021"/>
+  <testcase name="testGetYield" classname="com.at.internship.finance.InvestmentTest" time="0.004"/>
+  <testcase name="testGetFinalCapital" classname="com.at.internship.finance.InvestmentTest" time="0.002"/>
 </testsuite>

@@ -1,12 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.at.internship.finance.InvestmentTest
 -------------------------------------------------------------------------------
-Tests run: 4, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 0.061 sec <<< FAILURE! - in com.at.internship.finance.InvestmentTest
-testValidatePeriodCountProvidePositive  Time elapsed: 0.041 sec  <<< FAILURE!
-org.opentest4j.AssertionFailedError: Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown.
-	at com.at.internship.finance.InvestmentTest.testValidatePeriodCountProvidePositive(InvestmentTest.java:53)
-
-testValidatePeriodCountProvideNegative  Time elapsed: 0.004 sec  <<< FAILURE!
-org.opentest4j.AssertionFailedError: expected: <The numbe of periods should be 1 at minimum> but was: <The number of periods should be 1 at minimum>
-	at com.at.internship.finance.InvestmentTest.testValidatePeriodCountProvideNegative(InvestmentTest.java:48)
-
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 0.044 sec - in com.at.internship.finance.InvestmentTest

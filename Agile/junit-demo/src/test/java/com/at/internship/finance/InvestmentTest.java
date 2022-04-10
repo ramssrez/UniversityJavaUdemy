@@ -21,6 +21,7 @@ public class InvestmentTest {
         //End of first year = 110;
         //End of second year = 121;
         //End of third year = 133.1
+
         Assertions.assertEquals(new BigDecimal("33.10"), investment.getYield(3).setScale(2, RoundingMode.HALF_UP));
     }
     @BeforeEach

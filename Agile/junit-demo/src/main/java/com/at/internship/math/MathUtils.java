@@ -12,6 +12,9 @@ public class MathUtils {
      * @return Hypotenuse value
      */
     public BigDecimal hypotenuse(BigDecimal hick1, BigDecimal hick2) {
+        if (hick1 == null || hick2 == null)
+            throw new NullPointerException("It is necessary information about some hick");
+
         // Values cannot be null
         // Values should be greater than 0;
         return BigDecimal.valueOf(Math.hypot(hick1.doubleValue(), hick2.doubleValue()));
