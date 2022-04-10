@@ -18,8 +18,9 @@ public class MathUtilsTest {
 
     @Test
     public void testHypotenuse(){
-        //BigDecimal hypotenus =  mathUtils.hypotenuse(new BigDecimal("3.0"),new BigDecimal("4.0"));
-        BigDecimal hypotenus =  mathUtils.hypotenuse(new BigDecimal("0.0"),new BigDecimal("4.0"));
+        BigDecimal hypotenus =  mathUtils.hypotenuse(new BigDecimal("3.0"),new BigDecimal("4.0"));
+        //BigDecimal hypotenus =  mathUtils.hypotenuse(new BigDecimal("0.0"),new BigDecimal("4.0"));
+        //BigDecimal hypotenus =  mathUtils.hypotenuse(new BigDecimal("3.0"),new BigDecimal("0"));
         //BigDecimal hypotenus =  mathUtils.hypotenuse(null,new BigDecimal("4.0"));
         //BigDecimal hypotenus =  mathUtils.hypotenuse(new BigDecimal("3.0"),null);
         Assertions.assertNotNull(hypotenus);
@@ -55,9 +56,20 @@ public class MathUtilsTest {
         IllegalArgumentException e = Assertions.assertThrows(
                 IllegalArgumentException.class,
                 ()-> {
-                    mathUtils.hypotenuse(new BigDecimal("1.0"),new BigDecimal("4.0"));
+                    mathUtils.hypotenuse(new BigDecimal("0.0"),new BigDecimal("4.0"));
                 }
         );
         Assertions.assertEquals(Message.HICKS_ONE_CERO,e.getMessage());
+    }
+
+    @Test
+    public void testValidateHickTwoThrowZero(){
+        IllegalArgumentException e = Assertions.assertThrows(
+                IllegalArgumentException.class,
+                ()-> {
+                    mathUtils.hypotenuse(new BigDecimal("3.0"),new BigDecimal("0"));
+                }
+        );
+        Assertions.assertEquals(Message.HICKS_TWO_CERO,e.getMessage());
     }
 }
