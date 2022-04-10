@@ -1,5 +1,7 @@
 package com.at.internship.math;
 
+import com.at.internship.Message;
+
 import java.awt.*;
 import java.math.BigDecimal;
 
@@ -12,9 +14,14 @@ public class MathUtils {
      * @return Hypotenuse value
      */
     public BigDecimal hypotenuse(BigDecimal hick1, BigDecimal hick2) {
-        if (hick1 == null || hick2 == null)
-            throw new NullPointerException("It is necessary information about some hick");
-
+        if (hick1 == null)
+            throw new NullPointerException(Message.INFORMATION_HICKS_ONE);
+        if (hick2 == null)
+            throw new NullPointerException(Message.INFORMATION_HICKS_TWO);
+        if (hick1.compareTo(BigDecimal.ZERO) <= 0)
+            throw new IllegalArgumentException(Message.HICKS_ONE_CERO);
+        if (hick2.compareTo(BigDecimal.ZERO) <= 0)
+            throw new IllegalArgumentException(Message.HICKS_TWO_CERO);
         // Values cannot be null
         // Values should be greater than 0;
         return BigDecimal.valueOf(Math.hypot(hick1.doubleValue(), hick2.doubleValue()));

@@ -1,6 +1,6 @@
 package com.at.internship.math;
 
-import com.at.internship.finance.Investment;
+import com.at.internship.Message;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -18,18 +18,46 @@ public class MathUtilsTest {
 
     @Test
     public void testHypotenuse(){
-        BigDecimal hypotenus =  mathUtils.hypotenuse(new BigDecimal("3.0"),new BigDecimal("4.0"));
+        //BigDecimal hypotenus =  mathUtils.hypotenuse(new BigDecimal("3.0"),new BigDecimal("4.0"));
+        BigDecimal hypotenus =  mathUtils.hypotenuse(new BigDecimal("0.0"),new BigDecimal("4.0"));
         //BigDecimal hypotenus =  mathUtils.hypotenuse(null,new BigDecimal("4.0"));
+        //BigDecimal hypotenus =  mathUtils.hypotenuse(new BigDecimal("3.0"),null);
         Assertions.assertNotNull(hypotenus);
         Assertions.assertEquals(new BigDecimal("5.0"),hypotenus);
     }
 
     @Test
-    public void testValidateHypotenuseNull(){
+    public void testValidateHickOneThrow(){
         NullPointerException e = Assertions.assertThrows(
                 NullPointerException.class,
-                ()-> mathUtils.hypotenuse(new BigDecimal("3.0"),new BigDecimal("4.0"))
+                ()-> {
+                    //mathUtils.hypotenuse(new BigDecimal("3.0"),new BigDecimal("4.0"));
+                    mathUtils.hypotenuse(null,new BigDecimal("4.0"));
+                }
         );
-        Assertions.assertEquals("Los valores ingresados son nulos",e.getMessage());
+        Assertions.assertEquals(Message.INFORMATION_HICKS_ONE,e.getMessage());
+    }
+
+    @Test
+    public void testValidateHickTwoThrow(){
+        NullPointerException e = Assertions.assertThrows(
+                NullPointerException.class,
+                ()-> {
+                    //mathUtils.hypotenuse(new BigDecimal("3.0"),new BigDecimal("4.0"));
+                    mathUtils.hypotenuse(new BigDecimal("3.0"),null);
+                }
+        );
+        Assertions.assertEquals(Message.INFORMATION_HICKS_TWO,e.getMessage());
+    }
+
+    @Test
+    public void testValidateHickOneThrowZero(){
+        IllegalArgumentException e = Assertions.assertThrows(
+                IllegalArgumentException.class,
+                ()-> {
+                    mathUtils.hypotenuse(new BigDecimal("1.0"),new BigDecimal("4.0"));
+                }
+        );
+        Assertions.assertEquals(Message.HICKS_ONE_CERO,e.getMessage());
     }
 }
