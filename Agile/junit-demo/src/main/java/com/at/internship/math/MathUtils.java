@@ -4,6 +4,7 @@ import com.at.internship.Message;
 
 import java.awt.*;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class MathUtils {
 
@@ -24,7 +25,7 @@ public class MathUtils {
             throw new IllegalArgumentException(Message.HICKS_TWO_CERO);
         // Values cannot be null
         // Values should be greater than 0;
-        return BigDecimal.valueOf(Math.hypot(hick1.doubleValue(), hick2.doubleValue()));
+        return BigDecimal.valueOf(Math.hypot(hick1.doubleValue(), hick2.doubleValue())).setScale(1, RoundingMode.HALF_UP);
     }
 
     /**
@@ -34,9 +35,12 @@ public class MathUtils {
      * @return The distance between points "a" and "b"
      */
     public BigDecimal distance(Point a, Point b) {
+        if(a == null) throw new NullPointerException(Message.INFORMATION_POINT_ONE);
+        if(b == null) throw new NullPointerException(Message.INFORMATION_POINT_TWO);
+
         // Points cannot be null
         // Coordinates x and y can be positive or negative
-        return BigDecimal.valueOf(a.distance(b));
+        return BigDecimal.valueOf(a.distance(b)).setScale(1,RoundingMode.HALF_UP);
     }
 
 }

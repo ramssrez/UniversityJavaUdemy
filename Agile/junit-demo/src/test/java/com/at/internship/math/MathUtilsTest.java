@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.awt.*;
 import java.math.BigDecimal;
 
 public class MathUtilsTest {
@@ -25,6 +26,33 @@ public class MathUtilsTest {
         //BigDecimal hypotenus =  mathUtils.hypotenuse(new BigDecimal("3.0"),null);
         Assertions.assertNotNull(hypotenus);
         Assertions.assertEquals(new BigDecimal("5.0"),hypotenus);
+    }
+
+    @Test
+    public void testDistance(){
+        //BigDecimal distance =  mathUtils.distance(new Point(0,0), new Point(3,4));
+        BigDecimal distance =  mathUtils.distance(new Point(-1,0), new Point(2,4));
+        //BigDecimal distance =  mathUtils.distance(new Point(0,-1), new Point(3,3));
+        Assertions.assertNotNull(distance);
+        Assertions.assertEquals(new BigDecimal("5.0"),distance);
+    }
+
+    @Test
+    public void testPointOneThrow(){
+        NullPointerException exception = Assertions.assertThrows(
+                NullPointerException.class,
+                ()->mathUtils.distance(null, new Point(3,4))
+        );
+        Assertions.assertEquals(Message.INFORMATION_POINT_ONE, exception.getMessage());
+    }
+
+    @Test
+    public void testPointTwoThrow(){
+        NullPointerException exception = Assertions.assertThrows(
+                NullPointerException.class,
+                ()->mathUtils.distance(new Point(3,4),null)
+        );
+        Assertions.assertEquals(Message.INFORMATION_POINT_TWO, exception.getMessage());
     }
 
     @Test
