@@ -5,9 +5,12 @@ import com.ramssrez.app.models.Alumno;
 import com.ramssrez.app.repositorio.AlumnoRepositoryImp;
 import com.ramssrez.app.repositorio.IAlumnoRepository;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 
 import java.util.NoSuchElementException;
 
@@ -21,13 +24,18 @@ class AlumnoServiceImplTest {
     IAlumnoRepository repository;
 
     @InjectMocks
-    IAlumnoService service;
+    AlumnoServiceImpl service;
+
+    @BeforeEach
+    void SetUp(){
+        MockitoAnnotations.openMocks(this);
+    }
 
     @Test
     void testSuccessBuscarAlumnoPorNombreApeellido() {
         //IAlumnoRepository repository = new AlumnoRepositoryImp();
-        IAlumnoRepository  repository = mock(IAlumnoRepository.class);
-        IAlumnoService service = new AlumnoServiceImpl(repository);
+        //IAlumnoRepository  repository = mock(IAlumnoRepository.class);
+        //IAlumnoService service = new AlumnoServiceImpl(repository);
         when(repository.obtenerAlumno()).thenReturn(AlumnoDummy.obtenerAlumno());
 
         Alumno alumno =  service.buscarAlumnoPorNombreApllido("Adrian","Gonzalez");
@@ -38,8 +46,8 @@ class AlumnoServiceImplTest {
 
     @Test
     void testFailBuscarAlumnoPorNombreApellidoListaVacia() {
-        IAlumnoRepository  repository = mock(IAlumnoRepository.class);
-        IAlumnoService service = new AlumnoServiceImpl(repository);
+        //IAlumnoRepository  repository = mock(IAlumnoRepository.class);
+        //IAlumnoService service = new AlumnoServiceImpl(repository);
         when(repository.obtenerAlumno()).thenReturn(AlumnoDummy.obtenerAlumnosListaVacia());
 
        // Alumno alumno =  service.buscarAlumnoPorNombreApllido("Adrian","Gonzalez");
@@ -52,8 +60,8 @@ class AlumnoServiceImplTest {
 
     @Test
     void testFailBuscarAlumnoPorNombreApellidoNull() {
-        IAlumnoRepository  repository = mock(IAlumnoRepository.class);
-        IAlumnoService service = new AlumnoServiceImpl(repository);
+        //IAlumnoRepository  repository = mock(IAlumnoRepository.class);
+        //IAlumnoService service = new AlumnoServiceImpl(repository);
         when(repository.obtenerAlumno()).thenReturn(null);
 
         // Alumno alumno =  service.buscarAlumnoPorNombreApllido("Adrian","Gonzalez");
