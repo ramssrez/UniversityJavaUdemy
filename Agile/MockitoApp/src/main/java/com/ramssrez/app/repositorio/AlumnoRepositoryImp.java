@@ -8,6 +8,7 @@ import java.util.List;
 public class AlumnoRepositoryImp implements IAlumnoRepository{
     @Override
     public List<Alumno> obtenerAlumno() {
+        System.out.println("Se invocó el método de de la clase " + getClass().getName());
         return Arrays.asList(
                 new Alumno(1L,"Adrian","Gonzalez","Sistemas computacionales"),
                 new Alumno(2L,"Juan","Sanchez","Computación"),
