@@ -8,7 +8,7 @@ public class Alumno {
     private String nombre;
     private String apellido;
     private String carrera;
-    private List<String> materias;
+    private List<Materia> materias;
 
     public Alumno(Long id, String nombre, String apellido, String carrera) {
         this.id = id;
@@ -50,14 +50,14 @@ public class Alumno {
         this.carrera = carrera;
     }
 
-    public List<String> getMaterias() {
+    public List<Materia> getMaterias() {
         return materias;
     }
 
-    public void setMaterias(List<String> materias) {
+    public void setMaterias(List<Materia> materias) {
         this.materias = materias;
     }
-    public void agregarMateria(String materia){
+    public void agregarMateria(Materia materia){
         this.materias.add(materia);
     }
 

@@ -28,6 +28,7 @@ public class AlumnoServiceImpl implements IAlumnoService {
             Alumno alumno = null;
             if (alumnoOptional.isPresent()){
                 alumno = alumnoOptional.get();
+                alumno.agregarMateria("");
             }else{
                 throw new NoSuchElementException("El alumno no existe");
             }
