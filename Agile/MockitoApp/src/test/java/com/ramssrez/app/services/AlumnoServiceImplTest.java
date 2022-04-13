@@ -2,16 +2,12 @@ package com.ramssrez.app.services;
 
 import com.ramssrez.app.dummy.AlumnoDummy;
 import com.ramssrez.app.models.Alumno;
-import com.ramssrez.app.repositorio.AlumnoRepositoryImp;
 import com.ramssrez.app.repositorio.IAlumnoRepository;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.NoSuchElementException;
@@ -34,14 +30,10 @@ class AlumnoServiceImplTest {
     void SetUp(){
         MockitoAnnotations.openMocks(this);
     }
-
      */
 
     @Test
     void testSuccessBuscarAlumnoPorNombreApeellido() {
-        //IAlumnoRepository repository = new AlumnoRepositoryImp();
-        //IAlumnoRepository  repository = mock(IAlumnoRepository.class);
-        //IAlumnoService service = new AlumnoServiceImpl(repository);
         when(repository.obtenerAlumno()).thenReturn(AlumnoDummy.obtenerAlumno());
 
         Alumno alumno =  service.buscarAlumnoPorNombreApllido("Adrian","Gonzalez");
@@ -52,11 +44,7 @@ class AlumnoServiceImplTest {
 
     @Test
     void testFailBuscarAlumnoPorNombreApellidoListaVacia() {
-        //IAlumnoRepository  repository = mock(IAlumnoRepository.class);
-        //IAlumnoService service = new AlumnoServiceImpl(repository);
         when(repository.obtenerAlumno()).thenReturn(AlumnoDummy.obtenerAlumnosListaVacia());
-
-       // Alumno alumno =  service.buscarAlumnoPorNombreApllido("Adrian","Gonzalez");
 
         assertThrows(NoSuchElementException.class, () ->{
             service.buscarAlumnoPorNombreApllido("Adrian","Gonzalez");
@@ -66,15 +54,18 @@ class AlumnoServiceImplTest {
 
     @Test
     void testFailBuscarAlumnoPorNombreApellidoNull() {
-        //IAlumnoRepository  repository = mock(IAlumnoRepository.class);
-        //IAlumnoService service = new AlumnoServiceImpl(repository);
         when(repository.obtenerAlumno()).thenReturn(null);
-
-        // Alumno alumno =  service.buscarAlumnoPorNombreApllido("Adrian","Gonzalez");
 
         assertThrows(NullPointerException.class, () ->{
             service.buscarAlumnoPorNombreApllido("Adrian","Gonzalez");
         });
+    }
 
+    @Test
+    void testNoEncontradoAlumnoPorNombreApeellido() {
+        when(repository.obtenerAlumno()).thenReturn(AlumnoDummy.obtenerAlumno());
+        assertThrows(NoSuchElementException.class, () -> {
+            service.buscarAlumnoPorNombreApllido("Raúl","Ramirez");
+        },"El nombre no existe");
     }
 }

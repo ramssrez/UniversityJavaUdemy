@@ -23,13 +23,18 @@ public class AlumnoServiceImpl implements IAlumnoService {
 
     @Override
     public Alumno buscarAlumnoPorNombreApllido(String nombre, String apellid) {
-        Optional<Alumno> alumnoOptional = this.repository.obtenerAlumno().stream().filter(a -> a.getNombre().equals(nombre) && a.getApellido().equals(apellid)).findFirst();
-        Alumno alumno = null;
-        if (alumnoOptional.isPresent()){
-            alumno = alumnoOptional.get();
-        }else{
-            throw new NoSuchElementException("El alumno no existe");
+        try{
+            Optional<Alumno> alumnoOptional = this.repository.obtenerAlumno().stream().filter(a -> a.getNombre().equals(nombre) && a.getApellido().equals(apellid)).findFirst();
+            Alumno alumno = null;
+            if (alumnoOptional.isPresent()){
+                alumno = alumnoOptional.get();
+            }else{
+                throw new NoSuchElementException("El alumno no existe");
+            }
+            return alumno;
+        }catch (NullPointerException ex){
+            throw new NullPointerException("La lista no tiene datos");
         }
-        return alumno;
+
     }
 }
