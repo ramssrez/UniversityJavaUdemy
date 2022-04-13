@@ -1,16 +1,21 @@
 package com.ramssrez.app.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Alumno {
     private Long id;
     private String nombre;
     private String apellido;
     private String carrera;
+    private List<String> materias;
 
     public Alumno(Long id, String nombre, String apellido, String carrera) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.carrera = carrera;
+        this.materias = new ArrayList<>();
     }
 
     public Long getId() {
@@ -45,6 +50,17 @@ public class Alumno {
         this.carrera = carrera;
     }
 
+    public List<String> getMaterias() {
+        return materias;
+    }
+
+    public void setMaterias(List<String> materias) {
+        this.materias = materias;
+    }
+    public void agregarMateria(String materia){
+        this.materias.add(materia);
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Alumno{");
@@ -52,6 +68,7 @@ public class Alumno {
         sb.append(", nombre='").append(nombre).append('\'');
         sb.append(", apellido='").append(apellido).append('\'');
         sb.append(", carrera='").append(carrera).append('\'');
+        sb.append(", materias=").append(materias);
         sb.append('}');
         return sb.toString();
     }
