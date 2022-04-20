@@ -57,6 +57,7 @@ public class Alumno {
     public void setMaterias(List<Materia> materias) {
         this.materias = materias;
     }
+
     public void agregarMateria(Materia materia){
         this.materias.add(materia);
     }

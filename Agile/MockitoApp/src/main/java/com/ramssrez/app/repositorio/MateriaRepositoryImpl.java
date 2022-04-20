@@ -11,10 +11,10 @@ public class MateriaRepositoryImpl implements IMateriasRepository{
     public List<Materia> obtenerMaterias() {
         return Arrays.asList(
                 new Materia(1L,"Fundamentos de programación"),
-                new Materia(2L,"POO"),
-                new Materia(3L,"Bases de datos"),
-                new Materia(4L,"Algebra lineal"),
-                new Materia(5L,"Fundamentos de POO")
+                new Materia(2L,"Algebra Superior"),
+                new Materia(3L,"Bases de Datos"),
+                new Materia(4L,"Programación Orientada a Objetos"),
+                new Materia(5L,"Calculo Diferencial")
                 );
     }
 }

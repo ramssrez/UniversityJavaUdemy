@@ -20,10 +20,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class AlumnoServiceImplTest {
 
     @Mock
-    IAlumnoRepository repository;
+     private IAlumnoRepository repository;
 
     @InjectMocks
-    AlumnoServiceImpl service;
+    private AlumnoServiceImpl service;
 
     /*
     @BeforeEach
