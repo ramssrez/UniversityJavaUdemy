@@ -3,6 +3,7 @@ package com.ramssrez.app.services;
 import com.ramssrez.app.dummy.AlumnoDummy;
 import com.ramssrez.app.models.Alumno;
 import com.ramssrez.app.repositorio.IAlumnoRepository;
+import com.ramssrez.app.repositorio.IMateriasRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -21,6 +22,9 @@ class AlumnoServiceImplTest {
 
     @Mock
      private IAlumnoRepository repository;
+
+    @Mock
+    private IMateriasRepository materiasRepository;
 
     @InjectMocks
     private AlumnoServiceImpl service;

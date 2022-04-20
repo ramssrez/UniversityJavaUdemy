@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface IAlumnoRepository {
     List<Alumno> obtenerAlumno();
+    boolean agregarAlumno(Alumno alumno);
 }

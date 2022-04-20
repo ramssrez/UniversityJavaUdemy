@@ -1,5 +1,7 @@
 package com.ramssrez.app.services;
 
+import com.ramssrez.app.exceptions.AgregarAlumnoException;
+import com.ramssrez.app.exceptions.MateriasNotFoundException;
 import com.ramssrez.app.models.Alumno;
 import com.ramssrez.app.models.Materia;
 import com.ramssrez.app.repositorio.IAlumnoRepository;
@@ -8,6 +10,7 @@ import com.ramssrez.app.repositorio.IMateriasRepository;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.Random;
 
 public class AlumnoServiceImpl implements IAlumnoService {
     private IAlumnoRepository repository;
@@ -33,14 +36,28 @@ public class AlumnoServiceImpl implements IAlumnoService {
             if (alumnoOptional.isPresent()){
                 List<Materia> materias = this.materiasRepository.obtenerMaterias();
                 alumno = alumnoOptional.get();
-                alumno.setMaterias(materias);
+                if (materias.size() > 0){
+                    alumno.setMaterias(materias);
+                    return alumno;
+                }
+                throw new MateriasNotFoundException("No hay materias registradas en el sistema");
             }else{
                 throw new NoSuchElementException("El alumno no existe");
             }
-            return alumno;
         }catch (NullPointerException ex){
             throw new NullPointerException("La lista no tiene datos");
         }
 
+    }
+
+    @Override
+    public boolean crearAlumno(String nombre, String apellido, String carrera, List<Materia> materias) {
+        Random  random = new Random();
+        if (!nombre.isEmpty() && !apellido.isEmpty() && !carrera.isEmpty() && materias.size() > 0){
+            Alumno alumno = new Alumno(random.nextLong(), nombre, apellido, carrera);
+            alumno.setMaterias(materias);
+            boolean result = this.repository.agregarAlumno(alumno);
+        }
+        throw new AgregarAlumnoException("Ocurrio un error al agregar alumno, asegurese de que los campos nombre, apelilido y carrerar no esten vacios");
     }
 }
