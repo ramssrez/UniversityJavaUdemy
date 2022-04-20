@@ -54,11 +54,18 @@ public class AlumnoServiceImpl implements IAlumnoService {
     @Override
     public boolean crearAlumno(String nombre, String apellido, String carrera, List<Materia> materias) {
         Random  random = new Random();
-        if (!nombre.isEmpty() && !apellido.isEmpty() && !carrera.isEmpty() && materias.size() > 0){
-            Alumno alumno = new Alumno(random.nextLong(), nombre, apellido, carrera);
-            alumno.setMaterias(materias);
-            boolean result = this.repository.agregarAlumno(alumno);
+        boolean result;
+        try {
+            if (!nombre.isEmpty() && !apellido.isEmpty() && !carrera.isEmpty() && materias.size() > 0){
+                Alumno alumno = new Alumno(random.nextLong(), nombre, apellido, carrera);
+                alumno.setMaterias(materias);
+                result = this.repository.agregarAlumno(alumno);
+            }else {
+                throw new AgregarAlumnoException(ConstantsMessegs.ERROR_DATOS_ALUMNO);
+            }
+        }catch (NullPointerException e){
+            throw new AgregarAlumnoException(ConstantsMessegs.CAMPOS_SIN_DATOS);
         }
-        throw new AgregarAlumnoException(ConstantsMessegs.ERROR_DATOS_ALUMNO);
+        return result;
     }
 }
