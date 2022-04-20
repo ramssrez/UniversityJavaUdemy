@@ -1,5 +1,6 @@
 package com.ramssrez.app.services;
 
+import com.ramssrez.app.Constants.ConstantsMessegs;
 import com.ramssrez.app.exceptions.AgregarAlumnoException;
 import com.ramssrez.app.exceptions.MateriasNotFoundException;
 import com.ramssrez.app.models.Alumno;
@@ -40,12 +41,12 @@ public class AlumnoServiceImpl implements IAlumnoService {
                     alumno.setMaterias(materias);
                     return alumno;
                 }
-                throw new MateriasNotFoundException("No hay materias registradas en el sistema");
+                throw new MateriasNotFoundException(ConstantsMessegs.NO_LISTA_MATERIAS);
             }else{
-                throw new NoSuchElementException("El alumno no existe");
+                throw new NoSuchElementException(ConstantsMessegs.NO_NOMBRE_LISTA);
             }
         }catch (NullPointerException ex){
-            throw new NullPointerException("La lista no tiene datos");
+            throw new NullPointerException(ConstantsMessegs.LISTA_SIN_DATOS);
         }
 
     }
@@ -58,6 +59,6 @@ public class AlumnoServiceImpl implements IAlumnoService {
             alumno.setMaterias(materias);
             boolean result = this.repository.agregarAlumno(alumno);
         }
-        throw new AgregarAlumnoException("Ocurrio un error al agregar alumno, asegurese de que los campos nombre, apelilido y carrerar no esten vacios");
+        throw new AgregarAlumnoException(ConstantsMessegs.ERROR_DATOS_ALUMNO);
     }
 }

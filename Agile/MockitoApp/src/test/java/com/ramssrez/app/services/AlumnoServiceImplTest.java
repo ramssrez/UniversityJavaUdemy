@@ -1,6 +1,9 @@
 package com.ramssrez.app.services;
 
+import com.ramssrez.app.Constants.ConstantsMessegs;
 import com.ramssrez.app.dummy.AlumnoDummy;
+import com.ramssrez.app.dummy.MateriasDummy;
+import com.ramssrez.app.exceptions.MateriasNotFoundException;
 import com.ramssrez.app.models.Alumno;
 import com.ramssrez.app.repositorio.IAlumnoRepository;
 import com.ramssrez.app.repositorio.IMateriasRepository;
@@ -37,8 +40,9 @@ class AlumnoServiceImplTest {
      */
 
     @Test
-    void testSuccessBuscarAlumnoPorNombreApeellido() {
+    void testSuccessBuscarAlumnoPorNombreApellido() {
         when(repository.obtenerAlumno()).thenReturn(AlumnoDummy.obtenerAlumno());
+        when(materiasRepository.obtenerMaterias()).thenReturn(MateriasDummy.obtenerMaterias());
 
         Alumno alumno =  service.buscarAlumnoPorNombreApllido("Adrian","Gonzalez");
 
@@ -47,29 +51,51 @@ class AlumnoServiceImplTest {
     }
 
     @Test
-    void testFailBuscarAlumnoPorNombreApellidoListaVacia() {
+    void testFailBuscarAlumnoPorNombreApellidoListaAlumnosVacia() {
         when(repository.obtenerAlumno()).thenReturn(AlumnoDummy.obtenerAlumnosListaVacia());
 
-        assertThrows(NoSuchElementException.class, () ->{
+        Exception exception = assertThrows(NoSuchElementException.class, () ->{
             service.buscarAlumnoPorNombreApllido("Adrian","Gonzalez");
         });
-
+        assertEquals(ConstantsMessegs.NO_NOMBRE_LISTA, exception.getMessage());
     }
 
     @Test
-    void testFailBuscarAlumnoPorNombreApellidoNull() {
+    void ttestFailBuscarAlumnoPorNombreApellidoListaAlumnosNula() {
         when(repository.obtenerAlumno()).thenReturn(null);
 
-        assertThrows(NullPointerException.class, () ->{
+        Exception excepcion = assertThrows(NullPointerException.class, () ->{
             service.buscarAlumnoPorNombreApllido("Adrian","Gonzalez");
         });
+        assertEquals(ConstantsMessegs.LISTA_SIN_DATOS,excepcion.getMessage());
     }
 
     @Test
-    void testNoEncontradoAlumnoPorNombreApeellido() {
+    void testNoEncontradoAlumnoPorNombreApellido() {
         when(repository.obtenerAlumno()).thenReturn(AlumnoDummy.obtenerAlumno());
-        assertThrows(NoSuchElementException.class, () -> {
+        Exception exception =  assertThrows(NoSuchElementException.class, () -> {
             service.buscarAlumnoPorNombreApllido("Raúl","Ramirez");
-        },"El nombre no existe");
+        });
+        assertEquals(ConstantsMessegs.NO_LISTA_MATERIAS, exception.getMessage());
+    }
+
+    @Test
+    void testBuscarAlumnoNombreApellidoMateriaVacia() {
+        when(repository.obtenerAlumno()).thenReturn(AlumnoDummy.obtenerAlumno());
+        when(materiasRepository.obtenerMaterias()).thenReturn(MateriasDummy.obtenerMateriasListaVacia());
+
+        Exception excepcion = assertThrows(MateriasNotFoundException.class, () -> {
+            service.buscarAlumnoPorNombreApllido("Miguel", "Perez");
+        });
+
+        assertEquals(ConstantsMessegs.NO_LISTA_MATERIAS, excepcion.getMessage());
+    }
+    
+    @Test
+    void testSuccessAgregarAlumno() {
+        when(repository.agregarAlumno(any(Alumno.class))).thenReturn(true);
+        boolean resultado = service.crearAlumno("Pato", "Lucas", "Industrial", null);
+
+        assertTrue(resultado);
     }
 }
