@@ -17,6 +17,7 @@ public class Circulo implements IFigura {
 
     @Override
     public void proceso() {
+        System.out.println("medidas = " + medidas);
         this.medidas.realizarCalculos("Circulo");
     }
 }
