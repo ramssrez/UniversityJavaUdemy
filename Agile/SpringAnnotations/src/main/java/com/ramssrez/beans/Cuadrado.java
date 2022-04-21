@@ -2,7 +2,9 @@ package com.ramssrez.beans;
 
 import com.ramssrez.interfaces.IFigura;
 import com.ramssrez.interfaces.IMedidas;
+import org.springframework.stereotype.Component;
 
+@Component
 public class Cuadrado implements IFigura {
     private IMedidas medidas;
     private String unidades;
