@@ -9,8 +9,15 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class Main {
     public static void main(String[] args) {
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(SpringConfig.class);
-        Medidas medidas = context.getBean("medidas",Medidas.class);
+        //AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(SpringConfig.class);
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+
+        IMedidas medidas = context.getBean("medidas",IMedidas.class);
         medidas.realizarCalculos("reactangulo","cm");
+
+        IFigura iFigura = context.getBean("cuadrado",IFigura.class);
+        iFigura.imprimirNombre();
+        iFigura.proceso();
+
     }
 }

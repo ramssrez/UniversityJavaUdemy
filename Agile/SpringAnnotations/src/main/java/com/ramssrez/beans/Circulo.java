@@ -2,6 +2,8 @@ package com.ramssrez.beans;
 
 import com.ramssrez.interfaces.IFigura;
 import com.ramssrez.interfaces.IMedidas;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component("circulo")
@@ -9,7 +11,8 @@ public class Circulo implements IFigura {
     private IMedidas medidas;
     private String unidades;
 
-    public Circulo(IMedidas medidas) {
+    @Autowired
+    public Circulo(@Qualifier("medidas") IMedidas medidas) {
         this.medidas = medidas;
     }
 
