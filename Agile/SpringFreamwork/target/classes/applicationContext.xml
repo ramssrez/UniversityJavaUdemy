@@ -16,7 +16,7 @@
           class="com.ramssrez.beans.Cuadrado"
           scope="prototype">
         <constructor-arg ref="medida"/>
-        <property name="unidades"  value="metros"/>
+        <property name="unidades"  value="${unidades.medidas}"/>
     </bean>
 
     <bean id="medida"
