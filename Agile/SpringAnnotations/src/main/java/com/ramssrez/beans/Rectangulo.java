@@ -2,6 +2,8 @@ package com.ramssrez.beans;
 
 import com.ramssrez.interfaces.IFigura;
 import com.ramssrez.interfaces.IMedidas;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component("rectangulo")
@@ -9,8 +11,8 @@ public class Rectangulo implements IFigura {
     private IMedidas medidas;
     private String unidades;
 
-
-    public Rectangulo(IMedidas medidas) {
+    @Autowired
+    public Rectangulo(@Qualifier("medidas")IMedidas medidas) {
         this.medidas = medidas;
     }
 

@@ -2,6 +2,8 @@ package com.ramssrez.beans;
 
 import com.ramssrez.interfaces.IFigura;
 import com.ramssrez.interfaces.IMedidas;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component("cuadrado")
@@ -10,7 +12,8 @@ public class Cuadrado implements IFigura {
     private String unidades;
 
 
-    public Cuadrado(IMedidas medidas) {
+    @Autowired
+    public Cuadrado(@Qualifier("medidas") IMedidas medidas) {
         this.medidas = medidas;
     }
     public void setUnidades(String unidades) {
