@@ -1,4 +1,10 @@
 package com.ramssrez.beans;
 
-public class Rectangulo {
+import com.ramssrez.interfaces.IFigura;
+
+public class Rectangulo implements IFigura {
+    @Override
+    public void imprimirNombre() {
+        System.out.println("Figura: Rectángulo");
+    }
 }
