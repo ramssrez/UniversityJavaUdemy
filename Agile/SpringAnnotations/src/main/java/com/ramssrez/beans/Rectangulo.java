@@ -4,7 +4,7 @@ import com.ramssrez.interfaces.IFigura;
 import com.ramssrez.interfaces.IMedidas;
 import org.springframework.stereotype.Component;
 
-@Component
+@Component("rectangulo")
 public class Rectangulo implements IFigura {
     private IMedidas medidas;
     private String unidades;
