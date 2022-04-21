@@ -16,9 +16,9 @@ public class Cuadrado implements IFigura {
     public Cuadrado(@Qualifier("medidas") IMedidas medidas) {
         this.medidas = medidas;
     }
-    public void setUnidades(String unidades) {
-        this.unidades = unidades;
-    }
+//    public void setUnidades(String unidades) {
+//        this.unidades = unidades;
+//    }
 
     @Override
     public void imprimirNombre() {

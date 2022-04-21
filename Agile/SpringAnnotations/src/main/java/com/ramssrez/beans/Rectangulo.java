@@ -16,9 +16,9 @@ public class Rectangulo implements IFigura {
         this.medidas = medidas;
     }
 
-    public void setUnidades(String unidades) {
-        this.unidades = unidades;
-    }
+//    public void setUnidades(String unidades) {
+//        this.unidades = unidades;
+//    }
 
     @Override
     public void imprimirNombre() {
