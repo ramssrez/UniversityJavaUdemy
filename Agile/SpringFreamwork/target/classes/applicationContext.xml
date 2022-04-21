@@ -4,7 +4,13 @@
         xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="figura"
-          class="com.ramssrez.beans.Circulo" scope="prototype">
+          class="com.ramssrez.beans.Circulo"
+          scope="prototype">
+        <constructor-arg ref="medida"/>
+    </bean>
+
+    <bean id="medida"
+          class="com.ramssrez.beans.Medidas">
     </bean>
 
 </beans>

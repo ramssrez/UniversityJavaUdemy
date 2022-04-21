@@ -21,6 +21,8 @@ public class Main {
 
 
         IFigura f1 = context.getBean("figura",IFigura.class);
+
+        /*
         IFigura f2 = context.getBean("figura",IFigura.class);
         boolean soniguales = f1 == f2;
 
@@ -28,10 +30,14 @@ public class Main {
         System.out.println("f1 y f2 son iguales: " +soniguales);
         System.out.println("f1 = " + f1);;
         System.out.println("f2 = " + f2);
+         */
 
+        /*
+                <constructor-arg ref="medida"/> para el caso de la
+                inyección de dependencias para otros tipos de
+         */
+        f1.proceso();
         f1.imprimirNombre();
-
-
         context.close();
     }
 }

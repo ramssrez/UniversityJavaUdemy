@@ -7,4 +7,9 @@ public class Rectangulo implements IFigura {
     public void imprimirNombre() {
         System.out.println("Figura: Rectángulo");
     }
+
+    @Override
+    public void proceso() {
+
+    }
 }
