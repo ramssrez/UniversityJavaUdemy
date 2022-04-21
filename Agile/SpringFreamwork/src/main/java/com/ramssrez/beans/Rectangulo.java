@@ -5,9 +5,15 @@ import com.ramssrez.interfaces.IMedidas;
 
 public class Rectangulo implements IFigura {
     private IMedidas medidas;
+    private String unidades;
+
 
     public Rectangulo(IMedidas medidas) {
         this.medidas = medidas;
+    }
+
+    public void setUnidades(String unidades) {
+        this.unidades = unidades;
     }
 
     @Override
@@ -18,6 +24,6 @@ public class Rectangulo implements IFigura {
     @Override
     public void proceso() {
         System.out.println("medidas = " + medidas);
-        this.medidas.realizarCalculos("Rectángulo");
+        this.medidas.realizarCalculos("Rectángulo",this.unidades);
     }
 }

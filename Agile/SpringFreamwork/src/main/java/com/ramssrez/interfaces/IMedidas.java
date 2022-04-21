@@ -1,5 +1,5 @@
 package com.ramssrez.interfaces;
 
 public interface IMedidas {
-    void realizarCalculos(String nombre);
+    void realizarCalculos(String nombre, String unidadesMedida);
 }

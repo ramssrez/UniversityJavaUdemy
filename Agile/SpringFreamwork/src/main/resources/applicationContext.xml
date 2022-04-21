@@ -13,9 +13,10 @@
 
     <!--Beans-->
     <bean id="figura"
-          class="com.ramssrez.beans.Rectangulo"
+          class="com.ramssrez.beans.Cuadrado"
           scope="prototype">
         <constructor-arg ref="medida"/>
+        <property name="unidades"  value="metros"/>
     </bean>
 
     <bean id="medida"
