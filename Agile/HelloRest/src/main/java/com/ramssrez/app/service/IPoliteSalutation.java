@@ -1,5 +1,5 @@
 package com.ramssrez.app.service;
 
-public interface IPoleteSalutation {
+public interface IPoliteSalutation {
     String getPoliteSalutation();
 }
