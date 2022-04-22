@@ -1,5 +1,8 @@
 package com.ramssrez.app.controller;
 
+import com.ramssrez.app.dto.HelloDto;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,5 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 @SuppressWarnings("unused")
 public class HelloController {
 
-
+    @GetMapping("/world")
+    public HelloDto hello(){
+        return new HelloDto("Hello World!");
+    }
 }

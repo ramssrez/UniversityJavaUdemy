@@ -1,1 +1,3 @@
+com\ramssrez\app\controller\HelloController.class
 com\ramssrez\app\Main.class
+com\ramssrez\app\dto\HelloDto.class
